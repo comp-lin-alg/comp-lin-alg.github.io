@@ -135,95 +135,9 @@ In this section we'll quickly rattle through some definitions and results.
    The range of `A`, `\mbox{range}(A)`, is the set of vectors that can
    be expressed as `Ax` for some `x`.
 
-The next result follows directly from the column interpretation of
-matrix-vector multiplication.
-   
-.. proof:theorem::
 
-   The range of `A` is the vector space spanned by the columns of `A`.
-
-.. proof:definition:: Nullspace
-
-   The nullspace of `A`, `\mbox{null}(A)`, is the set of vectors
-   `x\in\mathbb{C}^n` such that `Ax=0`.
-
-.. proof:definition:: Rank
-
-   The rank of `A`, `\mbox{rank}(A)`, is the dimension of the column
-   space of `A`, i.e. `\mbox{span}(a_1,a_2,\ldots,a_n)` where
-
-   .. math::
-
-      A = \begin{pmatrix}
-      a_1 & a_2 & \ldots & a_n \\
-      \end{pmatrix}.
-
-Hence, we now understand why the outer product `uv^T` is rank 1.
-
-.. proof:definition:: Full rank
-
-   A matrix `A \in \mathbb{C}^{m\times n}` is full rank if it has
-   maximum possible rank (the minimum of `m` and `n`). If `m\geq n`,
-   then `A` must have linearly independent columns to be full rank.
-
-We quote the following result which follows from the linear
-independence of of the columns of a full rank matrix `A` with `m\geq
-n`, and the column interpretation of matrix multiplication.
 
 .. proof:theorem::
-
-   A matrix `A \in \mathbb{C}^{m\times n}` with `m\geq n` has full rank
-   if and only if it maps no two distinct vectors to the same vector.
-
-.. proof:definition:: Invertible
-
-   A matrix `A \in \mathbb{C}^{m\times n}` is nonsingular (or
-   equivalently, invertible) if it is square (`m=n`) and of full rank.
-
-A consequence of this definition is that  the columns of `A` form a basis
-for `\mathbb{C}^m`.
-
-Writing `e_j` as the jth canonical basis vector,
-
-.. math::
-
-   e_j = \begin{pmatrix}
-   0 \\ \vdots \\ 0 \\ 1 \\ 0 \\ \vdots \\ 0
-   \end{pmatrix}, \,
-
-i.e. the vector with zeros everywhere except for in the jth entry, we
-  can write
-
-.. math::
-
-   e_j = \sum_{i=1}^m z_{ij} a_i,
-
-using the columns of `A`, since the columns form a basis, for coefficients
-`z_{ij}`, `1\leq i,j \leq m`. In other words,
-
-.. math::
-
-   I = \begin{pmatrix}
-   e_1 & e_2 & \ldots & e_m \\
-   \end{pmatrix}
-   = ZA,
-
-and we call `Z` the (left) inverse of `A`.
-
-Let `A` also have a right inverse `Y` so that `I = AY`. Then,
-
-.. math::
-
-   Z = ZI = ZAY = (ZA)Y = IY = Y,
-
-so the left and right inverses agree, and we call them
-`A^{-1}`. (Exercise, show that a full-rank square matrix has unique
-left and right inverse.)
-
-We quote the following result, which partially follows from what we have
-seen so far.
-
-.. proof:thorem::
 
    Let `A \in \mathbb{C}^{m\times m}`. Then the following are equivalent.
 
@@ -234,3 +148,5 @@ seen so far.
    #. 0 is not an eigenvalue of `A`.
    #. 0 is not a singular value of `A`.
    #. The determinant `\det(A)\neq 0`.
+
+A matrix can be seen as a change of basis 

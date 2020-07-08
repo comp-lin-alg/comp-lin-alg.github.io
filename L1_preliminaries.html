@@ -167,101 +167,23 @@ see in the next section that this matrix has rank 1.</p>
     </div><div class="proof-content">
 <p>The range of <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(\mbox{range}(A)\)</span>, is the set of vectors that can
 be expressed as <span class="math notranslate nohighlight">\(Ax\)</span> for some <span class="math notranslate nohighlight">\(x\)</span>.</p>
-</div></div><p>The next result follows directly from the column interpretation of
-matrix-vector multiplication.</p>
-<div class="proof proof-type-theorem" id="id2">
+</div></div><div class="proof proof-type-theorem" id="id2">
 
     <div class="proof-title">
         <span class="proof-type">Theorem 1.2</span>
         
     </div><div class="proof-content">
-<p>The range of <span class="math notranslate nohighlight">\(A\)</span> is the vector space spanned by the columns of <span class="math notranslate nohighlight">\(A\)</span>.</p>
-</div></div><div class="proof proof-type-definition" id="id3">
-
-    <div class="proof-title">
-        <span class="proof-type">Definition 1.3</span>
-        
-            <span class="proof-title-name">(Nullspace)</span>
-        
-    </div><div class="proof-content">
-<p>The nullspace of <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(\mbox{null}(A)\)</span>, is the set of vectors
-<span class="math notranslate nohighlight">\(x\in\mathbb{C}^n\)</span> such that <span class="math notranslate nohighlight">\(Ax=0\)</span>.</p>
-</div></div><div class="proof proof-type-definition" id="id4">
-
-    <div class="proof-title">
-        <span class="proof-type">Definition 1.4</span>
-        
-            <span class="proof-title-name">(Rank)</span>
-        
-    </div><div class="proof-content">
-<p>The rank of <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(\mbox{rank}(A)\)</span>, is the dimension of the column
-space of <span class="math notranslate nohighlight">\(A\)</span>, i.e. <span class="math notranslate nohighlight">\(\mbox{span}(a_1,a_2,\ldots,a_n)\)</span> where</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}A = \begin{pmatrix}
-a_1 &amp; a_2 &amp; \ldots &amp; a_n \\
-\end{pmatrix}.\end{split}\]</div>
-</div></div><p>Hence, we now understand why the outer product <span class="math notranslate nohighlight">\(uv^T\)</span> is rank 1.</p>
-<div class="proof proof-type-definition" id="id5">
-
-    <div class="proof-title">
-        <span class="proof-type">Definition 1.5</span>
-        
-            <span class="proof-title-name">(Full rank)</span>
-        
-    </div><div class="proof-content">
-<p>A matrix <span class="math notranslate nohighlight">\(A \in \mathbb{C}^{m\times n}\)</span> is full rank if it has
-maximum possible rank (the minimum of <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(n\)</span>). If <span class="math notranslate nohighlight">\(m\geq n\)</span>,
-then <span class="math notranslate nohighlight">\(A\)</span> must have linearly independent columns to be full rank.</p>
-</div></div><p>We quote the following result which follows from the linear
-independence of of the columns of a full rank matrix <span class="math notranslate nohighlight">\(A\)</span> with <span class="math notranslate nohighlight">\(m\geq
-n\)</span>, and the column interpretation of matrix multiplication.</p>
-<div class="proof proof-type-theorem" id="id6">
-
-    <div class="proof-title">
-        <span class="proof-type">Theorem 1.6</span>
-        
-    </div><div class="proof-content">
-<p>A matrix <span class="math notranslate nohighlight">\(A \in \mathbb{C}^{m\times n}\)</span> with <span class="math notranslate nohighlight">\(m\geq n\)</span> has full rank
-if and only if it maps no two distinct vectors to the same vector.</p>
-</div></div><div class="proof proof-type-definition" id="id7">
-
-    <div class="proof-title">
-        <span class="proof-type">Definition 1.7</span>
-        
-            <span class="proof-title-name">(Invertible)</span>
-        
-    </div><div class="proof-content">
-<p>A matrix <span class="math notranslate nohighlight">\(A \in \mathbb{C}^{m\times n}\)</span> is nonsingular (or
-equivalently, invertible) if it is square (<span class="math notranslate nohighlight">\(m=n\)</span>) and of full rank.</p>
-</div></div><p>A consequence of this definition is that  the columns of <span class="math notranslate nohighlight">\(A\)</span> form a basis
-for <span class="math notranslate nohighlight">\(\mathbb{C}^m\)</span>.</p>
-<p>Writing <span class="math notranslate nohighlight">\(e_j\)</span> as the jth canonical basis vector,</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}e_j = \begin{pmatrix}
-0 \\ \vdots \\ 0 \\ 1 \\ 0 \\ \vdots \\ 0
-\end{pmatrix}, \,\end{split}\]</div>
-<dl class="simple">
-<dt>i.e. the vector with zeros everywhere except for in the jth entry, we</dt><dd><p>can write</p>
-</dd>
-</dl>
-<div class="math notranslate nohighlight">
-\[e_j = \sum_{i=1}^m z_{ij} a_i,\]</div>
-<p>using the columns of <span class="math notranslate nohighlight">\(A\)</span>, since the columns form a basis, for coefficients
-<span class="math notranslate nohighlight">\(z_{ij}\)</span>, <span class="math notranslate nohighlight">\(1\leq i,j \leq m\)</span>. In other words,</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}I = \begin{pmatrix}
-e_1 &amp; e_2 &amp; \ldots &amp; e_m \\
-\end{pmatrix}
-= ZA,\end{split}\]</div>
-<p>and we call <span class="math notranslate nohighlight">\(Z\)</span> the (left) inverse of <span class="math notranslate nohighlight">\(A\)</span>.</p>
-<p>Let <span class="math notranslate nohighlight">\(A\)</span> also have a right inverse <span class="math notranslate nohighlight">\(Y\)</span> so that <span class="math notranslate nohighlight">\(I = AY\)</span>. Then,</p>
-<div class="math notranslate nohighlight">
-\[Z = ZI = ZAY = (ZA)Y = IY = Y,\]</div>
-<p>so the left and right inverses agree, and we call them
-<span class="math notranslate nohighlight">\(A^{-1}\)</span>. (Exercise, show that a full-rank square matrix has unique
-left and right inverse.)</p>
-<p>We quote the following result, which partially follows from what we have
-seen so far.</p>
+<p>Let <span class="math notranslate nohighlight">\(A \in \mathbb{C}^{m\times m}\)</span>. Then the following are equivalent.</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(A\)</span> has an inverse.</p></li>
+<li><p>rank`(A)=m`.</p></li>
+<li><p>range`(A)=mathbb{C}^m`.</p></li>
+<li><p>null`(A)={0}`.</p></li>
+<li><p>0 is not an eigenvalue of <span class="math notranslate nohighlight">\(A\)</span>.</p></li>
+<li><p>0 is not a singular value of <span class="math notranslate nohighlight">\(A\)</span>.</p></li>
+<li><p>The determinant <span class="math notranslate nohighlight">\(\det(A)\neq 0\)</span>.</p></li>
+</ol>
+</div></div><p>A matrix can be seen as a change of basis</p>
 </div>
 </div>
 
