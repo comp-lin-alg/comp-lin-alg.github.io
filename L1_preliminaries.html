@@ -51,7 +51,8 @@
 <h1><span class="section-number">1. </span>Preliminaries<a class="headerlink" href="#preliminaries" title="Permalink to this headline">¶</a></h1>
 <p>In this preliminary section we revise a few key linear algebra
 concepts that will be used in the rest of the course, emphasising
-the column space of matrices.</p>
+the column space of matrices. We will quote some standard results
+that should be found in an undergraduate linear algebra course.</p>
 <div class="section" id="matrices-vectors-and-matrix-vector-multiplication">
 <h2><span class="section-number">1.1. </span>Matrices, vectors and matrix-vector multiplication<a class="headerlink" href="#matrices-vectors-and-matrix-vector-multiplication" title="Permalink to this headline">¶</a></h2>
 <p>We will consider the multiplication of a vector</p>
@@ -196,14 +197,16 @@ satisfying <span class="math notranslate nohighlight">\(Ax=0\)</span>, i.e.</p>
             <span class="proof-title-name">(Rank)</span>
         
     </div><div class="proof-content">
-<p>The rank <span class="math notranslate nohighlight">\(\mbox{rank}(A)\)</span> of <span class="math notranslate nohighlight">\(A\)</span>.</p>
-</div></div><p>If
-.. math:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> \<span class="n">begin</span><span class="p">{</span><span class="n">pmatrix</span><span class="p">}</span>
-<span class="n">a_1</span> <span class="o">&amp;</span> <span class="n">a_2</span> <span class="o">&amp;</span> \<span class="n">ldots</span> <span class="o">&amp;</span> <span class="n">a_n</span> \\
-\<span class="n">end</span><span class="p">{</span><span class="n">pmatrix</span><span class="p">},</span>
-</pre></div>
-</div>
+<p>The rank <span class="math notranslate nohighlight">\(\mbox{rank}(A)\)</span> of <span class="math notranslate nohighlight">\(A\)</span>
+is the dimension of the column space
+of <span class="math notranslate nohighlight">\(A\)</span>.</p>
+</div></div><p>If</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}A = \begin{pmatrix}
+a_1 &amp; a_2 &amp; \ldots &amp; a_n \\
+\end{pmatrix},\end{split}\]</div>
+</div></blockquote>
 <p>the column space of <span class="math notranslate nohighlight">\(A\)</span> is <span class="math notranslate nohighlight">\(\mbox{span}(a_1,a_2,\ldots,a_n)\)</span>.</p>
 <div class="proof proof-type-definition" id="id5">
 
@@ -215,28 +218,163 @@ satisfying <span class="math notranslate nohighlight">\(Ax=0\)</span>, i.e.</p>
 i.e. rank equal to <span class="math notranslate nohighlight">\(\min(m, n)\)</span>.</p>
 </div></div><p>If <span class="math notranslate nohighlight">\(m\geq n\)</span> then <span class="math notranslate nohighlight">\(A\)</span> must have <span class="math notranslate nohighlight">\(n\)</span> linearly independent columns to be
 full rank. The next theorem is then a consequence of the column space
-interpretation of matrix-vector multiplication.
-.. proof:theorem:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">asdf</span>
-</pre></div>
-</div>
+interpretation of matrix-vector multiplication.</p>
 <div class="proof proof-type-theorem" id="id6">
 
     <div class="proof-title">
         <span class="proof-type">Theorem 1.6</span>
         
     </div><div class="proof-content">
+<p>An <span class="math notranslate nohighlight">\(m\times n\)</span> matrix <span class="math notranslate nohighlight">\(A\)</span> is full rank if and only if it maps no two
+distinct vectors to the same vector.</p>
+</div></div><div class="proof proof-type-definition" id="id7">
+
+    <div class="proof-title">
+        <span class="proof-type">Definition 1.7</span>
+        
+    </div><div class="proof-content">
+<p>A matrix <span class="math notranslate nohighlight">\(A\)</span> is called nonsingular, or invertible, if it is a square
+matrix (<span class="math notranslate nohighlight">\(m=n\)</span>) of full rank.</p>
+</div></div></div>
+<div class="section" id="invertibility-and-inverses">
+<h2><span class="section-number">1.3. </span>Invertibility and inverses<a class="headerlink" href="#invertibility-and-inverses" title="Permalink to this headline">¶</a></h2>
+<p>This means that an invertible matrix has columns that form a basis for
+<span class="math notranslate nohighlight">\(\mathbb{C}^m\)</span>. Given the canonical basis vectors defined by</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}e_j = \begin{pmatrix}
+0 \\
+\ldots \\
+0 \\
+1 \\
+0 \\
+\ldots \\
+0 \\
+\end{pmatrix},\end{split}\]</div>
+<p>i.e. <span class="math notranslate nohighlight">\(e_j\)</span> has all entries zero except for the jth entry which is 1, we can
+write</p>
+<div class="math notranslate nohighlight">
+\[e_j = \sum_{k=1}^m z_{ik} a_k, \quad 1\leq j \leq m.\]</div>
+<p>In other words,</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}I =
+\begin{pmatrix}
+e_1 &amp; e_2 &amp; \ldots &amp; e_m
+\end{pmatrix}\\= ZA.\end{aligned}\end{align} \]</div>
+<p>We call <span class="math notranslate nohighlight">\(Z\)</span> a (left) inverse of <span class="math notranslate nohighlight">\(A\)</span>. (Exercises: show that <span class="math notranslate nohighlight">\(Z\)</span> is
+the unique left inverse of <span class="math notranslate nohighlight">\(A\)</span>, and show that <span class="math notranslate nohighlight">\(Z\)</span> is also the unique
+right inverse of <span class="math notranslate nohighlight">\(A\)</span>, satisfying <span class="math notranslate nohighlight">\(I = AZ\)</span>.) We write <span class="math notranslate nohighlight">\(Z=A^{-1}\)</span>.</p>
+<p>The first four parts of the next theorem are a consequence of what
+we have so far, and we shall quote the rest (see a linear algebra
+course).</p>
+<div class="proof proof-type-theorem" id="id8">
+
+    <div class="proof-title">
+        <span class="proof-type">Theorem 1.8</span>
+        
+    </div><div class="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(A \in \mathbb{C}^{m\times m}\)</span>. Then the following are equivalent.</p>
 <ol class="arabic simple">
 <li><p><span class="math notranslate nohighlight">\(A\)</span> has an inverse.</p></li>
-<li><p>rank`(A)=m`.</p></li>
-<li><p>range`(A)=mathbb{C}^m`.</p></li>
-<li><p>null`(A)={0}`.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mbox{rank}(A)=m\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mbox{range}(A)=\mathbb{C}^m\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mbox{null}(A)=\{0\}\)</span>.</p></li>
 <li><p>0 is not an eigenvalue of <span class="math notranslate nohighlight">\(A\)</span>.</p></li>
 <li><p>0 is not a singular value of <span class="math notranslate nohighlight">\(A\)</span>.</p></li>
 <li><p>The determinant <span class="math notranslate nohighlight">\(\det(A)\neq 0\)</span>.</p></li>
 </ol>
-</div></div><p>A matrix can be seen as a change of basis</p>
+</div></div><p>Finding the inverse of a matrix can be seen as a change of basis. Considering
+the equation <span class="math notranslate nohighlight">\(Ax= b\)</span>, we have <span class="math notranslate nohighlight">\(x = A^{-1}b\)</span> for invertible <span class="math notranslate nohighlight">\(A\)</span>. We have
+seen already that <span class="math notranslate nohighlight">\(b\)</span> can be written as</p>
+<div class="math notranslate nohighlight">
+\[b = \sum_{j=1}^m x_j a_j.\]</div>
+<p>Since the columns of <span class="math notranslate nohighlight">\(A\)</span> span <span class="math notranslate nohighlight">\(\mathbb{C}^m\)</span>, the entries of <span class="math notranslate nohighlight">\(x\)</span> thus
+provide the unique expansion of <span class="math notranslate nohighlight">\(b\)</span> in the columns of <span class="math notranslate nohighlight">\(A\)</span> which form a
+basis.  Hence, whilst the entries of <span class="math notranslate nohighlight">\(b\)</span> give basis coefficients for
+<span class="math notranslate nohighlight">\(b\)</span> in the canonical basis <span class="math notranslate nohighlight">\((e_1,e_2,\ldots,e_m)\)</span>, the entries of <span class="math notranslate nohighlight">\(x\)</span>
+give basis coefficients for <span class="math notranslate nohighlight">\(b\)</span> in the basis given by the columns of <span class="math notranslate nohighlight">\(A\)</span>.</p>
+</div>
+<div class="section" id="orthogonal-vectors-and-orthogonal-matrices">
+<h2><span class="section-number">1.4. </span>Orthogonal vectors and orthogonal matrices<a class="headerlink" href="#orthogonal-vectors-and-orthogonal-matrices" title="Permalink to this headline">¶</a></h2>
+<div class="proof proof-type-definition" id="id9">
+
+    <div class="proof-title">
+        <span class="proof-type">Definition 1.9</span>
+        
+            <span class="proof-title-name">(Adjoint)</span>
+        
+    </div><div class="proof-content">
+<p>The adjoint (or Hermitian conjugate) of <span class="math notranslate nohighlight">\(A\in \mathbb{C}^{m\times n}\)</span>
+is a matrix <span class="math notranslate nohighlight">\(A^* \in \mathbb{C}^{n\times m}\)</span> (sometimes written
+<span class="math notranslate nohighlight">\(A^\dagger\)</span> or <span class="math notranslate nohighlight">\(A'\)</span>), with</p>
+<div class="math notranslate nohighlight">
+\[a^*_{ij} = \bar{a_{ji}},\]</div>
+<p>where the bar denotes the complex conjugate of a complex number. If
+<span class="math notranslate nohighlight">\(A^* = A\)</span> then we say that <span class="math notranslate nohighlight">\(A\)</span> is Hermitian.</p>
+<p>For real matrices, <span class="math notranslate nohighlight">\(A^*=A^T\)</span>. If <span class="math notranslate nohighlight">\(A=A^T\)</span>, then we say that the matrix
+is symmetric.</p>
+</div></div><p>The following identity is very important when dealing with adjoints.</p>
+<div class="proof proof-type-theorem" id="id10">
+
+    <div class="proof-title">
+        <span class="proof-type">Theorem 1.10</span>
+        
+    </div><div class="proof-content">
+<p>For matrices <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(B\)</span> with compatible dimensions (so that they can
+be multiplied),</p>
+<div class="math notranslate nohighlight">
+\[(AB)^* = B^*A^*.\]</div>
+</div></div></div>
+<div class="section" id="inner-products-and-orthogonality">
+<h2><span class="section-number">1.5. </span>Inner products and orthogonality<a class="headerlink" href="#inner-products-and-orthogonality" title="Permalink to this headline">¶</a></h2>
+<p>The inner product is a critical tool in computational linear algebra.</p>
+<div class="proof proof-type-definition" id="id11">
+
+    <div class="proof-title">
+        <span class="proof-type">Definition 1.11</span>
+        
+            <span class="proof-title-name">(Inner product)</span>
+        
+    </div><div class="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(x,y\in \mathb{C}^m\)</span>. Then the inner product of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[x^*y = \sum_{i=1}^m \bar{x}_iy_i.\]</div>
+</div></div><p>(Exercise: check that the inner product is bilinear, i.e. linear in
+both of the arguments.)</p>
+<p>We will frequently use the natural norm derived from the inner product
+to define size of vectors.</p>
+<div class="proof proof-type-definition" id="id12">
+
+    <div class="proof-title">
+        <span class="proof-type">Definition 1.12</span>
+        
+            <span class="proof-title-name">(2-Norm)</span>
+        
+    </div><div class="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(x\in \mathbb{C}^m\)</span>. Then the 2-norm of <span class="math notranslate nohighlight">\(x\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[\|x\| = \sqrt{\sum_{i=1}^m x_i^2} = \sqrt{x^*x}.\]</div>
+</div></div><p>Orthogonality will emerge as an early key concept in this course.</p>
+<blockquote>
+<div><div class="proof proof-type-definition" id="id13">
+
+    <div class="proof-title">
+        <span class="proof-type">Definition 1.13</span>
+        
+            <span class="proof-title-name">(Orthogonal vectors)</span>
+        
+    </div><div class="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(x,y\in \mathbb{C}^m\)</span>. The two vectors are orthogonal if
+<span class="math notranslate nohighlight">\(x^*y=0\)</span>.</p>
+<p>Similarly, let <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(Y\)</span> be two sets of vectors. The two sets
+are orthogonal if</p>
+<div class="math notranslate nohighlight">
+\[x^*y = 0\, \forall x\in X, \, y\in Y.\]</div>
+<p>A set <span class="math notranslate nohighlight">\(S\)</span> of vectors is itself orthogonal if</p>
+<div class="math notranslate nohighlight">
+\[x^*y = 0\,\forall x,y \in S.\]</div>
+<p>We say that <span class="math notranslate nohighlight">\(S\)</span> is orthonormal if we also have <span class="math notranslate nohighlight">\(\|x\|=1\)</span>
+for all <span class="math notranslate nohighlight">\(x\in S\)</span>.</p>
+</div></div></div></blockquote>
 </div>
 </div>
 
