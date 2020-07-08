@@ -335,7 +335,7 @@ be multiplied),</p>
             <span class="proof-title-name">(Inner product)</span>
         
     </div><div class="proof-content">
-<p>Let <span class="math notranslate nohighlight">\(x,y\in \mathb{C}^m\)</span>. Then the inner product of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> is</p>
+<p>Let <span class="math notranslate nohighlight">\(x,y\in \mathbb{C}^m\)</span>. Then the inner product of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> is</p>
 <div class="math notranslate nohighlight">
 \[x^*y = \sum_{i=1}^m \bar{x}_iy_i.\]</div>
 </div></div><p>(Exercise: check that the inner product is bilinear, i.e. linear in
@@ -375,6 +375,96 @@ are orthogonal if</p>
 <p>We say that <span class="math notranslate nohighlight">\(S\)</span> is orthonormal if we also have <span class="math notranslate nohighlight">\(\|x\|=1\)</span>
 for all <span class="math notranslate nohighlight">\(x\in S\)</span>.</p>
 </div></div></div></blockquote>
+</div>
+<div class="section" id="orthogonal-components-of-a-vector">
+<h2><span class="section-number">1.6. </span>Orthogonal components of a vector<a class="headerlink" href="#orthogonal-components-of-a-vector" title="Permalink to this headline">¶</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(S=\{q_1,q_2,\ldots,q_n\}\)</span> be an orthonormal set of vectors in
+<span class="math notranslate nohighlight">\(\mathbb{C}^m\)</span>, and take another arbitrary vector <span class="math notranslate nohighlight">\(v\in \mathbb{C}^m\)</span>.
+Now take</p>
+<div class="math notranslate nohighlight">
+\[r = v - (q_1^*v)q_1 - (q_2^*v)q_2 - \ldots (q_n^*v)q_n.\]</div>
+<p>Then, we can check that <span class="math notranslate nohighlight">\(r\)</span> is orthogonal to <span class="math notranslate nohighlight">\(S\)</span>, by calculating
+for each <span class="math notranslate nohighlight">\(1\leq i \leq n\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}q^*_ir = q_i^*v - (q_1^*v)(q_i^*q_1) - \ldots (q_n^*v)(q_i^*q_n)\\= q_i^*v - q_i^*v = 0,\end{aligned}\end{align} \]</div>
+<p>since <span class="math notranslate nohighlight">\(q_i^*q_j=0\)</span> if <span class="math notranslate nohighlight">\(i\neq j\)</span>, and 1 if <span class="math notranslate nohighlight">\(i=j\)</span>.
+Thus,</p>
+<div class="math notranslate nohighlight">
+\[v = r + \sum_{i=1}^n (q_i^*v)q_i
+= r + \sum_{i=1}^n \underbrace{(q_i q_i^*)}_{\mbox{rank-1 matrix}}v.\]</div>
+<p>If <span class="math notranslate nohighlight">\(S\)</span> is a basis for <span class="math notranslate nohighlight">\(\mathbb{C}^m\)</span>, then <span class="math notranslate nohighlight">\(n=m\)</span> and <span class="math notranslate nohighlight">\(r=0\)</span>, and we have</p>
+<div class="math notranslate nohighlight">
+\[v = \sum_{i=1}^m (q_i q_i^*)v.\]</div>
+</div>
+<div class="section" id="unitary-matrices">
+<h2><span class="section-number">1.7. </span>Unitary matrices<a class="headerlink" href="#unitary-matrices" title="Permalink to this headline">¶</a></h2>
+<div class="proof proof-type-definition" id="id14">
+
+    <div class="proof-title">
+        <span class="proof-type">Definition 1.14</span>
+        
+    </div><div class="proof-content">
+<p>A matrix <span class="math notranslate nohighlight">\(Q\in \mathbb{C}^{m\times m}\)</span> is unitary if <span class="math notranslate nohighlight">\(Q^* =Q^{-1}\)</span>.</p>
+<p>For real matrices, a matrix <span class="math notranslate nohighlight">\(Q\)</span>  is orthogonal if <span class="math notranslate nohighlight">\(Q^T=Q^{-1}\)</span>.</p>
+</div></div><div class="proof proof-type-theorem" id="id15">
+
+    <div class="proof-title">
+        <span class="proof-type">Theorem 1.15</span>
+        
+    </div><div class="proof-content">
+<p>The columns of a unitary matrix <span class="math notranslate nohighlight">\(Q\)</span> are orthonormal.</p>
+</div></div><div class="proof proof-type-proof">
+
+    <div class="proof-title">
+        <span class="proof-type">Proof </span>
+        
+    </div><div class="proof-content">
+<p>We have <span class="math notranslate nohighlight">\(I = Q^*Q\)</span>. Then using the column space interpretation
+of matrix-matrix multiplication,</p>
+<div class="math notranslate nohighlight">
+\[e_j = Q^*q_j,\]</div>
+<p>where <span class="math notranslate nohighlight">\(q_j\)</span> is the jth column of <span class="math notranslate nohighlight">\(Q\)</span>. Taking row i of <span class="math notranslate nohighlight">\(e_j\)</span>, we have</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\delta_{ij} = q_i^*q_j, \mbox{ where }
+\delta_{ij} = \left\{
+\begin{array}{ccc}
+1 &amp; \mbox{if} &amp; i=j, \\
+0 &amp; \mbox{otherwise} &amp; \\
+\end{array}\right. .\end{split}\]</div>
+</div></div><p>Extending a theme from earlier, we can interpret <span class="math notranslate nohighlight">\(Q^*=Q^{-1}\)</span> as
+representing a change of orthogonal basis. If <span class="math notranslate nohighlight">\(Qx = b\)</span>, then
+<span class="math notranslate nohighlight">\(x=Q^*b\)</span> contains the coefficients of <span class="math notranslate nohighlight">\(b\)</span> expanded in the basis
+given by the orthonormal columns of <span class="math notranslate nohighlight">\(Q\)</span>.</p>
+</div>
+<div class="section" id="vector-norms">
+<h2><span class="section-number">1.8. </span>Vector norms<a class="headerlink" href="#vector-norms" title="Permalink to this headline">¶</a></h2>
+<p>Various vector norms are useful to measure the size of a vector.
+In computational linear algebra we need them for quantifying errors
+etc.</p>
+<div class="proof proof-type-definition" id="id16">
+
+    <div class="proof-title">
+        <span class="proof-type">Definition 1.16</span>
+        
+    </div><div class="proof-content">
+<p>A norm is a function <span class="math notranslate nohighlight">\(\|\cdot\|:\mathbb{C}^m \to \mathbb{R}\)</span>, such that</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(\|x\|\geq 0\)</span>, and <span class="math notranslate nohighlight">\(\|x\|=0\implies x =0.\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\|x+y\| \leq \|x\| + \|y\|\)</span> (triangle inequality).</p></li>
+<li><p><span class="math notranslate nohighlight">\(\|\alpha x\| = |\alpha|\|x\|\)</span> for all <span class="math notranslate nohighlight">\(x \in \mathbb{C}^m\)</span>
+and <span class="math notranslate nohighlight">\(\alpha \in \mathbb{C}\)</span>.</p></li>
+</ol>
+</div></div><p>We have already seen the 2-norm, or Euclidean norm, which is part of a
+larger class of norms called p-norms, with</p>
+<div class="math notranslate nohighlight">
+\[\|x\|_p = \left(\sum_{i=1}^m |x_i|^p\right)^{1/p}, \quad\]</div>
+<p>for real ‘p&gt;0’. We will also consider weighted norms</p>
+<div class="math notranslate nohighlight">
+\[\|x\|_{W,p} = \|Wx \|_p,\]</div>
+<p>where <span class="math notranslate nohighlight">\(W\)</span> is a matrix.</p>
+</div>
+<div class="section" id="projectors-and-projections">
+<h2><span class="section-number">1.9. </span>Projectors and projections<a class="headerlink" href="#projectors-and-projections" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
