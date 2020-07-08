@@ -1,0 +1,225 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2. QR Factorisation &#8212; Computational linear algebra course 2020.0 documentation</title>
+    <link rel="stylesheet" href="_static/fenics.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/proof.js"></script>
+    <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="1. Preliminaries" href="L1_preliminaries.html" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+<link rel="stylesheet" href="_static/featured.css">
+
+
+<link rel="shortcut icon" href="_static/icon.ico" />
+
+
+  </head><body>
+<div class="wrapper">
+  <a href="index.html"><img src="_static/banner.png" width="900px" alt="Project Banner" /></a>
+  <div id="access">
+    <div class="menu">
+      <ul>
+          <li class="page_item"><a href="https://github.com/Computational-Linear-Algebra-Course/computational-linear-algebra-course" title="GitHub">GitHub</a></li>
+      </ul>
+    </div><!-- .menu -->
+  </div><!-- #access -->
+</div><!-- #wrapper -->
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="qr-factorisation">
+<h1><span class="section-number">2. </span>QR Factorisation<a class="headerlink" href="#qr-factorisation" title="Permalink to this headline">¶</a></h1>
+<p>A common theme in computational linear algebra is transformations
+of matrices and algorithms to implement them. A transformation is
+only useful if it can be computed efficiently and sufficiently
+free of pollution from truncation errors (either due to finishing
+an iterative algorithm early, or due to round-off errors). A particularly
+powerful and insightful transformation is the QR factorisation.
+In this section we will introduce the QR factorisation and some
+good and bad algorithms to compute it.</p>
+<div class="section" id="what-is-the-qr-factorisation">
+<h2><span class="section-number">2.1. </span>What is the QR factorisation?<a class="headerlink" href="#what-is-the-qr-factorisation" title="Permalink to this headline">¶</a></h2>
+<p>We start with another definition.</p>
+<div class="proof proof-type-definition" id="id3">
+
+    <div class="proof-title">
+        <span class="proof-type">Definition 2.1</span>
+        
+            <span class="proof-title-name">(Upper triangular matrix)</span>
+        
+    </div><div class="proof-content">
+<p>An <span class="math notranslate nohighlight">\(m\times n\)</span> upper triangular matrix <span class="math notranslate nohighlight">\(R\)</span> has coefficients satisfying
+<span class="math notranslate nohighlight">\(r_{ij}=0\)</span> when <span class="math notranslate nohighlight">\(i\geq j\)</span>.</p>
+<p>It is called upper triangular because the nonzero rows form a triangle
+on and above the main diagonal of <span class="math notranslate nohighlight">\(R\)</span>.</p>
+</div></div><p>Now we can describe the QR factorisation.</p>
+<div class="proof proof-type-definition" id="id4">
+
+    <div class="proof-title">
+        <span class="proof-type">Definition 2.2</span>
+        
+            <span class="proof-title-name">(QR factorisation)</span>
+        
+    </div><div class="proof-content">
+<p>A QR factorisation of an <span class="math notranslate nohighlight">\(m\times n\)</span> matrix <span class="math notranslate nohighlight">\(A\)</span> consists of an <span class="math notranslate nohighlight">\(m\times m\)</span>
+unitary matrix <span class="math notranslate nohighlight">\(Q\)</span> and an <span class="math notranslate nohighlight">\(m\times n\)</span> upper triangular matrix <span class="math notranslate nohighlight">\(R\)</span> such
+that <span class="math notranslate nohighlight">\(A=QR\)</span>.</p>
+</div></div><p>The QR factorisation is a key tool in analysis of datasets, and
+polynomial fitting. It is also at the core of one of the most widely
+used algorithms for finding eigenvalues of matrices. We shall discuss
+all of this later during this course.</p>
+<p>When <span class="math notranslate nohighlight">\(m &gt; n\)</span>, <span class="math notranslate nohighlight">\(R\)</span> must have all zero rows after the <span class="math notranslate nohighlight">\(n\)</span> block of <span class="math notranslate nohighlight">\(R\)</span>
+consisting of the first <span class="math notranslate nohighlight">\(n\)</span> rows, which we call <span class="math notranslate nohighlight">\(\hat{R}\)</span>. Similarly,
+in the matrix vector product <span class="math notranslate nohighlight">\(QR\)</span>, all columns of <span class="math notranslate nohighlight">\(Q\)</span> beyond the <span class="math notranslate nohighlight">\(n\)</span>, so it makes sense to
+only work with the first <span class="math notranslate nohighlight">\(n\)</span> columns of <span class="math notranslate nohighlight">\(Q\)</span>, which we call <span class="math notranslate nohighlight">\(\hat{Q}\)</span>.
+We then have the reduced QR factorisation, <span class="math notranslate nohighlight">\(\hat{Q}\hat{R}\)</span>.</p>
+<p>In the rest of this section we will examine some algorithms for computing
+the QR factorisation, before discussing the application to least squares
+problems. We will start with a bad algorithm, before moving on to some
+better ones.</p>
+</div>
+<div class="section" id="qr-factorisation-by-classical-gram-schmidt-algorithm">
+<h2><span class="section-number">2.2. </span>QR factorisation by classical Gram-Schmidt algorithm<a class="headerlink" href="#qr-factorisation-by-classical-gram-schmidt-algorithm" title="Permalink to this headline">¶</a></h2>
+<p>The classical Gram-Schmidt algorithm for QR factorisation is motivated
+by the column space interpretation of the matrix-matrix multiplication
+<span class="math notranslate nohighlight">\(A = QR\)</span>, namely that the jth column <span class="math notranslate nohighlight">\(a_j\)</span> of <span class="math notranslate nohighlight">\(A\)</span> is a linear
+combination of the orthonormal columns of <span class="math notranslate nohighlight">\(Q\)</span>, with the coefficients
+given by the jth column <span class="math notranslate nohighlight">\(r_j\)</span> of <span class="math notranslate nohighlight">\(R\)</span>.</p>
+<p>The first column of <span class="math notranslate nohighlight">\(R\)</span> only has a non-zero entry in the first row, so
+the first column of <span class="math notranslate nohighlight">\(Q\)</span> must be proportional to <span class="math notranslate nohighlight">\(A\)</span>, but normalised
+(i.e. rescaled to have length 1). The scaling factor is this first row
+of the first column of <span class="math notranslate nohighlight">\(R\)</span>. The second column of <span class="math notranslate nohighlight">\(R\)</span> has only non-zero
+entries in the first two rows, so the second column of <span class="math notranslate nohighlight">\(A\)</span> must be
+writeable as a linear combination of the first two columns of
+<span class="math notranslate nohighlight">\(Q\)</span>. Hence, the second column of <span class="math notranslate nohighlight">\(Q\)</span> must by the second column of <span class="math notranslate nohighlight">\(A\)</span>
+with the first column of <span class="math notranslate nohighlight">\(Q\)</span> projected out, and then normalised. The
+first row of the second column of <span class="math notranslate nohighlight">\(R\)</span> is then the coefficient for this
+projection, and the second row is the normalisation scaling
+factor. The third row of <span class="math notranslate nohighlight">\(Q\)</span> is then the third row of <span class="math notranslate nohighlight">\(A\)</span> with the
+first two columns of <span class="math notranslate nohighlight">\(Q\)</span> projected out, and so on.</p>
+<p>Hence, finding a QR factorisation is equivalent to finding an
+orthonormal spanning set for the columns of <span class="math notranslate nohighlight">\(A\)</span>, where the span of the
+first ‘j’ elements of the spanning set and of the first <a href="#id1"><span class="problematic" id="id2">`</span></a>j’ columns of
+‘A’ is the same, for ‘j=1,ldots, n’.</p>
+<p>Hence we have to find <span class="math notranslate nohighlight">\(R\)</span> coefficients such that</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}q_1 = \frac{a_1}{r_11},\\q_2 = \frac{a_2-r_{12}q_1}{r_{22}}\\\vdots\\q_n = \frac{q_n - \sum_{i=1}^{n-1}r_{in}q_i}{r_{nn}},\end{aligned}\end{align} \]</div>
+<p>with <span class="math notranslate nohighlight">\((q_1,q_2,\ldots,q_n)\)</span> an orthonormal set. The non-diagonal
+entries of <span class="math notranslate nohighlight">\(R\)</span> are found by inner products, i.e.,</p>
+<div class="math notranslate nohighlight">
+\[r_{ij} = q_i^*a_j, \, i &gt; j,\]</div>
+<p>and the diagonal entries are chosen so that <span class="math notranslate nohighlight">\(\|q_i\|=1\)</span>, for
+<span class="math notranslate nohighlight">\(i=1,2,\ldots,n\)</span>, i.e.</p>
+<div class="math notranslate nohighlight">
+\[|r_{jj}| = \left\| a_j - \sum_{i=1}^{j-1} r_{ij} q_i \right\|.\]</div>
+<p>Note that this absolute value does leave a degree of nonuniqueness
+in the definition of <span class="math notranslate nohighlight">\(R\)</span>. It is standard to choose the diagonal entries
+to be real and non-negative.</p>
+<p>We now present the classical Gram-Schmidt algorithm as pseudo-code.</p>
+<ul class="simple">
+<li><p>FOR <span class="math notranslate nohighlight">\(j = 1\)</span> TO <span class="math notranslate nohighlight">\(n\)</span></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(v_j \gets a_j\)</span></p></li>
+<li><p>FOR <span class="math notranslate nohighlight">\(i = 1\)</span> TO <span class="math notranslate nohighlight">\(j-1\)</span></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(r_{ij} \gets q_i^*a_j\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(v_j \gets v_j - r_{ij}q_i\)</span></p></li>
+</ul>
+</li>
+<li><p>END FOR</p></li>
+<li><p><span class="math notranslate nohighlight">\(r_{jj} \gets \|v_j\|_2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(q_j \gets v_j/r_{jj}\)</span></p></li>
+</ul>
+</li>
+<li><p>END FOR</p></li>
+</ul>
+<p>(Remember that Python doesn’t have END FOR statements, but instead
+uses indentation to terminate code blocks. We’ll write END statements
+for code blocks in pseudo-code in these notes.)</p>
+</div>
+<div class="section" id="projector-interpretation-of-gram-schmidt">
+<h2><span class="section-number">2.3. </span>Projector interpretation of Gram-Schmidt<a class="headerlink" href="#projector-interpretation-of-gram-schmidt" title="Permalink to this headline">¶</a></h2>
+<p>At each step of the Gram-Schmidt algorithm, a projector is applied to
+a column of <span class="math notranslate nohighlight">\(A\)</span>. We have</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}q_1 = \frac{P_1a_1}{\|P_1a_1\|},\\q_2 = \frac{P_2a_2}{\|P_2a_2\|},\\\vdots\\q_n = \frac{P_na_n}{\|P_na_n\|},\end{aligned}\end{align} \]</div>
+<p>where <span class="math notranslate nohighlight">\(P_j\)</span> are orthogonal projectors that project out the first <span class="math notranslate nohighlight">\(j-1\)</span>
+columns <span class="math notranslate nohighlight">\((q_1,\ldots,q_{j-1})\)</span> (<span class="math notranslate nohighlight">\(P_1\)</span> is the identity as this set is
+empty when <span class="math notranslate nohighlight">\(j=1\)</span>). The orthogonal projector onto the first <span class="math notranslate nohighlight">\(j-1\)</span> columns
+is <span class="math notranslate nohighlight">\(\hat{Q}_{j-1}\hat{Q}_{j-1}^*\)</span>, where</p>
+<div class="math notranslate nohighlight">
+\[\hat{Q}_{j-1} =
+\begin{pmatrix} q_1 &amp; q_2 &amp; \ldots &amp; q_{j-1} \end{pmatrix}.\]</div>
+<p>Hence, <span class="math notranslate nohighlight">\(P_j\)</span> is the complementary projector, <span class="math notranslate nohighlight">\(P_j=I -
+\hat{Q}_{j-1}\hat{Q}_{j-1}^*\)</span>.</p>
+</div>
+<div class="section" id="modified-gram-schmidt">
+<h2><span class="section-number">2.4. </span>Modified Gram-Schmidt<a class="headerlink" href="#modified-gram-schmidt" title="Permalink to this headline">¶</a></h2>
+<p>There is a big problem with the classical Gram-Schmidt algorithm. It
+is unstable, which means that when it is implemented in inexact
+arithmetic on a computer, round-off error unacceptably pollutes the
+entries of <span class="math notranslate nohighlight">\(Q\)</span> and <span class="math notranslate nohighlight">\(R\)</span>, and the algorithm is not useable in
+practice. What happens is that the columns of <span class="math notranslate nohighlight">\(Q\)</span> are not quite
+orthogonal, and this loss of orthogonality spoils everything. We will
+discuss stability later in the course, but right now we will just
+discuss the fix for the classical Gram-Schmidt algorithm, which is
+based upon the projector interpretation which we just discussed.</p>
+<p>To reorganise Gram-Schmidt to avoid instability, we decompose <span class="math notranslate nohighlight">\(P_j\)</span>
+into a sequence of <span class="math notranslate nohighlight">\(j-1\)</span> projectors of rank <span class="math notranslate nohighlight">\(m-1\)</span>, that each project
+out one column of <span class="math notranslate nohighlight">\(Q\)</span>, i.e.</p>
+<div class="math notranslate nohighlight">
+\[P_j = P_{\perp q_{j-1}}\ldots P_{\perp q_2} P_{\perp q_1},\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[P_{\perp q_j} = I - q_jq_j^*.\]</div>
+<p>Then,</p>
+<div class="math notranslate nohighlight">
+\[v_j = P_ja_j = P_{\perp q_{j-1}}\ldots P_{\perp q_2}P_{\perp q_1}a_j.\]</div>
+<p>Here we notice that we must apply <span class="math notranslate nohighlight">\(P_{\perp q_1}\)</span> to all but one
+columns of <span class="math notranslate nohighlight">\(A\)</span>, and <span class="math notranslate nohighlight">\(P_{\perp q_2}\)</span> to all but two columns of <span class="math notranslate nohighlight">\(A\)</span>,
+<span class="math notranslate nohighlight">\(P_{\perp q_3}\)</span> to all but three columns of <span class="math notranslate nohighlight">\(A\)</span>, and so on. In fact,
+the applying <span class="math notranslate nohighlight">\(P_{\perp q_j}\)</span> to the first <span class="math notranslate nohighlight">\(j-1\)</span> columns does nothing,
+because <span class="math notranslate nohighlight">\(q_j\)</span> is already orthogonal to all of those columns. Even further,
+it is actually a good thing, because it helps to keep all of the columns
+as orthonormal as possible under inexact arithmetic.</p>
+<p>Hence, we can equivalently apply <span class="math notranslate nohighlight">\(P_{\perp q_1}\)</span> to all columns of
+<span class="math notranslate nohighlight">\(A\)</span>, then obtain <span class="math notranslate nohighlight">\(q_2\)</span> by normalising the second column, then apply
+<span class="math notranslate nohighlight">\(P_{\perp q_2}\)</span> to all the columns of <span class="math notranslate nohighlight">\(A\)</span>, and obtain <span class="math notranslate nohighlight">\(q_3\)</span> by
+normalising the second column and so on.</p>
+<p>sequential transformations of A</p>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Colin J. Cotter.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.2.
+    </div>
+  </body>
+</html>
