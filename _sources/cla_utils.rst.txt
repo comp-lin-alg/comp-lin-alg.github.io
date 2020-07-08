@@ -1,0 +1,22 @@
+cla\_utils package
+==================
+
+Submodules
+----------
+
+cla\_utils.test module
+----------------------
+
+.. automodule:: cla_utils.test
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: cla_utils
+   :members:
+   :undoc-members:
+   :show-inheritance:
