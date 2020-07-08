@@ -584,7 +584,50 @@ q_1 &amp; q_2 &amp; \ldots &amp; q_n \\
 <div class="math notranslate nohighlight">
 \[v = \underbrace{r}_{\mbox{Orthogonal to column space of }\hat{Q}} +
 \underbrace{\sum_{i=1}^n (q_iq^*_i)v}_{\mbox{in the column space of }\hat{Q}}.\]</div>
-</div>
+<p>Hence, the map</p>
+<div class="math notranslate nohighlight">
+\[v \mapsto Pv = \underbrace{\sum_{i=1}^n (q_iq^*_i)}_{=P}v,\]</div>
+<p>is an orthogonal projector. In fact, <span class="math notranslate nohighlight">\(P\)</span> has very simple form.</p>
+<div class="proof proof-type-theorem" id="id22">
+
+    <div class="proof-title">
+        <span class="proof-type">Theorem 1.20</span>
+        
+    </div><div class="proof-content">
+<p>The orthogonal projector <span class="math notranslate nohighlight">\(P\)</span> takes the form</p>
+<div class="math notranslate nohighlight">
+\[P = \hat{Q}\hat{Q}^*.\]</div>
+</div></div><div class="proof proof-type-proof">
+
+    <div class="proof-title">
+        <span class="proof-type">Proof </span>
+        
+    </div><div class="proof-content">
+<p>From the change of basis interpretation of multiplication by
+<span class="math notranslate nohighlight">\(\hat{Q}^*\)</span>, the entries in <span class="math notranslate nohighlight">\(\hat{Q}^*v\)</span> gives coefficients of the
+projection of <span class="math notranslate nohighlight">\(v\)</span> onto the column space of <span class="math notranslate nohighlight">\(\hat{Q}\)</span> when expanded
+using the columns as a basis. Then, multiplication by <span class="math notranslate nohighlight">\(\hat{Q}\)</span>
+gives the projection of <span class="math notranslate nohighlight">\(v\)</span> expanded again in the canonical basis.
+Hence, multiplication by <span class="math notranslate nohighlight">\(\hat{Q}\hat{Q}^*\)</span> gives exactly the same
+result as multiplication by the formula for <span class="math notranslate nohighlight">\(P\)</span> above.</p>
+</div></div><p>This means that <span class="math notranslate nohighlight">\(\hat{Q}\hat{Q}^*\)</span> is an orthogonal projection onto
+the range of <span class="math notranslate nohighlight">\(\hat{Q}\)</span>. The complementary projector is <span class="math notranslate nohighlight">\(P_{\perp} =
+I - \hat{Q}\hat{Q}^*\)</span> is an orthogonal projection onto the nullspace
+of <span class="math notranslate nohighlight">\(\hat{Q}\)</span>.</p>
+<p>An important special case is when <span class="math notranslate nohighlight">\(\hat{Q}\)</span> has just one column,
+and then</p>
+<div class="math notranslate nohighlight">
+\[P = q_1q_1^*, \, P_{\perp}=I - q_1q_1^*.\]</div>
+<p>We notice that <span class="math notranslate nohighlight">\(P^* = (\hat{Q}\hat{Q}^*) = \hat{Q}\hat{Q}^* = P\)</span>.
+In fact the following is true.</p>
+<div class="proof proof-type-theorem" id="id23">
+
+    <div class="proof-title">
+        <span class="proof-type">Theorem 1.21</span>
+        
+    </div><div class="proof-content">
+<p><span class="math notranslate nohighlight">\(P=P^*\)</span> if and only if <span class="math notranslate nohighlight">\(Q\)</span> is an orthogonal projector.</p>
+</div></div></div>
 </div>
 
 
