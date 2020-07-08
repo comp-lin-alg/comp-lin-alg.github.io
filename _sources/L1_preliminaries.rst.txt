@@ -522,3 +522,21 @@ Now we introduce orthogonality into the concept of projectors.
 
 In this case, `P` separates the space into two orthogonal subspaces.
    
+Constructing orthogonal projectors from sets of orthonormal vectors
+-------------------------------------------------------------------
+
+Let `\{q_1,\ldots,q_n\}` be an orthonormal set of vectors in
+`\mathbb{C}^m`. We write
+
+.. math::
+
+   \hat{Q} = \begin{pmatrix}
+   q_1 & q_2 & \ldots & q_n \\
+   \end{pmatrix}.
+
+Previously we showed that for any `v\in \mathbb{C}^m`, we have
+
+.. math::
+
+   v = \underbrace{r}_{\mbox{Orthogonal to column space of }\hat{Q}} +
+   \underbrace{\sum_{i=1}^n (q_iq^*_i)v}_{\mbox{in the column space of }\hat{Q}}.
