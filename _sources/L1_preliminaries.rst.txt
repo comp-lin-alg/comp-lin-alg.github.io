@@ -135,8 +135,48 @@ In this section we'll quickly rattle through some definitions and results.
    The range of `A`, `\mbox{range}(A)`, is the set of vectors that can
    be expressed as `Ax` for some `x`.
 
+The next theorem follows as a result of the column space
+interpretation of matrix-vector multiplication.
+   
+.. proof:theorem::
 
+   `\mbox{range}(A)` is the vector space spanned by the columns of `A`.
 
+.. proof:definition:: Nullspace
+
+   The nullspace `\mbox{null}(A)` of `A` is the set of vectors `x`
+   satisfying `Ax=0`, i.e.
+
+   .. math::
+
+      \mbox{null}(A) = \{x \in \mathbb{C}^n: Ax=0\}.
+
+.. proof:definition:: Rank
+
+   The rank `\mbox{rank}(A)` of `A`is the dimension of the column space
+   of `A`.
+
+If
+.. math::
+
+   A = \begin{pmatrix}
+   a_1 & a_2 & \ldots & a_n \\
+   \end{pmatrix},
+
+the column space of `A` is `\mbox{span}(a_1,a_2,\ldots,a_n)`.
+
+.. proof:definition::
+
+   An `m\times n` matrix `A` is full rank if it has maximum possible rank
+   i.e. rank equal to `\min(m, n)`.
+
+If `m\geq n` then `A` must have `n` linearly independent columns to be
+full rank. The next theorem is then a consequence of the column space
+interpretation of matrix-vector multiplication.
+.. proof:theorem::
+
+   asdf
+   
 .. proof:theorem::
 
    Let `A \in \mathbb{C}^{m\times m}`. Then the following are equivalent.
