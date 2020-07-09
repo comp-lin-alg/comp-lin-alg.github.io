@@ -18,6 +18,7 @@
     <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="3. Analysing algorithms" href="L3_analysing_algorithms.html" />
     <link rel="prev" title="1. Preliminaries" href="L1_preliminaries.html" />
 <!--[if lte IE 6]>
 <link rel="stylesheet" href="_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
@@ -60,7 +61,7 @@ good and bad algorithms to compute it.</p>
 <div class="section" id="what-is-the-qr-factorisation">
 <h2><span class="section-number">2.1. </span>What is the QR factorisation?<a class="headerlink" href="#what-is-the-qr-factorisation" title="Permalink to this headline">¶</a></h2>
 <p>We start with another definition.</p>
-<div class="proof proof-type-definition" id="id3">
+<div class="proof proof-type-definition" id="id1">
 
     <div class="proof-title">
         <span class="proof-type">Definition 2.1</span>
@@ -73,7 +74,7 @@ good and bad algorithms to compute it.</p>
 <p>It is called upper triangular because the nonzero rows form a triangle
 on and above the main diagonal of <span class="math notranslate nohighlight">\(R\)</span>.</p>
 </div></div><p>Now we can describe the QR factorisation.</p>
-<div class="proof proof-type-definition" id="id4">
+<div class="proof proof-type-definition" id="id2">
 
     <div class="proof-title">
         <span class="proof-type">Definition 2.2</span>
@@ -119,8 +120,8 @@ factor. The third row of <span class="math notranslate nohighlight">\(Q\)</span>
 first two columns of <span class="math notranslate nohighlight">\(Q\)</span> projected out, and so on.</p>
 <p>Hence, finding a QR factorisation is equivalent to finding an
 orthonormal spanning set for the columns of <span class="math notranslate nohighlight">\(A\)</span>, where the span of the
-first ‘j’ elements of the spanning set and of the first <a href="#id1"><span class="problematic" id="id2">`</span></a>j’ columns of
-‘A’ is the same, for ‘j=1,ldots, n’.</p>
+first <span class="math notranslate nohighlight">\(j\)</span> elements of the spanning set and of the first <span class="math notranslate nohighlight">\(j\)</span> columns of
+<span class="math notranslate nohighlight">\(A\)</span> is the same, for <span class="math notranslate nohighlight">\(j=1,\ldots, n\)</span>.</p>
 <p>Hence we have to find <span class="math notranslate nohighlight">\(R\)</span> coefficients such that</p>
 <div class="math notranslate nohighlight">
 \[ \begin{align}\begin{aligned}q_1 = \frac{a_1}{r_11},\\q_2 = \frac{a_2-r_{12}q_1}{r_{22}}\\\vdots\\q_n = \frac{q_n - \sum_{i=1}^{n-1}r_{in}q_i}{r_{nn}},\end{aligned}\end{align} \]</div>
@@ -197,16 +198,371 @@ out one column of <span class="math notranslate nohighlight">\(Q\)</span>, i.e.<
 \[v_j = P_ja_j = P_{\perp q_{j-1}}\ldots P_{\perp q_2}P_{\perp q_1}a_j.\]</div>
 <p>Here we notice that we must apply <span class="math notranslate nohighlight">\(P_{\perp q_1}\)</span> to all but one
 columns of <span class="math notranslate nohighlight">\(A\)</span>, and <span class="math notranslate nohighlight">\(P_{\perp q_2}\)</span> to all but two columns of <span class="math notranslate nohighlight">\(A\)</span>,
-<span class="math notranslate nohighlight">\(P_{\perp q_3}\)</span> to all but three columns of <span class="math notranslate nohighlight">\(A\)</span>, and so on. In fact,
-the applying <span class="math notranslate nohighlight">\(P_{\perp q_j}\)</span> to the first <span class="math notranslate nohighlight">\(j-1\)</span> columns does nothing,
-because <span class="math notranslate nohighlight">\(q_j\)</span> is already orthogonal to all of those columns. Even further,
-it is actually a good thing, because it helps to keep all of the columns
-as orthonormal as possible under inexact arithmetic.</p>
-<p>Hence, we can equivalently apply <span class="math notranslate nohighlight">\(P_{\perp q_1}\)</span> to all columns of
-<span class="math notranslate nohighlight">\(A\)</span>, then obtain <span class="math notranslate nohighlight">\(q_2\)</span> by normalising the second column, then apply
-<span class="math notranslate nohighlight">\(P_{\perp q_2}\)</span> to all the columns of <span class="math notranslate nohighlight">\(A\)</span>, and obtain <span class="math notranslate nohighlight">\(q_3\)</span> by
-normalising the second column and so on.</p>
-<p>sequential transformations of A</p>
+<span class="math notranslate nohighlight">\(P_{\perp q_3}\)</span> to all but three columns of <span class="math notranslate nohighlight">\(A\)</span>, and so on.</p>
+<p>By doing this, we gradually transform <span class="math notranslate nohighlight">\(A\)</span> to a unitary matrix, as follows.</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\begin{split}A =
+\begin{pmatrix}
+a_1 &amp; a_2 &amp; a_3 &amp; \ldots &amp; a_n \\
+\end{pmatrix}\end{split}\\\begin{split}\begin{pmatrix}
+q_1 &amp; v_2^1 &amp; v_3^1 &amp; \ldots &amp; v_n^1 \\
+\end{pmatrix}\end{split}\\\begin{split}\to
+\begin{pmatrix}
+q_1 &amp; q_2 &amp; v_3^2 &amp; \ldots &amp; v_n^2 \\
+\end{pmatrix}\end{split}\\\begin{split}\ldots
+\to
+\begin{pmatrix}
+q_1 &amp; q_2 &amp; q_3 &amp; \ldots &amp; q_n \\
+\end{pmatrix}.\end{split}\end{aligned}\end{align} \]</div>
+</div></blockquote>
+<p>Then it is just a matter of keeping a record of the coefficients
+of the projections and normalisation scaling factors and storing
+them in <span class="math notranslate nohighlight">\(R\)</span>.</p>
+<p>This process is mathematically equivalent to the classical Gram-Schmidt
+algorithm, but the arithmetic operations happen in a different order,
+in a way that turns out to reduce accumulation of round-off errors.</p>
+<p>We now present this modified Gram-Schmidt algorithm as pseudo-code.</p>
+<ul>
+<li><p>FOR <span class="math notranslate nohighlight">\(i = 1\)</span> TO <span class="math notranslate nohighlight">\(n\)</span></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(v_i \gets a_i\)</span></p></li>
+</ul>
+</li>
+<li><p>END FOR</p></li>
+<li><p>FOR <span class="math notranslate nohighlight">\(i = 1\)</span> TO <span class="math notranslate nohighlight">\(n\)</span></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(r_{ii} \gets \|v_i\|_2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(q_i = v_i/r_{ii}\)</span>
+* FOR <span class="math notranslate nohighlight">\(j = i+1\)</span> TO <span class="math notranslate nohighlight">\(n\)</span></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(r_{ij} \gets q_i^*a_j\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(v_j \gets v_j - r_{ij}q_i\)</span></p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>END FOR</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>END FOR</p></li>
+</ul>
+<p>This algorithm can be applied “in place”, overwriting the entries
+in <span class="math notranslate nohighlight">\(A\)</span> with the <span class="math notranslate nohighlight">\(v\)</span> s and eventually the <span class="math notranslate nohighlight">\(q\)</span> s.</p>
+</div>
+<div class="section" id="modified-gram-schmidt-as-triangular-orthogonalisation">
+<h2><span class="section-number">2.5. </span>Modified Gram-Schmidt as triangular orthogonalisation<a class="headerlink" href="#modified-gram-schmidt-as-triangular-orthogonalisation" title="Permalink to this headline">¶</a></h2>
+<p>This iterative transformation process can be written as
+right-multiplication by an upper triangular matrix. For
+example, at the first iteration,</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}\underbrace{
+\begin{pmatrix}
+v_1^0 &amp; v_2^0 &amp; \ldots &amp; v_n^0
+\end{pmatrix}}_{A}
+\underbrace{
+\begin{pmatrix}
+\frac{1}{r_{11}} &amp; -\frac{r_{12}}{r_{11}} &amp; \ldots &amp;
+\ldots &amp; -\frac{r_{11}}{r_{11}} \\
+0 &amp; 1 &amp; 0 &amp; \ldots &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; \ldots &amp; 0 \\
+\vdots &amp; \ddots &amp; \ddots &amp; \ldots &amp; \vdots \\
+0 &amp; 0 &amp; 0 &amp; \ldots &amp; 1 \\
+\end{pmatrix}}_{A_1}
+=
+\underbrace{
+\begin{pmatrix}
+q_1 &amp; v_2^1 &amp; \ldots &amp; v_n^1
+\end{pmatrix}}_{A_1}.\end{split}\]</div>
+</div></blockquote>
+<p>To understand this equation, we can use the column space
+interpretation of matrix-matrix multiplication. The columns of <span class="math notranslate nohighlight">\(A_1\)</span>
+are linear combinations of the columns of <span class="math notranslate nohighlight">\(A\)</span> with coefficients
+given by the columns of <span class="math notranslate nohighlight">\(R_1\)</span>.  Hence, <span class="math notranslate nohighlight">\(q_1\)</span> only depends on <span class="math notranslate nohighlight">\(v_1^0\)</span>,
+scaled to have length 1, and <span class="math notranslate nohighlight">\(v_i^1\)</span> is a linear combination of
+<span class="math notranslate nohighlight">\((v_1^0,v_i^0)\)</span> such that <span class="math notranslate nohighlight">\(v_i^1\)</span> is orthogonal to <span class="math notranslate nohighlight">\(q_1\)</span>, for <span class="math notranslate nohighlight">\(1&lt;i\leq
+n\)</span>.</p>
+<p>Similarly, the second iteration may be written as</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}\underbrace{
+\begin{pmatrix}
+v_1^1 &amp; v_2^1 &amp; \ldots &amp; v_n^1
+\end{pmatrix}}_{A_1}
+\underbrace{
+\begin{pmatrix}
+1 &amp; 0 &amp; 0 &amp;
+\ldots &amp; 0 \\
+0 &amp; r_{22} &amp; -\frac{r_{23}}{r_{22}} &amp; \ldots &amp; -\frac{r_{2n}}{r_{nn}} \\      0 &amp; 0 &amp; 1 &amp; \ldots &amp; 0 \\
+\vdots &amp; \ddots &amp; \ddots &amp; \ldots &amp; \vdots \\
+0 &amp; 0 &amp; 0 &amp; \ldots &amp; 1 \\
+\end{pmatrix}}_{R_2}
+=
+\underbrace{
+\begin{pmatrix}
+q_1 &amp; q_2 &amp; v_3^2 \ldots &amp; v_n^2
+\end{pmatrix}}_{A_2}.\end{split}\]</div>
+</div></blockquote>
+<p>It should become clear that each transformation from <span class="math notranslate nohighlight">\(A_i\)</span> to <span class="math notranslate nohighlight">\(A_{i+1}\)</span>
+takes place by right multiplication by an upper triangular matrix <span class="math notranslate nohighlight">\(R_{i+1}\)</span>,
+which is an identity matrix plus entries in row i. By combining these
+transformations together, we obtain</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[A\underbrace{R_1R_2\ldots R_n}_{\hat{R}^{-1}} = \hat{Q}.\]</div>
+</div></blockquote>
+<p>Since upper triangular matrices form a group, the product of the <span class="math notranslate nohighlight">\(R_i\)</span>
+matrices is upper triangular. Further, all the <span class="math notranslate nohighlight">\(R_i\)</span> matrices have
+non-zero determinant, so the product is invertible, and we can write
+this as <span class="math notranslate nohighlight">\(\hat{R}^{-1}\)</span>. Right multiplication by <span class="math notranslate nohighlight">\(\hat{R}\)</span> produces the
+usual reduced QR factorisation. We say that modified Gram-Schmidt
+implements triangular orthogonalisation: the transformation of <span class="math notranslate nohighlight">\(A\)</span> to
+an orthogonal matrix by right multiplication of upper triangular
+matrices.</p>
+<p>This is a powerful way to view the modified Gram-Schmidt process from
+the point of view of understanding and analysis, but of course we do not
+form the matrices <span class="math notranslate nohighlight">\(R_i\)</span> explicitly (we just follow the pseudo-code given
+above).</p>
+</div>
+<div class="section" id="householder-triangulation">
+<h2><span class="section-number">2.6. </span>Householder triangulation<a class="headerlink" href="#householder-triangulation" title="Permalink to this headline">¶</a></h2>
+<p>This view of the modified Gram-Schmidt process as triangular
+orthogonalisation gives an idea to build an alternative algorithm.
+Instead of right multiplying by upper triangular matrices to transform
+<span class="math notranslate nohighlight">\(A\)</span> to <span class="math notranslate nohighlight">\(\hat{Q}\)</span>, we can consider left multiplying by unitary
+matrices to transform <span class="math notranslate nohighlight">\(A\)</span> to <span class="math notranslate nohighlight">\(R\)</span>,</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\underbrace{Q_n\ldots Q_2Q_1}_{=Q^*}A = R.\]</div>
+</div></blockquote>
+<p>Multiplying unitary matrices produces unitary matrices, so we obtain
+<span class="math notranslate nohighlight">\(A=QR\)</span> as a full factorisation of <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p>To do this, we need to work on the columns of <span class="math notranslate nohighlight">\(A\)</span>, from left to right,
+transforming them so that each column has zeros below the
+diagonal. These unitary transformations need to be designed so that they
+don’t spoil the structure created in previous columns. The easiest
+way to ensure this is construct a unitary matrix <span class="math notranslate nohighlight">\(Q_k\)</span> with an identity
+matrix as the <span class="math notranslate nohighlight">\((k-1)\times (k-1)\)</span> submatrix,</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}Q_k =
+\begin{pmatrix}
+I_{k-1} &amp; 0 \\
+0 &amp; F \\
+\end{pmatrix}.\end{split}\]</div>
+</div></blockquote>
+<p>This means that multiplication by <span class="math notranslate nohighlight">\(Q_k\)</span> won’t change the first <span class="math notranslate nohighlight">\(k-1\)</span>
+rows, leaving the previous work to remove zeros below the diagonal
+undisturbed. For <span class="math notranslate nohighlight">\(Q_k\)</span> to be unitary and to transform all below
+diagonal entries in column <span class="math notranslate nohighlight">\(k\)</span> to zero, we need the
+<span class="math notranslate nohighlight">\((n-k+1)\times(n-k+1)\)</span> submatrix <span class="math notranslate nohighlight">\(F\)</span> to also be unitary, since</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}Q_k^* =
+\begin{pmatrix}
+I_{k-1} &amp; 0 \\
+0 &amp; F^* \\
+\end{pmatrix}, \,
+Q_k^{-1} =
+\begin{pmatrix}
+I_{k-1} &amp; 0 \\
+0 &amp; F^{-1} \\
+\end{pmatrix}.\end{split}\]</div>
+</div></blockquote>
+<p>We write the <span class="math notranslate nohighlight">\(k\)</span> of <span class="math notranslate nohighlight">\(A_k\)</span> as</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}v_k^k =
+\begin{pmatrix}
+\hat{v}_k^k \\
+x
+\end{pmatrix},\end{split}\]</div>
+</div></blockquote>
+<p>where <span class="math notranslate nohighlight">\(\hat{v}_k^k\)</span> contains the first <span class="math notranslate nohighlight">\(k-1\)</span> entries of <span class="math notranslate nohighlight">\(v_k^k\)</span>. The column
+gets transformed according to</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}Q_kv_k^k = \begin{pmatrix}
+\hat{v}_k^k \\
+Fx
+\end{pmatrix}.\end{split}\]</div>
+</div></blockquote>
+<p>and our goal is that <span class="math notranslate nohighlight">\(Fx\)</span> is zero, except for the first entry (which
+becomes the diagonal entry of <span class="math notranslate nohighlight">\(Q_kv_k^k\)</span>). Since <span class="math notranslate nohighlight">\(F\)</span> is unitary, we must
+have <span class="math notranslate nohighlight">\(\|Fx\|=\|x\|\)</span>, so we choose to have</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[Fx = \pm\|x\|e_1,\]</div>
+</div></blockquote>
+<p>where we shall consider the sign later. Here we have chosen for <span class="math notranslate nohighlight">\(Fx\)</span>
+to be real. We could alternatively pick another value of the same
+magnitude but different complex argument (but that would lead to a
+slightly different <span class="math notranslate nohighlight">\(QR\)</span> factorisation).</p>
+<p>We can achieve this by using a Householder reflector for <span class="math notranslate nohighlight">\(F\)</span>, which is
+a unitary transformation that does precisely what we
+need. Geometrically, the idea is that we consider a line joining <span class="math notranslate nohighlight">\(x\)</span>
+and <span class="math notranslate nohighlight">\(Fx=\|x\|e_1\)</span>, which points in the direction <span class="math notranslate nohighlight">\(v=\|x\|e_1-x\)</span>. We can
+transform <span class="math notranslate nohighlight">\(x\)</span> to <span class="math notranslate nohighlight">\(Fx\)</span> by a reflection in the hyperplane <span class="math notranslate nohighlight">\(H\)</span> that is
+orthogonal to <span class="math notranslate nohighlight">\(v\)</span>. Since reflections are norm preserving, <span class="math notranslate nohighlight">\(F\)</span> must be
+unitary. Applying the projector <span class="math notranslate nohighlight">\(P\)</span> given by</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[Px = \left(I - \frac{vv^*}{v^*v}\right)x,\]</div>
+</div></blockquote>
+<p>does half the job, producing a vector in <span class="math notranslate nohighlight">\(H\)</span>. To do a reflection we
+need to go twice as far,</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[Fx = \left(I - 2\frac{vv^*}{v^*v}\right)x.\]</div>
+</div></blockquote>
+<p>We can check that this does what we want,</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}Fx = \left(I - 2\frac{vv^*}{v^*v}\right)x,\\   = x - 2\frac{(\pm\|x\|e_1 - x)}{\|\pm\|x\|e_1 - x\|^2}
+   (\pm\|x\|e_1 - x)^*x,\\   = x - 2\frac{(\pm\|x\|e_1 - x)}{\|\pm\|x\|e_1 - x\|^2}
+   \|x\|(\pm x_1 - \|x\|),\\   = x + (\pm\|x\|e_1 - x) = \pm\|x\|e_1,\end{aligned}\end{align} \]</div>
+</div></blockquote>
+<p>as required, having checked that</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\|\|x\|\pm e_1 - x\|^2 = -2\|x\|(\pm x_1 - \|x\|).\]</div>
+</div></blockquote>
+<p>We can also check that <span class="math notranslate nohighlight">\(F\)</span> is unitary. First we check that <span class="math notranslate nohighlight">\(F\)</span>
+is Hermitian,</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\left(I - 2\frac{vv^*}{v^*v}\right)^*
+= I - 2\frac{(vv^*)^*}{v^*v},\\= I - 2\frac{(v^*)^*v^*}{v^*v},\\= I - 2\frac{(vv^*}{v^*v} = F.\end{aligned}\end{align} \]</div>
+</div></blockquote>
+<p>Now we use this to show that <span class="math notranslate nohighlight">\(F\)</span> is unitary,</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}F^*F = \left(I - 2\frac{vv^*}{v^*v}\right)
+\left(I - 2\frac{vv^*}{v^*v}\right)\\= I - 4\frac{vv^*}{v^*v}\frac{vv^*}{v^*v} +
+4 \frac{vv^*}{v^*v}\frac{vv^*}{v^*v} = I,\end{aligned}\end{align} \]</div>
+</div></blockquote>
+<p>so <span class="math notranslate nohighlight">\(F^*=F^{-1}\)</span>. In summary, we have constructed a unitary
+matrix <span class="math notranslate nohighlight">\(Q_k\)</span> that transforms the entries below the diagonal
+of the kth column of <span class="math notranslate nohighlight">\(A_k\)</span> to zero, and leaves the previous
+<span class="math notranslate nohighlight">\(k-1\)</span> columns alone.</p>
+<p>Earlier, we mentioned that there is a choice of sign in <span class="math notranslate nohighlight">\(v\)</span>.
+This choice gives us the opportunity to improve the numerical
+stability of the algorithm. To avoid unnecessary numerical round off,
+we choose the sign that makes <span class="math notranslate nohighlight">\(v\)</span> furthest from <span class="math notranslate nohighlight">\(x\)</span>, i.e.</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[v = \mbox{sign}(x_1)\|x\|e_1 + x.\]</div>
+</div></blockquote>
+<p>(Exercise, show that this choice of sign achieves this.)</p>
+<p>We are now in a position to describe the algorithm in
+pseudo-code. Here it is described an “in-place” algorithm, where the
+successive transformations to the columns of <span class="math notranslate nohighlight">\(A\)</span> are implemented as
+replacements of the values in <span class="math notranslate nohighlight">\(A\)</span>. This means that we can allocate
+memory on the computer for <span class="math notranslate nohighlight">\(A\)</span> which is eventually replaced with the
+values for <span class="math notranslate nohighlight">\(R\)</span>. To present the algorithm, we will use the “slice”
+notation to describe submatrices of <span class="math notranslate nohighlight">\(A\)</span>, with <span class="math notranslate nohighlight">\(A_{k:l,r:s}\)</span> being
+the submatrix of <span class="math notranslate nohighlight">\(A\)</span> consisting of the rows from <span class="math notranslate nohighlight">\(k\)</span> to <span class="math notranslate nohighlight">\(l\)</span> and
+columns from <span class="math notranslate nohighlight">\(r\)</span> to <span class="math notranslate nohighlight">\(s\)</span>. Be careful with Python implementations,
+where the numbering of rows and columns is from 0, and not 1.</p>
+<ul class="simple">
+<li><p>FOR <span class="math notranslate nohighlight">\(k = 1\)</span> TO <span class="math notranslate nohighlight">\(n\)</span></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(x = A_{k:m,k}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(v_k \gets \mbox{sign}(x_1)\|x\|_2e_1 + x\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(v_k \gets v_k/\|v_k\|\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(A_{k:m,k:n} \gets A_{k:m,k:m} - 2v_k(v_k^*A_{k:m,k:n})\)</span>.</p></li>
+</ul>
+</li>
+<li><p>END FOR</p></li>
+</ul>
+<p>Note that we have not explicitly formed the matrix <span class="math notranslate nohighlight">\(Q\)</span> or the product
+matrices <span class="math notranslate nohighlight">\(Q_i\)</span>. In some applications, such as solving least squares
+problems, we don’t explicitly need <span class="math notranslate nohighlight">\(Q\)</span>, just the matrix-vector product
+<span class="math notranslate nohighlight">\(Q^*b\)</span> with some vector <span class="math notranslate nohighlight">\(b\)</span>. To compute this product, we can just
+apply the same operations to <span class="math notranslate nohighlight">\(b\)</span> that are applied to the columns of
+<span class="math notranslate nohighlight">\(A\)</span>. This can be expressed in the following pseudo-code, working
+“in place” in the storage of <span class="math notranslate nohighlight">\(b\)</span>.</p>
+<ul class="simple">
+<li><p>FOR <span class="math notranslate nohighlight">\(k = 1\)</span> TO <span class="math notranslate nohighlight">\(n\)</span></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(b_{k:m} \gets b_{k:m} - 2v_k(v_k^*b_{k:m})\)</span></p></li>
+</ul>
+</li>
+<li><p>END FOR</p></li>
+</ul>
+<p>If we really need <span class="math notranslate nohighlight">\(Q\)</span>, we can get it by matrix-vector products
+with each element of the canonical basis <span class="math notranslate nohighlight">\((e_1,e_2,\ldots,e_n)\)</span>.
+This means that first we need to compute a matrix-vector product
+<span class="math notranslate nohighlight">\(Qx\)</span> with a vector <span class="math notranslate nohighlight">\(x\)</span>. This is just done by applying the
+Householder reflections in reverse, since</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[Q = (Q_n\ldots Q_2Q_1)^* = Q_1Q_2\ldots Q_n,\]</div>
+</div></blockquote>
+<p>having made use of the fact that the Householder reflections are
+Hermitian. This can be expressed in the following pseudo-code.</p>
+<ul class="simple">
+<li><p>FOR <span class="math notranslate nohighlight">\(k = n\)</span> TO <span class="math notranslate nohighlight">\(1\)</span> (DOWNWARDS)</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(x_{k:m} \gets x_{k:m} - 2v_k(v_k^*x_{k:m})\)</span></p></li>
+</ul>
+</li>
+<li><p>END FOR</p></li>
+</ul>
+<p>Note that this requires to record all of the history of the <span class="math notranslate nohighlight">\(v\)</span> vectors,
+whilst the <span class="math notranslate nohighlight">\(Q^*\)</span> application algorithm above can be interlaced with the
+steps of the Householder algorithm, using the <span class="math notranslate nohighlight">\(v\)</span> values as they are
+needed and throwing them away. Then we can compute <span class="math notranslate nohighlight">\(Q\)</span> via</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[Q = \begin{pmatrix}
+Qe_1 &amp; Qe_2 &amp; \ldots &amp; Qe_n
+\end{pmatrix},\]</div>
+</div></blockquote>
+<p>with each column using the <span class="math notranslate nohighlight">\(Q\)</span> application algorithm described above.</p>
+</div>
+<div class="section" id="application-least-squares-problems">
+<h2><span class="section-number">2.7. </span>Application: Least squares problems<a class="headerlink" href="#application-least-squares-problems" title="Permalink to this headline">¶</a></h2>
+<p>Least square problems are relevant in data fitting problems,
+optimisation and control, and are also a crucial ingredient of modern
+massively parallel linear system solver algorithms. They are a way of
+solving “long thin” matrix vector problems <span class="math notranslate nohighlight">\(Ax=b\)</span> where we want to
+obtain <span class="math notranslate nohighlight">\(x\in \mathbb{C}^m\)</span> from <span class="math notranslate nohighlight">\(b\in\mathbb{C}^n\)</span> with <span class="math notranslate nohighlight">\(A\)</span> an
+<span class="math notranslate nohighlight">\(n\times m\)</span> matrix.  Often the problem does not have a solution as it
+is overdetermined for <span class="math notranslate nohighlight">\(n&gt;m\)</span>. Instead we just seek <span class="math notranslate nohighlight">\(x\)</span> that minimises
+the 2-norm of the residual <span class="math notranslate nohighlight">\(r=b-Ax\)</span>, i.e. <span class="math notranslate nohighlight">\(x\)</span> is the minimiser of</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[min_x \|Ax - b\|^2.\]</div>
+</div></blockquote>
+<p>This residual will not be zero in general, when <span class="math notranslate nohighlight">\(b\)</span> is not in the range of
+<span class="math notranslate nohighlight">\(A\)</span>. The nearest point in the range of <span class="math notranslate nohighlight">\(A\)</span> to <span class="math notranslate nohighlight">\(b\)</span> is <span class="math notranslate nohighlight">\(Pb\)</span>, where <span class="math notranslate nohighlight">\(P\)</span> is
+the orthogonal projector onto the range of <span class="math notranslate nohighlight">\(A\)</span>. From <span class="math notranslate nohighlight">\(Theorem {number}&lt;dual_condition&gt;\)</span>, we know that <span class="math notranslate nohighlight">\(P=\hat{Q}\hat{Q}^*\)</span>, where <span class="math notranslate nohighlight">\(\hat{Q}\)</span> from the
+reduced <span class="math notranslate nohighlight">\(QR\)</span> factorisation has the same column space as <span class="math notranslate nohighlight">\(A\)</span> (but with
+orthogonal columns).</p>
+<p>Then, we just have to solve</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[Ax = Pb,\]</div>
+</div></blockquote>
+<p>which is now solveable since <span class="math notranslate nohighlight">\(Pb\)</span> is in the column space of <span class="math notranslate nohighlight">\(A\)</span> (and
+hence can be written as a linear combination of the columns of <span class="math notranslate nohighlight">\(A\)</span> i.e.
+as a matrix-vector product <span class="math notranslate nohighlight">\(Ax\)</span> for some unknown <span class="math notranslate nohighlight">\(x\)</span>).</p>
+<p>Now we have the reduced <span class="math notranslate nohighlight">\(QR\)</span> factorisation of <span class="math notranslate nohighlight">\(A\)</span>, and we can write</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\hat{Q}\hat{R}x = \hat{Q}\hat{Q}^*b.\]</div>
+</div></blockquote>
+<p>Left multiplication by <span class="math notranslate nohighlight">\(\hat{Q}^*\)</span> then gives</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\hat{R}x = \hat{Q}^*b.\]</div>
+</div></blockquote>
+<p>This is an upper triangular system that can be solved efficiently using
+back-substitution (which we shall come to later.)</p>
 </div>
 </div>
 

@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3. Analysing algorithms &#8212; Computational linear algebra course 2020.0 documentation</title>
+    <link rel="stylesheet" href="_static/fenics.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/proof.js"></script>
+    <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="2. QR Factorisation" href="L2_QR_factorisation.html" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+<link rel="stylesheet" href="_static/featured.css">
+
+
+<link rel="shortcut icon" href="_static/icon.ico" />
+
+
+  </head><body>
+<div class="wrapper">
+  <a href="index.html"><img src="_static/banner.png" width="900px" alt="Project Banner" /></a>
+  <div id="access">
+    <div class="menu">
+      <ul>
+          <li class="page_item"><a href="https://github.com/Computational-Linear-Algebra-Course/computational-linear-algebra-course" title="GitHub">GitHub</a></li>
+      </ul>
+    </div><!-- .menu -->
+  </div><!-- #access -->
+</div><!-- #wrapper -->
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="analysing-algorithms">
+<h1><span class="section-number">3. </span>Analysing algorithms<a class="headerlink" href="#analysing-algorithms" title="Permalink to this headline">¶</a></h1>
+<p>In the previous section we saw three algorithms to compute the QR
+factorisation of a matrix. They have a beautiful mathematical
+structure based on orthogonal projectors. But are they useful? To
+answer this we need to know:</p>
+<ol class="arabic simple">
+<li><p>Is one faster than others?</p></li>
+<li><p>Is one more sensitive than others to small perturbations due to
+early truncation of the algorithm or due to round-off errors?</p></li>
+</ol>
+<p>In this course we will characterise answers to the first question by
+operation count (acknowledging that this is an incomplete evaluation
+of speed), and answers to the second question by analysing stability.</p>
+<p>In this section we will discuss both of these questions by introducing
+some general concepts but also looking at the examples of the QR
+algorithms that we have seen so far.</p>
+<div class="section" id="operation-count">
+<h2><span class="section-number">3.1. </span>Operation count<a class="headerlink" href="#operation-count" title="Permalink to this headline">¶</a></h2>
+<p>Operation count is one aspect of evaluating how long algorithms take.
+Here we just note that this is not the only aspect, since transferring
+data between different levels of memory on chips can be a serious (and
+often dominant) consideration, even more so when we consider
+algorithms that make use of large numbers of processors running in
+parallel. However, operation count is what we shall focus on here.</p>
+<p>In this course, a floating point operation (FLOP) will be any
+arithmetic unary or binary operation acting on single numbers (such as
+<span class="math notranslate nohighlight">\(+\)</span>, <span class="math notranslate nohighlight">\(-\)</span>, <span class="math notranslate nohighlight">\(\times\)</span>, <span class="math notranslate nohighlight">\(\div\)</span>, <span class="math notranslate nohighlight">\(\sqrt{}\)</span>). Of course, in reality, these
+different operations have different relative costs, and codes can be
+made more efficient by blending multiplications and additions (fused
+multiply-adds) for example.  Here we shall simply apologise to
+computer scientists in the class, and proceed with this
+interpretation, since we are just making relative comparisons between
+schemes. We shall also concentrate on asymptotic results in the limit
+of large $n$ and/or $m$.</p>
+</div>
+<div class="section" id="operation-count-for-modified-gram-schmidt">
+<h2><span class="section-number">3.2. </span>Operation count for modified Gram-Schmidt<a class="headerlink" href="#operation-count-for-modified-gram-schmidt" title="Permalink to this headline">¶</a></h2>
+<p>We shall discuss operation counts through the example of the modified
+Gram-Schmidt algorithm. We shall find that the operation count
+is <span class="math notranslate nohighlight">\(\sim mn^2\)</span> to compute the QR factorisation, where the <span class="math notranslate nohighlight">\(\sim\)</span> symbol
+means</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\lim_{m,n\to \infty}\frac{N_{\mbox{FLOPS}}}{2mn^2} = 1.\]</div>
+</div></blockquote>
+<p>To get this result, we return to the pseudocode for the modified Gram-Schmidt
+algorithm, and concentrate on the operations that are happening
+inside the inner <span class="math notranslate nohighlight">\(j\)</span> loop. Inside that loop there are two operations,</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(r_{ij} \gets q^*_iv_i\)</span>. This is the inner product of two vectors
+in <span class="math notranslate nohighlight">\(\mathbb{R}^m\)</span>, which requires <span class="math notranslate nohighlight">\(m\)</span> multiplications and <span class="math notranslate nohighlight">\(m-1\)</span> additions,
+so we count <span class="math notranslate nohighlight">\(2m-1\)</span> FLOPS per inner iteration.</p></li>
+<li><p><span class="math notranslate nohighlight">\(v_j \gets v_j - r_{ij}q_i\)</span>. This requires <span class="math notranslate nohighlight">\(m\)</span> multiplications and <span class="math notranslate nohighlight">\(m\)</span>
+subtractions, so we count <span class="math notranslate nohighlight">\(2m\)</span> FLOPS per inner iteration.</p></li>
+</ol>
+<p>At each iteration we require a combined operation count of <span class="math notranslate nohighlight">\(\sim 4m\)</span> FLOPS.
+There are <span class="math notranslate nohighlight">\(n\)</span> outer iterations over <span class="math notranslate nohighlight">\(i\)</span>, and <span class="math notranslate nohighlight">\(n-i-1\)</span> inner iterations
+over <span class="math notranslate nohighlight">\(j\)</span>, which we can estimate by approximating the sum as an integral,</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[N_{\mbox{FLOPS}} \sim \sum_{i=1}^n \sum_{j=i+1}^n 4m
+\sim 4m \sum_{i=1}^n i\int_1^n x\,d x
+\sim 4m\frac{n^2}{2} = 2mn^2,\]</div>
+</div></blockquote>
+<p>as suggested above.</p>
+</div>
+<div class="section" id="operation-count-for-householder">
+<h2><span class="section-number">3.3. </span>Operation count for Householder<a class="headerlink" href="#operation-count-for-householder" title="Permalink to this headline">¶</a></h2>
+<p>In the Householder algorithm, the computation is dominated by the
+transformation</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[A_{k:m,k:n} \gets A_{k:m,k:n} -
+\underbrace{2v_k\underbrace{(v_k^*A_{k:m,k:n})}_{1}}_{2},\]</div>
+</div></blockquote>
+<p>which must be done for each ‘k’ iteration. To evaluate the part marked
+1 requires <span class="math notranslate nohighlight">\(n-k\)</span> inner products of vectors in <span class="math notranslate nohighlight">\(\mathbb{C}^{m-k}\)</span>, at a
+total cost of <span class="math notranslate nohighlight">\(\sim 2(n-k)(m-k)\)</span> (we already examined inner products
+in the previous example). To evaluate the part marked 2 then requires
+the outer product of two vectors in <span class="math notranslate nohighlight">\(\mathbb{C}^{m-k}\)</span> and
+<span class="math notranslate nohighlight">\(\mathbb{C}^{n-k}\)</span> respectively, at a total cost of <span class="math notranslate nohighlight">\((m-k)(n-k)\)</span> FLOPs.
+Finally two <span class="math notranslate nohighlight">\((k-m)\times(n-k)\)</span> matrices are substracted, at cost
+<span class="math notranslate nohighlight">\((k-m)(n-k)\)</span>. Putting all this together gives <span class="math notranslate nohighlight">\(\sim 4(n-k)(m-k)\)</span> FLOPs
+per <span class="math notranslate nohighlight">\(k\)</span> iteration.</p>
+<p>Now we have to sum this over <span class="math notranslate nohighlight">\(k\)</span>, so the total operation count is</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}4\sum_{k=1}^n(n-k)(m-k) = 4\sum_{k=1}^n(nm - k(n+m) + k^2)\\\sim 4n^2m - 4(n+m)\frac{n^2}{2} + 4\frac{n^3}{3}
+= 2mn^2 - \frac{2n^3}{3}.\end{aligned}\end{align} \]</div>
+</div></blockquote>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Colin J. Cotter.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.2.
+    </div>
+  </body>
+</html>
