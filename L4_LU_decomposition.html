@@ -71,7 +71,7 @@ we left multiply with lower triangular matrices.</p>
 <p>The first step puts zeros below the first entry in the first column.</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}\begin{split}L_1A = \begin{pmatrix}
+\[ \begin{align}\begin{aligned}\begin{split}A_1 = L_1A = \begin{pmatrix}
 u_1 &amp; v_2^1 &amp; v_2^1 &amp; \ldots &amp; v_n^1 \\
 \end{pmatrix},\end{split}\\\begin{split}\,
 u_1 = \begin{pmatrix} u_{11} \\ 0 \\ \ldots \\ 0\end{pmatrix}.\end{split}\end{aligned}\end{align} \]</div>
@@ -80,12 +80,26 @@ u_1 = \begin{pmatrix} u_{11} \\ 0 \\ \ldots \\ 0\end{pmatrix}.\end{split}\end{al
 column.</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}\begin{split}L_2L_1A = \begin{pmatrix}
+\[ \begin{align}\begin{aligned}\begin{split}A_2 = L_2L_1A = \begin{pmatrix}
 u_1 &amp; u_2 &amp; v_2^2 &amp; \ldots &amp; v_n^2 \\
 \end{pmatrix},\end{split}\\\begin{split}\,
 u_2 = \begin{pmatrix} u_{12} \\ u_{22} \\ 0 \\ \ldots \\ 0 \\
 \end{pmatrix}.\end{split}\end{aligned}\end{align} \]</div>
 </div></blockquote>
+<p>After repeated left multiplications we have</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[A_n = \underbrace{L_n\ldots L_2L_1}A = U.\]</div>
+</div></blockquote>
+<p>If we assume (we will show this later) that all these lower triangular
+matrices are invertible, we can define</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}L = (L_n\ldots L_2L_1)^{-1} = L_1^{-1}L_2^{-1}\ldots L_n^{-1},\\\mbox{ so that }\\L^{-1} = L_n\ldots L_2L_1.\end{aligned}\end{align} \]</div>
+</div></blockquote>
+<p>Then we have <span class="math notranslate nohighlight">\(L^{-1}A = U\)</span>, i.e. <span class="math notranslate nohighlight">\(A=LU\)</span>.</p>
+<p>So, we need to find lower triangular matrices <span class="math notranslate nohighlight">\(L_k\)</span> that do not change
+the first <span class="math notranslate nohighlight">\(k-1\)</span> rows, and</p>
 </div>
 
 
