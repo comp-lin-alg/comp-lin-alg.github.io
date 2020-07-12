@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4. LU decomposition &#8212; Computational linear algebra course 2020.0 documentation</title>
+    <link rel="stylesheet" href="_static/fenics.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/proof.js"></script>
+    <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="3. Analysing algorithms" href="L3_analysing_algorithms.html" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+<link rel="stylesheet" href="_static/featured.css">
+
+
+<link rel="shortcut icon" href="_static/icon.ico" />
+
+
+  </head><body>
+<div class="wrapper">
+  <a href="index.html"><img src="_static/banner.png" width="900px" alt="Project Banner" /></a>
+  <div id="access">
+    <div class="menu">
+      <ul>
+          <li class="page_item"><a href="https://github.com/Computational-Linear-Algebra-Course/computational-linear-algebra-course" title="GitHub">GitHub</a></li>
+      </ul>
+    </div><!-- .menu -->
+  </div><!-- #access -->
+</div><!-- #wrapper -->
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lu-decomposition">
+<h1><span class="section-number">4. </span>LU decomposition<a class="headerlink" href="#lu-decomposition" title="Permalink to this headline">¶</a></h1>
+<p>In this section we look at the some other algorithms for solving the
+equation <span class="math notranslate nohighlight">\(Ax=b\)</span> when <span class="math notranslate nohighlight">\(A\)</span> is invertible. On the one hand the <span class="math notranslate nohighlight">\(QR\)</span>
+factorisation has great stability properties. On the other, it can be
+beaten by other methods for speed when there is particular structure
+to exploit (such as lots of zeros in the matrix). In this section, we
+explore the the family of methods that go right back to the technique
+of Gaussian elimination, that you will have been familiar with since
+secondary school.</p>
+<p>The computational way to view Gaussian elimination is through the LU
+decomposition of an invertible matrix, <span class="math notranslate nohighlight">\(A=LU\)</span>, where <span class="math notranslate nohighlight">\(L\)</span> is lower
+triangular (<span class="math notranslate nohighlight">\(l_{ij}=0\)</span> for <span class="math notranslate nohighlight">\(j&lt;i\)</span>) and <span class="math notranslate nohighlight">\(U\)</span> is upper triangular
+(<span class="math notranslate nohighlight">\(u_{ij}=0\)</span> for <span class="math notranslate nohighlight">\(j&gt;i\)</span>). Here we use the symbol <span class="math notranslate nohighlight">\(U\)</span> instead of <span class="math notranslate nohighlight">\(R\)</span> to
+emphasise that we are looking as square matrices.  The process of
+obtaining the <span class="math notranslate nohighlight">\(LU\)</span> decomposition is very similar to the Householder
+algorithm, in that we repeatedly left multiply <span class="math notranslate nohighlight">\(A\)</span> by matrices to
+transform below-diagonal entries in each column to zero, working from
+the first to the last column. The difference is that whilst the
+Householder algorithm left multiplies with unitary matrices, here,
+we left multiply with lower triangular matrices.</p>
+<p>The first step puts zeros below the first entry in the first column.</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\begin{split}L_1A = \begin{pmatrix}
+u_1 &amp; v_2^1 &amp; v_2^1 &amp; \ldots &amp; v_n^1 \\
+\end{pmatrix},\end{split}\\\begin{split}\,
+u_1 = \begin{pmatrix} u_{11} \\ 0 \\ \ldots \\ 0\end{pmatrix}.\end{split}\end{aligned}\end{align} \]</div>
+</div></blockquote>
+<p>Then, the next step puts zeros  below the second entry in the second
+column.</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\begin{split}L_2L_1A = \begin{pmatrix}
+u_1 &amp; u_2 &amp; v_2^2 &amp; \ldots &amp; v_n^2 \\
+\end{pmatrix},\end{split}\\\begin{split}\,
+u_2 = \begin{pmatrix} u_{12} \\ u_{22} \\ 0 \\ \ldots \\ 0 \\
+\end{pmatrix}.\end{split}\end{aligned}\end{align} \]</div>
+</div></blockquote>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Colin J. Cotter.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.2.
+    </div>
+  </body>
+</html>
