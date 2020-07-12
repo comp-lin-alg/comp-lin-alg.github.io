@@ -122,12 +122,12 @@ a_1 &amp; a_2 &amp; \ldots &amp; a_n \\
 </div></blockquote>
 <p>i.e. a linear combination of the columns of <span class="math notranslate nohighlight">\(A\)</span> as described above.</p>
 <p>We can extend this idea to matrix-matrix multiplication. Taking
-<span class="math notranslate nohighlight">\(A\in \mathbb{C}^{l\times m}\)</span>, <span class="math notranslate nohighlight">\(C\in \mathbb{C}^{m\times n}\)</span>,
-<span class="math notranslate nohighlight">\(B\in \mathbb{C}^{l\times n}\)</span>, with <span class="math notranslate nohighlight">\(B=AC\)</span>, then the components of
+<span class="math notranslate nohighlight">\(A\in \mathbb{C}^{m\times l}\)</span>, <span class="math notranslate nohighlight">\(C\in \mathbb{C}^{l\times n}\)</span>,
+<span class="math notranslate nohighlight">\(B\in \mathbb{C}^{m\times n}\)</span>, with <span class="math notranslate nohighlight">\(B=AC\)</span>, then the components of
 <span class="math notranslate nohighlight">\(B\)</span> are given by</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
-\[b_{ij} = \sum_{k=1}^m a_{ik}c_{kj}, \quad 1\leq i \leq l, \,
+\[b_{ij} = \sum_{k=1}^l a_{ik}c_{kj}, \quad 1\leq i \leq m, \,
 1\leq j \leq n.\]</div>
 </div></blockquote>
 <p>Writing <span class="math notranslate nohighlight">\(b_j \in \mathbb{C}^m\)</span> as the jth column of <span class="math notranslate nohighlight">\(B\)</span>, for <span class="math notranslate nohighlight">\(1\leq j \leq n\)</span>,
@@ -590,7 +590,7 @@ q_1 &amp; q_2 &amp; \ldots &amp; q_n \\
 \[v \mapsto Pv = \underbrace{\sum_{i=1}^n (q_iq^*_i)}_{=P}v,\]</div>
 <p>is an orthogonal projector. In fact, <span class="math notranslate nohighlight">\(P\)</span> has very simple form.</p>
 <div class="proof proof-type-theorem" id="id22">
-
+<span id="orthogonal-projector"></span>
     <div class="proof-title">
         <span class="proof-type">Theorem 1.20</span>
         

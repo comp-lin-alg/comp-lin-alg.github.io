@@ -124,7 +124,7 @@ first <span class="math notranslate nohighlight">\(j\)</span> elements of the sp
 <span class="math notranslate nohighlight">\(A\)</span> is the same, for <span class="math notranslate nohighlight">\(j=1,\ldots, n\)</span>.</p>
 <p>Hence we have to find <span class="math notranslate nohighlight">\(R\)</span> coefficients such that</p>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}q_1 = \frac{a_1}{r_11},\\q_2 = \frac{a_2-r_{12}q_1}{r_{22}}\\\vdots\\q_n = \frac{q_n - \sum_{i=1}^{n-1}r_{in}q_i}{r_{nn}},\end{aligned}\end{align} \]</div>
+\[ \begin{align}\begin{aligned}q_1 = \frac{a_1}{r_{11}},\\q_2 = \frac{a_2-r_{12}q_1}{r_{22}}\\\vdots\\q_n = \frac{q_n - \sum_{i=1}^{n-1}r_{in}q_i}{r_{nn}},\end{aligned}\end{align} \]</div>
 <p>with <span class="math notranslate nohighlight">\((q_1,q_2,\ldots,q_n)\)</span> an orthonormal set. The non-diagonal
 entries of <span class="math notranslate nohighlight">\(R\)</span> are found by inner products, i.e.,</p>
 <div class="math notranslate nohighlight">
@@ -223,9 +223,9 @@ them in <span class="math notranslate nohighlight">\(R\)</span>.</p>
 algorithm, but the arithmetic operations happen in a different order,
 in a way that turns out to reduce accumulation of round-off errors.</p>
 <p>We now present this modified Gram-Schmidt algorithm as pseudo-code.</p>
-<ul>
-<li><p>FOR <span class="math notranslate nohighlight">\(i = 1\)</span> TO <span class="math notranslate nohighlight">\(n\)</span></p>
 <ul class="simple">
+<li><p>FOR <span class="math notranslate nohighlight">\(i = 1\)</span> TO <span class="math notranslate nohighlight">\(n\)</span></p>
+<ul>
 <li><p><span class="math notranslate nohighlight">\(v_i \gets a_i\)</span></p></li>
 </ul>
 </li>
@@ -233,15 +233,14 @@ in a way that turns out to reduce accumulation of round-off errors.</p>
 <li><p>FOR <span class="math notranslate nohighlight">\(i = 1\)</span> TO <span class="math notranslate nohighlight">\(n\)</span></p>
 <ul>
 <li><p><span class="math notranslate nohighlight">\(r_{ii} \gets \|v_i\|_2\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(q_i = v_i/r_{ii}\)</span>
-* FOR <span class="math notranslate nohighlight">\(j = i+1\)</span> TO <span class="math notranslate nohighlight">\(n\)</span></p>
-<blockquote>
-<div><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(q_i = v_i/r_{ii}\)</span></p>
+<ul>
+<li><p>FOR <span class="math notranslate nohighlight">\(j = i+1\)</span> TO <span class="math notranslate nohighlight">\(n\)</span></p>
+<ul>
 <li><p><span class="math notranslate nohighlight">\(r_{ij} \gets q_i^*a_j\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(v_j \gets v_j - r_{ij}q_i\)</span></p></li>
 </ul>
-</div></blockquote>
-<ul class="simple">
+</li>
 <li><p>END FOR</p></li>
 </ul>
 </li>
@@ -493,6 +492,7 @@ apply the same operations to <span class="math notranslate nohighlight">\(b\)</s
 </li>
 <li><p>END FOR</p></li>
 </ul>
+<p>We call this procedure “implicit multiplication”.</p>
 <p>If we really need <span class="math notranslate nohighlight">\(Q\)</span>, we can get it by matrix-vector products
 with each element of the canonical basis <span class="math notranslate nohighlight">\((e_1,e_2,\ldots,e_n)\)</span>.
 This means that first we need to compute a matrix-vector product
@@ -538,11 +538,13 @@ the 2-norm of the residual <span class="math notranslate nohighlight">\(r=b-Ax\)
 <div><div class="math notranslate nohighlight">
 \[min_x \|Ax - b\|^2.\]</div>
 </div></blockquote>
-<p>This residual will not be zero in general, when <span class="math notranslate nohighlight">\(b\)</span> is not in the range of
-<span class="math notranslate nohighlight">\(A\)</span>. The nearest point in the range of <span class="math notranslate nohighlight">\(A\)</span> to <span class="math notranslate nohighlight">\(b\)</span> is <span class="math notranslate nohighlight">\(Pb\)</span>, where <span class="math notranslate nohighlight">\(P\)</span> is
-the orthogonal projector onto the range of <span class="math notranslate nohighlight">\(A\)</span>. From <span class="math notranslate nohighlight">\(Theorem {number}&lt;dual_condition&gt;\)</span>, we know that <span class="math notranslate nohighlight">\(P=\hat{Q}\hat{Q}^*\)</span>, where <span class="math notranslate nohighlight">\(\hat{Q}\)</span> from the
-reduced <span class="math notranslate nohighlight">\(QR\)</span> factorisation has the same column space as <span class="math notranslate nohighlight">\(A\)</span> (but with
-orthogonal columns).</p>
+<p>This residual will not be zero in general, when <span class="math notranslate nohighlight">\(b\)</span> is not in the
+range of <span class="math notranslate nohighlight">\(A\)</span>. The nearest point in the range of <span class="math notranslate nohighlight">\(A\)</span> to <span class="math notranslate nohighlight">\(b\)</span> is <span class="math notranslate nohighlight">\(Pb\)</span>,
+where <span class="math notranslate nohighlight">\(P\)</span> is the orthogonal projector onto the range of <span class="math notranslate nohighlight">\(A\)</span>. From
+<a class="reference internal" href="L1_preliminaries.html#orthogonal-projector"><span class="std std-numref">Theorem 1.20</span></a>, we know that
+<span class="math notranslate nohighlight">\(P=\hat{Q}\hat{Q}^*\)</span>, where <span class="math notranslate nohighlight">\(\hat{Q}\)</span> from the reduced <span class="math notranslate nohighlight">\(QR\)</span>
+factorisation has the same column space as <span class="math notranslate nohighlight">\(A\)</span> (but with orthogonal
+columns).</p>
 <p>Then, we just have to solve</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
