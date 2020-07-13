@@ -1,0 +1,134 @@
+.. default-role:: math
+
+Finding eigenvalues of matrices
+===============================
+
+We start with some preliminary terminology.  A vector `x\in
+\mathbb{C}^m` is an *eigenvector* of a square matrix `A\in
+\mathbb{C}^{m\times m}` with *eigenvalue* `\lambda` if `Ax=\lambda
+x`. An eigenspace is the subspace `E_{\lambda}\subset\mathbb{C}^m`
+containing all eigenvectors of `A` with eigenvalue `\lambda`.
+
+There are a few reasons why we are interested in computing
+eigenvectors and eigenvalues of a matrix `A`.
+
+#. Eigenvalues and eigenvectors encode information about `A`.
+#. Eigenvalues play an important role in stability calculations
+   in physics and engineering.
+#. We can use eigenvectors to underpin the solution of linear systems
+   involving `A`.
+#. ...
+
+How to find eigenvalues?
+------------------------
+
+The method that we first encounter in our mathematical education is to
+find solutions of `(A-\lambda I)x = 0`, which implies that
+`\det(A-\lambda I)=0`. This gives a degree `m` polynomial to solve for
+`\lambda`, called the *characteristic polynomial*. Unfortunately,
+there is no general solution for polynomials of degree 5 or greater
+(from Galois theory). Further, the problem of finding roots of
+polynomials is numerically unstable. All of this means that we should
+avoid using polynomials finding eigenvalues. Instead, we should try to
+apply transformations to the matrix `A` to a form that means that the
+eigenvalues can be directly extracted.
+
+The eigenvalue decomposition of a matrix `A` finds a nonsingular matrix
+`X` and a diagonal matrix `\Lambda` such that
+
+   .. math::
+
+      A = X\Lambda X^{-1}.
+
+The diagonal entries of `\Lambda` are the eigenvalues of `A`. Hence,
+if we could find the eigenvalue decomposition of `A`, we could just
+read off the eigenvalues of `A`; the eigenvalue decomposition is
+"eigenvalue revealing". Unfortunately, it is not always easy or even
+possible to transform to an eigenvalue decomposition. Hence we shall
+look into some other eigenvalue revealing decompositions of `A`.
+
+We quote the following result that explains when an eigenvalue
+decomposition can be found.
+
+.. proof:theorem::
+
+   An `m\times m` matrix `A` has an eigenvalue decomposition if and
+   only if it is non-defective, meaning that the geometric
+   multiplicity of each eigenvalue (the dimension of the eigenspace
+   for that eigenvalue) is equal to the algebraic multiplicity (the
+   number of times that the eigenvalue is repeated as a root in the
+   characteristic polynomial `\det(I\lambda - A)=0`.
+
+If the algebraic multiplicity is greater than the geometric
+multiplicity for any eigenvalue of `A`, then the matrix is defective,
+the eigenspaces do not span `\mathbb{C}^m`, and an eigenvalue
+decomposition is not possible.
+
+This all motivates the search for other eigenvalue revealing
+decompositions of `A`.
+
+.. proof:definition:: Similarity transformations
+
+   For `X\in \mathbb{C}^{m\times m}` a nonsingular matrix, the map
+   `A\mapsto X^{-1}AX` is called a similarity transformation of `A`.
+   Two matrices `A` and `B` are *similar* if `B=X^{-1}AX`.
+
+The eigenvalue decomposition shows that (when it exists), `A` is similar
+to `\Lambda`. The following result shows that it may be useful to examine
+other similarity transformations.
+
+.. proof:theorem::
+
+   Two similar matrices `A` and `B` have the same characteristic polynomial,
+   eigenvalues, and geometric multiplicities.
+
+.. proof:proof::
+
+   See a linear algebra textbook.
+
+The goal is to find a similarity transformation such that `A` is
+transformed to a matrix `B` that has some simpler structure where the
+eigenvalues can be easily computed (with the diagonal matrix of the
+eigenvalue decomposition being one example).
+
+One such transformation comes from the Schur factorisation.
+
+.. proof:definition:: Schur factorisation
+
+   A Schur factorisation of a square matrix `A` takes the form `A =
+   QTQ^*`, where `Q` is unitary (and hence `Q^*=Q^{-1}`) and `T` is
+   upper triangular.
+
+It turns out that, unlike the situation for the eigenvalue
+decomposition, the following is true.
+
+.. proof:theorem::
+
+   Every square matrix has a Schur factorisation.
+
+This is useful, because the characteristic polynomial of an upper
+triangular matrix is just `\prod_{i=1}^m (\lambda-T_{ii})`, i.e.  the
+eigenvalues of `T` are the diagonal entries
+`(T_{11},T_{22},\ldots,T_{mm})`. So, if we can compute the Schur
+factorisation of `A`, we can just read the eigenvalues from the diagonal
+matrices of `A`.
+
+There is a special case of the Schur factorisation, called the unitary
+diagonalisation
+
+.. proof:definition:: Unitary diagonalisation
+
+   A unitary diagonalisation of a square matrix `A` takes the form `A =
+   Q\Lambda Q^*`, where `Q` is unitary (and hence `Q^*=Q^{-1}`) and `\Lambda`
+   is diagonal.
+
+A unitary diagonalisation is a Schur factorisation *and* an eigenvalue
+decomposition.
+   
+.. proof:theorem::
+
+   A Hermitian matrix is unitary diagonalisable, with real `\Lambda`.
+
+Hence, if we have a Hermitian matrix, we can follow a Schur
+factorisation strategy (such as we shall develop in this section), and
+obtain an eigenvalue decomposition as a bonus.

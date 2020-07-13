@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5. Finding eigenvalues of matrices &#8212; Computational linear algebra course 2020.0 documentation</title>
+    <link rel="stylesheet" href="_static/fenics.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/proof.js"></script>
+    <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="4. LU decomposition" href="L4_LU_decomposition.html" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+<link rel="stylesheet" href="_static/featured.css">
+
+
+<link rel="shortcut icon" href="_static/icon.ico" />
+
+
+  </head><body>
+<div class="wrapper">
+  <a href="index.html"><img src="_static/banner.png" width="900px" alt="Project Banner" /></a>
+  <div id="access">
+    <div class="menu">
+      <ul>
+          <li class="page_item"><a href="https://github.com/Computational-Linear-Algebra-Course/computational-linear-algebra-course" title="GitHub">GitHub</a></li>
+      </ul>
+    </div><!-- .menu -->
+  </div><!-- #access -->
+</div><!-- #wrapper -->
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="finding-eigenvalues-of-matrices">
+<h1><span class="section-number">5. </span>Finding eigenvalues of matrices<a class="headerlink" href="#finding-eigenvalues-of-matrices" title="Permalink to this headline">¶</a></h1>
+<p>We start with some preliminary terminology.  A vector <span class="math notranslate nohighlight">\(x\in
+\mathbb{C}^m\)</span> is an <em>eigenvector</em> of a square matrix <span class="math notranslate nohighlight">\(A\in
+\mathbb{C}^{m\times m}\)</span> with <em>eigenvalue</em> <span class="math notranslate nohighlight">\(\lambda\)</span> if <span class="math notranslate nohighlight">\(Ax=\lambda
+x\)</span>. An eigenspace is the subspace <span class="math notranslate nohighlight">\(E_{\lambda}\subset\mathbb{C}^m\)</span>
+containing all eigenvectors of <span class="math notranslate nohighlight">\(A\)</span> with eigenvalue <span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
+<p>There are a few reasons why we are interested in computing
+eigenvectors and eigenvalues of a matrix <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<ol class="arabic simple">
+<li><p>Eigenvalues and eigenvectors encode information about <span class="math notranslate nohighlight">\(A\)</span>.</p></li>
+<li><p>Eigenvalues play an important role in stability calculations
+in physics and engineering.</p></li>
+<li><p>We can use eigenvectors to underpin the solution of linear systems
+involving <span class="math notranslate nohighlight">\(A\)</span>.</p></li>
+<li><p>…</p></li>
+</ol>
+<div class="section" id="how-to-find-eigenvalues">
+<h2><span class="section-number">5.1. </span>How to find eigenvalues?<a class="headerlink" href="#how-to-find-eigenvalues" title="Permalink to this headline">¶</a></h2>
+<p>The method that we first encounter in our mathematical education is to
+find solutions of <span class="math notranslate nohighlight">\((A-\lambda I)x = 0\)</span>, which implies that
+<span class="math notranslate nohighlight">\(\det(A-\lambda I)=0\)</span>. This gives a degree <span class="math notranslate nohighlight">\(m\)</span> polynomial to solve for
+<span class="math notranslate nohighlight">\(\lambda\)</span>, called the <em>characteristic polynomial</em>. Unfortunately,
+there is no general solution for polynomials of degree 5 or greater
+(from Galois theory). Further, the problem of finding roots of
+polynomials is numerically unstable. All of this means that we should
+avoid using polynomials finding eigenvalues. Instead, we should try to
+apply transformations to the matrix <span class="math notranslate nohighlight">\(A\)</span> to a form that means that the
+eigenvalues can be directly extracted.</p>
+<p>The eigenvalue decomposition of a matrix <span class="math notranslate nohighlight">\(A\)</span> finds a nonsingular matrix
+<span class="math notranslate nohighlight">\(X\)</span> and a diagonal matrix <span class="math notranslate nohighlight">\(\Lambda\)</span> such that</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[A = X\Lambda X^{-1}.\]</div>
+</div></blockquote>
+<p>The diagonal entries of <span class="math notranslate nohighlight">\(\Lambda\)</span> are the eigenvalues of <span class="math notranslate nohighlight">\(A\)</span>. Hence,
+if we could find the eigenvalue decomposition of <span class="math notranslate nohighlight">\(A\)</span>, we could just
+read off the eigenvalues of <span class="math notranslate nohighlight">\(A\)</span>; the eigenvalue decomposition is
+“eigenvalue revealing”. Unfortunately, it is not always easy or even
+possible to transform to an eigenvalue decomposition. Hence we shall
+look into some other eigenvalue revealing decompositions of <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p>We quote the following result that explains when an eigenvalue
+decomposition can be found.</p>
+<div class="proof proof-type-theorem" id="id1">
+
+    <div class="proof-title">
+        <span class="proof-type">Theorem 5.1</span>
+        
+    </div><div class="proof-content">
+<p>An <span class="math notranslate nohighlight">\(m\times m\)</span> matrix <span class="math notranslate nohighlight">\(A\)</span> has an eigenvalue decomposition if and
+only if it is non-defective, meaning that the geometric
+multiplicity of each eigenvalue (the dimension of the eigenspace
+for that eigenvalue) is equal to the algebraic multiplicity (the
+number of times that the eigenvalue is repeated as a root in the
+characteristic polynomial <span class="math notranslate nohighlight">\(\det(I\lambda - A)=0\)</span>.</p>
+</div></div><p>If the algebraic multiplicity is greater than the geometric
+multiplicity for any eigenvalue of <span class="math notranslate nohighlight">\(A\)</span>, then the matrix is defective,
+the eigenspaces do not span <span class="math notranslate nohighlight">\(\mathbb{C}^m\)</span>, and an eigenvalue
+decomposition is not possible.</p>
+<p>This all motivates the search for other eigenvalue revealing
+decompositions of <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<div class="proof proof-type-definition" id="id2">
+
+    <div class="proof-title">
+        <span class="proof-type">Definition 5.2</span>
+        
+            <span class="proof-title-name">(Similarity transformations)</span>
+        
+    </div><div class="proof-content">
+<p>For <span class="math notranslate nohighlight">\(X\in \mathbb{C}^{m\times m}\)</span> a nonsingular matrix, the map
+<span class="math notranslate nohighlight">\(A\mapsto X^{-1}AX\)</span> is called a similarity transformation of <span class="math notranslate nohighlight">\(A\)</span>.
+Two matrices <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are <em>similar</em> if <span class="math notranslate nohighlight">\(B=X^{-1}AX\)</span>.</p>
+</div></div><p>The eigenvalue decomposition shows that (when it exists), <span class="math notranslate nohighlight">\(A\)</span> is similar
+to <span class="math notranslate nohighlight">\(\Lambda\)</span>. The following result shows that it may be useful to examine
+other similarity transformations.</p>
+<div class="proof proof-type-theorem" id="id3">
+
+    <div class="proof-title">
+        <span class="proof-type">Theorem 5.3</span>
+        
+    </div><div class="proof-content">
+<p>Two similar matrices <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> have the same characteristic polynomial,
+eigenvalues, and geometric multiplicities.</p>
+</div></div><div class="proof proof-type-proof">
+
+    <div class="proof-title">
+        <span class="proof-type">Proof </span>
+        
+    </div><div class="proof-content">
+<p>See a linear algebra textbook.</p>
+</div></div><p>The goal is to find a similarity transformation such that <span class="math notranslate nohighlight">\(A\)</span> is
+transformed to a matrix <span class="math notranslate nohighlight">\(B\)</span> that has some simpler structure where the
+eigenvalues can be easily computed (with the diagonal matrix of the
+eigenvalue decomposition being one example).</p>
+<p>One such transformation comes from the Schur factorisation.</p>
+<div class="proof proof-type-definition" id="id4">
+
+    <div class="proof-title">
+        <span class="proof-type">Definition 5.4</span>
+        
+            <span class="proof-title-name">(Schur factorisation)</span>
+        
+    </div><div class="proof-content">
+<p>A Schur factorisation of a square matrix <span class="math notranslate nohighlight">\(A\)</span> takes the form <span class="math notranslate nohighlight">\(A =
+QTQ^*\)</span>, where <span class="math notranslate nohighlight">\(Q\)</span> is unitary (and hence <span class="math notranslate nohighlight">\(Q^*=Q^{-1}\)</span>) and <span class="math notranslate nohighlight">\(T\)</span> is
+upper triangular.</p>
+</div></div><p>It turns out that, unlike the situation for the eigenvalue
+decomposition, the following is true.</p>
+<div class="proof proof-type-theorem" id="id5">
+
+    <div class="proof-title">
+        <span class="proof-type">Theorem 5.5</span>
+        
+    </div><div class="proof-content">
+<p>Every square matrix has a Schur factorisation.</p>
+</div></div><p>This is useful, because the characteristic polynomial of an upper
+triangular matrix is just <span class="math notranslate nohighlight">\(\prod_{i=1}^m (\lambda-T_{ii})\)</span>, i.e.  the
+eigenvalues of <span class="math notranslate nohighlight">\(T\)</span> are the diagonal entries
+<span class="math notranslate nohighlight">\((T_{11},T_{22},\ldots,T_{mm})\)</span>. So, if we can compute the Schur
+factorisation of <span class="math notranslate nohighlight">\(A\)</span>, we can just read the eigenvalues from the diagonal
+matrices of <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p>There is a special case of the Schur factorisation, called the unitary
+diagonalisation</p>
+<div class="proof proof-type-definition" id="id6">
+
+    <div class="proof-title">
+        <span class="proof-type">Definition 5.6</span>
+        
+            <span class="proof-title-name">(Unitary diagonalisation)</span>
+        
+    </div><div class="proof-content">
+<p>A unitary diagonalisation of a square matrix <span class="math notranslate nohighlight">\(A\)</span> takes the form <span class="math notranslate nohighlight">\(A =
+Q\Lambda Q^*\)</span>, where <span class="math notranslate nohighlight">\(Q\)</span> is unitary (and hence <span class="math notranslate nohighlight">\(Q^*=Q^{-1}\)</span>) and <span class="math notranslate nohighlight">\(\Lambda\)</span>
+is diagonal.</p>
+</div></div><p>A unitary diagonalisation is a Schur factorisation <em>and</em> an eigenvalue
+decomposition.</p>
+<div class="proof proof-type-theorem" id="id7">
+
+    <div class="proof-title">
+        <span class="proof-type">Theorem 5.7</span>
+        
+    </div><div class="proof-content">
+<p>A Hermitian matrix is unitary diagonalisable, with real <span class="math notranslate nohighlight">\(\Lambda\)</span>.</p>
+</div></div><p>Hence, if we have a Hermitian matrix, we can follow a Schur
+factorisation strategy (such as we shall develop in this section), and
+obtain an eigenvalue decomposition as a bonus.</p>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Colin J. Cotter.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.2.
+    </div>
+  </body>
+</html>

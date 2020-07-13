@@ -18,6 +18,7 @@
     <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="5. Finding eigenvalues of matrices" href="L5_eigenvalues.html" />
     <link rel="prev" title="3. Analysing algorithms" href="L3_analysing_algorithms.html" />
 <!--[if lte IE 6]>
 <link rel="stylesheet" href="_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
@@ -276,7 +277,7 @@ maximum magnitude. This would seem to mess up the <span class="math notranslate 
 procedure. However, it is not as bad as it looks, as we will now
 see.</p>
 <p>The main tool is the permutation matrix.</p>
-<div class="proof proof-type-definition" id="id1">
+<div class="proof proof-type-definition" id="id3">
 
     <div class="proof-title">
         <span class="proof-type">Definition 4.1</span>
@@ -387,19 +388,72 @@ pseudo-code.</p>
 we left multiply the equation by <span class="math notranslate nohighlight">\(P\)</span> and use the factorisation get
 <span class="math notranslate nohighlight">\(LUx=Pb\)</span>. The procedure is then as before, but <span class="math notranslate nohighlight">\(b\)</span> must be permuted to
 <span class="math notranslate nohighlight">\(Pb\)</span> before doing the forwards and back substitutions.</p>
+<p>We call this strategy <em>partial pivoting</em>. In contrast, <em>complete
+pivoting</em> additionally employs permutations <span class="math notranslate nohighlight">\(Q_k\)</span> on the right that
+swap columns of <span class="math notranslate nohighlight">\(A_k\)</span> as well as the rows swapped by the permutations
+<span class="math notranslate nohighlight">\(P_k\)</span>. By similar arguments, one can obtain the LU factorisation with
+complete pivoting, <span class="math notranslate nohighlight">\(PAQ=LU\)</span>.</p>
 </div>
 <div class="section" id="stability-of-lu-factorisation">
 <h2><span class="section-number">4.3. </span>Stability of LU factorisation<a class="headerlink" href="#stability-of-lu-factorisation" title="Permalink to this headline">¶</a></h2>
 <p>To characterise the stability of LU factorisation, we quote the following
 result.</p>
-<div class="proof proof-type-theorem" id="id2">
+<div class="proof proof-type-theorem" id="id4">
 
     <div class="proof-title">
         <span class="proof-type">Theorem 4.2</span>
         
     </div><div class="proof-content">
-<p>Let <span class="math notranslate nohighlight">\(\tilde{L}\)</span> and <span class="math notranslate nohighlight">\(\tilde{U}\)</span> be</p>
-</div></div></div>
+<p>Let <span class="math notranslate nohighlight">\(\tilde{L}\)</span> and <span class="math notranslate nohighlight">\(\tilde{U}\)</span> be the result of the Gaussian
+elimination algorithm implemented in a floating point number system
+satisfying axioms I and II. If no zero pivots are encountered, then</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[`\tilde{L}\tilde{U} = A + \delta A\]</div>
+</div></blockquote>
+<p>where</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\frac{\|\delta A\|}{\|L\|\|U\|} = \mathcal{O}(\varepsilon),\]</div>
+</div></blockquote>
+<p>for some perturbation <span class="math notranslate nohighlight">\(\delta A\)</span>.</p>
+</div></div><p>The algorithm is backward stable if <span class="math notranslate nohighlight">\(\|L\|\|U\|=\mathcal{O}(\|A\|)\)</span>,
+but there will be problems is <span class="math notranslate nohighlight">\(|L\|\|U\|\gg \|A\|\)</span>. For a proof of this
+result, see the textbook by Golub and van Loan.</p>
+<p>A similar result exists for pivoted LU. The main extra issue is that
+small changes could potentially lead to a different pivoting matrix
+<span class="math notranslate nohighlight">\(\tilde{P}\)</span> which is then <span class="math notranslate nohighlight">\(O(1)\)</span> different from <span class="math notranslate nohighlight">\(P\)</span>. This is characterised
+in the following result (which we also do not prove).</p>
+<div class="proof proof-type-theorem" id="id5">
+
+    <div class="proof-title">
+        <span class="proof-type">Theorem 4.3</span>
+        
+    </div><div class="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(\tilde{P}\)</span>, <span class="math notranslate nohighlight">\(\tilde{L}\)</span> and <span class="math notranslate nohighlight">\(\tilde{U}\)</span> be the result of the
+partial pivoted Gaussian elimination algorithm implemented in a
+floating point number system satisfying axioms I and II. If no zero
+pivots are encountered, then</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[`\tilde{L}\tilde{U} = A + \delta A\]</div>
+</div></blockquote>
+<p>where</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\frac{\|\delta A\|}{\|A\|} = \mathcal{O}(\rho\varepsilon),\]</div>
+</div></blockquote>
+<p>for some perturbation <span class="math notranslate nohighlight">\(\delta A\)</span>, and where <span class="math notranslate nohighlight">\(\rho\)</span> is the growth
+factor,</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\rho = \frac{\max_{ij}|u_{ij}|}{|a_{ij}|}.\]</div>
+</div></blockquote>
+</div></div><p>Thus, partial pivoting (and complete pivoting turns out not to help
+much extra) can keep the entries in <span class="math notranslate nohighlight">\(L\)</span> under control, but there can
+still be pathological cases where entries in <span class="math notranslate nohighlight">\(U\)</span> can get large,
+leading to large <span class="math notranslate nohighlight">\(\rho\)</span> and unstable computations.</p>
+</div>
 <div class="section" id="taking-advantage-of-matrix-structure">
 <h2><span class="section-number">4.4. </span>Taking advantage of matrix structure<a class="headerlink" href="#taking-advantage-of-matrix-structure" title="Permalink to this headline">¶</a></h2>
 <p>The cost of the standard Gaussian elimination algorithm to form <span class="math notranslate nohighlight">\(L\)</span>
@@ -409,13 +463,35 @@ exploit this to reduce the cost. Understanding when and how to exploit
 structure is a central theme in computational linear algebra.
 Here we will discuss some examples of structure to be exploited.</p>
 <p>When <span class="math notranslate nohighlight">\(A\)</span> is a lower or upper triangular matrix then we can use
-forwards or back substitution, with <span class="math notranslate nohighlight">\(\mathcal{O}(m^2)\)</span> operation
-count as previously discussed.</p>
-<p>When <span class="math notranslate nohighlight">\(A\)</span> is a diagonal matrix, i.e. <span class="math notranslate nohighlight">\(A_{ij}=0\)</span> for <span class="math notranslate nohighlight">\(i\ne j\)</span>, it only
+forwards or back substitution, with <span class="math notranslate nohighlight">\(\mathcal{O}(m^2)\)</span> operation count
+as previously discussed.</p>
+<p>symmetric When <span class="math notranslate nohighlight">\(A\)</span> is a diagonal matrix, i.e. <span class="math notranslate nohighlight">\(A_{ij}=0\)</span> for <span class="math notranslate nohighlight">\(i\ne j\)</span>, it only
 has <span class="math notranslate nohighlight">\(m\)</span> nonzero entries, that can be stored as a vector,
 <span class="math notranslate nohighlight">\((A_{11},A_{22},\ldots,A_{mm})\)</span>. In this case, <span class="math notranslate nohighlight">\(Ax=b\)</span> can be solved in
 <span class="math notranslate nohighlight">\(m\)</span> operations, just by setting <span class="math notranslate nohighlight">\(x_i=b_i/A_{ii}\)</span>, for
 <span class="math notranslate nohighlight">\(i=1,2,\ldots,m\)</span>.</p>
+<p>Similarly, if <span class="math notranslate nohighlight">\(A \in \mathcal{C}^{dm\times dm}\)</span> is block diagonal,
+i.e.</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}A = \begin{pmatrix}
+B_{1} &amp; 0 &amp; \ldots &amp; 0 \\
+0 &amp; B_{2} &amp; \ldots &amp; 0 \\
+\vdots &amp; \vdots &amp; \ddots &amp; 0 \\
+0 &amp; 0 &amp; \ldots B_{m}
+\end{pmatrix},\end{split}\]</div>
+</div></blockquote>
+<p>where <span class="math notranslate nohighlight">\(B_{i}\in\mathcal{C}^{d\times d}\)</span> for <span class="math notranslate nohighlight">\(i=1,2,\ldots,m\)</span>. The inverse
+of <span class="math notranslate nohighlight">\(A\)</span> is</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}A = \begin{pmatrix}
+B_{1}^{-1} &amp; 0 &amp; \ldots &amp; 0 \\
+0 &amp; B_{2}^{-1} &amp; \ldots &amp; 0 \\
+\vdots &amp; \vdots &amp; \ddots &amp; 0 \\
+0 &amp; 0 &amp; \ldots B_{m}^{-1}
+\end{pmatrix}.\end{split}\]</div>
+</div></blockquote>
 <p>A generalisation of a diagonal matrix is a banded matrix, where
 <span class="math notranslate nohighlight">\(A_{ij}=0\)</span> for <span class="math notranslate nohighlight">\(i&gt;j+p\)</span> and for <span class="math notranslate nohighlight">\(i&lt;j-q\)</span>. We call <span class="math notranslate nohighlight">\(p\)</span> the upper
 bandwidth of <span class="math notranslate nohighlight">\(A\)</span>; <span class="math notranslate nohighlight">\(q\)</span> is the lower bandwidth. When the matrix is
@@ -450,7 +526,7 @@ exploit this structure in the forward and back substitution
 algorithms as well. For example, the forward substitution algorithm
 is given as pseudo-code below.</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(x_1 \gets b_1/L_11\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(x_1 \gets b_1/L_{11}\)</span></p></li>
 <li><p>FOR <span class="math notranslate nohighlight">\(k=2\)</span> TO <span class="math notranslate nohighlight">\(m\)</span></p>
 <ul>
 <li><p><span class="math notranslate nohighlight">\(j \gets \max(1, k-p)\)</span></p></li>
@@ -461,6 +537,140 @@ is given as pseudo-code below.</p>
 </ul>
 <p>This has an operation count <span class="math notranslate nohighlight">\(\mathcal{O}(mp)\)</span>. The story is
 very similar for the back substitution.</p>
+<p>Another example that we have already encountered is unitary matrices
+<span class="math notranslate nohighlight">\(Q\)</span>. Since <span class="math notranslate nohighlight">\(Q^{-1}=Q^*\)</span>, solving the system <span class="math notranslate nohighlight">\(Qx=b\)</span> is just the cost of
+applying <span class="math notranslate nohighlight">\(Q^*\)</span>, with operation count <span class="math notranslate nohighlight">\(\mathcal{O}(m^2)\)</span>.</p>
+<p>An important matrix that we shall encounter later is an upper
+Hessenberg matrix, that has a lower bandwidth of 1, but no particular
+zero structure above the diagonal. In this case, the <span class="math notranslate nohighlight">\(L\)</span> matrix is
+still banded (with lower bandwidth 1) but the <span class="math notranslate nohighlight">\(U\)</span> matrix is not.  This
+means that there are still savings due to the zeros in <span class="math notranslate nohighlight">\(L\)</span>, but work
+has to be done on the entire column of <span class="math notranslate nohighlight">\(U\)</span> above the diagonal, and so
+solving an upper Hessenberg system has operation count
+<span class="math notranslate nohighlight">\(\mathcal{O}(m^2)\)</span>.</p>
+</div>
+<div class="section" id="cholesky-factorisation">
+<h2><span class="section-number">4.5. </span>Cholesky factorisation<a class="headerlink" href="#cholesky-factorisation" title="Permalink to this headline">¶</a></h2>
+<p>An example of extra structure which we shall discuss in a bit more
+detail is the case of Hermitian positive definite matrices. Recall
+that a Hermitian matrix satisfies <span class="math notranslate nohighlight">\(A^*=A\)</span>, whilst positive definite
+means that</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[x^*Ax &gt; 0, \, \forall \|x\|&gt;0.\]</div>
+</div></blockquote>
+<p>When <span class="math notranslate nohighlight">\(A\)</span> is Hermitian positive definite, it is possible to find an
+upper triangular matrix <span class="math notranslate nohighlight">\(R\)</span> such that <span class="math notranslate nohighlight">\(A=R^*R\)</span>, which is called the
+Cholesky factorisation. To show that it is possible to compute
+the Cholesky factorisation, we start by assuming that <span class="math notranslate nohighlight">\(A\)</span> has
+a 1 in the top-left hand corner, so that</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}A = \begin{pmatrix}
+1 &amp; w^* \\
+w &amp; K \\
+\end{pmatrix}\end{split}\]</div>
+</div></blockquote>
+<p>where <span class="math notranslate nohighlight">\(w\)</span> is a <span class="math notranslate nohighlight">\(m-1\)</span> vector containing the rest of the first column
+of <span class="math notranslate nohighlight">\(A\)</span>, and <span class="math notranslate nohighlight">\(K\)</span> is an <span class="math notranslate nohighlight">\((m-1)\times(m-1)\)</span> Hermitian positive
+definite matrix. (Exercise: show that <span class="math notranslate nohighlight">\(K\)</span> is Hermitian positive
+definite.)</p>
+<p>After one stage of Gaussian elimination, we have</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}\underbrace{\begin{pmatrix}
+1 &amp; 0 \\
+-w &amp; I \\
+\end{pmatrix}}_{L_1^{-1}}
+\underbrace{
+\begin{pmatrix}
+1 &amp; w^* \\
+w &amp; K \\
+\end{pmatrix}}_{A}
+=
+\begin{pmatrix}
+1 &amp; w^* \\
+0 &amp; K - ww^* \\
+\end{pmatrix}.\end{split}\]</div>
+</div></blockquote>
+<p>Further,</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}\begin{pmatrix}
+1 &amp; w^* \\
+0 &amp; K - ww^* \\
+\end{pmatrix}=
+\underbrace{
+\begin{pmatrix}
+1 &amp; 0 \\
+0 &amp; K - ww^* \\
+\end{pmatrix}}_{A_1}
+\underbrace{
+\begin{pmatrix}
+1 &amp; w^T \\
+0 &amp; I \\
+\end{pmatrix}}_{(L_1^{-1})^*=L_1^{-*}},\end{split}\]</div>
+</div></blockquote>
+<p>so that <span class="math notranslate nohighlight">\(A = L_1^{-1}A_1L_1^{-*}\)</span>.
+If <span class="math notranslate nohighlight">\(a_{11} neq 1\)</span>, we at least
+know that <a href="#id1"><span class="problematic" id="id2">``</span></a>a_{11}= e_1^*Ae_1&gt;0`, and the factorisation becomes</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}A =
+\underbrace{\begin{pmatrix} \alpha &amp; 0 \\
+w/\alpha &amp; I \\
+\end{pmatrix}}_{R_1^T}
+\underbrace{
+\begin{pmatrix}
+1 &amp; 0 \\
+0 &amp; K - \frac{ww^*}{a_{11}} \\
+\end{pmatrix}}_{A_1}
+\underbrace{
+\begin{pmatrix}
+\alpha &amp; w/\alpha \\
+0 &amp; I \\
+\end{pmatrix}}_{R_1},\end{split}\]</div>
+</div></blockquote>
+<p>where <span class="math notranslate nohighlight">\(\alpha=\sqrt{a_{11}}\)</span>. We can check that <span class="math notranslate nohighlight">\(A_1\)</span> is positive
+definite, since</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[x^*A_1x = x^*R_1^{-*}AR_1x = (R_1^{-1}x)^*AR_1x = y^*Ay &gt; 0, \mbox{ where }
+y = R_1x.\]</div>
+</div></blockquote>
+<p>Hence, <span class="math notranslate nohighlight">\(K-{ww^*}/{a_{11}}\)</span> is positive definite, since</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}r^*(K-\frac{ww^*}{a_{11}})r = \begin{pmatrix} 0 \\ r \\ \end{pmatrix}^*
+A_1 \begin{pmatrix} 0 \\ r \\ \end{pmatrix} &gt; 0,\end{split}\]</div>
+</div></blockquote>
+<p>and hence we can now perform the same procedure all over again to <span class="math notranslate nohighlight">\(K -
+{ww^*}/a_{11}\)</span>. By induction we can always continue until we have the
+required Cholesky factorisation, which is unique (since there were no
+choices to be made at any step).</p>
+<p>We can then present the Cholesky factorisation as pseudo-code.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(R\gets A\)</span></p></li>
+<li><p>FOR <span class="math notranslate nohighlight">\(k=1\)</span> TO <span class="math notranslate nohighlight">\(m\)</span></p>
+<ul>
+<li><p>FOR <span class="math notranslate nohighlight">\(j=k+1\)</span> to <span class="math notranslate nohighlight">\(m\)</span></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(R_{j,j:m} \gets R_{j,j:m} - R_{k,j:m}\bar{R}_{kj}/R_{kk}\)</span></p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(R_{k,k:m} \gets R_{k,k:m}/\sqrt{R_{k:k}}\)</span></p></li>
+</ul>
+</li>
+</ul>
+<p>The operation count of the Cholesky factorisation is dominated
+by the operation inside the <span class="math notranslate nohighlight">\(j\)</span> loop, which has one division,
+<span class="math notranslate nohighlight">\(m-j+1\)</span> multiplications, and <span class="math notranslate nohighlight">\(m-j+1\)</span> subtractions, giving
+<span class="math notranslate nohighlight">\(\sim 2(m-j)\)</span> FLOPs. The total operation count is then</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[N_{\mbox{FLOPs}} = \sum_{k=1}^m\sum_{j=k+1}^m
+\sim \frac{1}{3}m^3.\]</div>
+</div></blockquote>
 </div>
 </div>
 
