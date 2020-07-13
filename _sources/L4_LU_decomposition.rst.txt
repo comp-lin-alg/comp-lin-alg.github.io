@@ -12,6 +12,9 @@ explore the the family of methods that go right back to the technique
 of Gaussian elimination, that you will have been familiar with since
 secondary school.
 
+An algorithm for LU decomposition
+---------------------------------
+
 The computational way to view Gaussian elimination is through the LU
 decomposition of an invertible matrix, `A=LU`, where `L` is lower
 triangular (`l_{ij}=0` for `j<i`) and `U` is upper triangular
@@ -68,4 +71,101 @@ matrices are invertible, we can define
 Then we have `L^{-1}A = U`, i.e. `A=LU`.
 
 So, we need to find lower triangular matrices `L_k` that do not change
-the first `k-1` rows, and 
+the first `k-1` rows, and transforms the kth column 'x_k' of `A_k`
+as follows.
+
+   .. math::
+
+      Lx_k = L\begin{pmatrix}
+      x_{1k}\\
+      \vdots\\
+      x_{kk}\\
+      x_{k+1,k}\\
+      \vdots\\
+      x_{m,k}\\
+      \end{pmatrix}
+      = \begin{pmatrix}
+      x_{1k}\\
+      \vdots\\
+      x_{kk}\\
+      0 \\
+      \vdots\\
+      0 \\
+      \end{pmatrix}.
+
+As before with the Householder method, we see that we need the top-left
+`k\times k` submatrix of `L` to be the identity (so that it doesn't change
+the first `k` rows). We claim that the following matrix transforms
+`x_k` to the required form.
+
+   .. math::
+
+      L_k = \begin{pmatrix}
+      1 & 0 & 0 & \ldots & 0 & \ldots & \ldots & \ldots & 0 \\
+      0 & 1 & 0 & \ldots & 0 & \ldots & \ldots& \vdots & 0 \\
+      0 & 0 & 1 & \ldots & 0 & \ldots & \ldots & \vdots & 0 \\
+      \vdots & \ddots & \ddots & \ddots & \vdots & \vdots & \vdots & \vdots & 0 \\
+      \vdots & \ddots & \ddots & \ddots & 1 & 0 & \ldots & \vdots & 0 \\
+      \vdots & \ddots & \ddots & \ddots & -l_{k+1,k} & 1 & \ldots & \vdots & 0 \\
+      \vdots & \ddots & \ddots & \ddots & -l_{k+2,k} & 0 & \ddots & \vdots & 0 \\
+      \vdots & \ddots & \ddots & \ddots & \vdots & 0 & \ldots & \ddots & 0 \\
+      \vdots & \ddots & \ddots & \ddots & -l_{m,k} & 0 & \ldots & \ldots &1 \\
+      \end{pmatrix},
+
+      \quad
+
+      l_k = \begin{pmatrix}
+      0 \\
+      0 \\
+      0 \\
+      \vdots \\
+      0 \\
+      l_{k+1,k}=x_{k+1,k}/x_{kk} \\
+      l_{k+2,k}= x_{k+2,k}/x_{kk} \\
+      \vdots\\
+      l_{m,k} = x_{m,k}/x_{kk} \\
+      \end{pmatrix}.
+
+This has the identity block as required, and we can verify that `L_k`
+puts zeros in the entries of `x_k` below the diagonal by first writing
+`L_k = I - l_ke_k^*`. Then,
+
+   .. math::
+
+      L_kx_k = I - l_ke_k^* = x_k - l_k\underbrace{(e_k^*x_k)}_{=x_{kk}},
+
+which subtracts off the below diagonal entries as required.
+
+The determinant of a lower triangular martix is equal to the trace
+(product of diagonal entries), so `\det(L_k)=1`, and consequently
+`L_k` is invertible, enabling us to define `L^{-1}` as above.
+To form `L` we need to multiply the inverses of all the `L_k` matrices
+together, also as above. To do this, we first note that `l_k^*e_k=0`
+(because `l_k` is zero in the only entry that `e_k` is nonzero). Then
+we claim that `L_k^{-1}=I + l_ke_k^*`, which we verify as follows.
+
+   .. math::
+
+      (I + l_ke_k^*)L_k =       (I + l_ke_k^*)(I - l_ke_k^*)
+      = I + l_ke_k^* - l_ke_k^* + (l_ke_k^*)(l_ke_k*)
+
+      = I + \underbrace{l_k(e_k^*l_k)e_k*}_{=0} = I,
+
+as required. Similarly if we multiply the inverse lower triangular
+matrices from two consecutive iterations, we get
+
+   .. math::
+
+      L_k^{-1}L_{k+1}^{-1} = (I + l_ke_k^*)(I + l_{k+1}e_{k+1}^*)
+      = I + l_ke_k^* + l_{k+1}e_{k+1}^* + l_k\underbrace{(e_k^*l_{k+1})}_{=0}e_{k+1}^*
+      
+      = I + l_ke_k^* + l_{k+1}e_{k+1}^*,
+
+since `e_k^*l_{k+1}=0` too, as `l_{k+1}` is zero in the only place
+where `e_k` is nonzero. If we iterate this argument, we get
+
+   .. math::
+
+      L = I + \sum_{i=1}^{m-1}l_ie_i^*.
+
+

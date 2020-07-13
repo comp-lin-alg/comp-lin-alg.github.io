@@ -57,6 +57,8 @@ to exploit (such as lots of zeros in the matrix). In this section, we
 explore the the family of methods that go right back to the technique
 of Gaussian elimination, that you will have been familiar with since
 secondary school.</p>
+<div class="section" id="an-algorithm-for-lu-decomposition">
+<h2><span class="section-number">4.1. </span>An algorithm for LU decomposition<a class="headerlink" href="#an-algorithm-for-lu-decomposition" title="Permalink to this headline">¶</a></h2>
 <p>The computational way to view Gaussian elimination is through the LU
 decomposition of an invertible matrix, <span class="math notranslate nohighlight">\(A=LU\)</span>, where <span class="math notranslate nohighlight">\(L\)</span> is lower
 triangular (<span class="math notranslate nohighlight">\(l_{ij}=0\)</span> for <span class="math notranslate nohighlight">\(j&lt;i\)</span>) and <span class="math notranslate nohighlight">\(U\)</span> is upper triangular
@@ -99,7 +101,89 @@ matrices are invertible, we can define</p>
 </div></blockquote>
 <p>Then we have <span class="math notranslate nohighlight">\(L^{-1}A = U\)</span>, i.e. <span class="math notranslate nohighlight">\(A=LU\)</span>.</p>
 <p>So, we need to find lower triangular matrices <span class="math notranslate nohighlight">\(L_k\)</span> that do not change
-the first <span class="math notranslate nohighlight">\(k-1\)</span> rows, and</p>
+the first <span class="math notranslate nohighlight">\(k-1\)</span> rows, and transforms the kth column ‘x_k’ of <span class="math notranslate nohighlight">\(A_k\)</span>
+as follows.</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}Lx_k = L\begin{pmatrix}
+x_{1k}\\
+\vdots\\
+x_{kk}\\
+x_{k+1,k}\\
+\vdots\\
+x_{m,k}\\
+\end{pmatrix}
+= \begin{pmatrix}
+x_{1k}\\
+\vdots\\
+x_{kk}\\
+0 \\
+\vdots\\
+0 \\
+\end{pmatrix}.\end{split}\]</div>
+</div></blockquote>
+<p>As before with the Householder method, we see that we need the top-left
+<span class="math notranslate nohighlight">\(k\times k\)</span> submatrix of <span class="math notranslate nohighlight">\(L\)</span> to be the identity (so that it doesn’t change
+the first <span class="math notranslate nohighlight">\(k\)</span> rows). We claim that the following matrix transforms
+<span class="math notranslate nohighlight">\(x_k\)</span> to the required form.</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\begin{split}L_k = \begin{pmatrix}
+1 &amp; 0 &amp; 0 &amp; \ldots &amp; 0 &amp; \ldots &amp; \ldots &amp; \ldots &amp; 0 \\
+0 &amp; 1 &amp; 0 &amp; \ldots &amp; 0 &amp; \ldots &amp; \ldots&amp; \vdots &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; \ldots &amp; 0 &amp; \ldots &amp; \ldots &amp; \vdots &amp; 0 \\
+\vdots &amp; \ddots &amp; \ddots &amp; \ddots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; 0 \\
+\vdots &amp; \ddots &amp; \ddots &amp; \ddots &amp; 1 &amp; 0 &amp; \ldots &amp; \vdots &amp; 0 \\
+\vdots &amp; \ddots &amp; \ddots &amp; \ddots &amp; -l_{k+1,k} &amp; 1 &amp; \ldots &amp; \vdots &amp; 0 \\
+\vdots &amp; \ddots &amp; \ddots &amp; \ddots &amp; -l_{k+2,k} &amp; 0 &amp; \ddots &amp; \vdots &amp; 0 \\
+\vdots &amp; \ddots &amp; \ddots &amp; \ddots &amp; \vdots &amp; 0 &amp; \ldots &amp; \ddots &amp; 0 \\
+\vdots &amp; \ddots &amp; \ddots &amp; \ddots &amp; -l_{m,k} &amp; 0 &amp; \ldots &amp; \ldots &amp;1 \\
+\end{pmatrix},\end{split}\\\quad\\\begin{split}l_k = \begin{pmatrix}
+0 \\
+0 \\
+0 \\
+\vdots \\
+0 \\
+l_{k+1,k}=x_{k+1,k}/x_{kk} \\
+l_{k+2,k}= x_{k+2,k}/x_{kk} \\
+\vdots\\
+l_{m,k} = x_{m,k}/x_{kk} \\
+\end{pmatrix}.\end{split}\end{aligned}\end{align} \]</div>
+</div></blockquote>
+<p>This has the identity block as required, and we can verify that <span class="math notranslate nohighlight">\(L_k\)</span>
+puts zeros in the entries of <span class="math notranslate nohighlight">\(x_k\)</span> below the diagonal by first writing
+<span class="math notranslate nohighlight">\(L_k = I - l_ke_k^*\)</span>. Then,</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[L_kx_k = I - l_ke_k^* = x_k - l_k\underbrace{(e_k^*x_k)}_{=x_{kk}},\]</div>
+</div></blockquote>
+<p>which subtracts off the below diagonal entries as required.</p>
+<p>The determinant of a lower triangular martix is equal to the trace
+(product of diagonal entries), so <span class="math notranslate nohighlight">\(\det(L_k)=1\)</span>, and consequently
+<span class="math notranslate nohighlight">\(L_k\)</span> is invertible, enabling us to define <span class="math notranslate nohighlight">\(L^{-1}\)</span> as above.
+To form <span class="math notranslate nohighlight">\(L\)</span> we need to multiply the inverses of all the <span class="math notranslate nohighlight">\(L_k\)</span> matrices
+together, also as above. To do this, we first note that <span class="math notranslate nohighlight">\(l_k^*e_k=0\)</span>
+(because <span class="math notranslate nohighlight">\(l_k\)</span> is zero in the only entry that <span class="math notranslate nohighlight">\(e_k\)</span> is nonzero). Then
+we claim that <span class="math notranslate nohighlight">\(L_k^{-1}=I + l_ke_k^*\)</span>, which we verify as follows.</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}(I + l_ke_k^*)L_k =       (I + l_ke_k^*)(I - l_ke_k^*)
+= I + l_ke_k^* - l_ke_k^* + (l_ke_k^*)(l_ke_k*)\\= I + \underbrace{l_k(e_k^*l_k)e_k*}_{=0} = I,\end{aligned}\end{align} \]</div>
+</div></blockquote>
+<p>as required. Similarly if we multiply the inverse lower triangular
+matrices from two consecutive iterations, we get</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}L_k^{-1}L_{k+1}^{-1} = (I + l_ke_k^*)(I + l_{k+1}e_{k+1}^*)
+= I + l_ke_k^* + l_{k+1}e_{k+1}^* + l_k\underbrace{(e_k^*l_{k+1})}_{=0}e_{k+1}^*\\= I + l_ke_k^* + l_{k+1}e_{k+1}^*,\end{aligned}\end{align} \]</div>
+</div></blockquote>
+<p>since <span class="math notranslate nohighlight">\(e_k^*l_{k+1}=0\)</span> too, as <span class="math notranslate nohighlight">\(l_{k+1}\)</span> is zero in the only place
+where <span class="math notranslate nohighlight">\(e_k\)</span> is nonzero. If we iterate this argument, we get</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[L = I + \sum_{i=1}^{m-1}l_ie_i^*.\]</div>
+</div></blockquote>
+</div>
 </div>
 
 
