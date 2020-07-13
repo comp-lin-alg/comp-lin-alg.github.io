@@ -93,6 +93,7 @@ u_2 = \begin{pmatrix} u_{12} \\ u_{22} \\ 0 \\ \ldots \\ 0 \\
 <div><div class="math notranslate nohighlight">
 \[A_n = \underbrace{L_n\ldots L_2L_1}A = U.\]</div>
 </div></blockquote>
+<p>This process of transforming <span class="math notranslate nohighlight">\(A\)</span> to <span class="math notranslate nohighlight">\(U\)</span> is called Gaussian elimination.</p>
 <p>If we assume (we will show this later) that all these lower triangular
 matrices are invertible, we can define</p>
 <blockquote>
@@ -157,8 +158,11 @@ puts zeros in the entries of <span class="math notranslate nohighlight">\(x_k\)<
 <div><div class="math notranslate nohighlight">
 \[L_kx_k = I - l_ke_k^* = x_k - l_k\underbrace{(e_k^*x_k)}_{=x_{kk}},\]</div>
 </div></blockquote>
-<p>which subtracts off the below diagonal entries as required.</p>
-<p>The determinant of a lower triangular martix is equal to the trace
+<p>which subtracts off the below diagonal entries as required. Indeed,
+multiplication by <span class="math notranslate nohighlight">\(L_k\)</span> implements the row operations that are performed
+to transform below diagonal elements of <span class="math notranslate nohighlight">\(A_k\)</span> to zero during Gaussian
+elimination.</p>
+<p>The determinant of a lower triangular matrix is equal to the trace
 (product of diagonal entries), so <span class="math notranslate nohighlight">\(\det(L_k)=1\)</span>, and consequently
 <span class="math notranslate nohighlight">\(L_k\)</span> is invertible, enabling us to define <span class="math notranslate nohighlight">\(L^{-1}\)</span> as above.
 To form <span class="math notranslate nohighlight">\(L\)</span> we need to multiply the inverses of all the <span class="math notranslate nohighlight">\(L_k\)</span> matrices
@@ -183,6 +187,280 @@ where <span class="math notranslate nohighlight">\(e_k\)</span> is nonzero. If w
 <div><div class="math notranslate nohighlight">
 \[L = I + \sum_{i=1}^{m-1}l_ie_i^*.\]</div>
 </div></blockquote>
+<p>Hence, the <span class="math notranslate nohighlight">\(k\)</span> is the same as the <span class="math notranslate nohighlight">\(k\)</span>,
+i.e.,</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}L = \begin{pmatrix}
+1 &amp; 0 &amp; 0 &amp; \ldots &amp; 0 &amp; \ldots &amp; \ldots &amp; \ldots &amp; 0 \\
+l_{21} &amp; 1 &amp; 0 &amp; \ldots &amp; 0 &amp; \ldots &amp; \ldots&amp; \vdots &amp; 0 \\
+l_{31} &amp; l_{32} &amp; 1 &amp; \ldots &amp; 0 &amp; \ldots &amp; \ldots &amp; \vdots &amp; 0 \\
+\vdots &amp; \ddots &amp; \ddots &amp; \ddots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; 0 \\
+\vdots &amp; \ddots &amp; \ddots &amp; \ddots &amp; 1 &amp; 0 &amp; \ldots &amp; \vdots &amp; 0 \\
+\vdots &amp; \ddots &amp; \ddots &amp; \ddots &amp; l_{k+1,k} &amp; 1 &amp; \ldots &amp; \vdots &amp; 0 \\
+\vdots &amp; \ddots &amp; \ddots &amp; \ddots &amp; l_{k+2,k} &amp; l_{k+2,k+1} &amp; \ddots &amp; \vdots &amp; 0 \\
+\vdots &amp; \ddots &amp; \ddots &amp; \ddots &amp; \vdots &amp; l_{m-1,k+1} &amp; \ldots &amp; \ddots &amp; 0 \\
+\vdots &amp; \ddots &amp; \ddots &amp; \ddots &amp; l_{m,k} &amp; l_{m,k+1} &amp; \ldots &amp; \ldots &amp;1 \\
+\end{pmatrix}.\end{split}\]</div>
+</div></blockquote>
+<p>In summary, we can compute entries of <span class="math notranslate nohighlight">\(L\)</span> during the Gaussian elimination
+process of transforming <span class="math notranslate nohighlight">\(A\)</span> to <span class="math notranslate nohighlight">\(U\)</span>.</p>
+<p>So, what’s the advantage of writing <span class="math notranslate nohighlight">\(A=LU\)</span>? Well, we can define
+<span class="math notranslate nohighlight">\(y=Ux\)</span>.  Then, we can solve <span class="math notranslate nohighlight">\(Ax=b\)</span> in two steps, first solving <span class="math notranslate nohighlight">\(Ly=b\)</span>
+for <span class="math notranslate nohighlight">\(y\)</span>, and then solving <span class="math notranslate nohighlight">\(Ux=y\)</span> for <span class="math notranslate nohighlight">\(x\)</span>. The latter equation is an
+upper triangular system that can be solved by the back
+substitution algorithm we introduced for QR factorisation. The former
+equation can be solved by forward substitution, derived in an analogous
+way, written in pseudo-code as follows.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x_1 \gets b_1/L_{11}\)</span></p></li>
+<li><p>FOR <span class="math notranslate nohighlight">\(i= 2\)</span> TO <span class="math notranslate nohighlight">\(m\)</span></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(x_i \gets (b_i - \sum_{k=1}^iL_{ik}x_k)/L_{ii}\)</span></p></li>
+</ul>
+</li>
+</ul>
+<p>Forward substitution has an operation count that is identical to back
+substitution, by symmetry, i.e. <span class="math notranslate nohighlight">\(\mathcal{O}(m^2)\)</span>. In contrast, we
+shall see shortly that the Gaussian elimination process has an
+operation count <span class="math notranslate nohighlight">\(\mathcal{O}(m^3)\)</span>. Hence, it is much cheaper to solve
+a linear system with a given <span class="math notranslate nohighlight">\(LU\)</span> factorisation than it is to form <span class="math notranslate nohighlight">\(L\)</span>
+and <span class="math notranslate nohighlight">\(U\)</span> in the first place. We can take advantage of this in the
+situation where we have to solve a whole sequence of linear systems
+<span class="math notranslate nohighlight">\(Ax=b_i\)</span>, <span class="math notranslate nohighlight">\(i=1,2,\ldots,K\)</span>, with the same matrix <span class="math notranslate nohighlight">\(A\)</span> but different
+right hand side vectors. In this case we can pay the cost of forming
+<span class="math notranslate nohighlight">\(LU\)</span> once, and then use forward and back substitution to cheaply solve
+each system. This is particularly useful when we need to repeatedly
+solve systems as part of larger iterative algorithms, such as time
+integration methods or Monte Carlo methods.</p>
+<p>The Gaussian elimination algorithm is written in pseudo-code as
+follows. We start by copying <span class="math notranslate nohighlight">\(A\)</span> into <span class="math notranslate nohighlight">\(U\)</span>, and setting <span class="math notranslate nohighlight">\(L\)</span> to
+an identity matrix, and then work “in-place” i.e. replacing values
+of <span class="math notranslate nohighlight">\(U\)</span> and <span class="math notranslate nohighlight">\(L\)</span> until they are completed. In a computer implementation,
+this memory should be preallocated and then written to instead of
+making copies (which carries overheads).</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(U \gets A\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(L \gets I\)</span></p></li>
+<li><p>FOR <span class="math notranslate nohighlight">\(k=1\)</span> TO <span class="math notranslate nohighlight">\(m-1\)</span></p>
+<ul>
+<li><p>for <span class="math notranslate nohighlight">\(j=k+1\)</span> TO <span class="math notranslate nohighlight">\(m\)</span></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(l_{jk} \gets u_{jk}/u_{kk}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(u_{j,k:m} \gets u_{j,k:m} - l_{jk}u_{k,k:m}\)</span></p></li>
+</ul>
+</li>
+<li><p>END FOR</p></li>
+</ul>
+</li>
+<li><p>END FOR</p></li>
+</ul>
+<p>To do an operation count for this algorithm, we note that the
+dominating operation is the update of <span class="math notranslate nohighlight">\(U\)</span> inside the <span class="math notranslate nohighlight">\(j\)</span> loop. This
+requires <span class="math notranslate nohighlight">\(m-k+1\)</span> multiplications and subtractions, and is iterated
+<span class="math notranslate nohighlight">\(m-k\)</span> times in the <span class="math notranslate nohighlight">\(j\)</span> loop, and this whole thing is iterated from
+<span class="math notranslate nohighlight">\(j=k+1\)</span> to <span class="math notranslate nohighlight">\(m\)</span>. Hence the asymptotic operation count is</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}N_{\mbox{FLOPs}} = \sum_{k=1}^{m-1}\sum_{j=k+1}^m 2(m-k+1),\\= \sum_{k=1}^{m-1}2(m-k+1)\underbrace{\sum_{j={k+1}}^m 1}_{=m-k}\\= \sum_{k=1}^{m-1}2m^2 - 4mk + 2k^2\\\sim 2m^3 -4\frac{m^3}{2} + \frac{2m^3}{3} = \frac{2m^3}{3}.\end{aligned}\end{align} \]</div>
+</div></blockquote>
+</div>
+<div class="section" id="pivoting">
+<h2><span class="section-number">4.2. </span>Pivoting<a class="headerlink" href="#pivoting" title="Permalink to this headline">¶</a></h2>
+<p>Gaussian elimination will fail if a zero appears on the diagonal,
+i.e. we get <span class="math notranslate nohighlight">\(x_{kk}=0\)</span> (since then we can’t divide by it). Similarly,
+Gaussian elimination will amplify rounding errors if <span class="math notranslate nohighlight">\(x_{kk}\)</span> is very
+small, because a small error becomes large after dividing by <span class="math notranslate nohighlight">\(x_{kk}\)</span>.
+The solution is to reorder the rows in <span class="math notranslate nohighlight">\(A_k\)</span> so that that <span class="math notranslate nohighlight">\(x_{kk}\)</span> has
+maximum magnitude. This would seem to mess up the <span class="math notranslate nohighlight">\(LU\)</span> factorisation
+procedure. However, it is not as bad as it looks, as we will now
+see.</p>
+<p>The main tool is the permutation matrix.</p>
+<div class="proof proof-type-definition" id="id1">
+
+    <div class="proof-title">
+        <span class="proof-type">Definition 4.1</span>
+        
+            <span class="proof-title-name">(Permutation matrix)</span>
+        
+    </div><div class="proof-content">
+<p>An <span class="math notranslate nohighlight">\(m\times m\)</span> permutation matrix has precisely one entry equal to
+1 in every row and column, and zero elsewhere.</p>
+</div></div><p>A compact way to store a permutation matrix <span class="math notranslate nohighlight">\(P\)</span> as a size <span class="math notranslate nohighlight">\(m\)</span> vector
+<span class="math notranslate nohighlight">\(p\)</span>, where <span class="math notranslate nohighlight">\(p_i\)</span> is equal to the number of the column containing the 1
+entry in row <span class="math notranslate nohighlight">\(i\)</span> of <span class="math notranslate nohighlight">\(P\)</span>.  Multiplying a vector <span class="math notranslate nohighlight">\(x\)</span> by a permutation
+matrix <span class="math notranslate nohighlight">\(P\)</span> simply rearranges the entries in <span class="math notranslate nohighlight">\(x\)</span>, with <span class="math notranslate nohighlight">\((Px)_i =
+x_{p_i}\)</span>.</p>
+<p>During Gaussian elimination, say that we are at stage <span class="math notranslate nohighlight">\(k\)</span>, and
+<span class="math notranslate nohighlight">\((A_k)_{kk}\)</span> is not the largest magnitude entry in the <span class="math notranslate nohighlight">\(k\)</span>. We reorder the rows to fix this, and this is what we call
+<em>pivoting</em>. Mathematically this reordering is equivalent to
+multiplication by a permutation matrix <span class="math notranslate nohighlight">\(P_k\)</span>. Then we continue the
+Gaussian elimination procedure by left multiplying by <span class="math notranslate nohighlight">\(L_k\)</span>, placing
+zeros below the diagonal in column <span class="math notranslate nohighlight">\(k\)</span> of <span class="math notranslate nohighlight">\(P_kA_k\)</span>.</p>
+<p>In fact, <span class="math notranslate nohighlight">\(P_k\)</span> is a very specific type of permutation matrix, that only
+swaps two rows. Therefore, <span class="math notranslate nohighlight">\(P_k^{-1}=P_k\)</span>, even though this is not
+true for general permutation matrices.</p>
+<p>We can pivot at every stage of the procedure, producing a permutation
+matrix <span class="math notranslate nohighlight">\(P_k\)</span>, <span class="math notranslate nohighlight">\(k=1,\ldots, {m-1}\)</span> (if no pivoting is necessary at a given
+stage, then we just take the identity matrix as the pivoting matrix
+for that stage). Then, we end up with the result of Gaussian elimination
+with pivoting,</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[L_{m-1}P_{m-1}\ldots L_2P_2L_1P_1 = U.\]</div>
+</div></blockquote>
+<p>This looks like it has totally messed up the LU factorisation, because
+<span class="math notranslate nohighlight">\(LP\)</span> is not lower triangular for general lower triangular matrix <span class="math notranslate nohighlight">\(L\)</span>
+and permutation matrix <span class="math notranslate nohighlight">\(P\)</span>. However, we can save the situation, by
+trying to swap all the permutation matrices to the right of all of the
+<span class="math notranslate nohighlight">\(L\)</span> matrices. This does change the <span class="math notranslate nohighlight">\(L\)</span> matrices, because matrix-matrix
+multiplication is not commutative. However, we shall see that it does
+preserve the lower triangular matrix structure.</p>
+<p>To see how this is done, we focus on how things look after two stages
+of Gaussian elimination. We have</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[A_2 = L_2P_2L_1P_1 = L_2\underbrace{P_2L_1P_2}_{=L_1^{(2)}}P_2P_1
+= L_2L_1^{(2)}P_2P_1,\]</div>
+</div></blockquote>
+<p>having used <span class="math notranslate nohighlight">\(P_2^{-1}=P_2\)</span>. Left multiplication with <span class="math notranslate nohighlight">\(P_2\)</span> exchanges
+row 2 with some other row <span class="math notranslate nohighlight">\(j\)</span> with <span class="math notranslate nohighlight">\(j&gt;2\)</span>. Hence, right multiplication
+with <span class="math notranslate nohighlight">\(P_2\)</span> does the same thing but with columns instead of rows.
+Therefore, <span class="math notranslate nohighlight">\(L_1P_2\)</span> is the same as <span class="math notranslate nohighlight">\(L_1\)</span> but with column 2 exchanged
+with column <span class="math notranslate nohighlight">\(j\)</span>. Column 2 is just <span class="math notranslate nohighlight">\(e_2\)</span> and column <span class="math notranslate nohighlight">\(j\)</span> is just <span class="math notranslate nohighlight">\(e_j\)</span>,
+so now column 2 has the 1 in row <span class="math notranslate nohighlight">\(j\)</span> and column <span class="math notranslate nohighlight">\(j\)</span> has the 1 in
+row 2. Then, <span class="math notranslate nohighlight">\(P_2L_1P_2\)</span> exchanges row 2 of <span class="math notranslate nohighlight">\(L_1P_2\)</span> with row <span class="math notranslate nohighlight">\(j\)</span> of
+<span class="math notranslate nohighlight">\(L_1P_2\)</span>. This just exchanges <span class="math notranslate nohighlight">\(l_{12}\)</span> with <span class="math notranslate nohighlight">\(l_{1j}\)</span>, and swaps the
+1s in columns 2 and <span class="math notranslate nohighlight">\(j\)</span> back to the diagonal. In summary, <span class="math notranslate nohighlight">\(P_2L_1P_2\)</span>
+is the same as <span class="math notranslate nohighlight">\(L_1\)</span> but with <span class="math notranslate nohighlight">\(l_{12}\)</span> exchanged with <span class="math notranslate nohighlight">\(l_{1j}\)</span>.</p>
+<p>Moving on to the next stage, and we have</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[A_3 = L_3P_3L_2L_1P_2P_1 = L_3\underbrace{P_3L_2P_3}_{=L_2^{(3)}}
+\underbrace{P_3L_1P_3}_{=L_1^{(3)}}P_3P_2P_1.\]</div>
+</div></blockquote>
+<p>By similar arguments we see that <span class="math notranslate nohighlight">\(L_2^{(3)}\)</span> is the same as <span class="math notranslate nohighlight">\(L_2\)</span> but
+with <span class="math notranslate nohighlight">\(l_{23}\)</span> exchanged with <span class="math notranslate nohighlight">\(l_{2j}\)</span> for some (different) <span class="math notranslate nohighlight">\(j\)</span>, and
+<span class="math notranslate nohighlight">\(L_2^{(3)}\)</span> is the same as <span class="math notranslate nohighlight">\(L_2^{(2)}\)</span> with <span class="math notranslate nohighlight">\(l_{13}\)</span> exchanged with
+<span class="math notranslate nohighlight">\(l_{1j}\)</span>. After iterating this argument, we can obtain</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\underbrace{L_{m-1}^{(m-1)}\ldots L_2^{(m-1)}L_1^{(m-1)}}_{L^{-1}}
+\underbrace{P_{m-1}\ldots P_2P_1}_P = U,\]</div>
+</div></blockquote>
+<p>where we just need to keep track of the permutations in the <span class="math notranslate nohighlight">\(L\)</span>
+matrices as we go through the Gaussian elimination stages. These <span class="math notranslate nohighlight">\(L\)</span>
+matrices have the same structure as the basic LU factorisation, and hence
+we obtain</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[L^{-1}PA = U \implies PA = LU.\]</div>
+</div></blockquote>
+<p>This is equivalent to permuting the rows of <span class="math notranslate nohighlight">\(A\)</span> using <span class="math notranslate nohighlight">\(P\)</span> and then
+finding the LU factorisation using the basic algorithm (except we
+can’t implement it like that because we only decide how to build <span class="math notranslate nohighlight">\(P\)</span>
+during the Gaussian elimination process).</p>
+<p>The LU factorisation with pivoting can be expressed in the following
+pseudo-code.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(U\gets A\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(L\gets I\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(P\gets I\)</span></p></li>
+<li><p>FOR <span class="math notranslate nohighlight">\(k=1\)</span> TO <span class="math notranslate nohighlight">\(m-1\)</span></p>
+<ul>
+<li><p>Choose <span class="math notranslate nohighlight">\(i\geq k\)</span> to maximise <span class="math notranslate nohighlight">\(|u_{ik}|\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(u_{k,k:m} \leftrightarrow u_{i,k:m}\)</span> (column swaps)</p></li>
+<li><p><span class="math notranslate nohighlight">\(l_{k,1:k-1} \leftrightarrow l_{i,1:k-1}\)</span> (column swaps)</p></li>
+<li><p><span class="math notranslate nohighlight">\(p_{k,1:m} \leftrightarrow p_{i,1:m}\)</span> (column swaps)</p></li>
+<li><p>FOR <span class="math notranslate nohighlight">\(j=k+1\)</span> TO <span class="math notranslate nohighlight">\(m\)</span></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(l_{ik} \gets u_{jk}/u_{kk}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(u_{j,k:m} \gets u_{j,k:m} - l_{jk}u_{k,k:m}\)</span></p></li>
+</ul>
+</li>
+<li><p>END FOR</p></li>
+</ul>
+</li>
+<li><p>END FOR</p></li>
+</ul>
+<p>To solve a system <span class="math notranslate nohighlight">\(Ax=b\)</span> given the a pivoted LU factorisation <span class="math notranslate nohighlight">\(PA=LU\)</span>,
+we left multiply the equation by <span class="math notranslate nohighlight">\(P\)</span> and use the factorisation get
+<span class="math notranslate nohighlight">\(LUx=Pb\)</span>. The procedure is then as before, but <span class="math notranslate nohighlight">\(b\)</span> must be permuted to
+<span class="math notranslate nohighlight">\(Pb\)</span> before doing the forwards and back substitutions.</p>
+</div>
+<div class="section" id="stability-of-lu-factorisation">
+<h2><span class="section-number">4.3. </span>Stability of LU factorisation<a class="headerlink" href="#stability-of-lu-factorisation" title="Permalink to this headline">¶</a></h2>
+<p>To characterise the stability of LU factorisation, we quote the following
+result.</p>
+<div class="proof proof-type-theorem" id="id2">
+
+    <div class="proof-title">
+        <span class="proof-type">Theorem 4.2</span>
+        
+    </div><div class="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(\tilde{L}\)</span> and <span class="math notranslate nohighlight">\(\tilde{U}\)</span> be</p>
+</div></div></div>
+<div class="section" id="taking-advantage-of-matrix-structure">
+<h2><span class="section-number">4.4. </span>Taking advantage of matrix structure<a class="headerlink" href="#taking-advantage-of-matrix-structure" title="Permalink to this headline">¶</a></h2>
+<p>The cost of the standard Gaussian elimination algorithm to form <span class="math notranslate nohighlight">\(L\)</span>
+and <span class="math notranslate nohighlight">\(U\)</span> is <span class="math notranslate nohighlight">\(\mathcal{O}(m^3)\)</span>, which grows rather quickly as <span class="math notranslate nohighlight">\(m\)</span>
+increases. If there is structure in the matrix, then we can often
+exploit this to reduce the cost. Understanding when and how to exploit
+structure is a central theme in computational linear algebra.
+Here we will discuss some examples of structure to be exploited.</p>
+<p>When <span class="math notranslate nohighlight">\(A\)</span> is a lower or upper triangular matrix then we can use
+forwards or back substitution, with <span class="math notranslate nohighlight">\(\mathcal{O}(m^2)\)</span> operation
+count as previously discussed.</p>
+<p>When <span class="math notranslate nohighlight">\(A\)</span> is a diagonal matrix, i.e. <span class="math notranslate nohighlight">\(A_{ij}=0\)</span> for <span class="math notranslate nohighlight">\(i\ne j\)</span>, it only
+has <span class="math notranslate nohighlight">\(m\)</span> nonzero entries, that can be stored as a vector,
+<span class="math notranslate nohighlight">\((A_{11},A_{22},\ldots,A_{mm})\)</span>. In this case, <span class="math notranslate nohighlight">\(Ax=b\)</span> can be solved in
+<span class="math notranslate nohighlight">\(m\)</span> operations, just by setting <span class="math notranslate nohighlight">\(x_i=b_i/A_{ii}\)</span>, for
+<span class="math notranslate nohighlight">\(i=1,2,\ldots,m\)</span>.</p>
+<p>A generalisation of a diagonal matrix is a banded matrix, where
+<span class="math notranslate nohighlight">\(A_{ij}=0\)</span> for <span class="math notranslate nohighlight">\(i&gt;j+p\)</span> and for <span class="math notranslate nohighlight">\(i&lt;j-q\)</span>. We call <span class="math notranslate nohighlight">\(p\)</span> the upper
+bandwidth of <span class="math notranslate nohighlight">\(A\)</span>; <span class="math notranslate nohighlight">\(q\)</span> is the lower bandwidth. When the matrix is
+banded, there are already zeros below the diagonal of <span class="math notranslate nohighlight">\(A\)</span>, so we know
+that the corresponding entries in the <span class="math notranslate nohighlight">\(L_k\)</span> matrices will be zero.
+Further, because there are zeros above the diagonal of <span class="math notranslate nohighlight">\(A\)</span>, these do
+not need to be updated when applying the row operations to those
+zeros.</p>
+<p>The Gaussian elimination algorithm (without pivoting) for a banded
+matrix is given as pseudo-code below.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(U \gets A\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(L \gets I\)</span></p></li>
+<li><p>FOR <span class="math notranslate nohighlight">\(k=1\)</span> TO <span class="math notranslate nohighlight">\(\min(k+p,m)\)</span></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(l_{jk} \gets u_{jk}/u_{kk}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(n \gets \min(k+q, m)\)</span></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(u_{j,k:n} \gets u_{j,k:n}- l_{jk}u_{k,k:n}\)</span></p></li>
+</ul>
+</li>
+<li><p>END FOR</p></li>
+</ul>
+</li>
+<li><p>END FOR</p></li>
+</ul>
+<p>The operation count for this banded matrix algorithm is
+<span class="math notranslate nohighlight">\(\mathcal{O}(mpq)\)</span>, which is linear in <span class="math notranslate nohighlight">\(m\)</span> instead of cubic!
+Further, the resulting matrix <span class="math notranslate nohighlight">\(L\)</span> has lower bandwidth <span class="math notranslate nohighlight">\(p\)</span>
+and <span class="math notranslate nohighlight">\(U\)</span> has upper bandwidth <span class="math notranslate nohighlight">\(q\)</span>. This means that we can also
+exploit this structure in the forward and back substitution
+algorithms as well. For example, the forward substitution algorithm
+is given as pseudo-code below.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x_1 \gets b_1/L_11\)</span></p></li>
+<li><p>FOR <span class="math notranslate nohighlight">\(k=2\)</span> TO <span class="math notranslate nohighlight">\(m\)</span></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(j \gets \max(1, k-p)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(x_k \gets \frac{b_k -L_{k,j:k-1}x_{j:k-1}}{L_{kk}}\)</span></p></li>
+</ul>
+</li>
+<li><p>END FOR</p></li>
+</ul>
+<p>This has an operation count <span class="math notranslate nohighlight">\(\mathcal{O}(mp)\)</span>. The story is
+very similar for the back substitution.</p>
 </div>
 </div>
 
