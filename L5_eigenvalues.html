@@ -194,6 +194,95 @@ decomposition.</p>
 factorisation strategy (such as we shall develop in this section), and
 obtain an eigenvalue decomposition as a bonus.</p>
 </div>
+<div class="section" id="transformations-to-schur-factorisation">
+<h2><span class="section-number">5.2. </span>Transformations to Schur factorisation<a class="headerlink" href="#transformations-to-schur-factorisation" title="Permalink to this headline">¶</a></h2>
+<p>Just as for the QR factorisations, we will compute the Schur
+factorisation successively, with multiplication by a sequence of
+unitary matrices <span class="math notranslate nohighlight">\(Q_1,Q_2,\ldots\)</span>. There are two differences for the
+Schur factorisation. First, the matrices must be multiplied not just
+on the left but also on the right with the inverse, i.e.</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[A \mapsto \underbrace{Q_1^*AQ_1}_{A_1} \mapsto \underbrace{Q_2^*Q_1^*AQ_2Q_1}_{A_2}, \ldots\]</div>
+</div></blockquote>
+<p>At each stage, we have a similarity transformation,</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[A = \underbrace{Q_1Q_2\ldots Q_k}_{=Q}A_k\underbrace{Q_k^*\ldots Q_2^*Q_1^*}_{=Q^*},\]</div>
+</div></blockquote>
+<p>emph{i.e.} <span class="math notranslate nohighlight">\(A\)</span> is similar to <span class="math notranslate nohighlight">\(A_k\)</span>. Second, the successive sequence is
+infinite, i.e. we will develop an iterative method that converges in
+the limit <span class="math notranslate nohighlight">\(k\to\infty\)</span>.  We should terminate the iterative method
+when <span class="math notranslate nohighlight">\(A_k\)</span> is sufficiently close to being upper triangular (which</p>
+<p>We should not be surprised by this news, since if the successive
+sequence were finite, we would have derived an explicit formula for
+computing the eigenvalues of the characteristic polynomial of <span class="math notranslate nohighlight">\(A\)</span>
+which is explicit in general.</p>
+<p>In fact, there are two stages to this process. The first stage, which
+is finite (takes <span class="math notranslate nohighlight">\(m-1\)</span> steps) is to use similarity transformations to
+upper Hessenberg form (<span class="math notranslate nohighlight">\(H_{ij}=0\)</span> for <span class="math notranslate nohighlight">\(i&gt;j+1\)</span>). If <span class="math notranslate nohighlight">\(A\)</span> is Hermitian,
+then <span class="math notranslate nohighlight">\(H\)</span> will be tridiagonal. This stage is not essential but it makes
+the second, iterative, stage much faster.</p>
+</div>
+<div class="section" id="similarity-transformation-to-upper-hessenberg-form">
+<h2><span class="section-number">5.3. </span>Similarity transformation to upper Hessenberg form<a class="headerlink" href="#similarity-transformation-to-upper-hessenberg-form" title="Permalink to this headline">¶</a></h2>
+<p>We already know how to use a unitary matrix to set all entries to zero
+below the diagonal in the first column of <span class="math notranslate nohighlight">\(A\)</span> by left multiplication
+<span class="math notranslate nohighlight">\(Q^*_1A\)</span>, because this is the Householder algorithm. The problem is
+that we then have to right multiply by <span class="math notranslate nohighlight">\(Q_1\)</span> to make it a similarity
+transformation, and this puts non-zero entries back in the column
+again. The easiest way to see this is to write
+<span class="math notranslate nohighlight">\(Q_1^*AQ_1=(Q_1^*(Q_1^*A)^*)^*\)</span>. <span class="math notranslate nohighlight">\((Q_1^*A)^*\)</span> has zeros in the first
+row to the right of the first entry. Then, <span class="math notranslate nohighlight">\(Q_1^*(Q_1^*A)\)</span> creates
+linear combinations of the first column with the other columns,
+filling the zeros in with non-zero values again. Then finally taking
+the adjoint doesn’t help with these non-zero values. Again, we
+shouldn’t be surprised that this is impossible, because if it was,
+then we would be able to build a finite procedure for computing
+eigenvalues of the characteristic polynomial, which is impossible in
+general.</p>
+<p>A slight modification of this idea (and the reason that we can
+transform to upper Hessenberg form) is to use a Householder rotation
+<span class="math notranslate nohighlight">\(Q_1^*\)</span> to set all entries to zero below the <em>second</em> entry in the
+first column. This matrix leaves the first row unchanged, and hence
+right multiplication by <span class="math notranslate nohighlight">\(Q_1\)</span> leaves the first column unchanged. We
+can create zeros using <span class="math notranslate nohighlight">\(Q_1^*\)</span> and <span class="math notranslate nohighlight">\(Q_1\)</span> will not destroy them. This
+procedure is then repeated with multiplication by <span class="math notranslate nohighlight">\(Q_2^*\)</span>, which
+leaves the first two rows unchanged and puts zeros below the third
+entry in the second column, which are not spoiled by right
+multiplication by <span class="math notranslate nohighlight">\(Q_2\)</span>. Hence, we can transform <span class="math notranslate nohighlight">\(A\)</span> to a similar
+upper Hessenberg matrix <span class="math notranslate nohighlight">\(H\)</span> in <span class="math notranslate nohighlight">\(m-2\)</span> iterations.</p>
+<p>This reduction to Hessenberg form can be expressed in the following
+pseudo-code.</p>
+<ul class="simple">
+<li><p>FOR <span class="math notranslate nohighlight">\(k=1\)</span> TO <span class="math notranslate nohighlight">\(m-2\)</span></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(x\gets A_{k+1:m,k}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(v_k\gets \mbox{sign}(x_1)\|x\|_2e_1 + x\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(v_k\gets v_k/\|v\|_2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(A_{k+1:m,k:m} \gets A_{k+1:m,k:m}- 2v_k(v_k^*A_{k+1:m,k:m})\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(A_{k:m,k+1:m} \gets A_{k:m,k+1:m}- 2(A_{k:m,k+1:m,k:m}v_k)v_k^*\)</span></p></li>
+</ul>
+</li>
+<li><p>END FOR</p></li>
+</ul>
+<p>Note the similarities and differences with the Householder algorithm
+for computing the QR factorisation.</p>
+<p>To calculate the operation count, we see that the algorithm is
+dominated by the two updates to <span class="math notranslate nohighlight">\(A\)</span>, the first of which applies a
+Householder reflection to rows from the left, and the second applies
+the same reflections to columns from the right.</p>
+<p>The left multiplication applies a Householder
+reflection to the last <span class="math notranslate nohighlight">\(m-k\)</span> rows, requiring 4 FLOPs per
+entry. However, these rows are zero in the first <span class="math notranslate nohighlight">\(k-1\)</span> columns,
+so we can skip these and just work on the last <span class="math notranslate nohighlight">\(m-k+1\)</span> entries
+of each of these rows.</p>
+<p>Then, the total operation count for the left multiplication is</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[4 \times \sum_{k=1}^{m-1} (m-k)(m-k+1) \sim \frac{4}{3}m^3.\]</div>
+</div></blockquote>
+</div>
 </div>
 
 
