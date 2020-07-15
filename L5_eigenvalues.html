@@ -18,6 +18,7 @@
     <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="6. Iterative Krylov methods for \(Ax=b\)" href="L6_krylov.html" />
     <link rel="prev" title="4. LU decomposition" href="L4_LU_decomposition.html" />
 <!--[if lte IE 6]>
 <link rel="stylesheet" href="_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
@@ -282,6 +283,456 @@ of each of these rows.</p>
 <div><div class="math notranslate nohighlight">
 \[4 \times \sum_{k=1}^{m-1} (m-k)(m-k+1) \sim \frac{4}{3}m^3.\]</div>
 </div></blockquote>
+<p>The right multiplication does the same operations but now there are no
+zeros to take advantage of, so all <span class="math notranslate nohighlight">\(m\)</span> entries in the each of the last
+<span class="math notranslate nohighlight">\(m-k\)</span> columns need to be manipulated. With 4 FLOPs per entry, this becomes</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[4\times \sum_{k=1}^{m-1} m(m-k) \sim \frac{10}{3}m^3 FLOPs.\]</div>
+</div></blockquote>
+<p>In the Hermitian case, the Hessenberg matrix becomes tridiagonal, and
+these extra zeros can be exploited, leading to an operation count
+<span class="math notranslate nohighlight">\(\sim 4m^3/3\)</span>.</p>
+<p>It can be shown that this transformation to a Hessenberg matrix is
+backwards stable, i.e. in a floating point implementation, it gives
+<span class="math notranslate nohighlight">\(\tilde{Q},\tilde{H}\)</span> such that</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\tilde{Q}\tilde{H}\tilde{Q}^* = A + \delta A, \,
+\frac{\|\delta A\|}{\|A\|}=\mathcal{O}(\varepsilon),\]</div>
+</div></blockquote>
+<p>for some <span class="math notranslate nohighlight">\(\delta A\)</span>.</p>
+<p>In the next few sections we develop the iterative part of the
+transformation to the upper triangular matrix <span class="math notranslate nohighlight">\(T\)</span>. This algorithm
+works for a broad class of matrices, but the explanation is much
+easier for the case of real symmetric matrices, which have real
+eigenvalues and orthogonals eigenvectors (which we shall normalise to
+<span class="math notranslate nohighlight">\(\|q_i\|=1\)</span>, <span class="math notranslate nohighlight">\(i=1,2,\ldots,m\)</span>). The idea is that we will have already
+transformed to Hessenberg form, which will be tridiagonal in this
+case. Before describing the iterative transformation, we will discuss
+a few key tools in explaining how it works.</p>
+</div>
+<div class="section" id="rayleigh-quotient">
+<h2><span class="section-number">5.4. </span>Rayleigh quotient<a class="headerlink" href="#rayleigh-quotient" title="Permalink to this headline">¶</a></h2>
+<p>The first tool that we shall consider is the Rayleigh quotient. If
+<span class="math notranslate nohighlight">\(A\in \mathbb{C}^{m\times m}\)</span> is a real symmetric matrix, then the
+Rayleigh quotient of a vector <span class="math notranslate nohighlight">\(x \in \mathbb{C}^{m}\)</span> is defined as</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[r(x) = \frac{x^TAx}{x^Tx}.\]</div>
+</div></blockquote>
+<p>If <span class="math notranslate nohighlight">\(x\)</span> is an eigenvector of <span class="math notranslate nohighlight">\(A\)</span>, then</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[r(x) = \frac{x^T\lambda x}{x^Tx} = \lambda,\]</div>
+</div></blockquote>
+<p>i.e. the Rayleigh quotient gives the corresponding eigenvalue.  If <span class="math notranslate nohighlight">\(x\)</span>
+is not exactly an eigenvector of <span class="math notranslate nohighlight">\(A\)</span>, but is just close to one, we
+might hope that <span class="math notranslate nohighlight">\(r(x)\)</span> is close to being an eigenvalue. To investigate
+this we will consider the Taylor series expansion of <span class="math notranslate nohighlight">\(r(x)\)</span> about
+an eigenvector <span class="math notranslate nohighlight">\(q_J\)</span> of <span class="math notranslate nohighlight">\(A\)</span>. We have</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\nabla r(x) = \frac{2}{x^Tx}\left(Ax-r(x)x\right),\]</div>
+</div></blockquote>
+<p>which is zero when <span class="math notranslate nohighlight">\(x=q_J\)</span>, because then <span class="math notranslate nohighlight">\(r(q_J)=\lambda_J\)</span>:
+eigenvectors of <span class="math notranslate nohighlight">\(A\)</span> are stationary points of <span class="math notranslate nohighlight">\(r(x)\)</span>! Hence, the Taylor
+series has vanishing first order term,</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[r(x) = r(q_J) + (x-q_J)^T\underbrace{\nabla r(q_J)}_{=0}
++ \mathcal{O}(\|x-q_J\|^2),\]</div>
+</div></blockquote>
+<p>i.e.</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[r(x) - r(q_J) = \mathcal{O}(\|x-q_J\|^2), \quad \mbox{as }
+x \to q_J.\]</div>
+</div></blockquote>
+<p>The Rayleigh quotient gives a quadratically accurate estimate to the
+eigenvalues of <span class="math notranslate nohighlight">\(A\)</span>.</p>
+</div>
+<div class="section" id="power-iteration-and-inverse-iteration">
+<h2><span class="section-number">5.5. </span>Power iteration and inverse iteration<a class="headerlink" href="#power-iteration-and-inverse-iteration" title="Permalink to this headline">¶</a></h2>
+<p>Power iteration is a simple method for finding the eigenvalue of
+<span class="math notranslate nohighlight">\(A\)</span> with largest eigenvalue (in magnitude). It is based on the following
+idea. We expand a vector <span class="math notranslate nohighlight">\(v\)</span> in eigenvectors of <span class="math notranslate nohighlight">\(A\)</span>,</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[v = a_1q_1 + a_2q_2 + \ldots a_mq_m,\]</div>
+</div></blockquote>
+<p>where we have ordered the eigenvalues so that <span class="math notranslate nohighlight">\(|\lambda_1|\geq |\lambda_2|
+\geq |\lambda 3| \geq \ldots \geq |\lambda_m\)</span>.</p>
+<p>Then,</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[Av = a_1\lambda_1q_1 + a_2\lambda_2q_2 + \ldots a_m\lambda_m q_m,\]</div>
+</div></blockquote>
+<p>and hence, repeated applications of <span class="math notranslate nohighlight">\(A\)</span> gives</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}A^kv = \underbrace{AA\ldots A}_{k\mbox{ times}}v\\= a_1\lambda^k_1q_1 + a_2\lambda^k_2q_2 + \ldots a_m\lambda^k_m q_m.\end{aligned}\end{align} \]</div>
+</div></blockquote>
+<p>If <span class="math notranslate nohighlight">\(|\lambda_1|&gt;|\lambda_2|\)</span>, then provided that <span class="math notranslate nohighlight">\(a_1=q_1^Tv\neq 0\)</span>,
+the first term <span class="math notranslate nohighlight">\(a_1\lambda^k_1q_1\)</span> rapidly becomes larger than all of
+the others, and so <span class="math notranslate nohighlight">\(A^kv \approx a_1\lambda^k_1 q_1\)</span>, and we can
+normalise to get <span class="math notranslate nohighlight">\(q_1 \approx A^kv/\|A^kv\|\)</span>. To keep the magnitude of
+the estimate from getting too large or small (depending on the size of
+<span class="math notranslate nohighlight">\(\lambda_1\)</span> relative to 1), we can alternately apply <span class="math notranslate nohighlight">\(A\)</span> and normalise,
+which gives the power iteration. Along the way, we can use the Rayleigh
+quotient to see how our approximation of the eigenvalue is going.</p>
+<ul class="simple">
+<li><p>Set <span class="math notranslate nohighlight">\(v_0\)</span> to some initial vector (hoping that <span class="math notranslate nohighlight">\(\|q_1^Tv_0\|&gt;0\)</span>).</p></li>
+<li><p>FOR <span class="math notranslate nohighlight">\(k=1,2,\ldots\)</span></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(w\gets Av^{k-1}\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(v^k\gets w/\|w\|\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\lambda^{(k)} \gets (v^k)^TAv^k\)</span>.</p></li>
+</ul>
+</li>
+</ul>
+<p>Here we have used the fact that <span class="math notranslate nohighlight">\(\|v^k\|=1\)</span>, so there is no need to
+divide by it in the Rayleigh quotient. We terminate the power
+iteration when we decide that the changes in <span class="math notranslate nohighlight">\(\lambda\)</span> indicate
+that the error is small. This is guided by the following result.</p>
+<div class="proof proof-type-theorem" id="id8">
+<span id="power-iteration"></span>
+    <div class="proof-title">
+        <span class="proof-type">Theorem 5.8</span>
+        
+    </div><div class="proof-content">
+<p>If <span class="math notranslate nohighlight">\(|\lambda_1|&gt; |\lambda_2|\)</span> and <span class="math notranslate nohighlight">\(\|q_1^Tv_0\|&gt;0\)</span>, then after
+<span class="math notranslate nohighlight">\(k\)</span> iterations of power iteration, we have</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\|v^k - \pm q_1\| = \mathcal{O}\left(
+\left|\frac{\lambda_2}{\lambda_1}\right|^k\right),
+\quad |\lambda^{(k)} - \lambda_1|=
+\mathcal{O}\left(\left|\frac{\lambda_2}{\lambda_1}\right|^{2k}\right),\]</div>
+</div></blockquote>
+<p>as <span class="math notranslate nohighlight">\(k\to\infty\)</span>. At each step <span class="math notranslate nohighlight">\(\pm\)</span> we mean that the result holds
+for either <span class="math notranslate nohighlight">\(+\)</span> or <span class="math notranslate nohighlight">\(-\)</span>.</p>
+</div></div><div class="proof proof-type-proof">
+
+    <div class="proof-title">
+        <span class="proof-type">Proof </span>
+        
+    </div><div class="proof-content">
+<p>We have already shown the first equation using the Taylor series, and
+the second equation comes by combining the Taylor series error with
+the Rayleigh quotient error.</p>
+</div></div><p>The <span class="math notranslate nohighlight">\(\pm\)</span> feature is a bit annoying, and relates to the fact that the
+normalisation does not select <span class="math notranslate nohighlight">\(v^k\)</span> to have the direction as <span class="math notranslate nohighlight">\(q_1\)</span>.</p>
+</div>
+<div class="section" id="inverse-iteration">
+<h2><span class="section-number">5.6. </span>Inverse iteration<a class="headerlink" href="#inverse-iteration" title="Permalink to this headline">¶</a></h2>
+<p>Inverse iteration is a modification of power iteration so that we can
+find eigenvalues other than <span class="math notranslate nohighlight">\(\lambda_1\)</span>. To do this, we use the fact
+that eigenvectors <span class="math notranslate nohighlight">\(q_j\)</span> of <span class="math notranslate nohighlight">\(A\)</span> are also eigenvectors of <span class="math notranslate nohighlight">\((A - \mu
+I)^{-1}\)</span> for any <span class="math notranslate nohighlight">\(\mu\in \mathbb{R}\)</span> not an eigenvalue of <span class="math notranslate nohighlight">\(A\)</span>
+(otherwise <span class="math notranslate nohighlight">\(A-\mu I\)</span> is singular). To show this, we write</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[(A - \mu I)q_j = (\lambda_j - \mu)q_j
+\implies (A - \mu I)^{-1}q_j = \frac{1}{\lambda_j - \mu}q_j.\]</div>
+</div></blockquote>
+<p>Thus <span class="math notranslate nohighlight">\(q_j\)</span> is an eigenvalue of <span class="math notranslate nohighlight">\((A - \mu I)^{-1}\)</span> with eigenvalue
+<span class="math notranslate nohighlight">\(1/(\lambda_j - \mu)\)</span>. We can then apply power iteration to <span class="math notranslate nohighlight">\((A-\mu
+I)^{-1}\)</span> (which requires a matrix solve per iteration), which
+converges to an eigenvector <span class="math notranslate nohighlight">\(q\)</span> for which <span class="math notranslate nohighlight">\(1/|\lambda-\mu|\)</span> is
+smallest, where <span class="math notranslate nohighlight">\(\lambda\)</span> is the corresponding eigenvalue. In other
+words, we will find the eigenvector of <span class="math notranslate nohighlight">\(A\)</span> whose eigenvalue is closest
+to <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
+<p>This algorithm is called inverse iteration, which we express in
+pseudo-code below.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(v^{0} \gets \)</span>.</p></li>
+<li><p>FOR <span class="math notranslate nohighlight">\(k=1,2,\ldots\)</span></p>
+<ul>
+<li><p>SOLVE <span class="math notranslate nohighlight">\((A-\mu I)w = v^{k-1}\)</span> for <span class="math notranslate nohighlight">\(w\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(v^k\gets w/\|w\|\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\lambda^{(k)} \gets (v^k)^TAv^k\)</span></p></li>
+</ul>
+</li>
+</ul>
+<p>We can then directly extend <a class="reference internal" href="#power-iteration"><span class="std std-numref">Theorem
+5.8</span></a> to the inverse iteration algorithm.
+We conclude that the convergence rate is not improved relative
+to power iteration, but now we can “dial in” to different
+eigenvalues by choosing <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
+</div>
+<div class="section" id="rayleigh-quotient-iteration">
+<h2><span class="section-number">5.7. </span>Rayleigh quotient iteration<a class="headerlink" href="#rayleigh-quotient-iteration" title="Permalink to this headline">¶</a></h2>
+<p>Since we can use the Rayleigh quotient to find an approximation of an
+eigenvalue, and we can use an approximation of an eigenvalue to find
+the nearest eigenvalue using inverse iteration, we can combine them
+together. The idea is to start with a vector, compute the Rayleigh
+quotient, use the Rayleigh quotient for <span class="math notranslate nohighlight">\(\mu\)</span>, then do one step of
+inverse iteration to give an updated vector which should now be closer
+to an eigenvector. Then we iterate this whole process. This is called
+the Rayleigh quotient iteration, which we express in pseudo-code
+below.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(v^{0} \gets \)</span>.
+* <span class="math notranslate nohighlight">\(\lambda^{(0)} \gets (v^0)^TAv^0\)</span></p></li>
+<li><p>FOR <span class="math notranslate nohighlight">\(k=1,2,\ldots\)</span>
+* SOLVE <span class="math notranslate nohighlight">\((A-\lambda^{(k-1)} I)w = v^{k-1}\)</span> for <span class="math notranslate nohighlight">\(w\)</span>
+* <span class="math notranslate nohighlight">\(v^k\gets w/\|w\|\)</span>
+* <span class="math notranslate nohighlight">\(\lambda^{(k)} \gets (v^k)^TAv^k\)</span></p></li>
+</ul>
+<p>This dramatically improves the convergence since if
+<span class="math notranslate nohighlight">\(\|v^(k)-q_J\|=\mathcal{O}(\delta)\)</span> for some small <span class="math notranslate nohighlight">\(\delta\)</span>, then the
+Rayleigh quotient gives <span class="math notranslate nohighlight">\(|\lambda^{(k)}-q_J|=\mathcal{O}(\delta^2)\)</span>.
+Then, inverse iteration gives an estimate</p>
+<div class="math notranslate nohighlight">
+\[\|v^{k+1}-\pm q_J\| = \mathcal{O}(|\lambda^{(k)}-\lambda_J|
+\|v^k-q_J\|) = \mathcal{O}(\delta^3).\]</div>
+<p>Thus we have cubic convergence, which is super fast!</p>
+</div>
+<div class="section" id="the-pure-qr-algorithm">
+<h2><span class="section-number">5.8. </span>The pure QR algorithm<a class="headerlink" href="#the-pure-qr-algorithm" title="Permalink to this headline">¶</a></h2>
+<p>We now describe the QR algorithm, which will turn out to be an
+iterative algorithm that converges to the diagonal matrix (upper
+triangular matrix for the general nonsymmetric case) that <span class="math notranslate nohighlight">\(A\)</span> is
+similar to. Why this works is not at all obvious at first, and
+we shall explain this later. For now, here is the algorithm
+written as pseudo-code.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(A^{(0)} \gets A\)</span></p></li>
+<li><p>FOR <span class="math notranslate nohighlight">\(k=1,2,\ldots\)</span></p>
+<ul>
+<li><p>FIND <span class="math notranslate nohighlight">\(Q^{(k)},R^{(k)}\)</span> such that <span class="math notranslate nohighlight">\(Q^{(k)}R^{(k)}=A^{(k-1)}\)</span> (USING QR FACTORISATION)</p></li>
+<li><p><span class="math notranslate nohighlight">\(A^{(k)} = R^{(k)}Q^{(k)}\)</span></p></li>
+</ul>
+</li>
+</ul>
+<p>Here we use indices in brackets to avoid confusion with powers of
+matrices (which will actually come in later).</p>
+<p>The algorithm simply finds the QR factorisation of <span class="math notranslate nohighlight">\(A\)</span>, swaps Q and R,
+and repeats. We call this algorithm the “pure” QR algorithm, since it
+can be accelerated with some modifications that comprise the
+“practical” QR algorithm that is used in practice.</p>
+<p>We can at least see that this is computing similarity transformations since</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[A^{(k)} = R^{(k)}Q^{(k)} = (Q^{(k)})^*Q^{(k)}R^{(k)}Q^{(k)} = (Q^{(k)})^*A^{(k-1)}Q^{(k)},\]</div>
+</div></blockquote>
+<p>so that <span class="math notranslate nohighlight">\(A^{(k)}\)</span> is similar to <span class="math notranslate nohighlight">\(A^{(k-1)}\)</span> and hence to <span class="math notranslate nohighlight">\(A^{(k-2)}\)</span> and all
+the way back to <span class="math notranslate nohighlight">\(A\)</span>. But why does <span class="math notranslate nohighlight">\(A^{(k)}\)</span> converge to a diagonal matrix?
+To see this, we have to show that the QR algorithm is equivalent to
+another algorithm called simultaneous iteration.</p>
+</div>
+<div class="section" id="simultaneous-iteration">
+<h2><span class="section-number">5.9. </span>Simultaneous iteration<a class="headerlink" href="#simultaneous-iteration" title="Permalink to this headline">¶</a></h2>
+<p>One problem with power iteration is that it only finds one
+eigenvector/eigenvalue pair at a time. Simultaneous iteration is a
+solution to this. The starting idea is simple: instead of working on
+just one vector <span class="math notranslate nohighlight">\(v\)</span>, we pick a set of linearly independent vectors
+<span class="math notranslate nohighlight">\(v_1^(0),v_2^(0),\ldots,v_n^(0)\)</span> and repeatedly apply <span class="math notranslate nohighlight">\(A\)</span> to each of
+these vectors. After a large number applications and normalisations in
+the manner of the power iteration, we end up with a linear independent
+set <span class="math notranslate nohighlight">\(v_1^(k),v_2^(k),\ldots,v_n^(k)\)</span>, <span class="math notranslate nohighlight">\(n\leq m\)</span>. All of the vectors in this set
+will be very close to <span class="math notranslate nohighlight">\(q_1\)</span>, the eigenvector with largest magnitude of
+corresponding eigenvalue. We can choose <span class="math notranslate nohighlight">\(v_1^(k)\)</span> as our approximation
+of <span class="math notranslate nohighlight">\(q_1\)</span>, and project this approximation of <span class="math notranslate nohighlight">\(q_1\)</span> from the rest of the
+vectors <span class="math notranslate nohighlight">\(v_2^(k),v_3^(k),\ldots v_m^(k)\)</span>.  All the remaining vectors
+will be close to <span class="math notranslate nohighlight">\(q_2\)</span>, the eigenvector with the next largest
+magnitude of corresponding eigenvalue. Similarly we can choose the
+first one of the remaining projected vectors as an approximation of
+<span class="math notranslate nohighlight">\(q_2\)</span> and project it again from the rest.</p>
+<p>We can translate this idea to matrices by defining <span class="math notranslate nohighlight">\(V^{(0)}\)</span> to be the
+matrix with columns given by the set of initial <span class="math notranslate nohighlight">\(v\)</span>
+applications of <span class="math notranslate nohighlight">\(A\)</span>, we have <span class="math notranslate nohighlight">\(V^{(k)}=A^{(k)} V^{(0)}\)</span>. By the column space
+interpretation of matrix-matrix multiplication, each column of <span class="math notranslate nohighlight">\(V^{(k)}\)</span>
+is <span class="math notranslate nohighlight">\(A^{(k)}\)</span> multiplied by the corresponding column of <span class="math notranslate nohighlight">\(V^{(0)}\)</span>. To make the
+normalisation and projection process above, we could just apply the
+Gram-Schmidt algorithm, sequentially forming an orthonormal spanning
+set for the columns of <span class="math notranslate nohighlight">\(V^{(k)}\)</span> working from left to right.  However, we
+know that an equivalent way to do this is to form the (reduced) QR
+factorisation of <span class="math notranslate nohighlight">\(V^{(k)}\)</span>, <span class="math notranslate nohighlight">\(\hat{Q}^{(k)}\hat{R}^{(k)}=V^{(k)}\)</span>; the columns of
+<span class="math notranslate nohighlight">\(\hat{Q}^{(k)}\)</span> give the same orthonormal spanning set.  Hence, the
+columns of <span class="math notranslate nohighlight">\(\hat{Q}^{(k)}\)</span> will converge to eigenvectors of <span class="math notranslate nohighlight">\(A\)</span>, provided
+that:</p>
+<p>#. The first <span class="math notranslate nohighlight">\(n\)</span> eigenvalues of <span class="math notranslate nohighlight">\(A\)</span> are distinct in absolute value:
+<span class="math notranslate nohighlight">\(|\lambda_1| &gt; |\lambda_2| &gt; \ldots &gt; |\lambda_n|\)</span>. If we want to find
+all of the eigenvalues <span class="math notranslate nohighlight">\(n=m\)</span>, then all the absolute values of the
+eigenvalues must be distinct.
+#. The <span class="math notranslate nohighlight">\(v\)</span> vectors can be expressed as a linear sum of the first <span class="math notranslate nohighlight">\(n\)</span></p>
+<blockquote>
+<div><p>eigenvectors <span class="math notranslate nohighlight">\(q_1,\ldots,q_n\)</span> in a non-degenerate way. This turns
+out (we won’t show it here) the be equivalent to the condition that
+<span class="math notranslate nohighlight">\(\hat{Q}^TV^{(0)}\)</span> has an LU factorisation (where <span class="math notranslate nohighlight">\(\hat{Q}\)</span> is the
+matrix whose columns of the first <span class="math notranslate nohighlight">\(n\)</span> eigenvectors.</p>
+</div></blockquote>
+<p>One problem with this idea is that it is not numerically stable.  The
+columns of <span class="math notranslate nohighlight">\(V^{(k)}\)</span> rapidly become a very ill-conditioned basis for the
+spanning space of the original independent set, and the values of
+eigenvectors will be quickly engulfed in rounding errors. There is a
+simple solution to this though, which is to orthogonalise after
+each application of <span class="math notranslate nohighlight">\(A\)</span>. This is the simultaneous iteration algorithm,
+which we express in the following pseudo-code.</p>
+<ul class="simple">
+<li><p>TAKE A UNITARY MATRIX <span class="math notranslate nohighlight">\(\hat{Q}^{(0)}\)</span></p></li>
+<li><p>FOR <span class="math notranslate nohighlight">\(k=1,2,\ldots\)</span></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(Z\gets A\hat{Q}^{(k-1)}\)</span></p></li>
+<li><p>FIND <span class="math notranslate nohighlight">\(Q^{(k)},R^{(k)}\)</span> such that <span class="math notranslate nohighlight">\(Q^{(k)}R^{(k)}=Z\)</span> (USING QR FACTORISATION)</p></li>
+</ul>
+</li>
+</ul>
+<p>This is mathematically equivalent to the process we described above,
+and so it converges under the same two conditions listed above.</p>
+<p>We can already see that this looks rather close to the QR algorithm.
+The following section confirms that they are in fact equivalent.</p>
+</div>
+<div class="section" id="the-pure-qr-algorithm-and-simultaneous-iteration-are-equivalent">
+<h2><span class="section-number">5.10. </span>The pure QR algorithm and simultaneous iteration are equivalent<a class="headerlink" href="#the-pure-qr-algorithm-and-simultaneous-iteration-are-equivalent" title="Permalink to this headline">¶</a></h2>
+<p>To be precise, we will show that the pure QR algorithm is equivalent
+to simultaneous iteration when the initial independent set is the
+canonical basis <span class="math notranslate nohighlight">\(I\)</span>, i.e. <span class="math notranslate nohighlight">\(Q^(0)=I\)</span>. The convergence condition becomes
+that <span class="math notranslate nohighlight">\(Q^T\)</span> has an LU decomposition, where <span class="math notranslate nohighlight">\(Q\)</span> is the limiting unitary
+matrix that simultaneous iteration is converging to.  To show that the
+two algorithms are equivalent, we append them with some auxiliary
+variables, which are not needed for the algorithms but are needed for
+the comparison.</p>
+<p>To simultaneous iteration we append a running similarity transformation
+of <span class="math notranslate nohighlight">\(A\)</span>, and a running product of all of the <span class="math notranslate nohighlight">\(R\)</span> matrices.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\({Q'}^{(0)} \gets I\)</span></p></li>
+<li><p>FOR <span class="math notranslate nohighlight">\(k=1,2,\ldots\)</span></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(Z\gets A{Q'}^{(k-1)}\)</span></p></li>
+<li><p>FIND <span class="math notranslate nohighlight">\({Q'}^{(k)},R^{(k)}\)</span> such that <span class="math notranslate nohighlight">\({Q'}^{(k)}R^{(k)}=Z\)</span> (USING QR FACTORISATION)</p></li>
+<li><p><span class="math notranslate nohighlight">\(A^{(k)} = ({Q'}^{(k)})^TA{Q'}^{(k)}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\({R'}^{(k)} = R^{(k)}R^{(k-1)}\ldots R^{(1)}\)</span></p></li>
+</ul>
+</li>
+</ul>
+<p>To the pure QR factorisation we append a running product of the <span class="math notranslate nohighlight">\(Q^{k}\)</span>
+matrices, and a running product of all of the <span class="math notranslate nohighlight">\(R\)</span> matrices (again).</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(A^{(0)} \gets A\)</span></p></li>
+<li><p>FOR <span class="math notranslate nohighlight">\(k=1,2,\ldots\)</span></p>
+<ul>
+<li><p>FIND <span class="math notranslate nohighlight">\(Q^{(k)},R^{(k)}\)</span> such that <span class="math notranslate nohighlight">\(Q^{(k)}R^{(k)}=A^{(k-1)}\)</span> (USING QR FACTORISATION)</p></li>
+<li><p><span class="math notranslate nohighlight">\(A^{(k)} = R^{(k)}Q^{(k)}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\({Q'}^{(k)} = Q^{(1)}Q^{(2)}\ldots Q^{(k)}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\({R'}^{(k)} = R^{(k)}R^{(k-1)}\ldots R^{(1)}\)</span></p></li>
+</ul>
+</li>
+</ul>
+<div class="proof proof-type-theorem" id="id9">
+
+    <div class="proof-title">
+        <span class="proof-type">Theorem 5.9</span>
+        
+            <span class="proof-title-name">(pure QR and simultaneous iteration with <span class="math notranslate nohighlight">\(I\)</span> are equivalent)</span>
+        
+    </div><div class="proof-content">
+<p>The two processes above generate identical sequences of matrices
+<span class="math notranslate nohighlight">\({R'}^{(k)}\)</span>, <span class="math notranslate nohighlight">\({Q'}^{(k)}\)</span> and <span class="math notranslate nohighlight">\(A^{(k)}\)</span>, which are related by
+<span class="math notranslate nohighlight">\(A^{k} = {Q'}^{(k)}{R'}^{(k)}\)</span> (the <span class="math notranslate nohighlight">\(k\)</span>, not
+<span class="math notranslate nohighlight">\(A^{(k)}\)</span>!), and <span class="math notranslate nohighlight">\(A^{(k)}=({Q'}^{(k)})^TA{Q'}^{(k)}\)</span>.</p>
+</div></div><div class="proof proof-type-proof">
+
+    <div class="proof-title">
+        <span class="proof-type">Proof </span>
+        
+    </div><div class="proof-content">
+<p>We prove by induction. At <span class="math notranslate nohighlight">\(k=0\)</span>, <span class="math notranslate nohighlight">\(A_k={R'}^{(k)}={Q'}^{(k)}=0\)</span>. Now we assume
+that the inductive hypothesis is true for ‘k’, and aim to deduce that
+it is true for <span class="math notranslate nohighlight">\(k+1\)</span>.</p>
+<p>For simultaneous iteration, we immediately have the simularity
+formula for <span class="math notranslate nohighlight">\(A^{(k)}\)</span> by definition, and we just need to verify the QR
+factorisation of <span class="math notranslate nohighlight">\(A^k\)</span>. From the inductive hypothesis,</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[A^k = AA^{k-1} = A{Q'}^{(k-1)}{R'}^{(k-1)}
+= Z{R'}^{(k-1)} = {Q'}^{(k)}\underbrace{R^{(k)}{R'}^{(k-1)}}_{={R'}^{(k)}}
+= {Q'}^{(k)}{R'}^{(k)},\]</div>
+</div></blockquote>
+<p>as required (using the definition of <span class="math notranslate nohighlight">\(Z\)</span> and then the definition of
+<span class="math notranslate nohighlight">\({R'}^{(k)}\)</span>).</p>
+<p>For the QR algorithm, we again use the inductive hypothesis on the
+QR factorization of <span class="math notranslate nohighlight">\(A^k\)</span> followed by the inductive hypothesis on
+the similarity transform to get</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[A^k = AA^{k-1} =A{Q'}^{(k-1)}{R'}^{(k-1)}
+{Q'}^{(k-1)}A^{(k-1)}{R'}^{(k-1)} =
+{Q'}^{(k-1)}Q^{(k)}R^{(k)}{R'}^{(k-1)}
+= {Q'}^{(k)}{R'}^{(k)},\]</div>
+</div></blockquote>
+<p>where we used the algorithm definitions in the third equality and
+then the definitions of <span class="math notranslate nohighlight">\({Q'}^{(k)}\)</span> and <span class="math notranslate nohighlight">\({R'}^{(k)}\)</span>. To verify
+the similarity transform at iteration <span class="math notranslate nohighlight">\(k\)</span> we use the algorithm definitions
+to write</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[A^{(k)} = R^{(k)}Q^{(k)} = (Q^{(k)})^TR^{(k)}Q^{(k)}
+= ({Q'}^{(k)})^TA({Q'})^{(k)},\]</div>
+</div></blockquote>
+<p>as required.</p>
+</div></div><p>This theorem tells us that the QR algorithm will converge under the
+conditions that simultaneous iteration converges. It also tells us
+that the QR algorithm finds an orthonormal basis (the columns of
+<span class="math notranslate nohighlight">\({Q'}^{(k)}\)</span>) from the columns of each power of <span class="math notranslate nohighlight">\(A^k\)</span>; this is how
+it relates to power iteration.</p>
+</div>
+<div class="section" id="the-practical-qr-algorithm">
+<h2><span class="section-number">5.11. </span>The practical QR algorithm<a class="headerlink" href="#the-practical-qr-algorithm" title="Permalink to this headline">¶</a></h2>
+<p>The practical QR algorithm for real symmetric matrices has a number of
+extra elements that make it fast. First, recall that we start by
+transforming to tridiagonal (symmetric Hessenberg) form. This cuts
+down the numerical cost of the steps of the QR algorithm. Second, the
+Rayleigh quotient algorithm idea is incorporated by applying shifts
+<span class="math notranslate nohighlight">\(A^{(k)}-\mu^{(k)}I\)</span>, where <span class="math notranslate nohighlight">\(\mu^{(k)}\)</span> is some eigenvalue
+estimate. Third, when an eigenvalue is found (i.e. an eigenvalue
+appears accurately on the diagonal of <span class="math notranslate nohighlight">\(A^{(k)}\)</span>) the off-diagonal
+components are very small, and the matrix decouples into a block
+diagonal matrix where the QR algorithm can be independently applied to
+the blocks (which is cheaper than doing them all together). This final
+idea is called deflation.</p>
+<p>A sketch of the practical QR algorithm is as follows.</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(A^{(0)} \gets\)</span> TRIDIAGONAL MATRIX</p></li>
+<li><p>FOR <span class="math notranslate nohighlight">\(k=1,2,\ldots\)</span></p>
+<ul>
+<li><p>PICK A SHIFT <span class="math notranslate nohighlight">\(mu^{(k)}\)</span> (discussed later)</p></li>
+<li><p><span class="math notranslate nohighlight">\(Q^{(k)}R^{(k)} = A^{(k-1)} - \mu^{(k)}I\)</span> (from QR factorisation)</p></li>
+<li><p><span class="math notranslate nohighlight">\(A^{(k)} = R^{(k)}Q^{(k)} + \mu^{(k)}I\)</span></p></li>
+<li><p>IF <span class="math notranslate nohighlight">\(A^{(k)}_{j,j+1}\approx 0\)</span> FOR SOME <span class="math notranslate nohighlight">\(j\)</span></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(A_{j,j+1}\gets 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(A_{j+1,j}\gets 0\)</span></p></li>
+<li><p>continue by applying the practical QR algorithm to
+the diagonal blocks <span class="math notranslate nohighlight">\(A_1\)</span> and <span class="math notranslate nohighlight">\(A_2\)</span> of</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A_k =
+\begin{pmatrix}
+A_1 &amp; 0 \\
+0 &amp; A_2 \\
+\end{pmatrix}\end{split}\]</div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>One possible way to select the shift <span class="math notranslate nohighlight">\(\mu^{(k)}\)</span> is to calculate a
+Rayleigh quotient with <span class="math notranslate nohighlight">\(A\)</span> using the last column <span class="math notranslate nohighlight">\(q_m^{(k)}\)</span> of <span class="math notranslate nohighlight">\({Q'}^{(k)}\)</span>,
+which then gives cubic convergence for this eigenvector and
+eigenvalue. In fact, this is just <span class="math notranslate nohighlight">\(A_{mm}^k\)</span>,</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[A_{mm}^{(k)} = e_m^TA^{(k)}e_m = e_m^T({Q'}^{(k)})^TA{Q'}^{(k)}e_m
+= (q_m^{(k)})^TAq_{m} = \mu^{(k)}.\]</div>
+</div></blockquote>
+<p>This is very cheap, we just read off the bottom right-hand corner
+from <span class="math notranslate nohighlight">\(A^{(k)}\)</span>! This is called the Rayleigh quotient shift.</p>
+<p>It turns out that the Rayleigh quotient shift is not guaranteed to
+work in all cases, so there is an alernative approach called the
+Wilkinson shift, but we won’t discuss that here.</p>
 </div>
 </div>
 

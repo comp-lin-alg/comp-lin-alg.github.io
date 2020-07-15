@@ -1,0 +1,359 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6. Iterative Krylov methods for \(Ax=b\) &#8212; Computational linear algebra course 2020.0 documentation</title>
+    <link rel="stylesheet" href="_static/fenics.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/proof.js"></script>
+    <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="5. Finding eigenvalues of matrices" href="L5_eigenvalues.html" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+<link rel="stylesheet" href="_static/featured.css">
+
+
+<link rel="shortcut icon" href="_static/icon.ico" />
+
+
+  </head><body>
+<div class="wrapper">
+  <a href="index.html"><img src="_static/banner.png" width="900px" alt="Project Banner" /></a>
+  <div id="access">
+    <div class="menu">
+      <ul>
+          <li class="page_item"><a href="https://github.com/Computational-Linear-Algebra-Course/computational-linear-algebra-course" title="GitHub">GitHub</a></li>
+      </ul>
+    </div><!-- .menu -->
+  </div><!-- #access -->
+</div><!-- #wrapper -->
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="iterative-krylov-methods-for-ax-b">
+<h1><span class="section-number">6. </span>Iterative Krylov methods for <span class="math notranslate nohighlight">\(Ax=b\)</span><a class="headerlink" href="#iterative-krylov-methods-for-ax-b" title="Permalink to this headline">¶</a></h1>
+<p>In the previous section we saw how iterative methods are necessary
+(but can also be fast) for eigenvalue problems <span class="math notranslate nohighlight">\(Ax=\lambda x\)</span>.
+Iterative methods can also be useful for solving linear systems
+<span class="math notranslate nohighlight">\(Ax=b\)</span>, generating a sequence of vectors <span class="math notranslate nohighlight">\(x^k\)</span> that converge to the
+solution. We shall examine Krylov subspace methods, where each
+iteration mainly involves a matrix-vector multiplication. For dense
+matrices, matrix-vector multiplication costs <span class="math notranslate nohighlight">\(\mathcal{O}(m^2)\)</span>, but
+often (e.g. numerical solution of PDEs, graph problems, etc.)  <span class="math notranslate nohighlight">\(A\)</span> is
+sparse (i.e. has zeros almost everywhere) and the matrix-vector
+multiplication costs <span class="math notranslate nohighlight">\(\mathcal{O}(m)\)</span>. The goal is then to find a
+method where only a few iterations are necessary before the error is
+very small, so that the solver has total cost <span class="math notranslate nohighlight">\(\mathcal{O}(mN)\)</span> where
+<span class="math notranslate nohighlight">\(N\)</span> is the total number of iterations, hopefully small.</p>
+<p>Since we only need the result of a matrix-vector multiplication, it is
+even possible to solve a linear system without storing <span class="math notranslate nohighlight">\(A\)</span>
+explicitly. Instead one can just provide a subroutine that implements
+matrix-vector multiplication in some way; this is called a
+“matrix-free” implementation.</p>
+<div class="section" id="krylov-subspace-methods">
+<h2><span class="section-number">6.1. </span>Krylov subspace methods<a class="headerlink" href="#krylov-subspace-methods" title="Permalink to this headline">¶</a></h2>
+<p>In this section we will introduce Krylov subspace methods for solving
+<span class="math notranslate nohighlight">\(Ax=b\)</span> (we will not specialise to real or symmetric matrices
+here). The idea is to approximate the solution using the basis</p>
+<div class="math notranslate nohighlight">
+\[(b, Ab, A^2b, A^3b, \ldots, A^kb)\]</div>
+<p>whose span is called a Krylov subspace. After each iteration the
+Krylov subspace grows by one dimension. As we have already seen from
+studying power iteration, the later elements in this sequence will get
+very parallel (they will all be approximating the eigenvector with
+largest magnitude of eigenvalue). Hence, we once again need to resort
+to orthogonalising the basis. We could simply take the QR
+factorisation of this basis, but the Arnoldi iteration coming up
+next also provides a neat way to solve the equation when projected
+onto the Krylov subspace.</p>
+</div>
+<div class="section" id="arnoldi-iteration">
+<h2><span class="section-number">6.2. </span>Arnoldi iteration<a class="headerlink" href="#arnoldi-iteration" title="Permalink to this headline">¶</a></h2>
+<p>The key to Krylov subspace methods turns out to be the transformation
+of <span class="math notranslate nohighlight">\(A\)</span> to an upper Hessenberg matrix by orthogonal similarity
+transforms, so that <span class="math notranslate nohighlight">\(A=QHQ^*\)</span>. We have already looked at using
+Householder transformations to do this in the previous section.
+The Householder technique is not so suitable for large dimensional
+problems, so instead we look at a way of proceeding column by
+column, just like the Gram-Schmidt method does for finding
+<span class="math notranslate nohighlight">\(QR\)</span> factorisations.</p>
+<p>We do this by rewriting <span class="math notranslate nohighlight">\(AQ=QH\)</span>. The idea is that at iteration <span class="math notranslate nohighlight">\(n\)</span> we
+only look at the first <span class="math notranslate nohighlight">\(n\)</span> columns of <span class="math notranslate nohighlight">\(Q\)</span>, which we
+call <span class="math notranslate nohighlight">\(\hat{Q}_n\)</span>. When <span class="math notranslate nohighlight">\(m\)</span> is large, this is a significant saving:
+<span class="math notranslate nohighlight">\(mn \ll m^2\)</span>.
+To execute the iteration, it turns out that
+we should look at the <span class="math notranslate nohighlight">\((n+1)\times n\)</span> upper left-hand section of <span class="math notranslate nohighlight">\(H\)</span>,
+i.e.</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}\tilde{H}_n = \begin{pmatrix}
+h_{11} &amp; \ldots &amp; h_{1n} \\
+h_{21} &amp; \ddots &amp; \vdots \\
+0 &amp; \ddots &amp; h_{nn} \\
+0 &amp; 0 &amp; h_{n+1,n} \\
+\end{pmatrix}\end{split}\]</div>
+</div></blockquote>
+<p>Then, <span class="math notranslate nohighlight">\(A\hat{Q}_n = \hat{Q}_{n-1}\tilde{H}_n\)</span>. Using the column space
+interpretation of matrix-matrix multiplication, we see that the <a href="#id1"><span class="problematic" id="id2">`</span></a>n`th
+column is</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[Aq_n = h_{1n}q_1 + h_{2n}q_n + \ldots h_{n,n}q_n + h_{n+1,n}q_{n+1}.\]</div>
+</div></blockquote>
+<p>This formula shows us how to construct the non-zero entries of the
+nth column of <span class="math notranslate nohighlight">\(H\)</span>; this defines the Arnoldi algorithm which we
+provide as pseudo-code below.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(q_1\gets b/\|b\|\)</span></p></li>
+<li><p>FOR <span class="math notranslate nohighlight">\(n=1,2,\ldots\)</span></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(v\gets Aq_n\)</span></p></li>
+<li><p>FOR <span class="math notranslate nohighlight">\(j=1\)</span> TO <span class="math notranslate nohighlight">\(n\)</span></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(h_{jn}\gets q_j^*v\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(v \gets v - h_{jn}q_j\)</span></p></li>
+</ul>
+</li>
+<li><p>END FOR</p></li>
+<li><p><span class="math notranslate nohighlight">\(h_{n+1,n} \gets \|v\|\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(q_{n+1} \gets v/\|v\|\)</span></p></li>
+</ul>
+</li>
+<li><p>END FOR</p></li>
+</ul>
+<p>If we were to form the QR factorisation of the <span class="math notranslate nohighlight">\(m\times n\)</span> Krylov
+matrix</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}K_n = \begin{pmatrix}
+b &amp; Ab &amp; \ldots &amp; A^{n_1}b \\
+\end{pmatrix}\end{split}\]</div>
+</div></blockquote>
+<p>then we would get <span class="math notranslate nohighlight">\(Q=Q_n\)</span>. Importantly, in the Arnoldi iteration, we
+never form <span class="math notranslate nohighlight">\(K_n\)</span> or <span class="math notranslate nohighlight">\(R_n\)</span> explicitly, since these are very
+ill-conditioned and not useful numerically.</p>
+<p>But what is the use of the <span class="math notranslate nohighlight">\(\tilde{H}_n\)</span> matrix? Applying
+<span class="math notranslate nohighlight">\(\hat{Q}_n^*\)</span> to <span class="math notranslate nohighlight">\(A\hat{Q}_n = \hat{Q}_{n+1}\tilde{H}_n\)</span> gives</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\hat{Q}_n^*A\hat{Q}_n = \hat{Q}_n^*\hat{Q}_{n+1}\tilde{H}_n,\\\begin{split}= \begin{pmatrix}
+1 &amp; 0 &amp; \ldots &amp; 0 &amp; 0 \\
+0 &amp; \ddots &amp; \ddots &amp; \vdots &amp; \vdots \\
+\vdots &amp; \ddots &amp; \ddots &amp; \vdots &amp; \vdots \\
+0 &amp; \ldots &amp; \ldots &amp; 1 &amp; 0 \\
+\end{pmatrix}
+\tilde{H}_n
+= H_n,\end{split}\end{aligned}\end{align} \]</div>
+</div></blockquote>
+<p>where <span class="math notranslate nohighlight">\(H_n\)</span> is the <span class="math notranslate nohighlight">\(n\times n\)</span> top left-hand corner of <span class="math notranslate nohighlight">\(H\)</span>.</p>
+<p>The intrepretation of this is that <span class="math notranslate nohighlight">\(H_n\)</span> is the orthogonal projection
+of <span class="math notranslate nohighlight">\(A\)</span> onto the Krylov subspace <span class="math notranslate nohighlight">\(K_n\)</span>. To see this, take any vector <span class="math notranslate nohighlight">\(v\)</span>,
+and project <span class="math notranslate nohighlight">\(Av\)</span> onto the the Krylov subspace <span class="math notranslate nohighlight">\(K_n\)</span>.</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[PAv = \hat{Q}_n\hat{Q}_n^*v.\]</div>
+</div></blockquote>
+<p>Then, changing basis to the orthogonal basis gives</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\hat{Q}_n^*(\hat{Q}_n\hat{Q}_n^*A)\hat{Q}_n = \hat{Q}_nA\hat{Q}_n
+= H_n.\]</div>
+</div></blockquote>
+</div>
+<div class="section" id="gmres">
+<h2><span class="section-number">6.3. </span>GMRES<a class="headerlink" href="#gmres" title="Permalink to this headline">¶</a></h2>
+<p>The Generalised Minimum Residual method (GMRES), due to Saad (1986),
+exploits these properties of the Arnoldi iteration. The idea is
+that we build up the orthogonal basis for the Krylov subspaces
+one by one, and at each iteration we solve the projection of
+<span class="math notranslate nohighlight">\(Ax=b\)</span> onto the Krylov basis as a least squares problem, until
+the residual <span class="math notranslate nohighlight">\(\|Ax-b\|\)</span> is below some desired tolerance.</p>
+<p>To avoid the numerical instabilities that would come from using the
+basis <span class="math notranslate nohighlight">\((b,Ab,A^b,\ldots)\)</span>, we use the Arnoldi iteration to build an
+orthonormal basis, and seek approximate solutions of the form <span class="math notranslate nohighlight">\(x_n =
+\hat{Q}_ny\)</span> for <span class="math notranslate nohighlight">\(y\in\mathbb{C}^n\)</span>. We then seek the value of <span class="math notranslate nohighlight">\(y\)</span>
+that minimises the residual</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\]</div>
+<p>mathcal{R}_n = |AQ_ny - b|.</p>
+</div></blockquote>
+<p>This explains the Minimum Residual part of the name. We also see from
+this definition that the residual cannot increase with iterations,
+because it only increases the subspace where we seek a solution.</p>
+<p>This problem can be simplified further by using <span class="math notranslate nohighlight">\(AQ_n = Q_{n+1}\tilde{H}_n\)</span>,
+so</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\mathcal{R}_n = \|\hat{Q}_{n+1}\tilde{H}_n y - b\|.\]</div>
+</div></blockquote>
+<p>Remembering that <span class="math notranslate nohighlight">\(b=\|b\|q_1\)</span>, we see that the entire residual is in
+the column space of <span class="math notranslate nohighlight">\(\hat{Q}_{n+1}\)</span>, and hence we can invert
+on the column space using <span class="math notranslate nohighlight">\(\hat{Q}_{n+1}^*\)</span> which does not change
+the norm of the residual due to the orthonormality.</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\mathcal{R}_n = \|\tilde{H}_n y - \hat{Q}_{n+1}^*b\|
+= \|\tilde{H}_n y - e_1\|b\|\|.\]</div>
+</div></blockquote>
+<p>Finding <span class="math notranslate nohighlight">\(y\)</span> to minimise <span class="math notranslate nohighlight">\(\mathcal{R}_n\)</span> requires the solution of a
+least squares problem, which can be computed via QR factorisation
+as we saw much earlier in the course.</p>
+<p>We are now in position to present the GMRES algorithm as pseudo-code.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(q_1 \gets b/\|b\|\)</span></p></li>
+<li><p>FOR <span class="math notranslate nohighlight">\(n=1,2,\dots\)</span></p>
+<ul>
+<li><p>APPLY STEP <span class="math notranslate nohighlight">\(n\)</span> OF ARNOLDI</p></li>
+<li><p>FIND <span class="math notranslate nohighlight">\(y\)</span> TO MINIMIZE <span class="math notranslate nohighlight">\(\|\tilde{H}_ny - \|b\|e_1\|\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(x_n \gets \hat{Q}_ny\)</span></p></li>
+<li><p>CHECK IF <a href="#id3"><span class="problematic" id="id4">`</span></a>mathcal{R}_n &lt;’ TOL</p></li>
+</ul>
+</li>
+<li><p>END FOR</p></li>
+</ul>
+</div>
+<div class="section" id="convergence-of-gmres">
+<h2><span class="section-number">6.4. </span>Convergence of GMRES<a class="headerlink" href="#convergence-of-gmres" title="Permalink to this headline">¶</a></h2>
+<p>The algorithm presented as pseudocode is the way to implement GMRES
+efficiently. However, we can make an alternative formulation
+of GMRES using matrix polynomials.</p>
+<p>We know that <span class="math notranslate nohighlight">\(x_n\in K_n\)</span>, so we can write</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[x_n = c_0b + c_1Ab + c_2A^2b + \ldots + c_{n-1}A^{n-1}b
+= p'(A)b,\]</div>
+</div></blockquote>
+<p>where</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[p'(z) = c_0 + c_1z + c_2z^&#64; + \ldots + \ldots c_{n-1}z^{n-1} \implies
+p'(A) = c_0I + c_1A + c_2A^2 + \ldots + c_{n-1}A^{n-1}.\]</div>
+</div></blockquote>
+<p>Here we have introduced the idea of a matrix polynomial, where the
+kth power of <span class="math notranslate nohighlight">\(z\)</span> is replaced by the kth power of <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p>The residual becomes</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[r_n = b - Ax_n = b - Ap'(A)b = (I - Ap'(A))b
+= p(A)b,\]</div>
+</div></blockquote>
+<p>where <span class="math notranslate nohighlight">\(p(z) = 1 - zp'(z)\)</span>. Thus, the residual is a matrix polynomial
+<span class="math notranslate nohighlight">\(p\)</span> of <span class="math notranslate nohighlight">\(A\)</span> applied to <span class="math notranslate nohighlight">\(b\)</span>, where <span class="math notranslate nohighlight">\(p\in \mathcal{P}_n\)</span>, and</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\mathcal{P}_n = \{\mbox{degree }\leq n\mbox{ polynomials with }
+_np(0)=1\}.\]</div>
+</div></blockquote>
+<p>Hence, we can recast iteration <span class="math notranslate nohighlight">\(n\)</span> of GMRES as a polynomial
+optimisation problem: find <span class="math notranslate nohighlight">\(p_n\in \mathcal{P}_n\)</span> such that
+<span class="math notranslate nohighlight">\(\|p_n(A)b\|\)</span> is minimised.  We have</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\|r_n\|  = \|p_n(A)b\| \leq \|p_n(A)\|\|b\|
+\implies \frac{\|r_n\|}{\|b\|} \leq \|p_n(A)\|.\]</div>
+</div></blockquote>
+<p>Assuming that <span class="math notranslate nohighlight">\(A\)</span> is diagonalisable, <span class="math notranslate nohighlight">\(A=V\Lambda V^{-1}\)</span>, then
+<span class="math notranslate nohighlight">\(A^s=V\Lambda^sV^{-1}\)</span>, and</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\|p_n(A)\| = \|Vp_n(\Lambda^s)V^{-1}\|
+\leq \underbrace{\|V\|\|V^{-1}\|}_{=\kappa(V)}
+\|p_n\|_{\Lambda(A)},\]</div>
+</div></blockquote>
+<p>where <span class="math notranslate nohighlight">\(\Lambda(A)\)</span> is the set of eigenvalues of <span class="math notranslate nohighlight">\(A\)</span>, and</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\|p\|_{\Lambda(A)} = \sup_{x\in \Lambda(A)}\|p(x)\|.\]</div>
+</div></blockquote>
+<p>Hence we see that GMRES will converge quickly if <span class="math notranslate nohighlight">\(V\)</span> is
+well-conditioned, and <span class="math notranslate nohighlight">\(p(x)\)</span> is small for all <span class="math notranslate nohighlight">\(x\in \Lambda(A)\)</span>.  This
+latter condition is not trivial due to the <span class="math notranslate nohighlight">\(p(0)=1\)</span> requirement. One
+way it can happen is if <span class="math notranslate nohighlight">\(A\)</span> has all eigenvalues clustered in a small
+number of groups. Then we can find a low degree polynomial that passes
+through 1 at <span class="math notranslate nohighlight">\(x=0\)</span>, and 0 near each of the clusters. Then GMRES will
+essentially converge in a small number of iterations (equal to the
+degree of the polynomial). There are problems if the eigenvalues are
+scattered over a wide region of the complex plane: we need a very
+high degree polynomial to make <span class="math notranslate nohighlight">\(p(x)\)</span> small at all the eigenvalues and
+hence we need a very large number of iterations.</p>
+</div>
+<div class="section" id="preconditioning">
+<h2><span class="section-number">6.5. </span>Preconditioning<a class="headerlink" href="#preconditioning" title="Permalink to this headline">¶</a></h2>
+<p>This final topic has been a real focus of computational linear algebra
+over the last 30 years. Typically, the matrices that we want to solve
+do not have eigenvalues clustered in a small number of groups, and so
+GMRES is slow. The solution (and the challenge) is to find a matrix
+<span class="math notranslate nohighlight">\(M\)</span> such that <span class="math notranslate nohighlight">\(Mx = y\)</span> is cheap to solve (diagonal, or triangular, or
+something else) and such that <span class="math notranslate nohighlight">\(M^{-1}A\)</span> <em>does</em> have eigenvalues clustered
+in a small number of groups (e.g. <span class="math notranslate nohighlight">\(M\)</span> is a good approximation of <span class="math notranslate nohighlight">\(A\)</span>, so
+that <span class="math notranslate nohighlight">\(M^{-1}A\approx I\)</span> which has eigenvalues all equal to 1). We call
+<span class="math notranslate nohighlight">\(M\)</span> the preconditioning matrix, and the idea is to apply GMRES to
+the (left) preconditioned system</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[M^{-1}Ax = M^{-1}b.\]</div>
+</div></blockquote>
+<p>GMRES on this preconditioned system is equivalent to the following algorithm,
+called preconditioned GMRES.</p>
+<ul class="simple">
+<li><p>SOLVE <span class="math notranslate nohighlight">\(M\tilde{b}=b\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(q_1 \gets \tilde{b}/\|\tilde{b}\|\)</span></p></li>
+<li><p>FOR <span class="math notranslate nohighlight">\(n=1,2,\dots\)</span></p>
+<ul>
+<li><p>SOLVE <span class="math notranslate nohighlight">\(Mv = Aq_n\)</span></p></li>
+<li><p>FOR <span class="math notranslate nohighlight">\(j=1\)</span> TO <span class="math notranslate nohighlight">\(n\)</span></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(h_{jn}=q_j^*v\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(v = v - h_{jn}q_j\)</span></p></li>
+</ul>
+</li>
+<li><p>END FOR</p></li>
+<li><p><span class="math notranslate nohighlight">\(h_{n+1,n} \gets \|v\|\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(q_{n+1}\)</span>gets v/|v|`</p></li>
+<li><p>FIND <span class="math notranslate nohighlight">\(y\)</span> TO MINIMIZE <span class="math notranslate nohighlight">\(\|\tilde{H}_ny - \|\tilde{b}\|e_1\|\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(x_n \gets \hat{Q}_ny\)</span></p></li>
+<li><p>CHECK IF <a href="#id5"><span class="problematic" id="id6">`</span></a>mathcal{R}_n &lt;’ TOL</p></li>
+</ul>
+</li>
+<li><p>END FOR</p></li>
+</ul>
+<p>The art and science of finding preconditioning matrices <span class="math notranslate nohighlight">\(M\)</span> (or
+matrix-free procedures for solving <span class="math notranslate nohighlight">\(Mx=y\)</span>) for specific problems
+arising in data science, engineering, physics, biology etc. can
+involve ideas from linear algebra, functional analysis, asymptotics,
+physics, etc., and represents a major activity in scientific computing
+today.</p>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Colin J. Cotter.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.2.
+    </div>
+  </body>
+</html>
