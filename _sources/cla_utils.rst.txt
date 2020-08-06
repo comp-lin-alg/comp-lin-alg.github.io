@@ -4,10 +4,10 @@ cla\_utils package
 Submodules
 ----------
 
-cla\_utils.test module
-----------------------
+cla\_utils.exercises1 module
+----------------------------
 
-.. automodule:: cla_utils.test
+.. automodule:: cla_utils.exercises1
    :members:
    :undoc-members:
    :show-inheritance:

@@ -51,17 +51,93 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-cla_utils.test">
-<span id="cla-utils-test-module"></span><h2>cla_utils.test module<a class="headerlink" href="#module-cla_utils.test" title="Permalink to this headline">¶</a></h2>
-<dl class="py class">
-<dt id="cla_utils.test.TestObject">
-<em class="property">class </em><code class="sig-prename descclassname">cla_utils.test.</code><code class="sig-name descname">TestObject</code><a class="reference internal" href="_modules/cla_utils/test.html#TestObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.test.TestObject" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<dl class="py attribute">
-<dt id="cla_utils.test.TestObject.tester">
-<code class="sig-name descname">tester</code><em class="property"> = True</em><a class="headerlink" href="#cla_utils.test.TestObject.tester" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<div class="section" id="module-cla_utils.exercises1">
+<span id="cla-utils-exercises1-module"></span><h2>cla_utils.exercises1 module<a class="headerlink" href="#module-cla_utils.exercises1" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="cla_utils.exercises1.basic_matvec">
+<code class="sig-prename descclassname">cla_utils.exercises1.</code><code class="sig-name descname">basic_matvec</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">A</span></em>, <em class="sig-param"><span class="n">x</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises1.html#basic_matvec"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises1.basic_matvec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Elementary matrix-vector multiplication.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> – an mxn-dimensional numpy array</p></li>
+<li><p><strong>x</strong> – an n-dimensional numpy array</p></li>
+</ul>
+</dd>
+</dl>
+<p>returns an m-dimensional numpy array which is the product of A with x</p>
+<p>This should be implemented using a double loop over the entries of A</p>
+</dd></dl>
 
+<dl class="py function">
+<dt id="cla_utils.exercises1.column_matvec">
+<code class="sig-prename descclassname">cla_utils.exercises1.</code><code class="sig-name descname">column_matvec</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">A</span></em>, <em class="sig-param"><span class="n">x</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises1.html#column_matvec"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises1.column_matvec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Matrix-vector multiplication using the representation of the product
+Ax as linear combinations of the columns of A, using the entries in 
+x as coefficients.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> – an mxn-dimensional numpy array</p></li>
+<li><p><strong>x</strong> – an n-dimensional numpy array</p></li>
+</ul>
+</dd>
+</dl>
+<p>returns an m-dimensional numpy array which is the product of A with x</p>
+<p>This should be implemented using a single loop over the entries of x</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="cla_utils.exercises1.rank1pert_inv">
+<code class="sig-prename descclassname">cla_utils.exercises1.</code><code class="sig-name descname">rank1pert_inv</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">u</span></em>, <em class="sig-param"><span class="n">v</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises1.html#rank1pert_inv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises1.rank1pert_inv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the inverse of the matrix A = I + uv^*, where I 
+is the mxm dimensional identity matrix, with</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>v</strong> (<em>u</em><em>,</em>) – two m-dimensional numpy arrays</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="cla_utils.exercises1.rank2">
+<code class="sig-prename descclassname">cla_utils.exercises1.</code><code class="sig-name descname">rank2</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">u1</span></em>, <em class="sig-param"><span class="n">u2</span></em>, <em class="sig-param"><span class="n">v1</span></em>, <em class="sig-param"><span class="n">v2</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises1.html#rank2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises1.rank2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the rank2 matrix A = u1*u2^* + u2*v2^*.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u2</strong> (<em>u1</em><em>,</em>) – two m-dimensional numpy arrays</p></li>
+<li><p><strong>v2</strong> (<em>v1</em><em>,</em>) – two n-dimensional numpy arrays</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="cla_utils.exercises1.time_matvecs">
+<code class="sig-prename descclassname">cla_utils.exercises1.</code><code class="sig-name descname">time_matvecs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises1.html#time_matvecs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises1.time_matvecs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get some timings for matvecs.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="cla_utils.exercises1.timeable_basic_matvec">
+<code class="sig-prename descclassname">cla_utils.exercises1.</code><code class="sig-name descname">timeable_basic_matvec</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises1.html#timeable_basic_matvec"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises1.timeable_basic_matvec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Doing a matvec example with the basic_matvec that we can
+pass to timeit.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="cla_utils.exercises1.timeable_column_matvec">
+<code class="sig-prename descclassname">cla_utils.exercises1.</code><code class="sig-name descname">timeable_column_matvec</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises1.html#timeable_column_matvec"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises1.timeable_column_matvec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Doing a matvec example with the column_matvec that we can
+pass to timeit.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="cla_utils.exercises1.timeable_numpy_matvec">
+<code class="sig-prename descclassname">cla_utils.exercises1.</code><code class="sig-name descname">timeable_numpy_matvec</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises1.html#timeable_numpy_matvec"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises1.timeable_numpy_matvec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Doing a matvec example with the builtin numpy matvec so that
+we can pass to timeit.</p>
 </dd></dl>
 
 </div>

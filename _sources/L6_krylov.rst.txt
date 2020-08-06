@@ -197,7 +197,7 @@ We are now in position to present the GMRES algorithm as pseudo-code.
   * APPLY STEP `n` OF ARNOLDI
   * FIND `y` TO MINIMIZE `\|\tilde{H}_ny - \|b\|e_1\|`
   * `x_n \gets \hat{Q}_ny`
-  * CHECK IF `\mathcal{R}_n <' TOL
+  * CHECK IF `\mathcal{R}_n <` TOL
 * END FOR
 
 Convergence of GMRES
@@ -310,7 +310,7 @@ called preconditioned GMRES.
   * `q_{n+1}`\gets v/\|v\|`
   * FIND `y` TO MINIMIZE `\|\tilde{H}_ny - \|\tilde{b}\|e_1\|`
   * `x_n \gets \hat{Q}_ny`
-  * CHECK IF `\mathcal{R}_n <' TOL
+  * CHECK IF `\mathcal{R}_n <` TOL
 * END FOR
 
 The art and science of finding preconditioning matrices `M` (or

@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cla_utils.exercises1 &#8212; Computational linear algebra course 2020.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/fenics.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/proof.js"></script>
+    <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+<link rel="stylesheet" href="../../_static/featured.css">
+
+
+<link rel="shortcut icon" href="../../_static/icon.ico" />
+
+
+  </head><body>
+<div class="wrapper">
+  <a href="../../index.html"><img src="../../_static/banner.png" width="900px" alt="Project Banner" /></a>
+  <div id="access">
+    <div class="menu">
+      <ul>
+          <li class="page_item"><a href="https://github.com/Computational-Linear-Algebra-Course/computational-linear-algebra-course" title="GitHub">GitHub</a></li>
+      </ul>
+    </div><!-- .menu -->
+  </div><!-- #access -->
+</div><!-- #wrapper -->
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for cla_utils.exercises1</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">timeit</span>
+<span class="kn">import</span> <span class="nn">numpy.random</span> <span class="k">as</span> <span class="nn">random</span>
+
+<span class="c1">#pre-construct a matrix in the namespace to use in tests</span>
+<span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1651</span><span class="p">)</span>
+<span class="n">A0</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+
+<div class="viewcode-block" id="basic_matvec"><a class="viewcode-back" href="../../cla_utils.html#cla_utils.exercises1.basic_matvec">[docs]</a><span class="k">def</span> <span class="nf">basic_matvec</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Elementary matrix-vector multiplication.</span>
+
+<span class="sd">    :param A: an mxn-dimensional numpy array</span>
+<span class="sd">    :param x: an n-dimensional numpy array</span>
+
+<span class="sd">    returns an m-dimensional numpy array which is the product of A with x</span>
+
+<span class="sd">    This should be implemented using a double loop over the entries of A</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="column_matvec"><a class="viewcode-back" href="../../cla_utils.html#cla_utils.exercises1.column_matvec">[docs]</a><span class="k">def</span> <span class="nf">column_matvec</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Matrix-vector multiplication using the representation of the product</span>
+<span class="sd">    Ax as linear combinations of the columns of A, using the entries in </span>
+<span class="sd">    x as coefficients.</span>
+
+
+<span class="sd">    :param A: an mxn-dimensional numpy array</span>
+<span class="sd">    :param x: an n-dimensional numpy array</span>
+
+<span class="sd">    returns an m-dimensional numpy array which is the product of A with x</span>
+
+<span class="sd">    This should be implemented using a single loop over the entries of x</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="timeable_basic_matvec"><a class="viewcode-back" href="../../cla_utils.html#cla_utils.exercises1.timeable_basic_matvec">[docs]</a><span class="k">def</span> <span class="nf">timeable_basic_matvec</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Doing a matvec example with the basic_matvec that we can</span>
+<span class="sd">    pass to timeit.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">b</span> <span class="o">=</span> <span class="n">basic_matvec</span><span class="p">(</span><span class="n">A0</span><span class="p">,</span> <span class="n">x0</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="timeable_column_matvec"><a class="viewcode-back" href="../../cla_utils.html#cla_utils.exercises1.timeable_column_matvec">[docs]</a><span class="k">def</span> <span class="nf">timeable_column_matvec</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Doing a matvec example with the column_matvec that we can</span>
+<span class="sd">    pass to timeit.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">b</span> <span class="o">=</span> <span class="n">column_matvec</span><span class="p">(</span><span class="n">A0</span><span class="p">,</span> <span class="n">x0</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="timeable_numpy_matvec"><a class="viewcode-back" href="../../cla_utils.html#cla_utils.exercises1.timeable_numpy_matvec">[docs]</a><span class="k">def</span> <span class="nf">timeable_numpy_matvec</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Doing a matvec example with the builtin numpy matvec so that</span>
+<span class="sd">    we can pass to timeit.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">b</span> <span class="o">=</span> <span class="n">A0</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="time_matvecs"><a class="viewcode-back" href="../../cla_utils.html#cla_utils.exercises1.time_matvecs">[docs]</a><span class="k">def</span> <span class="nf">time_matvecs</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get some timings for matvecs.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Timing for basic_matvec&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">timeit</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="n">timeable_basic_matvec</span><span class="p">)</span><span class="o">.</span><span class="n">timeit</span><span class="p">(</span><span class="n">number</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Timing for column_matvec&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">timeit</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="n">timeable_column_matvec</span><span class="p">)</span><span class="o">.</span><span class="n">timeit</span><span class="p">(</span><span class="n">number</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Timing for numpy matvec&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">timeit</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="n">timeable_numpy_matvec</span><span class="p">)</span><span class="o">.</span><span class="n">timeit</span><span class="p">(</span><span class="n">number</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="rank2"><a class="viewcode-back" href="../../cla_utils.html#cla_utils.exercises1.rank2">[docs]</a><span class="k">def</span> <span class="nf">rank2</span><span class="p">(</span><span class="n">u1</span><span class="p">,</span> <span class="n">u2</span><span class="p">,</span> <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return the rank2 matrix A = u1*u2^* + u2*v2^*.</span>
+
+<span class="sd">    :param u1, u2: two m-dimensional numpy arrays</span>
+<span class="sd">    :param v1, v2: two n-dimensional numpy arrays</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="s2">&quot;INSERT CODE HERE DEFINING B and C from u1, u2, v1, v2 (AND DELETE THIS)&quot;</span>
+
+    <span class="n">A</span> <span class="o">=</span> <span class="n">B</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">A</span></div>
+
+
+<div class="viewcode-block" id="rank1pert_inv"><a class="viewcode-back" href="../../cla_utils.html#cla_utils.exercises1.rank1pert_inv">[docs]</a><span class="k">def</span> <span class="nf">rank1pert_inv</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return the inverse of the matrix A = I + uv^*, where I </span>
+<span class="sd">    is the mxm dimensional identity matrix, with</span>
+
+<span class="sd">    :param u, v: two m-dimensional numpy arrays</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">Ainv</span></div>
+</pre></div>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Colin J. Cotter.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.2.
+    </div>
+  </body>
+</html>

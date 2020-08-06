@@ -84,8 +84,8 @@ so that the product</p>
 </div></blockquote>
 <p>produces <span class="math notranslate nohighlight">\(b \in \mathbb{C}^m\)</span>, defined by</p>
 <blockquote>
-<div><div class="math notranslate nohighlight">
-\[b_i = \sum_{j=1}^n a_{ij}x_j, \, i=1,2,\ldots,m.\]</div>
+<div><div class="math notranslate nohighlight" id="equation-matvec">
+<span class="eqno">(1.1)<a class="headerlink" href="#equation-matvec" title="Permalink to this equation">¶</a></span>\[b_i = \sum_{j=1}^n a_{ij}x_j, \, i=1,2,\ldots,m.\]</div>
 </div></blockquote>
 <p>In this course it is important to
 consider the general case where <span class="math notranslate nohighlight">\(m \neq n\)</span>, which has many applications
@@ -155,14 +155,86 @@ uv_1 &amp; uv_2 &amp; \ldots &amp; uv_n
 </div></blockquote>
 <p>which means that all the columns of <span class="math notranslate nohighlight">\(uv^T\)</span> are multiples of <span class="math notranslate nohighlight">\(u\)</span>. We will
 see in the next section that this matrix has rank 1.</p>
+<div class="proof proof-type-exercise" id="id5">
+<span id="ex-basic-matvec"></span>
+    <div class="proof-title">
+        <span class="proof-type">Exercise 1.1</span>
+        
+    </div><div class="proof-content">
+<p>The <a class="reference internal" href="cla_utils.html#cla_utils.exercises1.basic_matvec" title="cla_utils.exercises1.basic_matvec"><code class="xref py py-func docutils literal notranslate"><span class="pre">basic_matvec()</span></code></a> function has been left
+unimplemented. To finish the function, add code so that it
+computes the matrix-vector product <span class="math notranslate nohighlight">\(b=Ax\)</span> from inputs <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(x\)</span>.
+In this first implementation, you should simply implement
+<a class="reference internal" href="#equation-matvec">(1.1)</a> with a double nested for loop (one for the sum over <span class="math notranslate nohighlight">\(j\)</span>,
+and one for the <span class="math notranslate nohighlight">\(i\)</span> elements of <span class="math notranslate nohighlight">\(b\)</span>). Run this script to test your code
+(and all the exercises from this exercise set):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">py</span><span class="o">.</span><span class="n">test</span> <span class="n">test</span><span class="o">/</span><span class="n">test_exercises1</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
 </div>
+<p>from the Bash command line. Make sure you commit your modifications
+and push them to your fork of the course repository.</p>
+</div></div><div class="proof proof-type-exercise" id="id6">
+<span id="ex-column-matvec"></span>
+    <div class="proof-title">
+        <span class="proof-type">Exercise 1.2</span>
+        
+    </div><div class="proof-content">
+<p>The <a class="reference internal" href="cla_utils.html#cla_utils.exercises1.column_matvec" title="cla_utils.exercises1.column_matvec"><code class="xref py py-func docutils literal notranslate"><span class="pre">column_matvec()</span></code></a> function has been
+left unimplemented.
+To finish the function, add code so that it computes the
+matrix-vector product <span class="math notranslate nohighlight">\(b=Ax\)</span> from inputs <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(x\)</span>.  This second
+implementation should use the column-space formulation of
+matrix-vector multiplication, i.e., <span class="math notranslate nohighlight">\(b\)</span> is a weighted sum of the
+columns of <span class="math notranslate nohighlight">\(A\)</span> with coefficients given by the entries in <span class="math notranslate nohighlight">\(x\)</span>.  This
+should be implemented with a single for loop over the entries of
+<span class="math notranslate nohighlight">\(x\)</span>. It will be useful to use the Python “slice” notation, for
+example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>will return the 4th (since Python numbers from zero) column of <span class="math notranslate nohighlight">\(A\)</span>.
+The test script will also test this function.</p>
+</div></div><div class="proof proof-type-exercise" id="id7">
+
+    <div class="proof-title">
+        <span class="proof-type">Exercise 1.3</span>
+        
+    </div><div class="proof-content">
+<p>The <a class="reference internal" href="cla_utils.html#cla_utils.exercises1.time_matvecs" title="cla_utils.exercises1.time_matvecs"><code class="xref py py-func docutils literal notranslate"><span class="pre">time_matvecs()</span></code></a> function computes
+the execution time for these two implementations for some example
+matrices and compares them with the built-in Numpy matrix-vector
+product. Run this function and examine the output. You should
+observe that the basic implementation is much slower than the
+built-in implementation. This is because built-in Numpy operations
+use compiled C code that is wrapped in Python, which avoids the
+overheads of run-time interpretation of the Python code and
+manipulation of Python objects. Numpy is really useful for
+computational linear algebra programming because it preserves the
+readability and flexibility of Python (writing code that looks much
+more like maths, access to object-oriented programming models)
+whilst giving near-C speed if used appropriately.  You can read
+more about the advantages of using Numpy <a class="reference external" href="https://numpy.org/devdocs/user/whatisnumpy.html">here</a>.  You
+should also observe that the column implementation is somewhere
+between the speed of the basic implementation and the built-in
+implementation. This is because (if you did it correctly), each
+iteration of the for loop involves adding an entire array (a
+scaling of one of the columns of <span class="math notranslate nohighlight">\(A\)</span>) to another array (where <span class="math notranslate nohighlight">\(b\)</span>
+is being calculated). This will also use compiled C code through
+Numpy, removing some (but not all) of the Python overheads in the
+basic implementation.</p>
+<p>In this course, we will present algorithms in the notes that generally
+do not express the way that Numpy should be used to implement them.
+In these exercises you should consider the best way to make use of
+Numpy built-in operations (which will often make the code more maths-like
+and readable, as well as potentially faster).</p>
+</div></div></div>
 <div class="section" id="range-nullspace-and-rank">
 <h2><span class="section-number">1.2. </span>Range, nullspace and rank<a class="headerlink" href="#range-nullspace-and-rank" title="Permalink to this headline">¶</a></h2>
 <p>In this section we’ll quickly rattle through some definitions and results.</p>
-<div class="proof proof-type-definition" id="id3">
+<div class="proof proof-type-definition" id="id8">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 1.1</span>
+        <span class="proof-type">Definition 1.4</span>
         
             <span class="proof-title-name">(Range)</span>
         
@@ -171,17 +243,17 @@ see in the next section that this matrix has rank 1.</p>
 be expressed as <span class="math notranslate nohighlight">\(Ax\)</span> for some <span class="math notranslate nohighlight">\(x\)</span>.</p>
 </div></div><p>The next theorem follows as a result of the column space
 interpretation of matrix-vector multiplication.</p>
-<div class="proof proof-type-theorem" id="id4">
+<div class="proof proof-type-theorem" id="id9">
 
     <div class="proof-title">
-        <span class="proof-type">Theorem 1.2</span>
+        <span class="proof-type">Theorem 1.5</span>
         
     </div><div class="proof-content">
 <p><span class="math notranslate nohighlight">\(\mbox{range}(A)\)</span> is the vector space spanned by the columns of <span class="math notranslate nohighlight">\(A\)</span>.</p>
-</div></div><div class="proof proof-type-definition" id="id5">
+</div></div><div class="proof proof-type-definition" id="id10">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 1.3</span>
+        <span class="proof-type">Definition 1.6</span>
         
             <span class="proof-title-name">(Nullspace)</span>
         
@@ -190,10 +262,10 @@ interpretation of matrix-vector multiplication.</p>
 vectors <span class="math notranslate nohighlight">\(x\)</span> satisfying <span class="math notranslate nohighlight">\(Ax=0\)</span>, i.e.</p>
 <div class="math notranslate nohighlight">
 \[\mbox{null}(A) = \{x \in \mathbb{C}^n: Ax=0\}.\]</div>
-</div></div><div class="proof proof-type-definition" id="id6">
+</div></div><div class="proof proof-type-definition" id="id11">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 1.4</span>
+        <span class="proof-type">Definition 1.7</span>
         
             <span class="proof-title-name">(Rank)</span>
         
@@ -209,10 +281,10 @@ a_1 &amp; a_2 &amp; \ldots &amp; a_n \\
 \end{pmatrix},\end{split}\]</div>
 </div></blockquote>
 <p>the column space of <span class="math notranslate nohighlight">\(A\)</span> is <span class="math notranslate nohighlight">\(\mbox{span}(a_1,a_2,\ldots,a_n)\)</span>.</p>
-<div class="proof proof-type-definition" id="id7">
+<div class="proof proof-type-definition" id="id12">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 1.5</span>
+        <span class="proof-type">Definition 1.8</span>
         
     </div><div class="proof-content">
 <p>An <span class="math notranslate nohighlight">\(m\times n\)</span> matrix <span class="math notranslate nohighlight">\(A\)</span> is full rank if it has maximum possible rank
@@ -220,22 +292,45 @@ i.e. rank equal to <span class="math notranslate nohighlight">\(\min(m, n)\)</sp
 </div></div><p>If <span class="math notranslate nohighlight">\(m\geq n\)</span> then <span class="math notranslate nohighlight">\(A\)</span> must have <span class="math notranslate nohighlight">\(n\)</span> linearly independent columns to be
 full rank. The next theorem is then a consequence of the column space
 interpretation of matrix-vector multiplication.</p>
-<div class="proof proof-type-theorem" id="id8">
+<div class="proof proof-type-theorem" id="id13">
 
     <div class="proof-title">
-        <span class="proof-type">Theorem 1.6</span>
+        <span class="proof-type">Theorem 1.9</span>
         
     </div><div class="proof-content">
 <p>An <span class="math notranslate nohighlight">\(m\times n\)</span> matrix <span class="math notranslate nohighlight">\(A\)</span> is full rank if and only if it maps no two
 distinct vectors to the same vector.</p>
-</div></div><div class="proof proof-type-definition" id="id9">
+</div></div><div class="proof proof-type-definition" id="id14">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 1.7</span>
+        <span class="proof-type">Definition 1.10</span>
         
     </div><div class="proof-content">
 <p>A matrix <span class="math notranslate nohighlight">\(A\)</span> is called nonsingular, or invertible, if it is a square
 matrix (<span class="math notranslate nohighlight">\(m=n\)</span>) of full rank.</p>
+</div></div><div class="proof proof-type-exercise" id="id15">
+
+    <div class="proof-title">
+        <span class="proof-type">Exercise 1.11</span>
+        
+    </div><div class="proof-content">
+<p>The <a class="reference internal" href="cla_utils.html#cla_utils.exercises1.rank2" title="cla_utils.exercises1.rank2"><code class="xref py py-func docutils literal notranslate"><span class="pre">rank2()</span></code></a> function has been left
+unimplemented.  To finish the function, add code so that it
+computes the rank-2 matrix <span class="math notranslate nohighlight">\(A = u_1v_1^* + u_2v_2^*\)</span> from
+<span class="math notranslate nohighlight">\(u_1,u_2\in \mathbb{C}^m\)</span> and <span class="math notranslate nohighlight">\(v_1,v_2 \in \mathbb{C}^n\)</span>. As you
+can see, the function needs to implement this rank-2 matrix by
+first forming two matrices <span class="math notranslate nohighlight">\(B\)</span> and <span class="math notranslate nohighlight">\(C\)</span> from the inputs,
+matrix-vector product <span class="math notranslate nohighlight">\(b=Ax\)</span> from inputs <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(x\)</span>. The
+test script will also test this function.</p>
+<p>To measure the rank of <span class="math notranslate nohighlight">\(A\)</span>, we first need to cast it from a numpy
+array class to a numpy matrix class, and then use the built-in rank
+function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">rank</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>and we should find that the rank is equal to 2. Can you explain why
+this should be the case (use the column space interpretation of
+matrix-matrix multiplication)?</p>
 </div></div></div>
 <div class="section" id="invertibility-and-inverses">
 <h2><span class="section-number">1.3. </span>Invertibility and inverses<a class="headerlink" href="#invertibility-and-inverses" title="Permalink to this headline">¶</a></h2>
@@ -273,10 +368,10 @@ right inverse of <span class="math notranslate nohighlight">\(A\)</span>, satisf
 <p>The first four parts of the next theorem are a consequence of what
 we have so far, and we shall quote the rest (see a linear algebra
 course).</p>
-<div class="proof proof-type-theorem" id="id10">
+<div class="proof proof-type-theorem" id="id16">
 
     <div class="proof-title">
-        <span class="proof-type">Theorem 1.8</span>
+        <span class="proof-type">Theorem 1.12</span>
         
     </div><div class="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(A \in \mathbb{C}^{m\times m}\)</span>. Then the following are equivalent.</p>
@@ -301,13 +396,36 @@ provide the unique expansion of <span class="math notranslate nohighlight">\(b\)
 basis.  Hence, whilst the entries of <span class="math notranslate nohighlight">\(b\)</span> give basis coefficients for
 <span class="math notranslate nohighlight">\(b\)</span> in the canonical basis <span class="math notranslate nohighlight">\((e_1,e_2,\ldots,e_m)\)</span>, the entries of <span class="math notranslate nohighlight">\(x\)</span>
 give basis coefficients for <span class="math notranslate nohighlight">\(b\)</span> in the basis given by the columns of <span class="math notranslate nohighlight">\(A\)</span>.</p>
-</div>
-<div class="section" id="orthogonal-vectors-and-orthogonal-matrices">
-<h2><span class="section-number">1.4. </span>Orthogonal vectors and orthogonal matrices<a class="headerlink" href="#orthogonal-vectors-and-orthogonal-matrices" title="Permalink to this headline">¶</a></h2>
-<div class="proof proof-type-definition" id="id11">
+<div class="proof proof-type-exercise" id="id17">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 1.9</span>
+        <span class="proof-type">Exercise 1.13</span>
+        
+    </div><div class="proof-content">
+<p>For matrices of the form, <span class="math notranslate nohighlight">\(A = I + uv^*\)</span>, where <span class="math notranslate nohighlight">\(I\)</span> is the <span class="math notranslate nohighlight">\(m\times
+m\)</span> identity matrix, and <span class="math notranslate nohighlight">\(u,v \in \mathbb{C}^m\)</span>, show that whenever
+<span class="math notranslate nohighlight">\(A\)</span> is invertible, the inverse is of the form <span class="math notranslate nohighlight">\(A = I + \alpha uv^*\)</span>
+where <span class="math notranslate nohighlight">\(alpha \in \mathbb{C}\)</span>, and calculate the form of <span class="math notranslate nohighlight">\(\alpha\)</span>.</p>
+<p>The <a class="reference internal" href="cla_utils.html#cla_utils.exercises1.rank1pert_inv" title="cla_utils.exercises1.rank1pert_inv"><code class="xref py py-func docutils literal notranslate"><span class="pre">rank1pert_inv()</span></code></a> function has been left
+unimplemented.  To finish the function, add code so that it
+computes <span class="math notranslate nohighlight">\(A^{-1}\)</span> using your formula (and not any built-in matrix
+inversion routines). The test script will also test this function.</p>
+<p>Add a function to <a href="#id1"><span class="problematic" id="id2">:module:`cla_utils.exercises1`</span></a> that measures the
+time to compute the inverse of <span class="math notranslate nohighlight">\(A\)</span> for an input matrix of size 400,
+and compare with the time to compute the inverse of <span class="math notranslate nohighlight">\(A\)</span> using the built-in
+inverse:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">numpy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>What do you observe? Why do you think this is? We will examine the
+cost of general purpose matrix inversion algorithms later.</p>
+</div></div></div>
+<div class="section" id="orthogonal-vectors-and-orthogonal-matrices">
+<h2><span class="section-number">1.4. </span>Orthogonal vectors and orthogonal matrices<a class="headerlink" href="#orthogonal-vectors-and-orthogonal-matrices" title="Permalink to this headline">¶</a></h2>
+<div class="proof proof-type-definition" id="id18">
+
+    <div class="proof-title">
+        <span class="proof-type">Definition 1.14</span>
         
             <span class="proof-title-name">(Adjoint)</span>
         
@@ -322,10 +440,10 @@ is a matrix <span class="math notranslate nohighlight">\(A^* \in \mathbb{C}^{n\t
 <p>For real matrices, <span class="math notranslate nohighlight">\(A^*=A^T\)</span>. If <span class="math notranslate nohighlight">\(A=A^T\)</span>, then we say that the matrix
 is symmetric.</p>
 </div></div><p>The following identity is very important when dealing with adjoints.</p>
-<div class="proof proof-type-theorem" id="id12">
+<div class="proof proof-type-theorem" id="id19">
 
     <div class="proof-title">
-        <span class="proof-type">Theorem 1.10</span>
+        <span class="proof-type">Theorem 1.15</span>
         
     </div><div class="proof-content">
 <p>For matrices <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(B\)</span> with compatible dimensions (so that they can
@@ -336,10 +454,10 @@ be multiplied),</p>
 <div class="section" id="inner-products-and-orthogonality">
 <h2><span class="section-number">1.5. </span>Inner products and orthogonality<a class="headerlink" href="#inner-products-and-orthogonality" title="Permalink to this headline">¶</a></h2>
 <p>The inner product is a critical tool in computational linear algebra.</p>
-<div class="proof proof-type-definition" id="id13">
+<div class="proof proof-type-definition" id="id20">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 1.11</span>
+        <span class="proof-type">Definition 1.16</span>
         
             <span class="proof-title-name">(Inner product)</span>
         
@@ -351,10 +469,10 @@ be multiplied),</p>
 both of the arguments.)</p>
 <p>We will frequently use the natural norm derived from the inner product
 to define size of vectors.</p>
-<div class="proof proof-type-definition" id="id14">
+<div class="proof proof-type-definition" id="id21">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 1.12</span>
+        <span class="proof-type">Definition 1.17</span>
         
             <span class="proof-title-name">(2-Norm)</span>
         
@@ -364,10 +482,10 @@ to define size of vectors.</p>
 \[\|x\| = \sqrt{\sum_{i=1}^m x_i^2} = \sqrt{x^*x}.\]</div>
 </div></div><p>Orthogonality will emerge as an early key concept in this course.</p>
 <blockquote>
-<div><div class="proof proof-type-definition" id="id15">
+<div><div class="proof proof-type-definition" id="id22">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 1.13</span>
+        <span class="proof-type">Definition 1.18</span>
         
             <span class="proof-title-name">(Orthogonal vectors)</span>
         
@@ -416,20 +534,20 @@ Thus,</p>
 </div>
 <div class="section" id="unitary-matrices">
 <h2><span class="section-number">1.7. </span>Unitary matrices<a class="headerlink" href="#unitary-matrices" title="Permalink to this headline">¶</a></h2>
-<div class="proof proof-type-definition" id="id16">
+<div class="proof proof-type-definition" id="id23">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 1.14</span>
+        <span class="proof-type">Definition 1.19</span>
         
             <span class="proof-title-name">(Unitary matrices)</span>
         
     </div><div class="proof-content">
 <p>A matrix <span class="math notranslate nohighlight">\(Q\in \mathbb{C}^{m\times m}\)</span> is unitary if <span class="math notranslate nohighlight">\(Q^* =Q^{-1}\)</span>.</p>
 <p>For real matrices, a matrix <span class="math notranslate nohighlight">\(Q\)</span>  is orthogonal if <span class="math notranslate nohighlight">\(Q^T=Q^{-1}\)</span>.</p>
-</div></div><div class="proof proof-type-theorem" id="id17">
+</div></div><div class="proof proof-type-theorem" id="id24">
 
     <div class="proof-title">
-        <span class="proof-type">Theorem 1.15</span>
+        <span class="proof-type">Theorem 1.20</span>
         
     </div><div class="proof-content">
 <p>The columns of a unitary matrix <span class="math notranslate nohighlight">\(Q\)</span> are orthonormal.</p>
@@ -461,10 +579,10 @@ given by the orthonormal columns of <span class="math notranslate nohighlight">\
 <p>Various vector norms are useful to measure the size of a vector.
 In computational linear algebra we need them for quantifying errors
 etc.</p>
-<div class="proof proof-type-definition" id="id18">
+<div class="proof proof-type-definition" id="id25">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 1.16</span>
+        <span class="proof-type">Definition 1.21</span>
         
             <span class="proof-title-name">(Norms)</span>
         
@@ -491,10 +609,10 @@ larger class of norms called p-norms, with</p>
 </div>
 <div class="section" id="projectors-and-projections">
 <h2><span class="section-number">1.9. </span>Projectors and projections<a class="headerlink" href="#projectors-and-projections" title="Permalink to this headline">¶</a></h2>
-<div class="proof proof-type-definition" id="id19">
+<div class="proof proof-type-definition" id="id26">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 1.17</span>
+        <span class="proof-type">Definition 1.22</span>
         
             <span class="proof-title-name">(Projector)</span>
         
@@ -507,7 +625,7 @@ larger class of norms called p-norms, with</p>
 \[Pv = P(Px) = P^2x = Px = v,\]</div>
 </div></blockquote>
 <p>and hence multiplying by <span class="math notranslate nohighlight">\(P\)</span> does not change <span class="math notranslate nohighlight">\(v\)</span>.</p>
-<p>Now suppose that <span class="math notranslate nohighlight">\(Pv \neq v\)</span> (so that <a href="#id1"><span class="problematic" id="id2">`</span></a>vnotin mbox{range}(P)).
+<p>Now suppose that <span class="math notranslate nohighlight">\(Pv \neq v\)</span> (so that <a href="#id3"><span class="problematic" id="id4">`</span></a>vnotin mbox{range}(P)).
 Then,</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -518,10 +636,10 @@ Then,</p>
 <div><div class="math notranslate nohighlight">
 \[Pv -v = -(I-P)v.\]</div>
 </div></blockquote>
-<div class="proof proof-type-definition" id="id20">
+<div class="proof proof-type-definition" id="id27">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 1.18</span>
+        <span class="proof-type">Definition 1.23</span>
         
             <span class="proof-title-name">(Complementary projector)</span>
         
@@ -560,10 +678,10 @@ of <span class="math notranslate nohighlight">\(\mathbb{C}^m\)</span> with <span
 exists a projector <span class="math notranslate nohighlight">\(P\)</span> whose range is <span class="math notranslate nohighlight">\(S_1\)</span> and whose nullspace
 is <span class="math notranslate nohighlight">\(S_2\)</span>.</p>
 <p>Now we introduce orthogonality into the concept of projectors.</p>
-<div class="proof proof-type-definition" id="id21">
+<div class="proof proof-type-definition" id="id28">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 1.19</span>
+        <span class="proof-type">Definition 1.24</span>
         
             <span class="proof-title-name">(Orthogonal projector)</span>
         
@@ -589,10 +707,10 @@ q_1 &amp; q_2 &amp; \ldots &amp; q_n \\
 <div class="math notranslate nohighlight">
 \[v \mapsto Pv = \underbrace{\sum_{i=1}^n (q_iq^*_i)}_{=P}v,\]</div>
 <p>is an orthogonal projector. In fact, <span class="math notranslate nohighlight">\(P\)</span> has very simple form.</p>
-<div class="proof proof-type-theorem" id="id22">
+<div class="proof proof-type-theorem" id="id29">
 <span id="orthogonal-projector"></span>
     <div class="proof-title">
-        <span class="proof-type">Theorem 1.20</span>
+        <span class="proof-type">Theorem 1.25</span>
         
     </div><div class="proof-content">
 <p>The orthogonal projector <span class="math notranslate nohighlight">\(P\)</span> takes the form</p>
@@ -621,10 +739,10 @@ and then</p>
 \[P = q_1q_1^*, \, P_{\perp}=I - q_1q_1^*.\]</div>
 <p>We notice that <span class="math notranslate nohighlight">\(P^* = (\hat{Q}\hat{Q}^*) = \hat{Q}\hat{Q}^* = P\)</span>.
 In fact the following is true.</p>
-<div class="proof proof-type-theorem" id="id23">
+<div class="proof proof-type-theorem" id="id30">
 
     <div class="proof-title">
-        <span class="proof-type">Theorem 1.21</span>
+        <span class="proof-type">Theorem 1.26</span>
         
     </div><div class="proof-content">
 <p><span class="math notranslate nohighlight">\(P=P^*\)</span> if and only if <span class="math notranslate nohighlight">\(Q\)</span> is an orthogonal projector.</p>
