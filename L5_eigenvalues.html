@@ -15,7 +15,7 @@
     <script src="_static/doctools.js"></script>
     <script src="_static/language_data.js"></script>
     <script src="_static/proof.js"></script>
-    <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="6. Iterative Krylov methods for \(Ax=b\)" href="L6_krylov.html" />
@@ -91,7 +91,7 @@ possible to transform to an eigenvalue decomposition. Hence we shall
 look into some other eigenvalue revealing decompositions of <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <p>We quote the following result that explains when an eigenvalue
 decomposition can be found.</p>
-<div class="proof proof-type-theorem" id="id1">
+<div class="proof proof-type-theorem" id="id2">
 
     <div class="proof-title">
         <span class="proof-type">Theorem 5.1</span>
@@ -109,7 +109,7 @@ the eigenspaces do not span <span class="math notranslate nohighlight">\(\mathbb
 decomposition is not possible.</p>
 <p>This all motivates the search for other eigenvalue revealing
 decompositions of <span class="math notranslate nohighlight">\(A\)</span>.</p>
-<div class="proof proof-type-definition" id="id2">
+<div class="proof proof-type-definition" id="id3">
 
     <div class="proof-title">
         <span class="proof-type">Definition 5.2</span>
@@ -123,7 +123,7 @@ Two matrices <span class="math notranslate nohighlight">\(A\)</span> and <span c
 </div></div><p>The eigenvalue decomposition shows that (when it exists), <span class="math notranslate nohighlight">\(A\)</span> is similar
 to <span class="math notranslate nohighlight">\(\Lambda\)</span>. The following result shows that it may be useful to examine
 other similarity transformations.</p>
-<div class="proof proof-type-theorem" id="id3">
+<div class="proof proof-type-theorem" id="id4">
 
     <div class="proof-title">
         <span class="proof-type">Theorem 5.3</span>
@@ -143,7 +143,7 @@ transformed to a matrix <span class="math notranslate nohighlight">\(B\)</span> 
 eigenvalues can be easily computed (with the diagonal matrix of the
 eigenvalue decomposition being one example).</p>
 <p>One such transformation comes from the Schur factorisation.</p>
-<div class="proof proof-type-definition" id="id4">
+<div class="proof proof-type-definition" id="id5">
 
     <div class="proof-title">
         <span class="proof-type">Definition 5.4</span>
@@ -156,7 +156,7 @@ QTQ^*\)</span>, where <span class="math notranslate nohighlight">\(Q\)</span> is
 upper triangular.</p>
 </div></div><p>It turns out that, unlike the situation for the eigenvalue
 decomposition, the following is true.</p>
-<div class="proof proof-type-theorem" id="id5">
+<div class="proof proof-type-theorem" id="id6">
 
     <div class="proof-title">
         <span class="proof-type">Theorem 5.5</span>
@@ -171,7 +171,7 @@ factorisation of <span class="math notranslate nohighlight">\(A\)</span>, we can
 matrices of <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <p>There is a special case of the Schur factorisation, called the unitary
 diagonalisation</p>
-<div class="proof proof-type-definition" id="id6">
+<div class="proof proof-type-definition" id="id7">
 
     <div class="proof-title">
         <span class="proof-type">Definition 5.6</span>
@@ -184,7 +184,7 @@ Q\Lambda Q^*\)</span>, where <span class="math notranslate nohighlight">\(Q\)</s
 is diagonal.</p>
 </div></div><p>A unitary diagonalisation is a Schur factorisation <em>and</em> an eigenvalue
 decomposition.</p>
-<div class="proof proof-type-theorem" id="id7">
+<div class="proof proof-type-theorem" id="id8">
 
     <div class="proof-title">
         <span class="proof-type">Theorem 5.7</span>
@@ -352,8 +352,8 @@ x \to q_J.\]</div>
 <p>The Rayleigh quotient gives a quadratically accurate estimate to the
 eigenvalues of <span class="math notranslate nohighlight">\(A\)</span>.</p>
 </div>
-<div class="section" id="power-iteration-and-inverse-iteration">
-<h2><span class="section-number">5.5. </span>Power iteration and inverse iteration<a class="headerlink" href="#power-iteration-and-inverse-iteration" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="power-iteration">
+<h2><span class="section-number">5.5. </span>Power iteration<a class="headerlink" href="#power-iteration" title="Permalink to this headline">¶</a></h2>
 <p>Power iteration is a simple method for finding the eigenvalue of
 <span class="math notranslate nohighlight">\(A\)</span> with largest eigenvalue (in magnitude). It is based on the following
 idea. We expand a vector <span class="math notranslate nohighlight">\(v\)</span> in eigenvectors of <span class="math notranslate nohighlight">\(A\)</span>,</p>
@@ -395,8 +395,8 @@ quotient to see how our approximation of the eigenvalue is going.</p>
 divide by it in the Rayleigh quotient. We terminate the power
 iteration when we decide that the changes in <span class="math notranslate nohighlight">\(\lambda\)</span> indicate
 that the error is small. This is guided by the following result.</p>
-<div class="proof proof-type-theorem" id="id8">
-<span id="power-iteration"></span>
+<div class="proof proof-type-theorem" id="id9">
+<span id="id1"></span>
     <div class="proof-title">
         <span class="proof-type">Theorem 5.8</span>
         
@@ -446,7 +446,7 @@ to <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
 <p>This algorithm is called inverse iteration, which we express in
 pseudo-code below.</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(v^{0} \gets \)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(v^{0}\gets\)</span> some initial vector with <span class="math notranslate nohighlight">\(\|v^0\|=1\)</span>.</p></li>
 <li><p>FOR <span class="math notranslate nohighlight">\(k=1,2,\ldots\)</span></p>
 <ul>
 <li><p>SOLVE <span class="math notranslate nohighlight">\((A-\mu I)w = v^{k-1}\)</span> for <span class="math notranslate nohighlight">\(w\)</span></p></li>
@@ -455,7 +455,7 @@ pseudo-code below.</p>
 </ul>
 </li>
 </ul>
-<p>We can then directly extend <a class="reference internal" href="#power-iteration"><span class="std std-numref">Theorem
+<p>We can then directly extend <a class="reference internal" href="#id1"><span class="std std-numref">Theorem
 5.8</span></a> to the inverse iteration algorithm.
 We conclude that the convergence rate is not improved relative
 to power iteration, but now we can “dial in” to different
@@ -472,14 +472,19 @@ inverse iteration to give an updated vector which should now be closer
 to an eigenvector. Then we iterate this whole process. This is called
 the Rayleigh quotient iteration, which we express in pseudo-code
 below.</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(v^{0} \gets \)</span>.
-* <span class="math notranslate nohighlight">\(\lambda^{(0)} \gets (v^0)^TAv^0\)</span></p></li>
-<li><p>FOR <span class="math notranslate nohighlight">\(k=1,2,\ldots\)</span>
-* SOLVE <span class="math notranslate nohighlight">\((A-\lambda^{(k-1)} I)w = v^{k-1}\)</span> for <span class="math notranslate nohighlight">\(w\)</span>
-* <span class="math notranslate nohighlight">\(v^k\gets w/\|w\|\)</span>
-* <span class="math notranslate nohighlight">\(\lambda^{(k)} \gets (v^k)^TAv^k\)</span></p></li>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(v^{0}\)</span> some initial vector with <span class="math notranslate nohighlight">\(\|v^0\|=1\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\lambda^{(0)} \gets (v^0)^TAv^0\)</span></p></li>
+<li><p>FOR <span class="math notranslate nohighlight">\(k=1,2,\ldots\)</span></p>
+<ul>
+<li><p>SOLVE <span class="math notranslate nohighlight">\((A-\lambda^{(k-1)} I)w = v^{k-1}\)</span> for <span class="math notranslate nohighlight">\(w\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(v^k\gets w/\|w\|\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\lambda^{(k)} \gets (v^k)^TAv^k\)</span></p></li>
 </ul>
+</li>
+</ul>
+</div></blockquote>
 <p>This dramatically improves the convergence since if
 <span class="math notranslate nohighlight">\(\|v^(k)-q_J\|=\mathcal{O}(\delta)\)</span> for some small <span class="math notranslate nohighlight">\(\delta\)</span>, then the
 Rayleigh quotient gives <span class="math notranslate nohighlight">\(|\lambda^{(k)}-q_J|=\mathcal{O}(\delta^2)\)</span>.
@@ -528,23 +533,23 @@ another algorithm called simultaneous iteration.</p>
 eigenvector/eigenvalue pair at a time. Simultaneous iteration is a
 solution to this. The starting idea is simple: instead of working on
 just one vector <span class="math notranslate nohighlight">\(v\)</span>, we pick a set of linearly independent vectors
-<span class="math notranslate nohighlight">\(v_1^(0),v_2^(0),\ldots,v_n^(0)\)</span> and repeatedly apply <span class="math notranslate nohighlight">\(A\)</span> to each of
+<span class="math notranslate nohighlight">\(v_1^{(0)},v_2^{(0)},\ldots,v_n^{(0)}\)</span> and repeatedly apply <span class="math notranslate nohighlight">\(A\)</span> to each of
 these vectors. After a large number applications and normalisations in
 the manner of the power iteration, we end up with a linear independent
-set <span class="math notranslate nohighlight">\(v_1^(k),v_2^(k),\ldots,v_n^(k)\)</span>, <span class="math notranslate nohighlight">\(n\leq m\)</span>. All of the vectors in this set
+set <span class="math notranslate nohighlight">\(v_1^{(k)},v_2^{(k)},\ldots,v_n^{(k)}\)</span>, <span class="math notranslate nohighlight">\(n\leq m\)</span>. All of the vectors in this set
 will be very close to <span class="math notranslate nohighlight">\(q_1\)</span>, the eigenvector with largest magnitude of
-corresponding eigenvalue. We can choose <span class="math notranslate nohighlight">\(v_1^(k)\)</span> as our approximation
+corresponding eigenvalue. We can choose <span class="math notranslate nohighlight">\(v_1^{(k)}\)</span> as our approximation
 of <span class="math notranslate nohighlight">\(q_1\)</span>, and project this approximation of <span class="math notranslate nohighlight">\(q_1\)</span> from the rest of the
-vectors <span class="math notranslate nohighlight">\(v_2^(k),v_3^(k),\ldots v_m^(k)\)</span>.  All the remaining vectors
+vectors <span class="math notranslate nohighlight">\(v_2^{(k)},v_3^{(k)},\ldots v_m^{(k)}\)</span>.  All the remaining vectors
 will be close to <span class="math notranslate nohighlight">\(q_2\)</span>, the eigenvector with the next largest
 magnitude of corresponding eigenvalue. Similarly we can choose the
 first one of the remaining projected vectors as an approximation of
 <span class="math notranslate nohighlight">\(q_2\)</span> and project it again from the rest.</p>
 <p>We can translate this idea to matrices by defining <span class="math notranslate nohighlight">\(V^{(0)}\)</span> to be the
 matrix with columns given by the set of initial <span class="math notranslate nohighlight">\(v\)</span>
-applications of <span class="math notranslate nohighlight">\(A\)</span>, we have <span class="math notranslate nohighlight">\(V^{(k)}=A^{(k)} V^{(0)}\)</span>. By the column space
+applications of <span class="math notranslate nohighlight">\(A\)</span>, we have <span class="math notranslate nohighlight">\(V^{(k)}=A^{k} V^{(0)}\)</span>. By the column space
 interpretation of matrix-matrix multiplication, each column of <span class="math notranslate nohighlight">\(V^{(k)}\)</span>
-is <span class="math notranslate nohighlight">\(A^{(k)}\)</span> multiplied by the corresponding column of <span class="math notranslate nohighlight">\(V^{(0)}\)</span>. To make the
+is <span class="math notranslate nohighlight">\(A^{k}\)</span> multiplied by the corresponding column of <span class="math notranslate nohighlight">\(V^{(0)}\)</span>. To make the
 normalisation and projection process above, we could just apply the
 Gram-Schmidt algorithm, sequentially forming an orthonormal spanning
 set for the columns of <span class="math notranslate nohighlight">\(V^{(k)}\)</span> working from left to right.  However, we
@@ -553,17 +558,17 @@ factorisation of <span class="math notranslate nohighlight">\(V^{(k)}\)</span>, 
 <span class="math notranslate nohighlight">\(\hat{Q}^{(k)}\)</span> give the same orthonormal spanning set.  Hence, the
 columns of <span class="math notranslate nohighlight">\(\hat{Q}^{(k)}\)</span> will converge to eigenvectors of <span class="math notranslate nohighlight">\(A\)</span>, provided
 that:</p>
-<p>#. The first <span class="math notranslate nohighlight">\(n\)</span> eigenvalues of <span class="math notranslate nohighlight">\(A\)</span> are distinct in absolute value:
+<ol class="arabic simple">
+<li><p>The first <span class="math notranslate nohighlight">\(n\)</span> eigenvalues of <span class="math notranslate nohighlight">\(A\)</span> are distinct in absolute value:
 <span class="math notranslate nohighlight">\(|\lambda_1| &gt; |\lambda_2| &gt; \ldots &gt; |\lambda_n|\)</span>. If we want to find
 all of the eigenvalues <span class="math notranslate nohighlight">\(n=m\)</span>, then all the absolute values of the
-eigenvalues must be distinct.
-#. The <span class="math notranslate nohighlight">\(v\)</span> vectors can be expressed as a linear sum of the first <span class="math notranslate nohighlight">\(n\)</span></p>
-<blockquote>
-<div><p>eigenvectors <span class="math notranslate nohighlight">\(q_1,\ldots,q_n\)</span> in a non-degenerate way. This turns
+eigenvalues must be distinct.</p></li>
+<li><p>The <span class="math notranslate nohighlight">\(v\)</span> vectors can be expressed as a linear sum of the first <span class="math notranslate nohighlight">\(n\)</span>
+eigenvectors <span class="math notranslate nohighlight">\(q_1,\ldots,q_n\)</span> in a non-degenerate way. This turns
 out (we won’t show it here) the be equivalent to the condition that
 <span class="math notranslate nohighlight">\(\hat{Q}^TV^{(0)}\)</span> has an LU factorisation (where <span class="math notranslate nohighlight">\(\hat{Q}\)</span> is the
-matrix whose columns of the first <span class="math notranslate nohighlight">\(n\)</span> eigenvectors.</p>
-</div></blockquote>
+matrix whose columns of the first <span class="math notranslate nohighlight">\(n\)</span> eigenvectors.</p></li>
+</ol>
 <p>One problem with this idea is that it is not numerically stable.  The
 columns of <span class="math notranslate nohighlight">\(V^{(k)}\)</span> rapidly become a very ill-conditioned basis for the
 spanning space of the original independent set, and the values of
@@ -621,7 +626,7 @@ matrices, and a running product of all of the <span class="math notranslate nohi
 </ul>
 </li>
 </ul>
-<div class="proof proof-type-theorem" id="id9">
+<div class="proof proof-type-theorem" id="id10">
 
     <div class="proof-title">
         <span class="proof-type">Theorem 5.9</span>

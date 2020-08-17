@@ -132,7 +132,7 @@ see in the next section that this matrix has rank 1.
 
 .. proof:exercise::
 
-   The :func:`~cla_utils.exercises1.basic_matvec` function has been left
+   The :func:`cla_utils.exercises1.basic_matvec` function has been left
    unimplemented. To finish the function, add code so that it
    computes the matrix-vector product `b=Ax` from inputs `A` and `x`.
    In this first implementation, you should simply implement
@@ -149,25 +149,30 @@ see in the next section that this matrix has rank 1.
 
 .. proof:exercise::
 
-   The :func:`~cla_utils.exercises1.column_matvec` function has been
-   left unimplemented.
-   To finish the function, add code so that it computes the
-   matrix-vector product `b=Ax` from inputs `A` and `x`.  This second
-   implementation should use the column-space formulation of
-   matrix-vector multiplication, i.e., `b` is a weighted sum of the
+   The :func:`cla_utils.exercises1.column_matvec` function has been
+   left unimplemented.  To finish the function, add code so that it
+   computes the matrix-vector product `b=Ax` from inputs `A` and `x`.
+   This second implementation should use the column-space formulation
+   of matrix-vector multiplication, i.e., `b` is a weighted sum of the
    columns of `A` with coefficients given by the entries in `x`.  This
    should be implemented with a single for loop over the entries of
-   `x`. It will be useful to use the Python "slice" notation, for
+   `x`. The test script :python:`test_exercises1.py` will also test
+   this function.
+
+.. hint::
+
+   It will be useful to use the Python "slice" notation, for
    example::
-
-      A[:, 3]
-
+     
+     A[:, 3]
+     
    will return the 4th (since Python numbers from zero) column of `A`.
-   The test script will also test this function.
-
+   For more information, see the `Numpy documentation on slicing.
+   <https://numpy.org/doc/stable/reference/arrays.indexing.html>`_
+   
 .. proof:exercise::
 
-   The :func:`~cla_utils.exercises1.time_matvecs` function computes
+   The :func:`cla_utils.exercises1.time_matvecs` function computes
    the execution time for these two implementations for some example
    matrices and compares them with the built-in Numpy matrix-vector
    product. Run this function and examine the output. You should
@@ -260,14 +265,14 @@ interpretation of matrix-vector multiplication.
 
 .. proof:exercise::
 
-   The :func:`~cla_utils.exercises1.rank2` function has been left
+   The :func:`cla_utils.exercises1.rank2` function has been left
    unimplemented.  To finish the function, add code so that it
    computes the rank-2 matrix `A = u_1v_1^* + u_2v_2^*` from
    `u_1,u_2\in \mathbb{C}^m` and `v_1,v_2 \in \mathbb{C}^n`. As you
    can see, the function needs to implement this rank-2 matrix by
    first forming two matrices `B` and `C` from the inputs,
    matrix-vector product `b=Ax` from inputs `A` and `x`. The
-   test script will also test this function.
+   test script ``test_exercises1.py`` in the ``test`` directory will also test this function.
 
    To measure the rank of `A`, we first need to cast it from a numpy
    array class to a numpy matrix class, and then use the built-in rank
@@ -354,14 +359,15 @@ give basis coefficients for `b` in the basis given by the columns of `A`.
    For matrices of the form, `A = I + uv^*`, where `I` is the `m\times
    m` identity matrix, and `u,v \in \mathbb{C}^m`, show that whenever
    `A` is invertible, the inverse is of the form `A = I + \alpha uv^*`
-   where `alpha \in \mathbb{C}`, and calculate the form of `\alpha`.
+   where `\alpha \in \mathbb{C}`, and calculate the form of `\alpha`.
 
-   The :func:`~cla_utils.exercises1.rank1pert_inv` function has been left
-   unimplemented.  To finish the function, add code so that it
+   The :func:`cla_utils.exercises1.rank1pert_inv` function has been
+   left unimplemented.  To finish the function, add code so that it
    computes `A^{-1}` using your formula (and not any built-in matrix
-   inversion routines). The test script will also test this function.
+   inversion routines). The test script ``test_exercises1.py`` in the
+   ``test`` directory will also test this function.
 
-   Add a function to :module:`cla_utils.exercises1` that measures the
+   Add a function to :mod:`cla_utils.exercises1` that measures the
    time to compute the inverse of `A` for an input matrix of size 400,
    and compare with the time to compute the inverse of `A` using the built-in
    inverse::
@@ -372,8 +378,8 @@ give basis coefficients for `b` in the basis given by the columns of `A`.
    cost of general purpose matrix inversion algorithms later.
 
 
-Orthogonal vectors and orthogonal matrices
-==========================================
+Adjoints and Hermitian matrices
+===============================
 
 .. proof:definition:: Adjoint
 
@@ -402,6 +408,39 @@ The following identity is very important when dealing with adjoints.
 
       (AB)^* = B^*A^*.
 
+.. proof:exercise::
+
+   Consider a matrix `A=B + iC` where `B,C\in\mathbb{R}^{m\times m}`
+   and `A` is Hermitian. Show that `B=B^T` and `C=-C^T`. To save
+   memory, instead of storing values of `A` (`m\times m` complex
+   numbers to store), consider equivalently storing a real-valued
+   `m\times m` array `\hat{A}` with `\hat{A}_{ij}=B_{ij}` for `i\leq j`
+   and `\hat{A}_{ij}=C_{ij}` for `i>j`.
+
+   The :func:`cla_utils.exercises1.ABiC` function has been left
+   unimplemented. It should implement matrix vector multiplication
+   `z=Ax`, returning the real and imaginary parts of `z`, given the
+   real and imaginary parts of `x` as inputs, and given the real array
+   `\hat{A}` as above. You should implement the multiplication using
+   real arithmetic only, with just one loop over the entries of `x`,
+   using the column space interpretation of matrix-vector
+   multiplication. The test script ``test_exercises1.py`` in the
+   ``test`` directory will also test this function.
+   
+.. hint::
+
+   You can use the Python "slice" notation, to assign into a slice
+   of an array, for example::
+     
+     x[3:5] = y[3:5]
+     
+   will copy the 4th and 5th entries of `y` (Python numbers from zero,
+   and the upper limit of the slice is the first index value not to
+   use.  For more information, see the `Numpy documentation on
+   slicing.
+   <https://numpy.org/doc/stable/reference/arrays.indexing.html>`_
+
+
 Inner products and orthogonality
 ================================
 
@@ -427,30 +466,30 @@ to define size of vectors.
 
    .. math::
 
-      \|x\| = \sqrt{\sum_{i=1}^m x_i^2} = \sqrt{x^*x}.
+      \|x\| = \sqrt{\sum_{i=1}^m |x_i|^2} = \sqrt{x^*x}.
 
 Orthogonality will emerge as an early key concept in this course.
       
- .. proof:definition:: Orthogonal vectors
+.. proof:definition:: Orthogonal vectors
 
-    Let `x,y\in \mathbb{C}^m`. The two vectors are orthogonal if
-    `x^*y=0`.
+   Let `x,y\in \mathbb{C}^m`. The two vectors are orthogonal if
+   `x^*y=0`.
 
-    Similarly, let `X`, `Y` be two sets of vectors. The two sets
-    are orthogonal if
+   Similarly, let `X`, `Y` be two sets of vectors. The two sets
+   are orthogonal if
 
-    .. math::
+   .. math::
 
-       x^*y = 0\, \forall x\in X, \, y\in Y.
+      x^*y = 0\, \forall x\in X, \, y\in Y.
 
-    A set `S` of vectors is itself orthogonal if
+   A set `S` of vectors is itself orthogonal if
+      
+   .. math::
 
-    .. math::
+      x^*y = 0\,\forall x,y \in S.
 
-       x^*y = 0\,\forall x,y \in S.
-
-    We say that `S` is orthonormal if we also have `\|x\|=1`
-    for all `x\in S`.
+   We say that `S` is orthonormal if we also have `\|x\|=1`
+   for all `x\in S`.
 
 Orthogonal components of a vector
 =================================
@@ -470,7 +509,7 @@ for each `1\leq i \leq n`,
 
       q^*_ir = q_i^*v - (q_1^*v)(q_i^*q_1) - \ldots (q_n^*v)(q_i^*q_n)
 
-   = q_i^*v - q_i^*v = 0,
+      = q_i^*v - q_i^*v = 0,
 
 since `q_i^*q_j=0` if `i\neq j`, and 1 if `i=j`.
 Thus,
@@ -485,6 +524,14 @@ If `S` is a basis for `\mathbb{C}^m`, then `n=m` and `r=0`, and we have
    .. math::
 
       v = \sum_{i=1}^m (q_i q_i^*)v.
+
+.. proof:exercise::
+
+   The :func:`cla_utils.exercises2.orthog_cpts` function has been left
+   unimplemented. It should implement the above computation, returning
+   `r` and the coefficients of the component of `v` in each
+   orthonormal direction. The test script ``test_exercises2.py`` in
+   the ``test`` directory will test this function.
 
 Unitary matrices
 ================
@@ -524,6 +571,26 @@ representing a change of orthogonal basis. If `Qx = b`, then
 `x=Q^*b` contains the coefficients of `b` expanded in the basis
 given by the orthonormal columns of `Q`.
 
+.. proof:exercise::
+
+   The :func:`cla_utils.exercises2.solveQ` function has been left
+   unimplemented. Given a square unitary matrix `Q` and a vector `b`
+   it should solve `Qx=b` using information above (it is not expected
+   to work when `Q` is not unitary or square). The test script
+   ``test_exercises2.py`` in the ``test`` directory will test this
+   function.
+
+   Add a function to :mod:`cla_utils.exercises2` that measures the
+   time to solve `Qx=b` using ``solveQ`` for an input matrix of sizes 100,
+   200, 400,
+   and compare with the times to solve the equation using the general purpose
+   solve (which uses LU factorisation, which we will discuss later)::
+
+     x = numpy.linalg.solve(Q, b)
+
+   What did you expect and was it observed?
+
+
 Vector norms
 ============
 
@@ -547,7 +614,7 @@ larger class of norms called p-norms, with
 
       \|x\|_p = \left(\sum_{i=1}^m |x_i|^p\right)^{1/p}, \quad
 
-for real 'p>0'. We will also consider weighted norms
+for real `p>0`. We will also consider weighted norms
 
    .. math::
 
@@ -571,7 +638,7 @@ If `v \in \mbox{range}(P)`, then there exists `x` such that
 
 and hence multiplying by `P` does not change `v`.
 
-Now suppose that `Pv \neq v` (so that `v\notin \mbox{range}(P)).
+Now suppose that `Pv \neq v` (so that `v\notin \mbox{range}(P)`).
 Then,
 
    .. math::
@@ -701,6 +768,12 @@ In fact the following is true.
 
 .. proof:theorem::
 
-   `P=P^*` if and only if `Q` is an orthogonal projector.
+   `P=P^*` if and only if `Q` is orthogonal.
 
+.. proof:exercise::
 
+   The :func:`cla_utils.exercises2.orthog_proj` function has been left
+   unimplemented. Given an orthonormal set `q_1,q_2,\ldots,q_n`, it
+   should provide the orthogonal projector `P`. The test script
+   ``test_exercises2.py`` in the ``test`` directory will also test
+   this function.

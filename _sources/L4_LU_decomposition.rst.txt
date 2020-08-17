@@ -191,7 +191,22 @@ i.e.,
       \end{pmatrix}.
 
 In summary, we can compute entries of `L` during the Gaussian elimination
-process of transforming `A` to `U`.
+process of transforming `A` to `U`. Note that the matrices `L_1,L_2,\ldots`
+should not be explicitly formed during the elimination process, they are just
+a mathematical concept to translate from the row operations into the final
+`L` matrix.
+
+.. proof:exercise::
+
+   Having said that, let's take a moment to compute some examples
+   using the `L_1,L_2,\ldots` matrices (to help with understanding).
+   The :func:`cla_utils.exercises6.get_Lk` function has been left
+   unimplemented. It should return one of these matrices given the
+   `l_k` entries.  The test script ``test_exercises6.py`` in the
+   ``test`` directory will test this function.
+
+   Once it passes the tests, experiment with the inverse and
+   multiplication properties above, to verify that they work.
 
 So, what's the advantage of writing `A=LU`? Well, we can define
 `y=Ux`.  Then, we can solve `Ax=b` in two steps, first solving `Ly=b`
@@ -253,6 +268,46 @@ requires `m-k+1` multiplications and subtractions, and is iterated
       = \sum_{k=1}^{m-1}2m^2 - 4mk + 2k^2
 
       \sim 2m^3 -4\frac{m^3}{2} + \frac{2m^3}{3} = \frac{2m^3}{3}.
+
+.. proof:exercise::
+
+   Since the diagonal entires of `L` are all ones, the total amount of
+   combined memory required to store `L` and `U` is the same as the
+   amount of memory required to store `A`. Further, each iteration of
+   the LU factorisation algorithm computes one column of `L` and one
+   rows of `U`, and the corresponding column an row of `A` are not
+   needed for the rest of the algorithm. This creates the opportunity
+   for a memory-efficient 'in-place' algorithm in which the matrix `A`
+   is modified until it contains the values for `L` and `U`.
+
+   The :func:`cla_utils.exercises6.LU_inplace` function has been left
+   unimplemented. It should implement this in-place low-storage
+   procedure, applying the changes to the provided matrix `A`.  The
+   test script ``test_exercises6.py`` in the ``test`` directory will
+   test this function.
+
+.. proof:exercise::
+
+   The LU factorisation requires 3 loops (this is why it has a cubic
+   FLOP count). In the algorithm above, there are two explicit loops
+   and one explicit one (in the slice notation). It is possible to
+   rewrite this in a single loop, using an outer product. Identify
+   this outer product, and update
+   :func:`cla_utils.exercises6.LU_inplace` to make use of this
+   reformulation (using :func:`numpy.outer`). Do you notice any
+   improvement in speed?
+
+.. proof:exercise::
+
+   The functions :func:`cla_utils.exercises6.solve_L` and
+   :func:`cla_utils.exercises6.solve_U` have been left unimplemented.
+   They should use forward and backward substitution to solve lower
+   and upper triangular systems respectively. The interfaces are set
+   so that multiple right hand sides can be provided and solved at the
+   same time. The functions should only use one loop over the columns
+   of `L` (or `U`), to efficiently solve the multiple problems.  The
+   test script ``test_exercises6.py`` in the ``test`` directory will
+   test these functions.
 
 Pivoting
 --------

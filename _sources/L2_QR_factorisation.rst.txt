@@ -1,3 +1,5 @@
+
+
 .. default-role:: math
 
 QR Factorisation
@@ -45,6 +47,23 @@ in the matrix vector product `QR`, all columns of `Q` beyond the `n`th
 column get multiplied by those zero rows in `R`, so it makes sense to
 only work with the first `n` columns of `Q`, which we call `\hat{Q}`.
 We then have the reduced QR factorisation, `\hat{Q}\hat{R}`.
+
+.. proof:exercise::
+
+   The :func:`cla_utils.exercises2.orthog_space` function has been
+   left unimplemented. Given a set of vectors `v_1,v_2,\ldots,v_n`
+   that span the subspace `U \subset \mathbb{C}^m`, the function
+   should find an orthonormal basis for the orthogonal complement
+   `U^{\perp}` given by
+
+      .. math::
+
+	 U^{\perp} = \{x \in \mathbb{C}^m: x^*v = 0, \, \forall v \in U\}. 
+
+   It is expected that it will only compute this up to a tolerance.
+   You should make use of the built in QR factorisation routine
+   :func:`numpy.linalg.qr`. The test script ``test_exercises2.py`` in
+   the ``test`` directory will test this function.
 
 In the rest of this section we will examine some algorithms for computing
 the QR factorisation, before discussing the application to least squares
@@ -125,6 +144,16 @@ We now present the classical Gram-Schmidt algorithm as pseudo-code.
 (Remember that Python doesn't have END FOR statements, but instead
 uses indentation to terminate code blocks. We'll write END statements
 for code blocks in pseudo-code in these notes.)
+
+.. proof:exercise::
+
+   The :func:`cla_utils.exercises2.GS_classical` function has been
+   left unimplemented. It should implement the classical Gram-Schmidt
+   algorithm above, using Numpy slice notation so that only one Python
+   for loop is used. The function should work "in place" by
+   and then changing the values in `A`, without introducing additional
+   intermediate arrays. The test script ``test_exercises2.py`` in the
+   ``test`` directory will test this function.
 
 Projector interpretation of Gram-Schmidt
 ----------------------------------------
@@ -245,6 +274,31 @@ We now present this modified Gram-Schmidt algorithm as pseudo-code.
 This algorithm can be applied "in place", overwriting the entries
 in `A` with the `v` s and eventually the `q` s.
 
+.. proof:exercise::
+
+   The :func:`cla_utils.exercises2.GS_modified` function has been
+   left unimplemented. It should implement the modified Gram-Schmidt
+   algorithm above, using Numpy slice notation so that only one Python
+   for loop is used. The function should work "in place" by making a
+   copy of `A` and then changing those values, without introducing
+   additional intermediate arrays. The test script
+   ``test_exercises2.py`` in the ``test`` directory will test this
+   function.
+
+.. proof:exercise::
+
+   Investigate the mutual orthogonality of the `Q` matrices that are
+   produced by your classical and modified Gram-Schmidt
+   implementations. Is there a way to test mutual orthogonality
+   without writing a loop? Round-off typically causes problems for
+   matrices with large condition numbers and large off-diagonal
+   values. You could also try the opposite of what was done in
+   ``test_GS_classical``: instead of ensuring that all of the entries
+   in the diagonal matrix `D` are `\mathcal{O}(1)`, try making some of
+   the values small and some large. See if you can find a matrix that
+   illustrates the differences in orthogonality between the two
+   algorithms.
+
 Modified Gram-Schmidt as triangular orthogonalisation
 -----------------------------------------------------
 
@@ -293,7 +347,7 @@ Similarly, the second iteration may be written as
       \begin{pmatrix}
       1 & 0 & 0 &
       \ldots & 0 \\
-      0 & r_{22} & -\frac{r_{23}}{r_{22}} & \ldots & -\frac{r_{2n}}{r_{nn}} \\      0 & 0 & 1 & \ldots & 0 \\
+      0 & \frac{1}{r_{22}} & -\frac{r_{23}}{r_{22}} & \ldots & -\frac{r_{2n}}{r_{nn}} \\      0 & 0 & 1 & \ldots & 0 \\
       \vdots & \ddots & \ddots & \ldots & \vdots \\
       0 & 0 & 0 & \ldots & 1 \\
       \end{pmatrix}}_{R_2}
@@ -325,6 +379,28 @@ This is a powerful way to view the modified Gram-Schmidt process from
 the point of view of understanding and analysis, but of course we do not
 form the matrices `R_i` explicitly (we just follow the pseudo-code given
 above).
+
+.. proof:exercise::
+
+   In a break from the format so far, the
+   :func:`cla_utils.exercises2.GS_modified_R` function has been
+   implemented. It implements the modified Gram-Schmidt algorithm in
+   the form describe above using upper triangular matrices. This is
+   not a good way to implement the algorithm, because of the inversion
+   of `R` at the end, and the repeated multiplication by zeros in
+   multiplying entries of the `R_k` matrices, which is a
+   waste. However it is important as a conceptual tool for
+   understanding the modified Gram-Schmidt algorithm as a triangular
+   orthogonalisation process, and so it is good to see this in a code
+   implementation. Study this function to check that you understand
+   what is happening.
+
+   However, the :func:`cla_utils.exercises2.GS_modified_get_R`
+   function has not been implemented. This function computes the `R_k`
+   matrices at each step of the process. Complete this code. The test
+   script ``test_exercises2.py`` in the ``test`` directory will also
+   test this function.
+
 
 Householder triangulation
 -------------------------
@@ -446,7 +522,7 @@ as required, having checked that
 
    .. math::
 
-      \|\|x\|\pm e_1 - x\|^2 = -2\|x\|(\pm x_1 - \|x\|).
+      \|\pm \|x\|e_1 - x\|^2 = -2\|x\|(\pm x_1 - \|x\|).
 
 We can also check that `F` is unitary. First we check that `F`
 is Hermitian,
@@ -475,10 +551,11 @@ matrix `Q_k` that transforms the entries below the diagonal
 of the kth column of `A_k` to zero, and leaves the previous
 `k-1` columns alone.
 
-Earlier, we mentioned that there is a choice of sign in `v`.
-This choice gives us the opportunity to improve the numerical
-stability of the algorithm. To avoid unnecessary numerical round off,
-we choose the sign that makes `v` furthest from `x`, i.e.
+Earlier, we mentioned that there is a choice of sign in `v`.  This
+choice gives us the opportunity to improve the numerical stability of
+the algorithm. In the case of real matrices, to avoid unnecessary
+numerical round off, we choose the sign that makes `v` furthest from
+`x`, i.e.
 
    .. math::
 
@@ -494,8 +571,7 @@ memory on the computer for `A` which is eventually replaced with the
 values for `R`. To present the algorithm, we will use the "slice"
 notation to describe submatrices of `A`, with `A_{k:l,r:s}` being
 the submatrix of `A` consisting of the rows from `k` to `l` and
-columns from `r` to `s`. Be careful with Python implementations,
-where the numbering of rows and columns is from 0, and not 1.
+columns from `r` to `s`.
 
 * FOR `k = 1` TO `n`
 
@@ -504,6 +580,19 @@ where the numbering of rows and columns is from 0, and not 1.
   * `v_k \gets v_k/\|v_k\|`
   * `A_{k:m,k:n} \gets A_{k:m,k:m} - 2v_k(v_k^*A_{k:m,k:n})`.
 * END FOR
+
+.. proof:exercise::
+
+   The :func:`cla_utils.exercises3.householder` function has been left
+   unimplemented. It should implement the algorithm above, using only
+   one loop over `k`. It should return the resulting `R` matrix. The
+   test script ``test_exercises3.py`` in the ``test`` directory will
+   test this function.
+
+.. hint::
+
+   Don't forget that Python numbers from zero, which will be important
+   when implementing the submatrices using Numpy slice notation. 
 
 Note that we have not explicitly formed the matrix `Q` or the product
 matrices `Q_i`. In some applications, such as solving least squares
@@ -519,12 +608,55 @@ apply the same operations to `b` that are applied to the columns of
 * END FOR
 
 We call this procedure "implicit multiplication".
-  
-If we really need `Q`, we can get it by matrix-vector products
-with each element of the canonical basis `(e_1,e_2,\ldots,e_n)`.
-This means that first we need to compute a matrix-vector product
-`Qx` with a vector `x`. This is just done by applying the
-Householder reflections in reverse, since
+
+.. proof:exercise::
+
+   Show that the implicit midpoint procedure is equivalent to computing
+   an extended array
+
+      .. math::
+
+	 \hat{A} = \begin{pmatrix}
+	 a_1 & a_2 & \ldots & a_n & b
+	 \end{pmatrix}
+
+   and performing Householder on the first `n` rows. Transform the
+   equation `Ax=b` into `Rx=\hat{b}` where `QR=A`, and find the form
+   of `\hat{b}`, explaining how to get `\hat{b}` from Householder
+   applied to `\hat{A}` above. Solving systems with upper triangular
+   matrices is much cheaper than solving general matrix systems as
+   we shall discuss later.
+
+   Now, say that we want to solve multiple equations
+
+   .. math::
+
+      Ax_i =b_i, i=1,2,\ldots,k,
+
+   which have the same matrix `A` but different right hand sides
+   `b=b_i`, `i=1,2,\ldots,k`. Extend this idea above to the case
+   `k>1`, by describing an extended `\hat{A}` containing all the `b_i`
+   vectors.
+
+   The :func:`cla_utils.exercises3.householder_solve` function has
+   been left unimplemented. It takes in a set of right hand side
+   vectors `b_1,b_2,\ldots,b_k` and returns a set of solutions
+   `x_1,x_2,\ldots,x_k`.  It should construct an extended array
+   `\hat{A}`, and then pass it to
+   :func:`cla_utils.exercises3.householder`.  If you have not already
+   done so, you will need to modified
+   :func:`cla_utils.exercises3.householder` to use the ``kmax``
+   argument. You may make use of the built-in tridiagonal solve
+   algorithm :func:`numpy.linalg.solve_triangular` (we shall consider
+   tridiagonal matrix algorithms briefly later). The test script
+   ``test_exercises3.py`` in the ``test`` directory will also test this
+   function.
+
+If we really need `Q`, we can get it by matrix-vector products with
+each element of the canonical basis `(e_1,e_2,\ldots,e_n)`.  This
+means that first we need to compute a matrix-vector product `Qx` with
+a vector `x`. One way to do this is to apply the Householder
+reflections in reverse, since
 
    .. math::
 
@@ -550,6 +682,23 @@ needed and throwing them away. Then we can compute `Q` via
        \end{pmatrix},
 
 with each column using the `Q` application algorithm described above.
+
+.. proof:exercise::
+
+   Show that the implicit multiplication procedure applied to the
+   columns of `I` produces `Q^*`, from which we can easily obtain `Q`,
+   explaining how. Show how to implement this by applying Householder
+   to an augmented matrix `\hat{A}` of some appropriate form.
+
+   The :func:`cla_utils.exercises3.householder_qr` function has been
+   left unimplemented. It takes in the `m\times n` array `A` and
+   returns `Q` and `R`. It should use the method of this exercise to
+   compute them by forming an appropriate `\hat{A}`, calling
+   :func:`cla_utils.exercises3.householder` and then extracting
+   appropriate subarrays using slice notation. The test script
+   ``test_exercises3.py`` in the ``test`` directory will also test
+   this function.
+   
 
 Application: Least squares problems
 -----------------------------------
@@ -599,3 +748,22 @@ Left multiplication by `\hat{Q}^*` then gives
 
 This is an upper triangular system that can be solved efficiently using
 back-substitution (which we shall come to later.)
+
+.. proof:exercise::
+
+   The :func:`cla_utils.exercises3.householder_ls` function has been
+   left unimplemented. It takes in the `m\times n` array `A` and a
+   right-hand side vector `b` and solves the least squares problem
+   minimising `\|Ax-b\|` over `x`. It should do this by forming an
+   appropriate augmented matrix `\hat{A}`, calling
+   :func:`cla_utils.exercises3.householder` and extracting appropriate
+   subarrays using slice notation, before using
+   :func:`numpy.linalg.solve_triangular` to solve the resulting upper triangular
+   system, before returning the solution `x`. The test script
+   ``test_exercises3.py`` in the ``test`` directory will also test this
+   function.
+
+.. hint::
+
+   You will need to do extract the appropriate submatrix to obtain the
+   square (and invertible) reduced matrix `\hat{R}`.

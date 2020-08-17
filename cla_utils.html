@@ -15,7 +15,7 @@
     <script src="_static/doctools.js"></script>
     <script src="_static/language_data.js"></script>
     <script src="_static/proof.js"></script>
-    <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
 <!--[if lte IE 6]>
@@ -51,98 +51,296 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-cla_utils.exercises1">
-<span id="cla-utils-exercises1-module"></span><h2>cla_utils.exercises1 module<a class="headerlink" href="#module-cla_utils.exercises1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="cla-utils-exercises1-module">
+<h2>cla_utils.exercises1 module<a class="headerlink" href="#cla-utils-exercises1-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-cla_utils.exercises2">
+<span id="cla-utils-exercises2-module"></span><h2>cla_utils.exercises2 module<a class="headerlink" href="#module-cla_utils.exercises2" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
-<dt id="cla_utils.exercises1.basic_matvec">
-<code class="sig-prename descclassname">cla_utils.exercises1.</code><code class="sig-name descname">basic_matvec</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">A</span></em>, <em class="sig-param"><span class="n">x</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises1.html#basic_matvec"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises1.basic_matvec" title="Permalink to this definition">¶</a></dt>
-<dd><p>Elementary matrix-vector multiplication.</p>
+<dt id="cla_utils.exercises2.GS_classical">
+<code class="sig-prename descclassname">cla_utils.exercises2.</code><code class="sig-name descname">GS_classical</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">A</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises2.html#GS_classical"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises2.GS_classical" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given an mxn matrix A, compute the QR factorisation by classical
+Gram-Schmidt algorithm.</p>
+<p>Inputs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>A</strong> – mxn numpy array</p>
+</dd>
+</dl>
+<p>Outputs</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>A</strong> – an mxn-dimensional numpy array</p></li>
-<li><p><strong>x</strong> – an n-dimensional numpy array</p></li>
-</ul>
-</dd>
-</dl>
-<p>returns an m-dimensional numpy array which is the product of A with x</p>
-<p>This should be implemented using a double loop over the entries of A</p>
-</dd></dl>
-
-<dl class="py function">
-<dt id="cla_utils.exercises1.column_matvec">
-<code class="sig-prename descclassname">cla_utils.exercises1.</code><code class="sig-name descname">column_matvec</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">A</span></em>, <em class="sig-param"><span class="n">x</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises1.html#column_matvec"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises1.column_matvec" title="Permalink to this definition">¶</a></dt>
-<dd><p>Matrix-vector multiplication using the representation of the product
-Ax as linear combinations of the columns of A, using the entries in 
-x as coefficients.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>A</strong> – an mxn-dimensional numpy array</p></li>
-<li><p><strong>x</strong> – an n-dimensional numpy array</p></li>
-</ul>
-</dd>
-</dl>
-<p>returns an m-dimensional numpy array which is the product of A with x</p>
-<p>This should be implemented using a single loop over the entries of x</p>
-</dd></dl>
-
-<dl class="py function">
-<dt id="cla_utils.exercises1.rank1pert_inv">
-<code class="sig-prename descclassname">cla_utils.exercises1.</code><code class="sig-name descname">rank1pert_inv</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">u</span></em>, <em class="sig-param"><span class="n">v</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises1.html#rank1pert_inv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises1.rank1pert_inv" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the inverse of the matrix A = I + uv^*, where I 
-is the mxm dimensional identity matrix, with</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>v</strong> (<em>u</em><em>,</em>) – two m-dimensional numpy arrays</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="cla_utils.exercises1.rank2">
-<code class="sig-prename descclassname">cla_utils.exercises1.</code><code class="sig-name descname">rank2</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">u1</span></em>, <em class="sig-param"><span class="n">u2</span></em>, <em class="sig-param"><span class="n">v1</span></em>, <em class="sig-param"><span class="n">v2</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises1.html#rank2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises1.rank2" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the rank2 matrix A = u1*u2^* + u2*v2^*.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>u2</strong> (<em>u1</em><em>,</em>) – two m-dimensional numpy arrays</p></li>
-<li><p><strong>v2</strong> (<em>v1</em><em>,</em>) – two n-dimensional numpy arrays</p></li>
+<li><p><strong>Q</strong> – mxn numpy array</p></li>
+<li><p><strong>R</strong> – nxn numpy array</p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
-<dt id="cla_utils.exercises1.time_matvecs">
-<code class="sig-prename descclassname">cla_utils.exercises1.</code><code class="sig-name descname">time_matvecs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises1.html#time_matvecs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises1.time_matvecs" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get some timings for matvecs.</p>
+<dt id="cla_utils.exercises2.GS_modified">
+<code class="sig-prename descclassname">cla_utils.exercises2.</code><code class="sig-name descname">GS_modified</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">A</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises2.html#GS_modified"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises2.GS_modified" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given an mxn matrix A, compute the QR factorisation by modified
+Gram-Schmidt algorithm, producing</p>
+<p>Inputs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>A</strong> – mxn numpy array</p>
+</dd>
+</dl>
+<p>Outputs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Q</strong> – mxn numpy array</p></li>
+<li><p><strong>R</strong> – nxn numpy array</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
-<dt id="cla_utils.exercises1.timeable_basic_matvec">
-<code class="sig-prename descclassname">cla_utils.exercises1.</code><code class="sig-name descname">timeable_basic_matvec</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises1.html#timeable_basic_matvec"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises1.timeable_basic_matvec" title="Permalink to this definition">¶</a></dt>
-<dd><p>Doing a matvec example with the basic_matvec that we can
-pass to timeit.</p>
+<dt id="cla_utils.exercises2.GS_modified_R">
+<code class="sig-prename descclassname">cla_utils.exercises2.</code><code class="sig-name descname">GS_modified_R</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">A</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises2.html#GS_modified_R"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises2.GS_modified_R" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implement the modified Gram Schmidt algorithm using the lower triangular
+formulation with Rs provided from GS_modified_get_R.</p>
+<p>Inputs:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>A</strong> – mxn numpy array</p>
+</dd>
+</dl>
+<p>Outputs:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Q</strong> – mxn numpy array</p></li>
+<li><p><strong>R</strong> – nxn numpy array</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
-<dt id="cla_utils.exercises1.timeable_column_matvec">
-<code class="sig-prename descclassname">cla_utils.exercises1.</code><code class="sig-name descname">timeable_column_matvec</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises1.html#timeable_column_matvec"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises1.timeable_column_matvec" title="Permalink to this definition">¶</a></dt>
-<dd><p>Doing a matvec example with the column_matvec that we can
-pass to timeit.</p>
+<dt id="cla_utils.exercises2.GS_modified_get_R">
+<code class="sig-prename descclassname">cla_utils.exercises2.</code><code class="sig-name descname">GS_modified_get_R</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">A</span></em>, <em class="sig-param"><span class="n">k</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises2.html#GS_modified_get_R"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises2.GS_modified_get_R" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given an mxn matrix A, with columns of A[:, 0:k] assumed orthonormal,
+return upper triangular nxn matrix R such that
+Ahat = A*R has the properties that
+1) Ahat[:, 0:k] = A[:, 0:k],
+2) A[:, k] is orthogonal to the columns of A[:, 0:k].</p>
+<p>Inputs:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> – mxn numpy array</p></li>
+<li><p><strong>k</strong> – integer indicating the column that R should orthogonalise</p></li>
+</ul>
+</dd>
+</dl>
+<p>Outputs:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>R</strong> – nxn numpy array</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
-<dt id="cla_utils.exercises1.timeable_numpy_matvec">
-<code class="sig-prename descclassname">cla_utils.exercises1.</code><code class="sig-name descname">timeable_numpy_matvec</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises1.html#timeable_numpy_matvec"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises1.timeable_numpy_matvec" title="Permalink to this definition">¶</a></dt>
-<dd><p>Doing a matvec example with the builtin numpy matvec so that
-we can pass to timeit.</p>
+<dt id="cla_utils.exercises2.orthog_cpts">
+<code class="sig-prename descclassname">cla_utils.exercises2.</code><code class="sig-name descname">orthog_cpts</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">v</span></em>, <em class="sig-param"><span class="n">Q</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises2.html#orthog_cpts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises2.orthog_cpts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a vector v and an orthonormal set of vectors q_1,…q_n,
+compute v = r + u_1q_1 + u_2q_2 + … + u_nq_n
+for scalar coefficients u_1, u_2, …, u_n and
+residual vector r</p>
+<p>Inputs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>v</strong> – an m-dimensional numpy array</p></li>
+<li><p><strong>Q</strong> – an mxn-dimensional numpy array whose columns are the</p></li>
+</ul>
+</dd>
+</dl>
+<p>orthonormal vectors</p>
+<p>Outputs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>r</strong> – an m-dimensional numpy array containing the residual</p></li>
+<li><p><strong>u</strong> – an n-dimensional numpy array containing the coefficients</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="cla_utils.exercises2.orthog_proj">
+<code class="sig-prename descclassname">cla_utils.exercises2.</code><code class="sig-name descname">orthog_proj</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Q</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises2.html#orthog_proj"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises2.orthog_proj" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a vector v and an orthonormal set of vectors q_1,…q_n,
+compute the orthogonal projector P that projects vectors onto
+the subspace spanned by those vectors.</p>
+<p>Inputs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>Q</strong> – an mxn-dimensional numpy array whose columns are the</p>
+</dd>
+</dl>
+<p>orthonormal vectors</p>
+<p>Outputs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>P</strong> – an mxm-dimensional numpy array containing the projector</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="cla_utils.exercises2.orthog_space">
+<code class="sig-prename descclassname">cla_utils.exercises2.</code><code class="sig-name descname">orthog_space</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">V</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises2.html#orthog_space"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises2.orthog_space" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given set of vectors u_1,u_2,…, u_n, compute the
+orthogonal complement to the subspace U spanned by the vectors.</p>
+<p>Inputs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>U</strong> – an mxn-dimensional numpy array whose columns are the</p>
+</dd>
+</dl>
+<p>vectors u_1,u_2,…,u_n.</p>
+<p>Outputs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>Q</strong> – an lxm-dimensional numpy array whose columns are an orthonormal</p>
+</dd>
+</dl>
+<p>basis for the subspace orthogonal to U.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="cla_utils.exercises2.solveQ">
+<code class="sig-prename descclassname">cla_utils.exercises2.</code><code class="sig-name descname">solveQ</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Q</span></em>, <em class="sig-param"><span class="n">b</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises2.html#solveQ"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises2.solveQ" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a unitary mxm matrix Q and a vector b, solve Qx=b for x.</p>
+<p>Inputs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Q</strong> – an mxm dimensional numpy array containing the unitary matrix</p></li>
+<li><p><strong>b</strong> – the m dimensional array for the RHS</p></li>
+</ul>
+</dd>
+</dl>
+<p>Outputs</p>
+<p>:param x” m dimensional array containing the solution.</p>
 </dd></dl>
 
 </div>
-<div class="section" id="module-cla_utils">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-cla_utils" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-cla_utils.exercises3">
+<span id="cla-utils-exercises3-module"></span><h2>cla_utils.exercises3 module<a class="headerlink" href="#module-cla_utils.exercises3" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="cla_utils.exercises3.householder">
+<code class="sig-prename descclassname">cla_utils.exercises3.</code><code class="sig-name descname">householder</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">A</span></em>, <em class="sig-param"><span class="n">kmax</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises3.html#householder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises3.householder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a real mxn matrix A, find the reduction to upper triangular matrix R
+using Householder transformations.</p>
+<p>Inputs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> – an mxn-dimensional numpy array</p></li>
+<li><p><strong>kmax</strong> – an integer, the number of columns of A to reduce</p></li>
+</ul>
+</dd>
+</dl>
+<p>to upper triangular. If not present, will default to n.</p>
+<p>Outputs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>R</strong> – an mxn-dimensional numpy array containing the upper</p>
+</dd>
+</dl>
+<p>triangular matrix</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="cla_utils.exercises3.householder_ls">
+<code class="sig-prename descclassname">cla_utils.exercises3.</code><code class="sig-name descname">householder_ls</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">A</span></em>, <em class="sig-param"><span class="n">b</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises3.html#householder_ls"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises3.householder_ls" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a real mxn matrix A and an m dimensional vector b, find the
+least squares solution to Ax = b.</p>
+<p>Inputs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> – an mxn-dimensional numpy array</p></li>
+<li><p><strong>A</strong> – an m-dimensional numpy array</p></li>
+</ul>
+</dd>
+</dl>
+<p>Outputs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> – an n-dimensional numpy array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="cla_utils.exercises3.householder_qr">
+<code class="sig-prename descclassname">cla_utils.exercises3.</code><code class="sig-name descname">householder_qr</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">A</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises3.html#householder_qr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises3.householder_qr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a real mxn matrix A, use the Householder transformation to find
+the QR factorisation of A.</p>
+<p>Inputs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>A</strong> – an mxn-dimensional numpy array</p>
+</dd>
+</dl>
+<p>Outputs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Q</strong> – an mxm-dimensional numpy array</p></li>
+<li><p><strong>R</strong> – an mxn-dimensional numpy array</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="cla_utils.exercises3.householder_solve">
+<code class="sig-prename descclassname">cla_utils.exercises3.</code><code class="sig-name descname">householder_solve</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">A</span></em>, <em class="sig-param"><span class="n">b</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises3.html#householder_solve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises3.householder_solve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a real mxm matrix A, use the Householder transformation to solve
+Ax_i=b_i, i=1,2,…,k.</p>
+<p>Inputs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> – an mxm-dimensional numpy array</p></li>
+<li><p><strong>b</strong> – an mxk-dimensional numpy array whose columns are the</p></li>
+</ul>
+</dd>
+</dl>
+<p>right-hand side vectors b_1,b_2,…,b_k.</p>
+<p>Outputs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> – an mxk-dimensional numpy array whose columns are the</p>
+</dd>
+</dl>
+<p>right-hand side vectors x_1,x_2,…,x_k.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="cla-utils-exercises4-module">
+<h2>cla_utils.exercises4 module<a class="headerlink" href="#cla-utils-exercises4-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="cla-utils-exercises5-module">
+<h2>cla_utils.exercises5 module<a class="headerlink" href="#cla-utils-exercises5-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="cla-utils-exercises6-module">
+<h2>cla_utils.exercises6 module<a class="headerlink" href="#cla-utils-exercises6-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-contents">
+<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 

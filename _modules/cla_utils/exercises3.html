@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cla_utils.exercises3 &#8212; Computational linear algebra course 2020.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/fenics.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/proof.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+<link rel="stylesheet" href="../../_static/featured.css">
+
+
+<link rel="shortcut icon" href="../../_static/icon.ico" />
+
+
+  </head><body>
+<div class="wrapper">
+  <a href="../../index.html"><img src="../../_static/banner.png" width="900px" alt="Project Banner" /></a>
+  <div id="access">
+    <div class="menu">
+      <ul>
+          <li class="page_item"><a href="https://github.com/Computational-Linear-Algebra-Course/computational-linear-algebra-course" title="GitHub">GitHub</a></li>
+      </ul>
+    </div><!-- .menu -->
+  </div><!-- #access -->
+</div><!-- #wrapper -->
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for cla_utils.exercises3</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<div class="viewcode-block" id="householder"><a class="viewcode-back" href="../../cla_utils.html#cla_utils.exercises3.householder">[docs]</a><span class="k">def</span> <span class="nf">householder</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">kmax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given a real mxn matrix A, find the reduction to upper triangular matrix R</span>
+<span class="sd">    using Householder transformations.</span>
+
+<span class="sd">    Inputs</span>
+
+<span class="sd">    :param A: an mxn-dimensional numpy array</span>
+<span class="sd">    :param kmax: an integer, the number of columns of A to reduce</span>
+<span class="sd">    to upper triangular. If not present, will default to n.</span>
+
+<span class="sd">    Outputs</span>
+
+<span class="sd">    :param R: an mxn-dimensional numpy array containing the upper</span>
+<span class="sd">    triangular matrix</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">m</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span>
+    <span class="k">if</span> <span class="n">kmax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">kmax</span> <span class="o">=</span> <span class="n">n</span>
+
+    <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="k">return</span> <span class="n">R</span></div>
+
+
+<div class="viewcode-block" id="householder_solve"><a class="viewcode-back" href="../../cla_utils.html#cla_utils.exercises3.householder_solve">[docs]</a><span class="k">def</span> <span class="nf">householder_solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given a real mxm matrix A, use the Householder transformation to solve</span>
+<span class="sd">    Ax_i=b_i, i=1,2,...,k.</span>
+
+<span class="sd">    Inputs</span>
+
+<span class="sd">    :param A: an mxm-dimensional numpy array</span>
+<span class="sd">    :param b: an mxk-dimensional numpy array whose columns are the</span>
+<span class="sd">    right-hand side vectors b_1,b_2,...,b_k.</span>
+
+<span class="sd">    Outputs</span>
+
+<span class="sd">    :param x: an mxk-dimensional numpy array whose columns are the</span>
+<span class="sd">    right-hand side vectors x_1,x_2,...,x_k.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="k">return</span> <span class="n">x</span></div>
+
+
+<div class="viewcode-block" id="householder_qr"><a class="viewcode-back" href="../../cla_utils.html#cla_utils.exercises3.householder_qr">[docs]</a><span class="k">def</span> <span class="nf">householder_qr</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given a real mxn matrix A, use the Householder transformation to find</span>
+<span class="sd">    the QR factorisation of A.</span>
+
+<span class="sd">    Inputs</span>
+
+<span class="sd">    :param A: an mxn-dimensional numpy array</span>
+
+<span class="sd">    Outputs</span>
+
+<span class="sd">    :param Q: an mxm-dimensional numpy array</span>
+<span class="sd">    :param R: an mxn-dimensional numpy array</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="k">return</span> <span class="n">Q</span><span class="p">,</span> <span class="n">R</span></div>
+
+
+<div class="viewcode-block" id="householder_ls"><a class="viewcode-back" href="../../cla_utils.html#cla_utils.exercises3.householder_ls">[docs]</a><span class="k">def</span> <span class="nf">householder_ls</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given a real mxn matrix A and an m dimensional vector b, find the</span>
+<span class="sd">    least squares solution to Ax = b.</span>
+
+<span class="sd">    Inputs</span>
+
+<span class="sd">    :param A: an mxn-dimensional numpy array</span>
+<span class="sd">    :param A: an m-dimensional numpy array</span>
+
+<span class="sd">    Outputs</span>
+
+<span class="sd">    :param x: an n-dimensional numpy array</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="k">return</span> <span class="n">x</span></div>
+</pre></div>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Colin J. Cotter.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.2.
+    </div>
+  </body>
+</html>
