@@ -52,6 +52,22 @@ cla\_utils.exercises6 module
    :undoc-members:
    :show-inheritance:
 
+cla\_utils.exercises7 module
+----------------------------
+
+.. automodule:: cla_utils.exercises7
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+cla\_utils.exercises8 module
+----------------------------
+
+.. automodule:: cla_utils.exercises8
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 
 Module contents
 ---------------

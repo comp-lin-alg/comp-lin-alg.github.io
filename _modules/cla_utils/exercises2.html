@@ -57,16 +57,12 @@
 <span class="sd">    for scalar coefficients u_1, u_2, ..., u_n and</span>
 <span class="sd">    residual vector r</span>
 
-<span class="sd">    Inputs</span>
-
 <span class="sd">    :param v: an m-dimensional numpy array</span>
-<span class="sd">    :param Q: an mxn-dimensional numpy array whose columns are the</span>
+<span class="sd">    :param Q: an mxn-dimensional numpy array whose columns are the \</span>
 <span class="sd">    orthonormal vectors</span>
 
-<span class="sd">    Outputs</span>
-
-<span class="sd">    :param r: an m-dimensional numpy array containing the residual</span>
-<span class="sd">    :param u: an n-dimensional numpy array containing the coefficients</span>
+<span class="sd">    :return r: an m-dimensional numpy array containing the residual</span>
+<span class="sd">    :return u: an n-dimensional numpy array containing the coefficients</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">raise</span> <span class="ne">NotImplementedError</span>
@@ -78,14 +74,10 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Given a unitary mxm matrix Q and a vector b, solve Qx=b for x.</span>
 
-<span class="sd">    Inputs</span>
-
 <span class="sd">    :param Q: an mxm dimensional numpy array containing the unitary matrix</span>
 <span class="sd">    :param b: the m dimensional array for the RHS</span>
 
-<span class="sd">    Outputs</span>
-
-<span class="sd">    :param x&quot; m dimensional array containing the solution.</span>
+<span class="sd">    :return x: m dimensional array containing the solution.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">raise</span> <span class="ne">NotImplementedError</span>
@@ -99,14 +91,10 @@
 <span class="sd">    compute the orthogonal projector P that projects vectors onto</span>
 <span class="sd">    the subspace spanned by those vectors.</span>
 
-<span class="sd">    Inputs</span>
-
-<span class="sd">    :param Q: an mxn-dimensional numpy array whose columns are the</span>
+<span class="sd">    :param Q: an mxn-dimensional numpy array whose columns are the \</span>
 <span class="sd">    orthonormal vectors</span>
 
-<span class="sd">    Outputs</span>
-
-<span class="sd">    :param P: an mxm-dimensional numpy array containing the projector</span>
+<span class="sd">    :return P: an mxm-dimensional numpy array containing the projector</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">raise</span> <span class="ne">NotImplementedError</span>
@@ -119,15 +107,11 @@
 <span class="sd">    Given set of vectors u_1,u_2,..., u_n, compute the</span>
 <span class="sd">    orthogonal complement to the subspace U spanned by the vectors.</span>
 
-<span class="sd">    Inputs</span>
-
-<span class="sd">    :param U: an mxn-dimensional numpy array whose columns are the</span>
+<span class="sd">    :param U: an mxn-dimensional numpy array whose columns are the \</span>
 <span class="sd">    vectors u_1,u_2,...,u_n.</span>
 
-<span class="sd">    Outputs</span>
-
-<span class="sd">    :param Q: an lxm-dimensional numpy array whose columns are an orthonormal</span>
-<span class="sd">    basis for the subspace orthogonal to U.</span>
+<span class="sd">    :return Q: an lxm-dimensional numpy array whose columns are an \</span>
+<span class="sd">    orthonormal basis for the subspace orthogonal to U.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">raise</span> <span class="ne">NotImplementedError</span>
@@ -140,14 +124,10 @@
 <span class="sd">    Given an mxn matrix A, compute the QR factorisation by classical</span>
 <span class="sd">    Gram-Schmidt algorithm.</span>
 
-<span class="sd">    Inputs</span>
-
 <span class="sd">    :param A: mxn numpy array</span>
 
-<span class="sd">    Outputs</span>
-
-<span class="sd">    :param Q: mxn numpy array</span>
-<span class="sd">    :param R: nxn numpy array</span>
+<span class="sd">    :return Q: mxn numpy array</span>
+<span class="sd">    :return R: nxn numpy array</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">raise</span> <span class="ne">NotImplementedError</span>
@@ -159,14 +139,10 @@
 <span class="sd">    Given an mxn matrix A, compute the QR factorisation by modified</span>
 <span class="sd">    Gram-Schmidt algorithm, producing </span>
 
-<span class="sd">    Inputs</span>
-
 <span class="sd">    :param A: mxn numpy array</span>
 
-<span class="sd">    Outputs</span>
-
-<span class="sd">    :param Q: mxn numpy array</span>
-<span class="sd">    :param R: nxn numpy array</span>
+<span class="sd">    :return Q: mxn numpy array</span>
+<span class="sd">    :return R: nxn numpy array</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">raise</span> <span class="ne">NotImplementedError</span>
@@ -182,14 +158,10 @@
 <span class="sd">    1) Ahat[:, 0:k] = A[:, 0:k],</span>
 <span class="sd">    2) A[:, k] is orthogonal to the columns of A[:, 0:k].</span>
 
-<span class="sd">    Inputs:</span>
-
 <span class="sd">    :param A: mxn numpy array</span>
 <span class="sd">    :param k: integer indicating the column that R should orthogonalise</span>
 <span class="sd">    </span>
-<span class="sd">    Outputs:</span>
-
-<span class="sd">    :param R: nxn numpy array</span>
+<span class="sd">    :return R: nxn numpy array</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">raise</span> <span class="ne">NotImplementedError</span>
@@ -201,14 +173,10 @@
 <span class="sd">    Implement the modified Gram Schmidt algorithm using the lower triangular</span>
 <span class="sd">    formulation with Rs provided from GS_modified_get_R.</span>
 
-<span class="sd">    Inputs:</span>
-
 <span class="sd">    :param A: mxn numpy array</span>
 
-<span class="sd">    Outputs:</span>
-
-<span class="sd">    :param Q: mxn numpy array</span>
-<span class="sd">    :param R: nxn numpy array</span>
+<span class="sd">    :return Q: mxn numpy array</span>
+<span class="sd">    :return R: nxn numpy array</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">m</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span>

@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cla_utils.exercises7 &#8212; Computational linear algebra course 2020.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/fenics.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/proof.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+<link rel="stylesheet" href="../../_static/featured.css">
+
+
+<link rel="shortcut icon" href="../../_static/icon.ico" />
+
+
+  </head><body>
+<div class="wrapper">
+  <a href="../../index.html"><img src="../../_static/banner.png" width="900px" alt="Project Banner" /></a>
+  <div id="access">
+    <div class="menu">
+      <ul>
+          <li class="page_item"><a href="https://github.com/Computational-Linear-Algebra-Course/computational-linear-algebra-course" title="GitHub">GitHub</a></li>
+      </ul>
+    </div><!-- .menu -->
+  </div><!-- #access -->
+</div><!-- #wrapper -->
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for cla_utils.exercises7</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<div class="viewcode-block" id="perm"><a class="viewcode-back" href="../../cla_utils.html#cla_utils.exercises7.perm">[docs]</a><span class="k">def</span> <span class="nf">perm</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    For p representing a permutation P, i.e. Px[i] = x[p[i]],</span>
+<span class="sd">    replace with p representing the permutation P_{i,j}P, where</span>
+<span class="sd">    P_{i,j} exchanges rows i and j.</span>
+
+<span class="sd">    :param p: an m-dimensional numpy array of integers.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+
+<div class="viewcode-block" id="LUP_inplace"><a class="viewcode-back" href="../../cla_utils.html#cla_utils.exercises7.LUP_inplace">[docs]</a><span class="k">def</span> <span class="nf">LUP_inplace</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute the LUP factorisation of A with partial pivoting, using the</span>
+<span class="sd">    in-place scheme so that the strictly lower triangular components</span>
+<span class="sd">    of the array contain the strictly lower triangular components of</span>
+<span class="sd">    L, and the upper triangular components of the array contain the</span>
+<span class="sd">    upper triangular components of U.</span>
+
+<span class="sd">    :param A: an mxm-dimensional numpy array</span>
+
+<span class="sd">    :return p: an m-dimensional integer array describing the permutation \</span>
+<span class="sd">    i.e. (Px)[i] = x[p[i]]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+                     
+    <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+
+<div class="viewcode-block" id="solve_LUP"><a class="viewcode-back" href="../../cla_utils.html#cla_utils.exercises7.solve_LUP">[docs]</a><span class="k">def</span> <span class="nf">solve_LUP</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Solve Ax=b using LUP factorisation.</span>
+
+<span class="sd">    :param A: an mxm-dimensional numpy array</span>
+<span class="sd">    :param b: an m-dimensional numpy array</span>
+
+<span class="sd">    :return x: an m-dimensional numpy array</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+                     
+    <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="det_LUP"><a class="viewcode-back" href="../../cla_utils.html#cla_utils.exercises7.det_LUP">[docs]</a><span class="k">def</span> <span class="nf">det_LUP</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Find the determinant of A using LUP factorisation.</span>
+
+<span class="sd">    :param A: an mxm-dimensional numpy array</span>
+
+<span class="sd">    :return detA: floating point number, the determinant.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+                     
+    <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+</pre></div>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Colin J. Cotter.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.2.
+    </div>
+  </body>
+</html>

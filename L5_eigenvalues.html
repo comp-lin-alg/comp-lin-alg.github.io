@@ -77,7 +77,43 @@ polynomials is numerically unstable. All of this means that we should
 avoid using polynomials finding eigenvalues. Instead, we should try to
 apply transformations to the matrix <span class="math notranslate nohighlight">\(A\)</span> to a form that means that the
 eigenvalues can be directly extracted.</p>
-<p>The eigenvalue decomposition of a matrix <span class="math notranslate nohighlight">\(A\)</span> finds a nonsingular matrix
+<div class="proof proof-type-example" id="id2">
+
+    <div class="proof-title">
+        <span class="proof-type">Example 5.1</span>
+        
+    </div><div class="proof-content">
+<p>Consider the <span class="math notranslate nohighlight">\(m\times m\)</span> diagonal matrix</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}A = \begin{pmatrix}
+1 &amp; 0 &amp; \ldots &amp; \ldots &amp; 0 \\
+0 &amp; 2 &amp; \ldots &amp; \ldots &amp;0 \\
+0 &amp; 0 &amp; \ddots &amp; \ddots &amp; \vdots \\
+\vdots &amp; \vdots &amp; \ldots &amp; \ddots &amp; \vdots \\
+0 &amp; 0 &amp; \ldots &amp; \ldots &amp; m \\
+\end{pmatrix}.\end{split}\]</div>
+</div></blockquote>
+<p>The characteristic polynomial of <span class="math notranslate nohighlight">\(A\)</span> is</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[(\lambda-1)(\lambda-2)\ldots(\lambda-m),\]</div>
+</div></blockquote>
+<p>and the eigenvalues are clearly <span class="math notranslate nohighlight">\(1,2,3,\ldots,m\)</span>. This is called
+the Wilkinson Polynomial. Numpy has some tools for manipulating
+polynomials which are useful here. When an <span class="math notranslate nohighlight">\(m\times m\)</span> array is
+passed in to <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.poly.html#numpy.poly" title="(in NumPy v1.19)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.poly()</span></code></a>, it returns an array of
+coefficients of the polynomial. For <span class="math notranslate nohighlight">\(m=20\)</span>, obtain this array and
+then perturb the coefficients <span class="math notranslate nohighlight">\(a_k \to \tilde{a}_k =
+a_k(1+10^{-10}r_k)\)</span> where <span class="math notranslate nohighlight">\(r_k\)</span> are randomly sampled normally
+distributed numbers with mean 0 and variance 1. <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.roots.html#numpy.roots" title="(in NumPy v1.19)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.roots()</span></code></a>
+will compute the roots of this perturbed polynomial. Plot these
+roots as points in the complex plane. Repeat this 100 times,
+superposing the root plots on the same graph. What do you observe?
+What does it tell you about this problem and what should we
+conclude about the wisdom of finding eigenvalues using
+characteristic polynomials?</p>
+</div></div><p>The eigenvalue decomposition of a matrix <span class="math notranslate nohighlight">\(A\)</span> finds a nonsingular matrix
 <span class="math notranslate nohighlight">\(X\)</span> and a diagonal matrix <span class="math notranslate nohighlight">\(\Lambda\)</span> such that</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -91,10 +127,10 @@ possible to transform to an eigenvalue decomposition. Hence we shall
 look into some other eigenvalue revealing decompositions of <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <p>We quote the following result that explains when an eigenvalue
 decomposition can be found.</p>
-<div class="proof proof-type-theorem" id="id2">
+<div class="proof proof-type-theorem" id="id3">
 
     <div class="proof-title">
-        <span class="proof-type">Theorem 5.1</span>
+        <span class="proof-type">Theorem 5.2</span>
         
     </div><div class="proof-content">
 <p>An <span class="math notranslate nohighlight">\(m\times m\)</span> matrix <span class="math notranslate nohighlight">\(A\)</span> has an eigenvalue decomposition if and
@@ -109,10 +145,10 @@ the eigenspaces do not span <span class="math notranslate nohighlight">\(\mathbb
 decomposition is not possible.</p>
 <p>This all motivates the search for other eigenvalue revealing
 decompositions of <span class="math notranslate nohighlight">\(A\)</span>.</p>
-<div class="proof proof-type-definition" id="id3">
+<div class="proof proof-type-definition" id="id4">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 5.2</span>
+        <span class="proof-type">Definition 5.3</span>
         
             <span class="proof-title-name">(Similarity transformations)</span>
         
@@ -123,10 +159,10 @@ Two matrices <span class="math notranslate nohighlight">\(A\)</span> and <span c
 </div></div><p>The eigenvalue decomposition shows that (when it exists), <span class="math notranslate nohighlight">\(A\)</span> is similar
 to <span class="math notranslate nohighlight">\(\Lambda\)</span>. The following result shows that it may be useful to examine
 other similarity transformations.</p>
-<div class="proof proof-type-theorem" id="id4">
+<div class="proof proof-type-theorem" id="id5">
 
     <div class="proof-title">
-        <span class="proof-type">Theorem 5.3</span>
+        <span class="proof-type">Theorem 5.4</span>
         
     </div><div class="proof-content">
 <p>Two similar matrices <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> have the same characteristic polynomial,
@@ -143,10 +179,10 @@ transformed to a matrix <span class="math notranslate nohighlight">\(B\)</span> 
 eigenvalues can be easily computed (with the diagonal matrix of the
 eigenvalue decomposition being one example).</p>
 <p>One such transformation comes from the Schur factorisation.</p>
-<div class="proof proof-type-definition" id="id5">
+<div class="proof proof-type-definition" id="id6">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 5.4</span>
+        <span class="proof-type">Definition 5.5</span>
         
             <span class="proof-title-name">(Schur factorisation)</span>
         
@@ -156,10 +192,10 @@ QTQ^*\)</span>, where <span class="math notranslate nohighlight">\(Q\)</span> is
 upper triangular.</p>
 </div></div><p>It turns out that, unlike the situation for the eigenvalue
 decomposition, the following is true.</p>
-<div class="proof proof-type-theorem" id="id6">
+<div class="proof proof-type-theorem" id="id7">
 
     <div class="proof-title">
-        <span class="proof-type">Theorem 5.5</span>
+        <span class="proof-type">Theorem 5.6</span>
         
     </div><div class="proof-content">
 <p>Every square matrix has a Schur factorisation.</p>
@@ -171,10 +207,10 @@ factorisation of <span class="math notranslate nohighlight">\(A\)</span>, we can
 matrices of <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <p>There is a special case of the Schur factorisation, called the unitary
 diagonalisation</p>
-<div class="proof proof-type-definition" id="id7">
+<div class="proof proof-type-definition" id="id8">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 5.6</span>
+        <span class="proof-type">Definition 5.7</span>
         
             <span class="proof-title-name">(Unitary diagonalisation)</span>
         
@@ -184,10 +220,10 @@ Q\Lambda Q^*\)</span>, where <span class="math notranslate nohighlight">\(Q\)</s
 is diagonal.</p>
 </div></div><p>A unitary diagonalisation is a Schur factorisation <em>and</em> an eigenvalue
 decomposition.</p>
-<div class="proof proof-type-theorem" id="id8">
+<div class="proof proof-type-theorem" id="id9">
 
     <div class="proof-title">
-        <span class="proof-type">Theorem 5.7</span>
+        <span class="proof-type">Theorem 5.8</span>
         
     </div><div class="proof-content">
 <p>A Hermitian matrix is unitary diagonalisable, with real <span class="math notranslate nohighlight">\(\Lambda\)</span>.</p>
@@ -242,7 +278,23 @@ shouldn’t be surprised that this is impossible, because if it was,
 then we would be able to build a finite procedure for computing
 eigenvalues of the characteristic polynomial, which is impossible in
 general.</p>
-<p>A slight modification of this idea (and the reason that we can
+<div class="proof proof-type-exercise" id="id10">
+
+    <div class="proof-title">
+        <span class="proof-type">Exercise 5.9</span>
+        
+    </div><div class="proof-content">
+<p>The <a class="reference internal" href="cla_utils.html#cla_utils.exercises8.Q1AQ1s" title="cla_utils.exercises8.Q1AQ1s"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises8.Q1AQ1s()</span></code></a> function has been left
+uncompleted. It should apply the Householder transformation <span class="math notranslate nohighlight">\(Q_1\)</span>
+to the input <span class="math notranslate nohighlight">\(A\)</span> (without forming <span class="math notranslate nohighlight">\(Q_1\)</span> of course) that transforms
+the first column of <span class="math notranslate nohighlight">\(A\)</span> to have zeros below the diagonal, and then
+apply a transformation equivalent to right multiplication by
+<span class="math notranslate nohighlight">\(Q_1^*\)</span> (again without forming <span class="math notranslate nohighlight">\(Q_1\)</span>).  The test script
+<code class="docutils literal notranslate"><span class="pre">test_exercises8.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will test this
+function.</p>
+<p>Experiment with the output of this function. What happens to the
+first column?</p>
+</div></div><p>A slight modification of this idea (and the reason that we can
 transform to upper Hessenberg form) is to use a Householder rotation
 <span class="math notranslate nohighlight">\(Q_1^*\)</span> to set all entries to zero below the <em>second</em> entry in the
 first column. This matrix leaves the first row unchanged, and hence
@@ -269,7 +321,21 @@ pseudo-code.</p>
 </ul>
 <p>Note the similarities and differences with the Householder algorithm
 for computing the QR factorisation.</p>
-<p>To calculate the operation count, we see that the algorithm is
+<div class="proof proof-type-exercise" id="id11">
+
+    <div class="proof-title">
+        <span class="proof-type">Exercise 5.10</span>
+        
+    </div><div class="proof-content">
+<p>The <a class="reference internal" href="cla_utils.html#cla_utils.exercises8.hessenberg" title="cla_utils.exercises8.hessenberg"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises8.hessenberg()</span></code></a> function has been left
+unimplemented. It should implement the algorithm above, using only
+one loop over <span class="math notranslate nohighlight">\(k\)</span>. It should return the resulting Hessenberg
+matrix. At the left multiplication, your implementation should
+exploit the fact that zeros do not need to be recomputed where
+there are already expected to be zeros. The test script
+<code class="docutils literal notranslate"><span class="pre">test_exercises8.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will test this
+function.</p>
+</div></div><p>To calculate the operation count, we see that the algorithm is
 dominated by the two updates to <span class="math notranslate nohighlight">\(A\)</span>, the first of which applies a
 Householder reflection to rows from the left, and the second applies
 the same reflections to columns from the right.</p>
@@ -302,7 +368,34 @@ backwards stable, i.e. in a floating point implementation, it gives
 \frac{\|\delta A\|}{\|A\|}=\mathcal{O}(\varepsilon),\]</div>
 </div></blockquote>
 <p>for some <span class="math notranslate nohighlight">\(\delta A\)</span>.</p>
-<p>In the next few sections we develop the iterative part of the
+<div class="proof proof-type-exercise" id="id12">
+
+    <div class="proof-title">
+        <span class="proof-type">Exercise 5.11</span>
+        
+    </div><div class="proof-content">
+<p>The <a class="reference internal" href="cla_utils.html#cla_utils.exercises8.hessenbergQ" title="cla_utils.exercises8.hessenbergQ"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises8.hessenbergQ()</span></code></a> function has been left
+unimplemented. It should implement the Hessenberg algorithm again
+(you can just copy paste the code from the previous exercise) but
+it should also return the matrix <span class="math notranslate nohighlight">\(Q\)</span> such that <span class="math notranslate nohighlight">\(QHQ^*=A\)</span>. You need
+to work out how to alter the algorithm to construct this. The test
+script <code class="docutils literal notranslate"><span class="pre">test_exercises8.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will test
+this function.</p>
+</div></div><div class="proof proof-type-exercise" id="id13">
+
+    <div class="proof-title">
+        <span class="proof-type">Exercise 5.12</span>
+        
+    </div><div class="proof-content">
+<p>The <a class="reference internal" href="cla_utils.html#cla_utils.exercises8.ev" title="cla_utils.exercises8.ev"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises8.ev()</span></code></a> function has been left
+unimplemented. It should return the eigenvalues and eigenvectors of
+<span class="math notranslate nohighlight">\(A\)</span> by first reducing to Hessenberg form, using the functions you
+have already created, and then calling
+<a class="reference internal" href="cla_utils.html#cla_utils.exercises8.hessenberg_ev" title="cla_utils.exercises8.hessenberg_ev"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises8.hessenberg_ev()</span></code></a>, which computes the
+eigenvectors and eigenvalues of upper Hessenberg matrices (do not
+edit this function!). The test script <code class="docutils literal notranslate"><span class="pre">test_exercises8.py</span></code> in the
+<code class="docutils literal notranslate"><span class="pre">test</span></code> directory will test this function.</p>
+</div></div><p>In the next few sections we develop the iterative part of the
 transformation to the upper triangular matrix <span class="math notranslate nohighlight">\(T\)</span>. This algorithm
 works for a broad class of matrices, but the explanation is much
 easier for the case of real symmetric matrices, which have real
@@ -351,7 +444,27 @@ x \to q_J.\]</div>
 </div></blockquote>
 <p>The Rayleigh quotient gives a quadratically accurate estimate to the
 eigenvalues of <span class="math notranslate nohighlight">\(A\)</span>.</p>
-</div>
+<div class="proof proof-type-exercise" id="id14">
+
+    <div class="proof-title">
+        <span class="proof-type">Exercise 5.13</span>
+        
+    </div><div class="proof-content">
+<p>Add a function to <a class="reference internal" href="cla_utils.html#module-cla_utils.exercises8" title="cla_utils.exercises8"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cla_utils.exercises8</span></code></a> that investigates
+this property by:</p>
+<ol class="arabic simple">
+<li><p>Forming a Hermitian matrix <span class="math notranslate nohighlight">\(A\)</span>,</p></li>
+<li><p>Finding an eigenvector <span class="math notranslate nohighlight">\(v\)</span> of <span class="math notranslate nohighlight">\(A\)</span> with eigenvalue <span class="math notranslate nohighlight">\(\lambda\)</span> (you can use <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html#numpy.linalg.eig" title="(in NumPy v1.19)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.linalg.eig()</span></code></a> for this),</p></li>
+<li><p>Choosing a perturbation vector <span class="math notranslate nohighlight">\(r\)</span>, and perturbation parameter <span class="math notranslate nohighlight">\(\epsilon&gt;0\)</span>,</p></li>
+<li><p>Comparing the Rayleigh quotient of <span class="math notranslate nohighlight">\(v + \epsilon r\)</span> with <span class="math notranslate nohighlight">\(\lambda\)</span>,</p></li>
+<li><p>Plotting (on a log-log graph, use <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.loglog.html#matplotlib.pyplot.loglog" title="(in Matplotlib v3.3.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.pyplot.loglog()</span></code></a>) the error in estimating the eigenvalue as a function of <span class="math notranslate nohighlight">\(\epsilon\)</span>.</p></li>
+</ol>
+<p>The best way to do this is to plot the computed data values as points,
+and then superpose a line plot of <span class="math notranslate nohighlight">\(a\epsilon^k\)</span> for appropriate
+value of <span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(a\)</span> chosen so that the line appears not to far away
+from the points on the same scale. This means that we can check
+by eye if the error is scaling with <span class="math notranslate nohighlight">\(\epsilon\)</span> at the expected rate.</p>
+</div></div></div>
 <div class="section" id="power-iteration">
 <h2><span class="section-number">5.5. </span>Power iteration<a class="headerlink" href="#power-iteration" title="Permalink to this headline">¶</a></h2>
 <p>Power iteration is a simple method for finding the eigenvalue of
@@ -395,10 +508,10 @@ quotient to see how our approximation of the eigenvalue is going.</p>
 divide by it in the Rayleigh quotient. We terminate the power
 iteration when we decide that the changes in <span class="math notranslate nohighlight">\(\lambda\)</span> indicate
 that the error is small. This is guided by the following result.</p>
-<div class="proof proof-type-theorem" id="id9">
+<div class="proof proof-type-theorem" id="id15">
 <span id="id1"></span>
     <div class="proof-title">
-        <span class="proof-type">Theorem 5.8</span>
+        <span class="proof-type">Theorem 5.14</span>
         
     </div><div class="proof-content">
 <p>If <span class="math notranslate nohighlight">\(|\lambda_1|&gt; |\lambda_2|\)</span> and <span class="math notranslate nohighlight">\(\|q_1^Tv_0\|&gt;0\)</span>, then after
@@ -456,7 +569,7 @@ pseudo-code below.</p>
 </li>
 </ul>
 <p>We can then directly extend <a class="reference internal" href="#id1"><span class="std std-numref">Theorem
-5.8</span></a> to the inverse iteration algorithm.
+5.14</span></a> to the inverse iteration algorithm.
 We conclude that the convergence rate is not improved relative
 to power iteration, but now we can “dial in” to different
 eigenvalues by choosing <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
@@ -626,10 +739,10 @@ matrices, and a running product of all of the <span class="math notranslate nohi
 </ul>
 </li>
 </ul>
-<div class="proof proof-type-theorem" id="id10">
+<div class="proof proof-type-theorem" id="id16">
 
     <div class="proof-title">
-        <span class="proof-type">Theorem 5.9</span>
+        <span class="proof-type">Theorem 5.15</span>
         
             <span class="proof-title-name">(pure QR and simultaneous iteration with <span class="math notranslate nohighlight">\(I\)</span> are equivalent)</span>
         

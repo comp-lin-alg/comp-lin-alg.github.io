@@ -305,9 +305,19 @@ requires `m-k+1` multiplications and subtractions, and is iterated
    and upper triangular systems respectively. The interfaces are set
    so that multiple right hand sides can be provided and solved at the
    same time. The functions should only use one loop over the columns
-   of `L` (or `U`), to efficiently solve the multiple problems.  The
+   of `L` (or `U`), to efficiently solve the multiple problems. The
    test script ``test_exercises6.py`` in the ``test`` directory will
    test these functions.
+
+.. proof:exercise::
+
+   Propose an algorithm to use the LU factorisation to compute the
+   inverse of a matrix.  The functions
+   :func:`cla_utils.exercises6.inverse_LU` has been left unimplemented.
+   Complete it using your algorithm, using functions developed in the
+   previous exercises where possible. The test script
+   ``test_exercises6.py`` in the ``test`` directory will test these
+   functions.
 
 Pivoting
 --------
@@ -444,7 +454,48 @@ swap columns of `A_k` as well as the rows swapped by the permutations
 `P_k`. By similar arguments, one can obtain the LU factorisation with
 complete pivoting, `PAQ=LU`.
 
+.. proof:exercise::
 
+   The function :func:`cla_utils.exercises7.perm` has been left
+   unimplemented. It should take an `m\times m` permutation matrix
+   `P`, stored as a vector of indices `p\in\mathbb{N}^m` so that
+   `(Px)_i = x_{p_i}`, `i=1,2,\ldots, m`, and replace it with the
+   matrix `P_{i,j}P` (also stored as a vector of indices) where
+   `P_{i,j}` is the permutation matrix that exchanges the entries `i`
+   and `j`. The test script ``test_exercises7.py`` in the ``test``
+   directory will test this function.
+
+
+.. proof:exercise::
+
+   The function :func:`cla_utils.exercises7.LUP` has been left
+   unimplemented. It should extend the in-place algorithm for LU
+   factorisation (with the outer-product formulation, if you managed
+   it) to the LUP factorisation. As well as computing L and U "in
+   place" in the array where the input A is stored, it will compute a
+   permutation matrix, which can should be constructed using
+   :func:`cla_utils.exercises7.perm`.The test script
+   ``test_exercises7.py`` in the ``test`` directory will test this
+   function.
+
+
+.. proof:exercise::
+
+   The function :func:`cla_utils.exercises7.solve_LUP` has been left
+   unimplemented. It should use the LUP code that you have written to
+   solve the equation `Ax=b` for `x` given inputs `A` and `b`.  The
+   test script ``test_exercises7.py`` in the ``test`` directory will
+   test this function.
+
+.. proof:exercise::
+
+   Show how to compute the determinant of `A` from the LUP
+   factorisation in `\mathcal{O}(m)` time (having already constructed
+   the LUP factorisation which costs `\mathcal{O}(m^3)`). Complete the
+   function :func:`cla_utils.exercises7.det_LUP` to implement this
+   computation. The test script ``test_exercises7.py`` in the ``test``
+   directory will test this function.
+   
 Stability of LU factorisation
 -----------------------------
 
@@ -536,7 +587,7 @@ i.e.
       B_{1} & 0 & \ldots & 0 \\
       0 & B_{2} & \ldots & 0 \\
       \vdots & \vdots & \ddots & 0 \\
-      0 & 0 & \ldots B_{m}
+      0 & 0 & \ldots & B_{m}
       \end{pmatrix},
 
 where `B_{i}\in\mathcal{C}^{d\times d}` for `i=1,2,\ldots,m`. The inverse
@@ -548,7 +599,7 @@ of `A` is
       B_{1}^{-1} & 0 & \ldots & 0 \\
       0 & B_{2}^{-1} & \ldots & 0 \\
       \vdots & \vdots & \ddots & 0 \\
-      0 & 0 & \ldots B_{m}^{-1}
+      0 & 0 & \ldots & B_{m}^{-1}
       \end{pmatrix}.
 
 A generalisation of a diagonal matrix is a banded matrix, where
@@ -559,6 +610,14 @@ that the corresponding entries in the `L_k` matrices will be zero.
 Further, because there are zeros above the diagonal of `A`, these do
 not need to be updated when applying the row operations to those
 zeros.
+
+.. proof:exercise::
+
+   Using your own LU factorisation, compute the LU factorisation of
+   the `10\times 10` matrix `A=I + e_3e_9^*`. What do you observe
+   about the number of non-zero entries in `L` and `U`? Explain this
+   using what you have just learned about banded matrices. Can the
+   situation be improved by pivoting?
 
 The Gaussian elimination algorithm (without pivoting) for a banded
 matrix is given as pseudo-code below.
@@ -673,9 +732,8 @@ Further,
       0 & I \\
       \end{pmatrix}}_{(L_1^{-1})^*=L_1^{-*}},
 
-so that `A = L_1^{-1}A_1L_1^{-*}`.
-If `a_{11} neq 1`, we at least
-know that ``a_{11}= e_1^*Ae_1>0`, and the factorisation becomes
+so that `A = L_1^{-1}A_1L_1^{-*}`. If `a_{11} \neq 1`, we at least
+know that `a_{11}= e_1^*Ae_1>0`, and the factorisation becomes
 
    .. math::
 
