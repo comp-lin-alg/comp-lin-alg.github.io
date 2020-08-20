@@ -173,6 +173,77 @@ we can pass to timeit.</p>
 </dd></dl>
 
 </div>
+<div class="section" id="module-cla_utils.exercises10">
+<span id="cla-utils-exercises10-module"></span><h2>cla_utils.exercises10 module<a class="headerlink" href="#module-cla_utils.exercises10" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="cla_utils.exercises10.GMRES">
+<code class="sig-prename descclassname">cla_utils.exercises10.</code><code class="sig-name descname">GMRES</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">A</span></em>, <em class="sig-param"><span class="n">b</span></em>, <em class="sig-param"><span class="n">maxit</span></em>, <em class="sig-param"><span class="n">tol</span></em>, <em class="sig-param"><span class="n">x0</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">return_residual_norms</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">return_residuals</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises10.html#GMRES"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises10.GMRES" title="Permalink to this definition">¶</a></dt>
+<dd><p>For a matrix A, solve Ax=b using the basic GMRES algorithm.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> – an mxm numpy array</p></li>
+<li><p><strong>b</strong> – m dimensional numpy array</p></li>
+<li><p><strong>maxit</strong> – integer, the maximum number of iterations</p></li>
+<li><p><strong>tol</strong> – floating point number, the tolerance for termination</p></li>
+<li><p><strong>x0</strong> – the initial guess (if not present, use b)</p></li>
+<li><p><strong>return_residual_norms</strong> – logical</p></li>
+<li><p><strong>return_residuals</strong> – logical</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return x</dt>
+<dd class="field-even"><p>an m dimensional numpy array, the solution</p>
+</dd>
+<dt class="field-odd">Return nits</dt>
+<dd class="field-odd"><p>if converged, the number of iterations required, otherwise     equal to -1</p>
+</dd>
+<dt class="field-even">Return rnorms</dt>
+<dd class="field-even"><p>nits dimensional numpy array containing the norms of     the residuals at each iteration</p>
+</dd>
+<dt class="field-odd">Return r</dt>
+<dd class="field-odd"><p>mxnits dimensional numpy array, column k contains residual     at iteration k</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="cla_utils.exercises10.arnoldi">
+<code class="sig-prename descclassname">cla_utils.exercises10.</code><code class="sig-name descname">arnoldi</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">A</span></em>, <em class="sig-param"><span class="n">b</span></em>, <em class="sig-param"><span class="n">k</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises10.html#arnoldi"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises10.arnoldi" title="Permalink to this definition">¶</a></dt>
+<dd><p>For a matrix A, apply k iterations of the Arnoldi algorithm,
+using b as the first basis vector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> – an mxm numpy array</p></li>
+<li><p><strong>b</strong> – m dimensional numpy array, the starting vector</p></li>
+<li><p><strong>k</strong> – integer, the number of iterations</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return Q</dt>
+<dd class="field-even"><p>an mxk dimensional numpy array containing the orthonormal basis</p>
+</dd>
+<dt class="field-odd">Return H</dt>
+<dd class="field-odd"><p>a (k+1)xk dimensional numpy array containing the upper     Hessenberg matrix</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="cla_utils.exercises10.get_AA100">
+<code class="sig-prename descclassname">cla_utils.exercises10.</code><code class="sig-name descname">get_AA100</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises10.html#get_AA100"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises10.get_AA100" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cla_utils.exercises10.get_BB100">
+<code class="sig-prename descclassname">cla_utils.exercises10.</code><code class="sig-name descname">get_BB100</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises10.html#get_BB100"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises10.get_BB100" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cla_utils.exercises10.get_CC100">
+<code class="sig-prename descclassname">cla_utils.exercises10.</code><code class="sig-name descname">get_CC100</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises10.html#get_CC100"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises10.get_CC100" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
 <div class="section" id="module-cla_utils.exercises2">
 <span id="cla-utils-exercises2-module"></span><h2>cla_utils.exercises2 module<a class="headerlink" href="#module-cla_utils.exercises2" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">

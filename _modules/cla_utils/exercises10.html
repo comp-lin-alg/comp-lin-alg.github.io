@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cla_utils.exercises10 &#8212; Computational linear algebra course 2020.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/fenics.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/proof.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+<link rel="stylesheet" href="../../_static/featured.css">
+
+
+<link rel="shortcut icon" href="../../_static/icon.ico" />
+
+
+  </head><body>
+<div class="wrapper">
+  <a href="../../index.html"><img src="../../_static/banner.png" width="900px" alt="Project Banner" /></a>
+  <div id="access">
+    <div class="menu">
+      <ul>
+          <li class="page_item"><a href="https://github.com/Computational-Linear-Algebra-Course/computational-linear-algebra-course" title="GitHub">GitHub</a></li>
+      </ul>
+    </div><!-- .menu -->
+  </div><!-- #access -->
+</div><!-- #wrapper -->
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for cla_utils.exercises10</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">numpy.random</span> <span class="k">as</span> <span class="nn">random</span>
+
+
+<div class="viewcode-block" id="arnoldi"><a class="viewcode-back" href="../../cla_utils.html#cla_utils.exercises10.arnoldi">[docs]</a><span class="k">def</span> <span class="nf">arnoldi</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    For a matrix A, apply k iterations of the Arnoldi algorithm,</span>
+<span class="sd">    using b as the first basis vector.</span>
+
+<span class="sd">    :param A: an mxm numpy array</span>
+<span class="sd">    :param b: m dimensional numpy array, the starting vector</span>
+<span class="sd">    :param k: integer, the number of iterations</span>
+
+<span class="sd">    :return Q: an mxk dimensional numpy array containing the orthonormal basis</span>
+<span class="sd">    :return H: a (k+1)xk dimensional numpy array containing the upper \</span>
+<span class="sd">    Hessenberg matrix</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+
+<div class="viewcode-block" id="GMRES"><a class="viewcode-back" href="../../cla_utils.html#cla_utils.exercises10.GMRES">[docs]</a><span class="k">def</span> <span class="nf">GMRES</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">maxit</span><span class="p">,</span> <span class="n">tol</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_residual_norms</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+          <span class="n">return_residuals</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    For a matrix A, solve Ax=b using the basic GMRES algorithm.</span>
+
+<span class="sd">    :param A: an mxm numpy array</span>
+<span class="sd">    :param b: m dimensional numpy array</span>
+<span class="sd">    :param maxit: integer, the maximum number of iterations</span>
+<span class="sd">    :param tol: floating point number, the tolerance for termination</span>
+<span class="sd">    :param x0: the initial guess (if not present, use b)</span>
+<span class="sd">    :param return_residual_norms: logical</span>
+<span class="sd">    :param return_residuals: logical</span>
+
+<span class="sd">    :return x: an m dimensional numpy array, the solution</span>
+<span class="sd">    :return nits: if converged, the number of iterations required, otherwise \</span>
+<span class="sd">    equal to -1</span>
+<span class="sd">    :return rnorms: nits dimensional numpy array containing the norms of \</span>
+<span class="sd">    the residuals at each iteration</span>
+<span class="sd">    :return r: mxnits dimensional numpy array, column k contains residual \</span>
+<span class="sd">    at iteration k</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">x0</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">x0</span> <span class="o">=</span> <span class="n">b</span>
+    
+    <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+
+<div class="viewcode-block" id="get_AA100"><a class="viewcode-back" href="../../cla_utils.html#cla_utils.exercises10.get_AA100">[docs]</a><span class="k">def</span> <span class="nf">get_AA100</span><span class="p">():</span>
+    <span class="n">AA100</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="s1">&#39;AA100.dat&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+    <span class="n">AA100</span> <span class="o">=</span> <span class="n">AA100</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">AA100</span></div>
+
+
+<div class="viewcode-block" id="get_BB100"><a class="viewcode-back" href="../../cla_utils.html#cla_utils.exercises10.get_BB100">[docs]</a><span class="k">def</span> <span class="nf">get_BB100</span><span class="p">():</span>
+    <span class="n">BB100</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="s1">&#39;BB100.dat&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+    <span class="n">BB100</span> <span class="o">=</span> <span class="n">BB100</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">BB100</span></div>
+
+
+<div class="viewcode-block" id="get_CC100"><a class="viewcode-back" href="../../cla_utils.html#cla_utils.exercises10.get_CC100">[docs]</a><span class="k">def</span> <span class="nf">get_CC100</span><span class="p">():</span>
+    <span class="n">CC100</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="s1">&#39;CC100.dat&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+    <span class="n">CC100</span> <span class="o">=</span> <span class="n">CC100</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">CC100</span></div>
+</pre></div>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Colin J. Cotter.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
+    </div>
+  </body>
+</html>

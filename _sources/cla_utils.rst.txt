@@ -12,6 +12,14 @@ cla\_utils.exercises1 module
    :undoc-members:
    :show-inheritance:
 
+cla\_utils.exercises10 module
+-----------------------------
+
+.. automodule:: cla_utils.exercises10
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 cla\_utils.exercises2 module
 ----------------------------
 
