@@ -98,30 +98,65 @@
 <span class="sd">    of power iterates, instead of just the final iteration. Default is \</span>
 <span class="sd">    False.</span>
 
-<span class="sd">    :return x0: an m dimensional numpy array, or \</span>
-<span class="sd">    if store_iterations, an mxmaxit dimensional numpy array.</span>
+<span class="sd">    :return x: an m dimensional numpy array containing the final iterate, or \</span>
+<span class="sd">    if store_iterations, an mxmaxit dimensional numpy array containing all \</span>
+<span class="sd">    the iterates.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">xi</span> <span class="o">=</span> <span class="mf">1.0</span><span class="o">*</span><span class="n">x0</span>
-    <span class="n">m</span> <span class="o">=</span> <span class="n">x0</span><span class="o">.</span><span class="n">size</span>
-    <span class="k">if</span> <span class="n">store_iterations</span><span class="p">:</span>
-        <span class="n">xt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">m</span><span class="p">,</span> <span class="n">maxit</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
-        <span class="n">xt</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x0</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">maxit</span><span class="p">):</span>
-        <span class="n">xi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">xi</span><span class="p">)</span>
-        <span class="n">xi</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">xi</span><span class="p">)</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">xi</span><span class="p">)</span>
-        <span class="n">r</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
-        <span class="n">r</span> <span class="o">-=</span> <span class="n">xi</span>
-        <span class="n">rmag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">store_iterations</span><span class="p">:</span>
-            <span class="n">xt</span><span class="p">[:,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">xi</span>
-        <span class="k">if</span> <span class="n">rmag</span> <span class="o">&lt;</span> <span class="n">tol</span><span class="p">:</span>
-            <span class="k">break</span>
-    <span class="k">if</span> <span class="n">store_iterations</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">xt</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">xi</span></div>
+    <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+
+<div class="viewcode-block" id="inverse_it"><a class="viewcode-back" href="../../cla_utils.html#cla_utils.exercises9.inverse_it">[docs]</a><span class="k">def</span> <span class="nf">inverse_it</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">tol</span><span class="p">,</span> <span class="n">maxit</span><span class="p">,</span> <span class="n">store_iterations</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    For a Hermitian matrix A, apply the inverse iteration algorithm</span>
+<span class="sd">    with initial guess x0, using the same termination criteria as</span>
+<span class="sd">    for pow_it.</span>
+
+<span class="sd">    :param A: an mxm numpy array</span>
+<span class="sd">    :param mu: a floating point number, the shift parameter</span>
+<span class="sd">    :param x0: the starting vector for the power iteration</span>
+<span class="sd">    :param tol: a positive float, the tolerance</span>
+<span class="sd">    :param maxit: integer, max number of iterations</span>
+<span class="sd">    :param store_iterations: if True, then return the entire sequence \</span>
+<span class="sd">    of inverse iterates, instead of just the final iteration. Default is \</span>
+<span class="sd">    False.</span>
+
+<span class="sd">    :return x: an m dimensional numpy array containing the final iterate, or \</span>
+<span class="sd">    if store_iterations, an mxmaxit dimensional numpy array containing \</span>
+<span class="sd">    all the iterates.</span>
+<span class="sd">    :return l: a floating point number containing the final eigenvalue \</span>
+<span class="sd">    estimate, or if store_iterations, an m dimensional numpy array containing \</span>
+<span class="sd">    all the iterates.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+
+<div class="viewcode-block" id="rq_it"><a class="viewcode-back" href="../../cla_utils.html#cla_utils.exercises9.rq_it">[docs]</a><span class="k">def</span> <span class="nf">rq_it</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">tol</span><span class="p">,</span> <span class="n">maxit</span><span class="p">,</span> <span class="n">store_iterations</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    For a Hermitian matrix A, apply the Rayleigh quotient algorithm</span>
+<span class="sd">    with initial guess x0, using the same termination criteria as</span>
+<span class="sd">    for pow_it.</span>
+
+<span class="sd">    :param A: an mxm numpy array</span>
+<span class="sd">    :param x0: the starting vector for the power iteration</span>
+<span class="sd">    :param tol: a positive float, the tolerance</span>
+<span class="sd">    :param maxit: integer, max number of iterations</span>
+<span class="sd">    :param store_iterations: if True, then return the entire sequence \</span>
+<span class="sd">    of inverse iterates, instead of just the final iteration. Default is \</span>
+<span class="sd">    False.</span>
+
+<span class="sd">    :return x: an m dimensional numpy array containing the final iterate, or \</span>
+<span class="sd">    if store_iterations, an mxmaxit dimensional numpy array containing \</span>
+<span class="sd">    all the iterates.</span>
+<span class="sd">    :return l: a floating point number containing the final eigenvalue \</span>
+<span class="sd">    estimate, or if store_iterations, an m dimensional numpy array containing \</span>
+<span class="sd">    all the iterates.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+
 </pre></div>
 
             <div class="clearer"></div>

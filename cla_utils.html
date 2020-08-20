@@ -775,6 +775,32 @@ for which QHQ^* = A.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt id="cla_utils.exercises9.inverse_it">
+<code class="sig-prename descclassname">cla_utils.exercises9.</code><code class="sig-name descname">inverse_it</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">A</span></em>, <em class="sig-param"><span class="n">x0</span></em>, <em class="sig-param"><span class="n">mu</span></em>, <em class="sig-param"><span class="n">tol</span></em>, <em class="sig-param"><span class="n">maxit</span></em>, <em class="sig-param"><span class="n">store_iterations</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises9.html#inverse_it"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises9.inverse_it" title="Permalink to this definition">¶</a></dt>
+<dd><p>For a Hermitian matrix A, apply the inverse iteration algorithm
+with initial guess x0, using the same termination criteria as
+for pow_it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> – an mxm numpy array</p></li>
+<li><p><strong>mu</strong> – a floating point number, the shift parameter</p></li>
+<li><p><strong>x0</strong> – the starting vector for the power iteration</p></li>
+<li><p><strong>tol</strong> – a positive float, the tolerance</p></li>
+<li><p><strong>maxit</strong> – integer, max number of iterations</p></li>
+<li><p><strong>store_iterations</strong> – if True, then return the entire sequence     of inverse iterates, instead of just the final iteration. Default is     False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return x</dt>
+<dd class="field-even"><p>an m dimensional numpy array containing the final iterate, or     if store_iterations, an mxmaxit dimensional numpy array containing     all the iterates.</p>
+</dd>
+<dt class="field-odd">Return l</dt>
+<dd class="field-odd"><p>a floating point number containing the final eigenvalue     estimate, or if store_iterations, an m dimensional numpy array containing     all the iterates.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt id="cla_utils.exercises9.pow_it">
 <code class="sig-prename descclassname">cla_utils.exercises9.</code><code class="sig-name descname">pow_it</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">A</span></em>, <em class="sig-param"><span class="n">x0</span></em>, <em class="sig-param"><span class="n">tol</span></em>, <em class="sig-param"><span class="n">maxit</span></em>, <em class="sig-param"><span class="n">store_iterations</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises9.html#pow_it"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises9.pow_it" title="Permalink to this definition">¶</a></dt>
 <dd><p>For a matrix A, apply the power iteration algorithm with initial
@@ -792,8 +818,33 @@ guess x0, until either</p>
 <li><p><strong>store_iterations</strong> – if True, then return the entire sequence     of power iterates, instead of just the final iteration. Default is     False.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return x0</dt>
-<dd class="field-even"><p>an m dimensional numpy array, or     if store_iterations, an mxmaxit dimensional numpy array.</p>
+<dt class="field-even">Return x</dt>
+<dd class="field-even"><p>an m dimensional numpy array containing the final iterate, or     if store_iterations, an mxmaxit dimensional numpy array containing all     the iterates.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="cla_utils.exercises9.rq_it">
+<code class="sig-prename descclassname">cla_utils.exercises9.</code><code class="sig-name descname">rq_it</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">A</span></em>, <em class="sig-param"><span class="n">x0</span></em>, <em class="sig-param"><span class="n">tol</span></em>, <em class="sig-param"><span class="n">maxit</span></em>, <em class="sig-param"><span class="n">store_iterations</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises9.html#rq_it"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises9.rq_it" title="Permalink to this definition">¶</a></dt>
+<dd><p>For a Hermitian matrix A, apply the Rayleigh quotient algorithm
+with initial guess x0, using the same termination criteria as
+for pow_it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> – an mxm numpy array</p></li>
+<li><p><strong>x0</strong> – the starting vector for the power iteration</p></li>
+<li><p><strong>tol</strong> – a positive float, the tolerance</p></li>
+<li><p><strong>maxit</strong> – integer, max number of iterations</p></li>
+<li><p><strong>store_iterations</strong> – if True, then return the entire sequence     of inverse iterates, instead of just the final iteration. Default is     False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return x</dt>
+<dd class="field-even"><p>an m dimensional numpy array containing the final iterate, or     if store_iterations, an mxmaxit dimensional numpy array containing     all the iterates.</p>
+</dd>
+<dt class="field-odd">Return l</dt>
+<dd class="field-odd"><p>a floating point number containing the final eigenvalue     estimate, or if store_iterations, an m dimensional numpy array containing     all the iterates.</p>
 </dd>
 </dl>
 </dd></dl>
