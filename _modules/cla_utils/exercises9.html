@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cla_utils.exercises9 &#8212; Computational linear algebra course 2020.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/fenics.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/proof.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+<link rel="stylesheet" href="../../_static/featured.css">
+
+
+<link rel="shortcut icon" href="../../_static/icon.ico" />
+
+
+  </head><body>
+<div class="wrapper">
+  <a href="../../index.html"><img src="../../_static/banner.png" width="900px" alt="Project Banner" /></a>
+  <div id="access">
+    <div class="menu">
+      <ul>
+          <li class="page_item"><a href="https://github.com/Computational-Linear-Algebra-Course/computational-linear-algebra-course" title="GitHub">GitHub</a></li>
+      </ul>
+    </div><!-- .menu -->
+  </div><!-- #access -->
+</div><!-- #wrapper -->
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for cla_utils.exercises9</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<div class="viewcode-block" id="get_A3"><a class="viewcode-back" href="../../cla_utils.html#cla_utils.exercises9.get_A3">[docs]</a><span class="k">def</span> <span class="nf">get_A3</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return A3 matrix for investigating power iteration.</span>
+<span class="sd">    </span>
+<span class="sd">    :return A3: a 3x3 numpy array.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">array</span><span class="p">([[</span> <span class="mf">0.68557183</span><span class="o">+</span><span class="mf">0.46550108</span><span class="n">j</span><span class="p">,</span>  <span class="mf">0.12934765</span><span class="o">-</span><span class="mf">0.1622676</span><span class="n">j</span> <span class="p">,</span>
+                    <span class="mf">0.24409518</span><span class="o">+</span><span class="mf">0.25335939</span><span class="n">j</span><span class="p">],</span>
+                  <span class="p">[</span> <span class="mf">0.1531015</span> <span class="o">+</span><span class="mf">0.66678983</span><span class="n">j</span><span class="p">,</span>  <span class="mf">0.45112492</span><span class="o">+</span><span class="mf">0.18206976</span><span class="n">j</span><span class="p">,</span>
+                    <span class="o">-</span><span class="mf">0.02633966</span><span class="o">+</span><span class="mf">0.43477693</span><span class="n">j</span><span class="p">],</span>
+                  <span class="p">[</span><span class="o">-</span><span class="mf">0.10817164</span><span class="o">-</span><span class="mf">1.16879196</span><span class="n">j</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.18446849</span><span class="o">+</span><span class="mf">0.03755672</span><span class="n">j</span><span class="p">,</span>
+                   <span class="mf">0.06430325</span><span class="o">-</span><span class="mf">0.44757084</span><span class="n">j</span><span class="p">]])</span></div>
+
+
+<div class="viewcode-block" id="get_B3"><a class="viewcode-back" href="../../cla_utils.html#cla_utils.exercises9.get_B3">[docs]</a><span class="k">def</span> <span class="nf">get_B3</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return B3 matrix for investigating power iteration.</span>
+
+<span class="sd">    :return B3: a 3x3 numpy array.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">array</span><span class="p">([[</span> <span class="mf">0.46870499</span><span class="o">+</span><span class="mf">0.37541453</span><span class="n">j</span><span class="p">,</span>  <span class="mf">0.19115959</span><span class="o">-</span><span class="mf">0.39233203</span><span class="n">j</span><span class="p">,</span>
+                    <span class="mf">0.12830659</span><span class="o">+</span><span class="mf">0.12102382</span><span class="n">j</span><span class="p">],</span>
+                  <span class="p">[</span> <span class="mf">0.90249603</span><span class="o">-</span><span class="mf">0.09446345</span><span class="n">j</span><span class="p">,</span>  <span class="mf">0.51584055</span><span class="o">+</span><span class="mf">0.84326503</span><span class="n">j</span><span class="p">,</span>
+                    <span class="o">-</span><span class="mf">0.02582305</span><span class="o">+</span><span class="mf">0.23259079</span><span class="n">j</span><span class="p">],</span>
+                  <span class="p">[</span> <span class="mf">0.75419973</span><span class="o">-</span><span class="mf">0.52470311</span><span class="n">j</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.59173739</span><span class="o">+</span><span class="mf">0.48075322</span><span class="n">j</span><span class="p">,</span>
+                    <span class="mf">0.51545446</span><span class="o">-</span><span class="mf">0.21867957</span><span class="n">j</span><span class="p">]])</span></div>
+
+
+<div class="viewcode-block" id="pow_it"><a class="viewcode-back" href="../../cla_utils.html#cla_utils.exercises9.pow_it">[docs]</a><span class="k">def</span> <span class="nf">pow_it</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">tol</span><span class="p">,</span> <span class="n">maxit</span><span class="p">,</span> <span class="n">store_iterations</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    For a matrix A, apply the power iteration algorithm with initial</span>
+<span class="sd">    guess x0, until either </span>
+
+<span class="sd">    ||r|| &lt; tol where</span>
+
+<span class="sd">    r = Ax/||x|| - x/||x||,</span>
+
+<span class="sd">    or the number of iterations exceeds maxit.</span>
+
+<span class="sd">    :param A: an mxm numpy array</span>
+<span class="sd">    :param x0: the starting vector for the power iteration</span>
+<span class="sd">    :param tol: a positive float, the tolerance</span>
+<span class="sd">    :param maxit: integer, max number of iterations</span>
+<span class="sd">    :param store_iterations: if True, then return the entire sequence \</span>
+<span class="sd">    of power iterates, instead of just the final iteration. Default is \</span>
+<span class="sd">    False.</span>
+
+<span class="sd">    :return x0: an m dimensional numpy array, or \</span>
+<span class="sd">    if store_iterations, an mxmaxit dimensional numpy array.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">xi</span> <span class="o">=</span> <span class="mf">1.0</span><span class="o">*</span><span class="n">x0</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">x0</span><span class="o">.</span><span class="n">size</span>
+    <span class="k">if</span> <span class="n">store_iterations</span><span class="p">:</span>
+        <span class="n">xt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">m</span><span class="p">,</span> <span class="n">maxit</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+        <span class="n">xt</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">maxit</span><span class="p">):</span>
+        <span class="n">xi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">xi</span><span class="p">)</span>
+        <span class="n">xi</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">xi</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">xi</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">-=</span> <span class="n">xi</span>
+        <span class="n">rmag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">store_iterations</span><span class="p">:</span>
+            <span class="n">xt</span><span class="p">[:,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">xi</span>
+        <span class="k">if</span> <span class="n">rmag</span> <span class="o">&lt;</span> <span class="n">tol</span><span class="p">:</span>
+            <span class="k">break</span>
+    <span class="k">if</span> <span class="n">store_iterations</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">xt</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">xi</span></div>
+</pre></div>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Colin J. Cotter.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
+    </div>
+  </body>
+</html>

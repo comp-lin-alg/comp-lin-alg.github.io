@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>cla_utils package &#8212; Computational linear algebra course 2020.0 documentation</title>
     <link rel="stylesheet" href="_static/fenics.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -750,6 +750,55 @@ for which QHQ^* = A.</p>
 </dd></dl>
 
 </div>
+<div class="section" id="module-cla_utils.exercises9">
+<span id="cla-utils-exercises9-module"></span><h2>cla_utils.exercises9 module<a class="headerlink" href="#module-cla_utils.exercises9" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="cla_utils.exercises9.get_A3">
+<code class="sig-prename descclassname">cla_utils.exercises9.</code><code class="sig-name descname">get_A3</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises9.html#get_A3"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises9.get_A3" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return A3 matrix for investigating power iteration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return A3</dt>
+<dd class="field-odd"><p>a 3x3 numpy array.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="cla_utils.exercises9.get_B3">
+<code class="sig-prename descclassname">cla_utils.exercises9.</code><code class="sig-name descname">get_B3</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises9.html#get_B3"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises9.get_B3" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return B3 matrix for investigating power iteration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return B3</dt>
+<dd class="field-odd"><p>a 3x3 numpy array.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="cla_utils.exercises9.pow_it">
+<code class="sig-prename descclassname">cla_utils.exercises9.</code><code class="sig-name descname">pow_it</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">A</span></em>, <em class="sig-param"><span class="n">x0</span></em>, <em class="sig-param"><span class="n">tol</span></em>, <em class="sig-param"><span class="n">maxit</span></em>, <em class="sig-param"><span class="n">store_iterations</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises9.html#pow_it"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises9.pow_it" title="Permalink to this definition">¶</a></dt>
+<dd><p>For a matrix A, apply the power iteration algorithm with initial
+guess x0, until either</p>
+<p>||r|| &lt; tol where</p>
+<p>r = Ax/||x|| - x/||x||,</p>
+<p>or the number of iterations exceeds maxit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> – an mxm numpy array</p></li>
+<li><p><strong>x0</strong> – the starting vector for the power iteration</p></li>
+<li><p><strong>tol</strong> – a positive float, the tolerance</p></li>
+<li><p><strong>maxit</strong> – integer, max number of iterations</p></li>
+<li><p><strong>store_iterations</strong> – if True, then return the entire sequence     of power iterates, instead of just the final iteration. Default is     False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return x0</dt>
+<dd class="field-even"><p>an m dimensional numpy array, or     if store_iterations, an mxmaxit dimensional numpy array.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
 <div class="section" id="module-cla_utils">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-cla_utils" title="Permalink to this headline">¶</a></h2>
 </div>
@@ -764,7 +813,7 @@ for which QHQ^* = A.</p>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2020, Colin J. Cotter.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.2.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
     </div>
   </body>
 </html>
