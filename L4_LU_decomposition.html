@@ -92,7 +92,7 @@ u_2 = \begin{pmatrix} u_{12} \\ u_{22} \\ 0 \\ \ldots \\ 0 \\
 <p>After repeated left multiplications we have</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
-\[A_n = \underbrace{L_n\ldots L_2L_1}A = U.\]</div>
+\[A_n = {L_n\ldots L_2L_1}A = U.\]</div>
 </div></blockquote>
 <p>This process of transforming <span class="math notranslate nohighlight">\(A\)</span> to <span class="math notranslate nohighlight">\(U\)</span> is called Gaussian elimination.</p>
 <p>If we assume (we will show this later) that all these lower triangular
@@ -103,7 +103,7 @@ matrices are invertible, we can define</p>
 </div></blockquote>
 <p>Then we have <span class="math notranslate nohighlight">\(L^{-1}A = U\)</span>, i.e. <span class="math notranslate nohighlight">\(A=LU\)</span>.</p>
 <p>So, we need to find lower triangular matrices <span class="math notranslate nohighlight">\(L_k\)</span> that do not change
-the first <span class="math notranslate nohighlight">\(k-1\)</span> rows, and transforms the kth column ‘x_k’ of <span class="math notranslate nohighlight">\(A_k\)</span>
+the first <span class="math notranslate nohighlight">\(k-1\)</span> rows, and transforms the <span class="math notranslate nohighlight">\(k\)</span>-th column <span class="math notranslate nohighlight">\(x_k\)</span> of <span class="math notranslate nohighlight">\(A_k\)</span>
 as follows.</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -288,7 +288,7 @@ requires <span class="math notranslate nohighlight">\(m-k+1\)</span> multiplicat
         <span class="proof-type">Exercise 4.2</span>
         
     </div><div class="proof-content">
-<p>Since the diagonal entires of <span class="math notranslate nohighlight">\(L\)</span> are all ones, the total amount of
+<p>Since the diagonal entries of <span class="math notranslate nohighlight">\(L\)</span> are all ones, the total amount of
 combined memory required to store <span class="math notranslate nohighlight">\(L\)</span> and <span class="math notranslate nohighlight">\(U\)</span> is the same as the
 amount of memory required to store <span class="math notranslate nohighlight">\(A\)</span>. Further, each iteration of
 the LU factorisation algorithm computes one column of <span class="math notranslate nohighlight">\(L\)</span> and one
@@ -539,7 +539,7 @@ elimination algorithm implemented in a floating point number system
 satisfying axioms I and II. If no zero pivots are encountered, then</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
-\[`\tilde{L}\tilde{U} = A + \delta A\]</div>
+\[\tilde{L}\tilde{U} = A + \delta A\]</div>
 </div></blockquote>
 <p>where</p>
 <blockquote>
@@ -548,7 +548,7 @@ satisfying axioms I and II. If no zero pivots are encountered, then</p>
 </div></blockquote>
 <p>for some perturbation <span class="math notranslate nohighlight">\(\delta A\)</span>.</p>
 </div></div><p>The algorithm is backward stable if <span class="math notranslate nohighlight">\(\|L\|\|U\|=\mathcal{O}(\|A\|)\)</span>,
-but there will be problems is <span class="math notranslate nohighlight">\(|L\|\|U\|\gg \|A\|\)</span>. For a proof of this
+but there will be problems if <span class="math notranslate nohighlight">\(|L\|\|U\|\gg \|A\|\)</span>. For a proof of this
 result, see the textbook by Golub and van Loan.</p>
 <p>A similar result exists for pivoted LU. The main extra issue is that
 small changes could potentially lead to a different pivoting matrix
@@ -566,7 +566,7 @@ floating point number system satisfying axioms I and II. If no zero
 pivots are encountered, then</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
-\[`\tilde{L}\tilde{U} = A + \delta A\]</div>
+\[\tilde{L}\tilde{U} = A + \delta A\]</div>
 </div></blockquote>
 <p>where</p>
 <blockquote>
@@ -595,7 +595,7 @@ Here we will discuss some examples of structure to be exploited.</p>
 <p>When <span class="math notranslate nohighlight">\(A\)</span> is a lower or upper triangular matrix then we can use
 forwards or back substitution, with <span class="math notranslate nohighlight">\(\mathcal{O}(m^2)\)</span> operation count
 as previously discussed.</p>
-<p>symmetric When <span class="math notranslate nohighlight">\(A\)</span> is a diagonal matrix, i.e. <span class="math notranslate nohighlight">\(A_{ij}=0\)</span> for <span class="math notranslate nohighlight">\(i\ne j\)</span>, it only
+<p>When <span class="math notranslate nohighlight">\(A\)</span> is a diagonal matrix, i.e. <span class="math notranslate nohighlight">\(A_{ij}=0\)</span> for <span class="math notranslate nohighlight">\(i\ne j\)</span>, it only
 has <span class="math notranslate nohighlight">\(m\)</span> nonzero entries, that can be stored as a vector,
 <span class="math notranslate nohighlight">\((A_{11},A_{22},\ldots,A_{mm})\)</span>. In this case, <span class="math notranslate nohighlight">\(Ax=b\)</span> can be solved in
 <span class="math notranslate nohighlight">\(m\)</span> operations, just by setting <span class="math notranslate nohighlight">\(x_i=b_i/A_{ii}\)</span>, for
@@ -781,7 +781,7 @@ y = R_1x.\]</div>
 <p>Hence, <span class="math notranslate nohighlight">\(K-{ww^*}/{a_{11}}\)</span> is positive definite, since</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
-\[\begin{split}r^*(K-\frac{ww^*}{a_{11}})r = \begin{pmatrix} 0 \\ r \\ \end{pmatrix}^*
+\[\begin{split}r^*\left(K-\frac{ww^*}{a_{11}}\right)r = \begin{pmatrix} 0 \\ r \\ \end{pmatrix}^*
 A_1 \begin{pmatrix} 0 \\ r \\ \end{pmatrix} &gt; 0,\end{split}\]</div>
 </div></blockquote>
 <p>and hence we can now perform the same procedure all over again to <span class="math notranslate nohighlight">\(K -

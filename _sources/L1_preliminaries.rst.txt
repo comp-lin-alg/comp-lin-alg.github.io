@@ -12,6 +12,9 @@ that should be found in an undergraduate linear algebra course.
 Matrices, vectors and matrix-vector multiplication
 ==================================================
 
+A video recording of this section is available `here
+<https://vimeo.com/450145459>`_.
+
 We will consider the multiplication of a vector
 
    .. math::
@@ -325,7 +328,7 @@ the unique left inverse of `A`, and show that `Z` is also the unique
 right inverse of `A`, satisfying `I = AZ`.) We write `Z=A^{-1}`.
 
 The first four parts of the next theorem are a consequence of what
-we have so far, and we shall quote the rest (see a linear algebra
+we have so far, and we shall quote the fifth and sixth (see a linear algebra
 course).
 
 .. proof:theorem::
@@ -337,7 +340,6 @@ course).
    #. `\mbox{range}(A)=\mathbb{C}^m`.
    #. `\mbox{null}(A)=\{0\}`.
    #. 0 is not an eigenvalue of `A`.
-   #. 0 is not a singular value of `A`.
    #. The determinant `\det(A)\neq 0`.
 
 Finding the inverse of a matrix can be seen as a change of basis. Considering
@@ -480,13 +482,13 @@ Orthogonality will emerge as an early key concept in this course.
 
    .. math::
 
-      x^*y = 0\, \forall x\in X, \, y\in Y.
+      x^*y = 0,\quad \forall x\in X, \, y\in Y.
 
    A set `S` of vectors is itself orthogonal if
       
    .. math::
 
-      x^*y = 0\,\forall x,y \in S.
+      x^*y = 0,\quad\forall x,y \in S.
 
    We say that `S` is orthonormal if we also have `\|x\|=1`
    for all `x\in S`.
@@ -500,14 +502,14 @@ Now take
 
    .. math::
 
-      r = v - (q_1^*v)q_1 - (q_2^*v)q_2 - \ldots (q_n^*v)q_n.
+      r = v - (q_1^*v)q_1 - (q_2^*v)q_2 - \ldots - (q_n^*v)q_n.
 
 Then, we can check that `r` is orthogonal to `S`, by calculating
 for each `1\leq i \leq n`,
 
    .. math::
 
-      q^*_ir = q_i^*v - (q_1^*v)(q_i^*q_1) - \ldots (q_n^*v)(q_i^*q_n)
+      q^*_ir = q_i^*v - (q_1^*v)(q_i^*q_1) - \ldots - (q_n^*v)(q_i^*q_n)
 
       = q_i^*v - q_i^*v = 0,
 
@@ -630,7 +632,7 @@ Projectors and projections
    A projector `P` is a square matrix that satisfies `P^2=P`.
 
 If `v \in \mbox{range}(P)`, then there exists `x` such that
-`Pv = x`. Then,
+`Px = v`. Then,
 
    .. math::
  

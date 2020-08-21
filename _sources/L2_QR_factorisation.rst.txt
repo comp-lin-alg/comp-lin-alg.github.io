@@ -452,7 +452,7 @@ diagonal entries in column `k` to zero, we need the
       0 & F^{-1} \\
       \end{pmatrix}.
 
-We write the `k`th column `v_k^k` of `A_k` as
+We write the `k` th column `v_k^k` of `A_k` as
 
    .. math::
 
@@ -474,21 +474,21 @@ gets transformed according to
 
 and our goal is that `Fx` is zero, except for the first entry (which
 becomes the diagonal entry of `Q_kv_k^k`). Since `F` is unitary, we must
-have `\|Fx\|=\|x\|`, so we choose to have
+have `\|Fx\|=\|x\|`. For now we shall specialise to
+real matrices, so we choose to have
 
    .. math::
 
       Fx = \pm\|x\|e_1,
 
-where we shall consider the sign later. Here we have chosen for `Fx`
-to be real. We could alternatively pick another value of the same
-magnitude but different complex argument (but that would lead to a
-slightly different `QR` factorisation).
+where we shall consider the sign later. Complex matrices have a more
+general formula for Householder transformations which we shall not
+discuss here.
 
 We can achieve this by using a Householder reflector for `F`, which is
 a unitary transformation that does precisely what we
 need. Geometrically, the idea is that we consider a line joining `x`
-and `Fx=\|x\|e_1`, which points in the direction `v=\|x\|e_1-x`. We can
+and `Fx=\pm\|x\|e_1`, which points in the direction `v=\pm\|x\|e_1-x`. We can
 transform `x` to `Fx` by a reflection in the hyperplane `H` that is
 orthogonal to `v`. Since reflections are norm preserving, `F` must be
 unitary. Applying the projector `P` given by
@@ -518,11 +518,12 @@ We can check that this does what we want,
 
 	 = x + (\pm\|x\|e_1 - x) = \pm\|x\|e_1,
 
-as required, having checked that
+as required, having checked that (assuming `x` is real)
 
    .. math::
 
-      \|\pm \|x\|e_1 - x\|^2 = -2\|x\|(\pm x_1 - \|x\|).
+      \|\pm \|x\|e_1 - x\|^2 = \|x\|^2 - 2x_1 + \|x\|^2
+      = -2\|x\|(\pm x_1 - \|x\|).
 
 We can also check that `F` is unitary. First we check that `F`
 is Hermitian,
@@ -705,11 +706,12 @@ Application: Least squares problems
 
 Least square problems are relevant in data fitting problems,
 optimisation and control, and are also a crucial ingredient of modern
-massively parallel linear system solver algorithms. They are a way of
+massively parallel linear system solver algorithms such as GMRES,
+which we shall encounter later in the course. They are a way of
 solving "long thin" matrix vector problems `Ax=b` where we want to
-obtain `x\in \mathbb{C}^m` from `b\in\mathbb{C}^n` with `A` an
-`n\times m` matrix.  Often the problem does not have a solution as it
-is overdetermined for `n>m`. Instead we just seek `x` that minimises
+obtain `x\in \mathbb{C}^n` from `b\in\mathbb{C}^m` with `A` an
+`m\times n` matrix.  Often the problem does not have a solution as it
+is overdetermined for `m>n`. Instead we just seek `x` that minimises
 the 2-norm of the residual `r=b-Ax`, i.e. `x` is the minimiser of
 
    .. math::

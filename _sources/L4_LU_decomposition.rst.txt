@@ -55,7 +55,7 @@ After repeated left multiplications we have
 
    .. math::
 
-      A_n = \underbrace{L_n\ldots L_2L_1}A = U.
+      A_n = {L_n\ldots L_2L_1}A = U.
 
 This process of transforming `A` to `U` is called Gaussian elimination.
       
@@ -73,7 +73,7 @@ matrices are invertible, we can define
 Then we have `L^{-1}A = U`, i.e. `A=LU`.
 
 So, we need to find lower triangular matrices `L_k` that do not change
-the first `k-1` rows, and transforms the kth column 'x_k' of `A_k`
+the first `k-1` rows, and transforms the `k`-th column `x_k` of `A_k`
 as follows.
 
    .. math::
@@ -271,7 +271,7 @@ requires `m-k+1` multiplications and subtractions, and is iterated
 
 .. proof:exercise::
 
-   Since the diagonal entires of `L` are all ones, the total amount of
+   Since the diagonal entries of `L` are all ones, the total amount of
    combined memory required to store `L` and `U` is the same as the
    amount of memory required to store `A`. Further, each iteration of
    the LU factorisation algorithm computes one column of `L` and one
@@ -510,7 +510,7 @@ result.
 
       .. math::
 
-	 `\tilde{L}\tilde{U} = A + \delta A
+	 \tilde{L}\tilde{U} = A + \delta A
 
    where
 
@@ -521,7 +521,7 @@ result.
    for some perturbation `\delta A`.
 
 The algorithm is backward stable if `\|L\|\|U\|=\mathcal{O}(\|A\|)`,
-but there will be problems is `|L\|\|U\|\gg \|A\|`. For a proof of this
+but there will be problems if `|L\|\|U\|\gg \|A\|`. For a proof of this
 result, see the textbook by Golub and van Loan.
 
 A similar result exists for pivoted LU. The main extra issue is that
@@ -538,7 +538,7 @@ in the following result (which we also do not prove).
 
       .. math::
 
-	 `\tilde{L}\tilde{U} = A + \delta A
+	 \tilde{L}\tilde{U} = A + \delta A
 
    where
 
@@ -572,7 +572,7 @@ When `A` is a lower or upper triangular matrix then we can use
 forwards or back substitution, with `\mathcal{O}(m^2)` operation count
 as previously discussed.
 
-symmetric When `A` is a diagonal matrix, i.e. `A_{ij}=0` for `i\ne j`, it only
+When `A` is a diagonal matrix, i.e. `A_{ij}=0` for `i\ne j`, it only
 has `m` nonzero entries, that can be stored as a vector,
 `(A_{11},A_{22},\ldots,A_{mm})`. In this case, `Ax=b` can be solved in
 `m` operations, just by setting `x_i=b_i/A_{ii}`, for
@@ -764,7 +764,7 @@ Hence, `K-{ww^*}/{a_{11}}` is positive definite, since
 
    .. math::
 
-      r^*(K-\frac{ww^*}{a_{11}})r = \begin{pmatrix} 0 \\ r \\ \end{pmatrix}^*
+      r^*\left(K-\frac{ww^*}{a_{11}}\right)r = \begin{pmatrix} 0 \\ r \\ \end{pmatrix}^*
       A_1 \begin{pmatrix} 0 \\ r \\ \end{pmatrix} > 0,
 
 and hence we can now perform the same procedure all over again to `K -

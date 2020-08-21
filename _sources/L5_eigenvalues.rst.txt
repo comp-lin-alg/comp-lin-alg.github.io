@@ -188,15 +188,17 @@ At each stage, we have a similarity transformation,
 
       A = \underbrace{Q_1Q_2\ldots Q_k}_{=Q}A_k\underbrace{Q_k^*\ldots Q_2^*Q_1^*}_{=Q^*},
 
-\emph{i.e.} `A` is similar to `A_k`. Second, the successive sequence is
+i.e. `A` is similar to `A_k`. Second, the successive sequence is
 infinite, i.e. we will develop an iterative method that converges in
 the limit `k\to\infty`.  We should terminate the iterative method
 when `A_k` is sufficiently close to being upper triangular (which
+can be measured by checking some norm on the lower triangular part
+of `A` and stopping when it is below a tolerance).
 
-We should not be surprised by this news, since if the successive
-sequence were finite, we would have derived an explicit formula for
-computing the eigenvalues of the characteristic polynomial of `A`
-which is explicit in general. 
+We should not be surprised by the news that the method needs to be
+iterative, since if the successive sequence were finite, we would have
+derived an explicit formula for computing the eigenvalues of the
+characteristic polynomial of `A` which is explicit in general.
 
 In fact, there are two stages to this process. The first stage, which
 is finite (takes `m-1` steps) is to use similarity transformations to
@@ -577,7 +579,7 @@ below.
      * `\lambda^{(k)} \gets (v^k)^TAv^k`
 
 This dramatically improves the convergence since if
-`\|v^(k)-q_J\|=\mathcal{O}(\delta)` for some small `\delta`, then the
+`\|v^k-q_J\|=\mathcal{O}(\delta)` for some small `\delta`, then the
 Rayleigh quotient gives `|\lambda^{(k)}-q_J|=\mathcal{O}(\delta^2)`.
 Then, inverse iteration gives an estimate
 
@@ -601,7 +603,7 @@ Thus we have cubic convergence, which is super fast!
    The interfaces to :func:`cla_utils.exercises9.inverse_it` and
    :func:`cla_utils.exercises9.rq_it` have been designed to optionally
    provide the iterated values of the eigenvector and eigenvalue.  For
-   a given initial condition (and choice of `mu` in the case of
+   a given initial condition (and choice of `\mu` in the case of
    inverse iteration), compare the convergence speeds of the
    eigenvectors and eigenvalues, using some example matrices of
    different sizes (don't forget to make them Hermitian).
@@ -669,14 +671,14 @@ One problem with power iteration is that it only finds one
 eigenvector/eigenvalue pair at a time. Simultaneous iteration is a
 solution to this. The starting idea is simple: instead of working on
 just one vector `v`, we pick a set of linearly independent vectors
-`v_1^{(0)},v_2^{(0)},\ldots,v_n^{(0)}` and repeatedly apply `A` to each of
+`v_1^{0},v_2^{0},\ldots,v_n^{0}` and repeatedly apply `A` to each of
 these vectors. After a large number applications and normalisations in
 the manner of the power iteration, we end up with a linear independent
-set `v_1^{(k)},v_2^{(k)},\ldots,v_n^{(k)}`, `n\leq m`. All of the vectors in this set
+set `v_1^{k},v_2^{k},\ldots,v_n^{k}`, `n\leq m`. All of the vectors in this set
 will be very close to `q_1`, the eigenvector with largest magnitude of
-corresponding eigenvalue. We can choose `v_1^{(k)}` as our approximation
+corresponding eigenvalue. We can choose `v_1^{k}` as our approximation
 of `q_1`, and project this approximation of `q_1` from the rest of the
-vectors `v_2^{(k)},v_3^{(k)},\ldots v_m^{(k)}`.  All the remaining vectors
+vectors `v_2^{k},v_3^{k},\ldots v_m^{k}`.  All the remaining vectors
 will be close to `q_2`, the eigenvector with the next largest
 magnitude of corresponding eigenvalue. Similarly we can choose the
 first one of the remaining projected vectors as an approximation of
@@ -702,9 +704,9 @@ that:
    eigenvalues must be distinct.
 #. The `v` vectors can be expressed as a linear sum of the first `n`
    eigenvectors `q_1,\ldots,q_n` in a non-degenerate way. This turns
-   out (we won't show it here) the be equivalent to the condition that
+   out  to be equivalent (we won't show it here) to the condition that
    `\hat{Q}^TV^{(0)}` has an LU factorisation (where `\hat{Q}` is the
-   matrix whose columns of the first `n` eigenvectors.
+   matrix whose columns are the first `n` eigenvectors of `A`).
 
 One problem with this idea is that it is not numerically stable.  The
 columns of `V^{(k)}` rapidly become a very ill-conditioned basis for the
@@ -731,12 +733,12 @@ The pure QR algorithm and simultaneous iteration are equivalent
 
 To be precise, we will show that the pure QR algorithm is equivalent
 to simultaneous iteration when the initial independent set is the
-canonical basis `I`, i.e. `Q^(0)=I`. The convergence condition becomes
-that `Q^T` has an LU decomposition, where `Q` is the limiting unitary
-matrix that simultaneous iteration is converging to.  To show that the
-two algorithms are equivalent, we append them with some auxiliary
-variables, which are not needed for the algorithms but are needed for
-the comparison.
+canonical basis `I`, i.e. `Q^{(0)}=I`. From the above, we see that
+that algorithm converges provided that `Q^T` has an LU decomposition,
+where `Q` is the limiting unitary matrix that simultaneous iteration
+is converging to.  To show that the two algorithms are equivalent, we
+append them with some auxiliary variables, which are not needed for
+the algorithms but are needed for the comparison.
 
 To simultaneous iteration we append a running similarity transformation
 of `A`, and a running product of all of the `R` matrices.
@@ -764,15 +766,15 @@ matrices, and a running product of all of the `R` matrices (again).
 
    The two processes above generate identical sequences of matrices
    `{R'}^{(k)}`, `{Q'}^{(k)}` and `A^{(k)}`, which are related by
-   `A^{k} = {Q'}^{(k)}{R'}^{(k)}` (the `k`th power of `A`, not
+   `A^{k} = {Q'}^{(k)}{R'}^{(k)}` (the `k`-th power of `A`, not
    `A^{(k)}`!), and `A^{(k)}=({Q'}^{(k)})^TA{Q'}^{(k)}`.
 
 
 .. proof:proof::
 
-   We prove by induction. At `k=0`, `A_k={R'}^{(k)}={Q'}^{(k)}=0`. Now we assume
-   that the inductive hypothesis is true for 'k', and aim to deduce that
-   it is true for `k+1`.
+   We prove by induction. At `k=0`, `A_k={R'}^{(k)}={Q'}^{(k)}=0`. Now
+   we assume that the inductive hypothesis is true for `k`, and aim to
+   deduce that it is true for `k+1`.
 
    For simultaneous iteration, we immediately have the simularity
    formula for `A^{(k)}` by definition, and we just need to verify the QR

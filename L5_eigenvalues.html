@@ -247,14 +247,16 @@ on the left but also on the right with the inverse, i.e.</p>
 <div><div class="math notranslate nohighlight">
 \[A = \underbrace{Q_1Q_2\ldots Q_k}_{=Q}A_k\underbrace{Q_k^*\ldots Q_2^*Q_1^*}_{=Q^*},\]</div>
 </div></blockquote>
-<p>emph{i.e.} <span class="math notranslate nohighlight">\(A\)</span> is similar to <span class="math notranslate nohighlight">\(A_k\)</span>. Second, the successive sequence is
+<p>i.e. <span class="math notranslate nohighlight">\(A\)</span> is similar to <span class="math notranslate nohighlight">\(A_k\)</span>. Second, the successive sequence is
 infinite, i.e. we will develop an iterative method that converges in
 the limit <span class="math notranslate nohighlight">\(k\to\infty\)</span>.  We should terminate the iterative method
-when <span class="math notranslate nohighlight">\(A_k\)</span> is sufficiently close to being upper triangular (which</p>
-<p>We should not be surprised by this news, since if the successive
-sequence were finite, we would have derived an explicit formula for
-computing the eigenvalues of the characteristic polynomial of <span class="math notranslate nohighlight">\(A\)</span>
-which is explicit in general.</p>
+when <span class="math notranslate nohighlight">\(A_k\)</span> is sufficiently close to being upper triangular (which
+can be measured by checking some norm on the lower triangular part
+of <span class="math notranslate nohighlight">\(A\)</span> and stopping when it is below a tolerance).</p>
+<p>We should not be surprised by the news that the method needs to be
+iterative, since if the successive sequence were finite, we would have
+derived an explicit formula for computing the eigenvalues of the
+characteristic polynomial of <span class="math notranslate nohighlight">\(A\)</span> which is explicit in general.</p>
 <p>In fact, there are two stages to this process. The first stage, which
 is finite (takes <span class="math notranslate nohighlight">\(m-1\)</span> steps) is to use similarity transformations to
 upper Hessenberg form (<span class="math notranslate nohighlight">\(H_{ij}=0\)</span> for <span class="math notranslate nohighlight">\(i&gt;j+1\)</span>). If <span class="math notranslate nohighlight">\(A\)</span> is Hermitian,
@@ -642,7 +644,7 @@ below.</p>
 </ul>
 </div></blockquote>
 <p>This dramatically improves the convergence since if
-<span class="math notranslate nohighlight">\(\|v^(k)-q_J\|=\mathcal{O}(\delta)\)</span> for some small <span class="math notranslate nohighlight">\(\delta\)</span>, then the
+<span class="math notranslate nohighlight">\(\|v^k-q_J\|=\mathcal{O}(\delta)\)</span> for some small <span class="math notranslate nohighlight">\(\delta\)</span>, then the
 Rayleigh quotient gives <span class="math notranslate nohighlight">\(|\lambda^{(k)}-q_J|=\mathcal{O}(\delta^2)\)</span>.
 Then, inverse iteration gives an estimate</p>
 <div class="math notranslate nohighlight">
@@ -669,7 +671,7 @@ function.</p>
 <p>The interfaces to <a class="reference internal" href="cla_utils.html#cla_utils.exercises9.inverse_it" title="cla_utils.exercises9.inverse_it"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.inverse_it()</span></code></a> and
 <a class="reference internal" href="cla_utils.html#cla_utils.exercises9.rq_it" title="cla_utils.exercises9.rq_it"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.rq_it()</span></code></a> have been designed to optionally
 provide the iterated values of the eigenvector and eigenvalue.  For
-a given initial condition (and choice of <span class="math notranslate nohighlight">\(mu\)</span> in the case of
+a given initial condition (and choice of <span class="math notranslate nohighlight">\(\mu\)</span> in the case of
 inverse iteration), compare the convergence speeds of the
 eigenvectors and eigenvalues, using some example matrices of
 different sizes (don’t forget to make them Hermitian).</p>
@@ -741,14 +743,14 @@ another algorithm called simultaneous iteration.</p>
 eigenvector/eigenvalue pair at a time. Simultaneous iteration is a
 solution to this. The starting idea is simple: instead of working on
 just one vector <span class="math notranslate nohighlight">\(v\)</span>, we pick a set of linearly independent vectors
-<span class="math notranslate nohighlight">\(v_1^{(0)},v_2^{(0)},\ldots,v_n^{(0)}\)</span> and repeatedly apply <span class="math notranslate nohighlight">\(A\)</span> to each of
+<span class="math notranslate nohighlight">\(v_1^{0},v_2^{0},\ldots,v_n^{0}\)</span> and repeatedly apply <span class="math notranslate nohighlight">\(A\)</span> to each of
 these vectors. After a large number applications and normalisations in
 the manner of the power iteration, we end up with a linear independent
-set <span class="math notranslate nohighlight">\(v_1^{(k)},v_2^{(k)},\ldots,v_n^{(k)}\)</span>, <span class="math notranslate nohighlight">\(n\leq m\)</span>. All of the vectors in this set
+set <span class="math notranslate nohighlight">\(v_1^{k},v_2^{k},\ldots,v_n^{k}\)</span>, <span class="math notranslate nohighlight">\(n\leq m\)</span>. All of the vectors in this set
 will be very close to <span class="math notranslate nohighlight">\(q_1\)</span>, the eigenvector with largest magnitude of
-corresponding eigenvalue. We can choose <span class="math notranslate nohighlight">\(v_1^{(k)}\)</span> as our approximation
+corresponding eigenvalue. We can choose <span class="math notranslate nohighlight">\(v_1^{k}\)</span> as our approximation
 of <span class="math notranslate nohighlight">\(q_1\)</span>, and project this approximation of <span class="math notranslate nohighlight">\(q_1\)</span> from the rest of the
-vectors <span class="math notranslate nohighlight">\(v_2^{(k)},v_3^{(k)},\ldots v_m^{(k)}\)</span>.  All the remaining vectors
+vectors <span class="math notranslate nohighlight">\(v_2^{k},v_3^{k},\ldots v_m^{k}\)</span>.  All the remaining vectors
 will be close to <span class="math notranslate nohighlight">\(q_2\)</span>, the eigenvector with the next largest
 magnitude of corresponding eigenvalue. Similarly we can choose the
 first one of the remaining projected vectors as an approximation of
@@ -773,9 +775,9 @@ all of the eigenvalues <span class="math notranslate nohighlight">\(n=m\)</span>
 eigenvalues must be distinct.</p></li>
 <li><p>The <span class="math notranslate nohighlight">\(v\)</span> vectors can be expressed as a linear sum of the first <span class="math notranslate nohighlight">\(n\)</span>
 eigenvectors <span class="math notranslate nohighlight">\(q_1,\ldots,q_n\)</span> in a non-degenerate way. This turns
-out (we won’t show it here) the be equivalent to the condition that
+out  to be equivalent (we won’t show it here) to the condition that
 <span class="math notranslate nohighlight">\(\hat{Q}^TV^{(0)}\)</span> has an LU factorisation (where <span class="math notranslate nohighlight">\(\hat{Q}\)</span> is the
-matrix whose columns of the first <span class="math notranslate nohighlight">\(n\)</span> eigenvectors.</p></li>
+matrix whose columns are the first <span class="math notranslate nohighlight">\(n\)</span> eigenvectors of <span class="math notranslate nohighlight">\(A\)</span>).</p></li>
 </ol>
 <p>One problem with this idea is that it is not numerically stable.  The
 columns of <span class="math notranslate nohighlight">\(V^{(k)}\)</span> rapidly become a very ill-conditioned basis for the
@@ -802,12 +804,12 @@ The following section confirms that they are in fact equivalent.</p>
 <h2><span class="section-number">5.10. </span>The pure QR algorithm and simultaneous iteration are equivalent<a class="headerlink" href="#the-pure-qr-algorithm-and-simultaneous-iteration-are-equivalent" title="Permalink to this headline">¶</a></h2>
 <p>To be precise, we will show that the pure QR algorithm is equivalent
 to simultaneous iteration when the initial independent set is the
-canonical basis <span class="math notranslate nohighlight">\(I\)</span>, i.e. <span class="math notranslate nohighlight">\(Q^(0)=I\)</span>. The convergence condition becomes
-that <span class="math notranslate nohighlight">\(Q^T\)</span> has an LU decomposition, where <span class="math notranslate nohighlight">\(Q\)</span> is the limiting unitary
-matrix that simultaneous iteration is converging to.  To show that the
-two algorithms are equivalent, we append them with some auxiliary
-variables, which are not needed for the algorithms but are needed for
-the comparison.</p>
+canonical basis <span class="math notranslate nohighlight">\(I\)</span>, i.e. <span class="math notranslate nohighlight">\(Q^{(0)}=I\)</span>. From the above, we see that
+that algorithm converges provided that <span class="math notranslate nohighlight">\(Q^T\)</span> has an LU decomposition,
+where <span class="math notranslate nohighlight">\(Q\)</span> is the limiting unitary matrix that simultaneous iteration
+is converging to.  To show that the two algorithms are equivalent, we
+append them with some auxiliary variables, which are not needed for
+the algorithms but are needed for the comparison.</p>
 <p>To simultaneous iteration we append a running similarity transformation
 of <span class="math notranslate nohighlight">\(A\)</span>, and a running product of all of the <span class="math notranslate nohighlight">\(R\)</span> matrices.</p>
 <ul class="simple">
@@ -844,7 +846,7 @@ matrices, and a running product of all of the <span class="math notranslate nohi
     </div><div class="proof-content">
 <p>The two processes above generate identical sequences of matrices
 <span class="math notranslate nohighlight">\({R'}^{(k)}\)</span>, <span class="math notranslate nohighlight">\({Q'}^{(k)}\)</span> and <span class="math notranslate nohighlight">\(A^{(k)}\)</span>, which are related by
-<span class="math notranslate nohighlight">\(A^{k} = {Q'}^{(k)}{R'}^{(k)}\)</span> (the <span class="math notranslate nohighlight">\(k\)</span>, not
+<span class="math notranslate nohighlight">\(A^{k} = {Q'}^{(k)}{R'}^{(k)}\)</span> (the <span class="math notranslate nohighlight">\(k\)</span>-th power of <span class="math notranslate nohighlight">\(A\)</span>, not
 <span class="math notranslate nohighlight">\(A^{(k)}\)</span>!), and <span class="math notranslate nohighlight">\(A^{(k)}=({Q'}^{(k)})^TA{Q'}^{(k)}\)</span>.</p>
 </div></div><div class="proof proof-type-proof">
 
@@ -852,9 +854,9 @@ matrices, and a running product of all of the <span class="math notranslate nohi
         <span class="proof-type">Proof </span>
         
     </div><div class="proof-content">
-<p>We prove by induction. At <span class="math notranslate nohighlight">\(k=0\)</span>, <span class="math notranslate nohighlight">\(A_k={R'}^{(k)}={Q'}^{(k)}=0\)</span>. Now we assume
-that the inductive hypothesis is true for ‘k’, and aim to deduce that
-it is true for <span class="math notranslate nohighlight">\(k+1\)</span>.</p>
+<p>We prove by induction. At <span class="math notranslate nohighlight">\(k=0\)</span>, <span class="math notranslate nohighlight">\(A_k={R'}^{(k)}={Q'}^{(k)}=0\)</span>. Now
+we assume that the inductive hypothesis is true for <span class="math notranslate nohighlight">\(k\)</span>, and aim to
+deduce that it is true for <span class="math notranslate nohighlight">\(k+1\)</span>.</p>
 <p>For simultaneous iteration, we immediately have the simularity
 formula for <span class="math notranslate nohighlight">\(A^{(k)}\)</span> by definition, and we just need to verify the QR
 factorisation of <span class="math notranslate nohighlight">\(A^k\)</span>. From the inductive hypothesis,</p>

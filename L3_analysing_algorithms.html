@@ -124,7 +124,7 @@ transformation</p>
 \[A_{k:m,k:n} \gets A_{k:m,k:n} -
 \underbrace{2v_k\underbrace{(v_k^*A_{k:m,k:n})}_{1}}_{2},\]</div>
 </div></blockquote>
-<p>which must be done for each ‘k’ iteration. To evaluate the part marked
+<p>which must be done for each <span class="math notranslate nohighlight">\(k\)</span> iteration. To evaluate the part marked
 1 requires <span class="math notranslate nohighlight">\(n-k\)</span> inner products of vectors in <span class="math notranslate nohighlight">\(\mathbb{C}^{m-k}\)</span>, at a
 total cost of <span class="math notranslate nohighlight">\(\sim 2(n-k)(m-k)\)</span> (we already examined inner products
 in the previous example). To evaluate the part marked 2 then requires
@@ -262,7 +262,7 @@ can cause when multiplying a vector.</p>
 problem</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
-\[\|A\|_{(m,n)} = \sup_{x\in\mathbb{C}^n, \|x\|=1}\|Ax\|_{(m)}^2.\]</div>
+\[\|A\|_{(m,n)} = \sqrt{\sup_{x\in\mathbb{C}^n, \|x\|^2=1}\|Ax\|_{(m)}^2}.\]</div>
 </div></blockquote>
 <p>Introduce a Lagrange multiplier <span class="math notranslate nohighlight">\(\lambda\in \mathbb{C}\)</span> to enforce
 the constraint <span class="math notranslate nohighlight">\(\|x\|^2=1\)</span>.  Consider the case above where the norms
@@ -302,7 +302,7 @@ bounds using inequalities instead. Here are a few useful inequalities.</p>
         
     </div><div class="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(x,y\in \mathbb{C}^m\)</span>, and <span class="math notranslate nohighlight">\(p,q \in \mathbb{R}+\)</span> such that
-<span class="math notranslate nohighlight">\(\frac{1}{p}+{1}{q} = 1\)</span>. Then</p>
+<span class="math notranslate nohighlight">\(\frac{1}{p}+\frac{1}{q} = 1\)</span>. Then</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
 \[|x^*y| \leq \|x\|_p\|y\|_q.\]</div>
@@ -435,7 +435,7 @@ size of <span class="math notranslate nohighlight">\(f\)</span> itself.</p>
 {\|\delta x\|/\|x\|}.\]</div>
 <p>The linear relative condition number is</p>
 <div class="math notranslate nohighlight">
-\[\kappa = \frac{\|J\|/\|f\|}{\|x\|} = \frac{\|J\|\|x\|}{\|f\|}.\]</div>
+\[\kappa = \frac{\|J\|/\|f\|}{1/\|x\|} = \frac{\|J\|\|x\|}{\|f\|}.\]</div>
 </div></div><p>Since we use floating point numbers on computers, it makes more sense
 to consider relative condition numbers in computational linear
 algebra, and from here on we will always use them whenever we mention
@@ -549,15 +549,11 @@ unimplemented. It takes in an <span class="math notranslate nohighlight">\(m\tim
 the condition number. You should use a method similar to that in
 <a class="reference internal" href="#o2norm"><span class="std std-numref">Exercise 3.7</span></a>, using the
 <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html#numpy.linalg.eig" title="(in NumPy v1.19)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.linalg.eig()</span></code></a> to compute the eigenvalues of any matrices
-that you need. The test script <code class="docutils literal notranslate"><span class="pre">test_exercises4.py</span></code> in the
-<code class="docutils literal notranslate"><span class="pre">test</span></code> directory will test this function.</p>
-</div></div><div class="admonition hint">
-<p class="admonition-title">Hint</p>
-<p>Having computed the eigenvalues of <span class="math notranslate nohighlight">\(A\)</span>, you do not separately need
-to compute the eigenvalues of <span class="math notranslate nohighlight">\(A^{-1}\)</span>, so matrix inversion is not
-necessary.</p>
-</div>
-</div>
+that you need. Try to think about minimising the number of
+eigenvalue calculations you need to do. The test script
+<code class="docutils literal notranslate"><span class="pre">test_exercises4.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will test this
+function.</p>
+</div></div></div>
 <div class="section" id="floating-point-numbers-and-arithmetic">
 <h2><span class="section-number">3.8. </span>Floating point numbers and arithmetic<a class="headerlink" href="#floating-point-numbers-and-arithmetic" title="Permalink to this headline">¶</a></h2>
 <p>Floating point number systems on computers use a discrete and finite
@@ -577,7 +573,7 @@ subdivided as <span class="math notranslate nohighlight">\((1,1+2^{-52},1+2\time
 scale with the number size. We call this set of numbers the (double
 precision) floating point numbers <span class="math notranslate nohighlight">\(\mathbb{F}\subset \mathbb{R}\)</span>.</p>
 <p>A key aspect of a floating point number system is “machine epsilon”
-(<span class="math notranslate nohighlight">\(\varepsilon\)</span>), which measures the larges relative distance between
+(<span class="math notranslate nohighlight">\(\varepsilon\)</span>), which measures the largest relative distance between
 two numbers. Considering the description above, we see that
 <span class="math notranslate nohighlight">\(\varepsilon\)</span> is the the distance between 1 and the adjacent number, i.e.</p>
 <blockquote>
@@ -699,7 +695,8 @@ to accurate to machine precision, i.e.</p>
 <div><div class="math notranslate nohighlight">
 \[\frac{\|\tilde{f}(x)-f(x)\|}{\|f(x)\|} \leq C\varepsilon,\]</div>
 </div></blockquote>
-<p>for sufficiently small <span class="math notranslate nohighlight">\(\varepsilon\)</span>.</p>
+<p>for sufficiently small <span class="math notranslate nohighlight">\(\varepsilon\)</span>. We shall see below that
+we have to lower our aspirations depending on the condition number of <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <div class="proof proof-type-definition" id="id21">
 
     <div class="proof-title">
@@ -856,8 +853,13 @@ gives</p>
 <p>The solution of this equation is <span class="math notranslate nohighlight">\(x=R^{-1}y\)</span>, but if there is one
 message to take home from this course, it is that you should <em>never</em>
 form the inverse of a matrix. It is especially disasterous to use
-Kramer’s rule, which has an operation count scaling like
-<span class="math notranslate nohighlight">\(\mathcal{O}(m!)\)</span> and is numerically unstable. There are some better
+Kramer’s rule, which the <span class="math notranslate nohighlight">\(m\)</span> dimensional extension of the formula for
+the inverse of <span class="math notranslate nohighlight">\(2\times 2\)</span> matrices that you learned at
+school. Kramer’s rule has an operation count scaling like
+<span class="math notranslate nohighlight">\(\mathcal{O}(m!)\)</span> and is numerically unstable. Hence it is so
+disasterous that we won’t even show the formula for Kramer’s rule
+here.</p>
+<p>There are some better
 algorithms for finding the inverse of a matrix if you really need it,
 but in almost every situation it is better to <em>solve</em> a matrix system
 rather than forming the inverse of the matrix and multiplying it.  It
@@ -952,7 +954,7 @@ floating point implementation of backward substitution produces
         
     </div><div class="proof-content">
 <p>Complete the function <a class="reference internal" href="cla_utils.html#cla_utils.exercises5.back_stab_solve_R" title="cla_utils.exercises5.back_stab_solve_R"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises5.back_stab_solve_R()</span></code></a>
-so that it verifies backward stability for back subsitution, using
+so that it verifies backward stability for back substitution, using
 <a class="reference internal" href="cla_utils.html#cla_utils.exercises5.solve_R" title="cla_utils.exercises5.solve_R"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises5.solve_R()</span></code></a>.</p>
 </div></div><p>Using the individual backward stability of these three algorithms,
 we show the following result.</p>

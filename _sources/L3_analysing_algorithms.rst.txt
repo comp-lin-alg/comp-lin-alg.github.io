@@ -86,7 +86,7 @@ transformation
       A_{k:m,k:n} \gets A_{k:m,k:n} -
       \underbrace{2v_k\underbrace{(v_k^*A_{k:m,k:n})}_{1}}_{2},
 
-which must be done for each 'k' iteration. To evaluate the part marked
+which must be done for each `k` iteration. To evaluate the part marked
 1 requires `n-k` inner products of vectors in `\mathbb{C}^{m-k}`, at a
 total cost of `\sim 2(n-k)(m-k)` (we already examined inner products
 in the previous example). To evaluate the part marked 2 then requires
@@ -221,7 +221,7 @@ and hence `\|Ax\|\leq \|A\|\|x\|` whenever we use an induced matrix norm.
 
      .. math::
       
-	\|A\|_{(m,n)} = \sup_{x\in\mathbb{C}^n, \|x\|=1}\|Ax\|_{(m)}^2.
+	\|A\|_{(m,n)} = \sqrt{\sup_{x\in\mathbb{C}^n, \|x\|^2=1}\|Ax\|_{(m)}^2}.
 
    Introduce a Lagrange multiplier `\lambda\in \mathbb{C}` to enforce
    the constraint `\|x\|^2=1`.  Consider the case above where the norms
@@ -255,7 +255,7 @@ bounds using inequalities instead. Here are a few useful inequalities.
 .. proof:definition:: Hölder inequality
 
    Let `x,y\in \mathbb{C}^m`, and `p,q \in \mathbb{R}+` such that
-   `\frac{1}{p}+{1}{q} = 1`. Then
+   `\frac{1}{p}+\frac{1}{q} = 1`. Then
 
       .. math::
 
@@ -385,7 +385,7 @@ size of `f` itself.
 
    .. math::
 
-      \kappa = \frac{\|J\|/\|f\|}{\|x\|} = \frac{\|J\|\|x\|}{\|f\|}.
+      \kappa = \frac{\|J\|/\|f\|}{1/\|x\|} = \frac{\|J\|\|x\|}{\|f\|}.
 
 Since we use floating point numbers on computers, it makes more sense
 to consider relative condition numbers in computational linear
@@ -510,14 +510,10 @@ number for this problem is the condition number of `A`.
    the condition number. You should use a method similar to that in
    :numref:`Exercise {number}<o2norm>`, using the
    :func:`numpy.linalg.eig` to compute the eigenvalues of any matrices
-   that you need. The test script ``test_exercises4.py`` in the
-   ``test`` directory will test this function.
-
-.. hint::
-
-   Having computed the eigenvalues of `A`, you do not separately need
-   to compute the eigenvalues of `A^{-1}`, so matrix inversion is not
-   necessary.
+   that you need. Try to think about minimising the number of
+   eigenvalue calculations you need to do. The test script
+   ``test_exercises4.py`` in the ``test`` directory will test this
+   function.
    
 Floating point numbers and arithmetic
 -------------------------------------
@@ -540,7 +536,7 @@ scale with the number size. We call this set of numbers the (double
 precision) floating point numbers `\mathbb{F}\subset \mathbb{R}`.
 
 A key aspect of a floating point number system is "machine epsilon"
-(`\varepsilon`), which measures the larges relative distance between
+(`\varepsilon`), which measures the largest relative distance between
 two numbers. Considering the description above, we see that
 `\varepsilon` is the the distance between 1 and the adjacent number, i.e.
 
@@ -661,7 +657,8 @@ by which we mean that `\exists C>0` such that
 
       \frac{\|\tilde{f}(x)-f(x)\|}{\|f(x)\|} \leq C\varepsilon,
 
-for sufficiently small `\varepsilon`.
+for sufficiently small `\varepsilon`. We shall see below that
+we have to lower our aspirations depending on the condition number of `A`.
 
 .. proof:definition:: Stability
 
@@ -806,8 +803,14 @@ gives
 The solution of this equation is `x=R^{-1}y`, but if there is one
 message to take home from this course, it is that you should *never*
 form the inverse of a matrix. It is especially disasterous to use
-Kramer's rule, which has an operation count scaling like
-`\mathcal{O}(m!)` and is numerically unstable. There are some better
+Kramer's rule, which the `m` dimensional extension of the formula for
+the inverse of `2\times 2` matrices that you learned at
+school. Kramer's rule has an operation count scaling like
+`\mathcal{O}(m!)` and is numerically unstable. Hence it is so
+disasterous that we won't even show the formula for Kramer's rule
+here.
+
+There are some better
 algorithms for finding the inverse of a matrix if you really need it,
 but in almost every situation it is better to *solve* a matrix system
 rather than forming the inverse of the matrix and multiplying it.  It
@@ -911,7 +914,7 @@ for some upper triangular perturbation such that `\|\delta
 .. proof:exercise::
 
    Complete the function :func:`cla_utils.exercises5.back_stab_solve_R`
-   so that it verifies backward stability for back subsitution, using
+   so that it verifies backward stability for back substitution, using
    :func:`cla_utils.exercises5.solve_R`.
 
 Using the individual backward stability of these three algorithms,

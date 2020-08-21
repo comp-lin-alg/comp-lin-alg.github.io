@@ -457,7 +457,7 @@ I_{k-1} &amp; 0 \\
 0 &amp; F^{-1} \\
 \end{pmatrix}.\end{split}\]</div>
 </div></blockquote>
-<p>We write the <span class="math notranslate nohighlight">\(k\)</span> of <span class="math notranslate nohighlight">\(A_k\)</span> as</p>
+<p>We write the <span class="math notranslate nohighlight">\(k\)</span> th column <span class="math notranslate nohighlight">\(v_k^k\)</span> of <span class="math notranslate nohighlight">\(A_k\)</span> as</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
 \[\begin{split}v_k^k =
@@ -477,19 +477,19 @@ Fx
 </div></blockquote>
 <p>and our goal is that <span class="math notranslate nohighlight">\(Fx\)</span> is zero, except for the first entry (which
 becomes the diagonal entry of <span class="math notranslate nohighlight">\(Q_kv_k^k\)</span>). Since <span class="math notranslate nohighlight">\(F\)</span> is unitary, we must
-have <span class="math notranslate nohighlight">\(\|Fx\|=\|x\|\)</span>, so we choose to have</p>
+have <span class="math notranslate nohighlight">\(\|Fx\|=\|x\|\)</span>. For now we shall specialise to
+real matrices, so we choose to have</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
 \[Fx = \pm\|x\|e_1,\]</div>
 </div></blockquote>
-<p>where we shall consider the sign later. Here we have chosen for <span class="math notranslate nohighlight">\(Fx\)</span>
-to be real. We could alternatively pick another value of the same
-magnitude but different complex argument (but that would lead to a
-slightly different <span class="math notranslate nohighlight">\(QR\)</span> factorisation).</p>
+<p>where we shall consider the sign later. Complex matrices have a more
+general formula for Householder transformations which we shall not
+discuss here.</p>
 <p>We can achieve this by using a Householder reflector for <span class="math notranslate nohighlight">\(F\)</span>, which is
 a unitary transformation that does precisely what we
 need. Geometrically, the idea is that we consider a line joining <span class="math notranslate nohighlight">\(x\)</span>
-and <span class="math notranslate nohighlight">\(Fx=\|x\|e_1\)</span>, which points in the direction <span class="math notranslate nohighlight">\(v=\|x\|e_1-x\)</span>. We can
+and <span class="math notranslate nohighlight">\(Fx=\pm\|x\|e_1\)</span>, which points in the direction <span class="math notranslate nohighlight">\(v=\pm\|x\|e_1-x\)</span>. We can
 transform <span class="math notranslate nohighlight">\(x\)</span> to <span class="math notranslate nohighlight">\(Fx\)</span> by a reflection in the hyperplane <span class="math notranslate nohighlight">\(H\)</span> that is
 orthogonal to <span class="math notranslate nohighlight">\(v\)</span>. Since reflections are norm preserving, <span class="math notranslate nohighlight">\(F\)</span> must be
 unitary. Applying the projector <span class="math notranslate nohighlight">\(P\)</span> given by</p>
@@ -510,10 +510,11 @@ need to go twice as far,</p>
    (\pm\|x\|e_1 - x)^*x,\\   = x - 2\frac{(\pm\|x\|e_1 - x)}{\|\pm\|x\|e_1 - x\|^2}
    \|x\|(\pm x_1 - \|x\|),\\   = x + (\pm\|x\|e_1 - x) = \pm\|x\|e_1,\end{aligned}\end{align} \]</div>
 </div></blockquote>
-<p>as required, having checked that</p>
+<p>as required, having checked that (assuming <span class="math notranslate nohighlight">\(x\)</span> is real)</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
-\[\|\pm \|x\|e_1 - x\|^2 = -2\|x\|(\pm x_1 - \|x\|).\]</div>
+\[\|\pm \|x\|e_1 - x\|^2 = \|x\|^2 - 2x_1 + \|x\|^2
+= -2\|x\|(\pm x_1 - \|x\|).\]</div>
 </div></blockquote>
 <p>We can also check that <span class="math notranslate nohighlight">\(F\)</span> is unitary. First we check that <span class="math notranslate nohighlight">\(F\)</span>
 is Hermitian,</p>
@@ -688,11 +689,12 @@ this function.</p>
 <h2><span class="section-number">2.7. </span>Application: Least squares problems<a class="headerlink" href="#application-least-squares-problems" title="Permalink to this headline">¶</a></h2>
 <p>Least square problems are relevant in data fitting problems,
 optimisation and control, and are also a crucial ingredient of modern
-massively parallel linear system solver algorithms. They are a way of
+massively parallel linear system solver algorithms such as GMRES,
+which we shall encounter later in the course. They are a way of
 solving “long thin” matrix vector problems <span class="math notranslate nohighlight">\(Ax=b\)</span> where we want to
-obtain <span class="math notranslate nohighlight">\(x\in \mathbb{C}^m\)</span> from <span class="math notranslate nohighlight">\(b\in\mathbb{C}^n\)</span> with <span class="math notranslate nohighlight">\(A\)</span> an
-<span class="math notranslate nohighlight">\(n\times m\)</span> matrix.  Often the problem does not have a solution as it
-is overdetermined for <span class="math notranslate nohighlight">\(n&gt;m\)</span>. Instead we just seek <span class="math notranslate nohighlight">\(x\)</span> that minimises
+obtain <span class="math notranslate nohighlight">\(x\in \mathbb{C}^n\)</span> from <span class="math notranslate nohighlight">\(b\in\mathbb{C}^m\)</span> with <span class="math notranslate nohighlight">\(A\)</span> an
+<span class="math notranslate nohighlight">\(m\times n\)</span> matrix.  Often the problem does not have a solution as it
+is overdetermined for <span class="math notranslate nohighlight">\(m&gt;n\)</span>. Instead we just seek <span class="math notranslate nohighlight">\(x\)</span> that minimises
 the 2-norm of the residual <span class="math notranslate nohighlight">\(r=b-Ax\)</span>, i.e. <span class="math notranslate nohighlight">\(x\)</span> is the minimiser of</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
