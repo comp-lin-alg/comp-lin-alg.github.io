@@ -175,7 +175,7 @@ uv_1 &amp; uv_2 &amp; \ldots &amp; uv_n
 </div></blockquote>
 <p>which means that all the columns of <span class="math notranslate nohighlight">\(uv^T\)</span> are multiples of <span class="math notranslate nohighlight">\(u\)</span>. We will
 see in the next section that this matrix has rank 1.</p>
-<div class="proof proof-type-exercise" id="id10">
+<div class="proof proof-type-exercise" id="id13">
 <span id="ex-basic-matvec"></span>
     <div class="proof-title">
         <span class="proof-type">Exercise 1.1</span>
@@ -193,7 +193,7 @@ and one for the <span class="math notranslate nohighlight">\(i\)</span> elements
 </div>
 <p>from the Bash command line. Make sure you commit your modifications
 and push them to your fork of the course repository.</p>
-</div></div><div class="proof proof-type-exercise" id="id11">
+</div></div><div class="proof proof-type-exercise" id="id14">
 <span id="ex-column-matvec"></span>
     <div class="proof-title">
         <span class="proof-type">Exercise 1.2</span>
@@ -218,7 +218,7 @@ example:</p>
 <p>will return the 4th (since Python numbers from zero) column of <span class="math notranslate nohighlight">\(A\)</span>.
 For more information, see the <a class="reference external" href="https://numpy.org/doc/stable/reference/arrays.indexing.html">Numpy documentation on slicing.</a></p>
 </div>
-<div class="proof proof-type-exercise" id="id12">
+<div class="proof proof-type-exercise" id="id15">
 
     <div class="proof-title">
         <span class="proof-type">Exercise 1.3</span>
@@ -259,7 +259,7 @@ and readable, as well as potentially faster).</p>
 <p>A video recording of this section is available <a class="reference external" href="https://player.vimeo.com/video/450162984">here</a>.</p>
 </div>
 <p>In this section we’ll quickly rattle through some definitions and results.</p>
-<div class="proof proof-type-definition" id="id13">
+<div class="proof proof-type-definition" id="id16">
 
     <div class="proof-title">
         <span class="proof-type">Definition 1.4</span>
@@ -271,14 +271,14 @@ and readable, as well as potentially faster).</p>
 be expressed as <span class="math notranslate nohighlight">\(Ax\)</span> for some <span class="math notranslate nohighlight">\(x\)</span>.</p>
 </div></div><p>The next theorem follows as a result of the column space
 interpretation of matrix-vector multiplication.</p>
-<div class="proof proof-type-theorem" id="id14">
+<div class="proof proof-type-theorem" id="id17">
 
     <div class="proof-title">
         <span class="proof-type">Theorem 1.5</span>
         
     </div><div class="proof-content">
 <p><span class="math notranslate nohighlight">\(\mbox{range}(A)\)</span> is the vector space spanned by the columns of <span class="math notranslate nohighlight">\(A\)</span>.</p>
-</div></div><div class="proof proof-type-definition" id="id15">
+</div></div><div class="proof proof-type-definition" id="id18">
 
     <div class="proof-title">
         <span class="proof-type">Definition 1.6</span>
@@ -294,7 +294,7 @@ vectors <span class="math notranslate nohighlight">\(x\)</span> satisfying <span
 <p class="admonition-title">Hint</p>
 <p>A video recording of this section is available <a class="reference external" href="https://player.vimeo.com/video/450166119">here</a>.</p>
 </div>
-<div class="proof proof-type-definition" id="id16">
+<div class="proof proof-type-definition" id="id19">
 
     <div class="proof-title">
         <span class="proof-type">Definition 1.7</span>
@@ -313,7 +313,7 @@ a_1 &amp; a_2 &amp; \ldots &amp; a_n \\
 \end{pmatrix},\end{split}\]</div>
 </div></blockquote>
 <p>the column space of <span class="math notranslate nohighlight">\(A\)</span> is <span class="math notranslate nohighlight">\(\mbox{span}(a_1,a_2,\ldots,a_n)\)</span>.</p>
-<div class="proof proof-type-definition" id="id17">
+<div class="proof proof-type-definition" id="id20">
 
     <div class="proof-title">
         <span class="proof-type">Definition 1.8</span>
@@ -324,7 +324,7 @@ i.e. rank equal to <span class="math notranslate nohighlight">\(\min(m, n)\)</sp
 </div></div><p>If <span class="math notranslate nohighlight">\(m\geq n\)</span> then <span class="math notranslate nohighlight">\(A\)</span> must have <span class="math notranslate nohighlight">\(n\)</span> linearly independent columns to be
 full rank. The next theorem is then a consequence of the column space
 interpretation of matrix-vector multiplication.</p>
-<div class="proof proof-type-theorem" id="id18">
+<div class="proof proof-type-theorem" id="id21">
 
     <div class="proof-title">
         <span class="proof-type">Theorem 1.9</span>
@@ -332,11 +332,7 @@ interpretation of matrix-vector multiplication.</p>
     </div><div class="proof-content">
 <p>An <span class="math notranslate nohighlight">\(m\times n\)</span> matrix <span class="math notranslate nohighlight">\(A\)</span> is full rank if and only if it maps no two
 distinct vectors to the same vector.</p>
-</div></div><div class="admonition hint">
-<p class="admonition-title">Hint</p>
-<p>A video recording of this section is available <a class="reference external" href="https://player.vimeo.com/video/450171203">here</a>.</p>
-</div>
-<div class="proof proof-type-definition" id="id19">
+</div></div><div class="proof proof-type-definition" id="id22">
 
     <div class="proof-title">
         <span class="proof-type">Definition 1.10</span>
@@ -344,7 +340,7 @@ distinct vectors to the same vector.</p>
     </div><div class="proof-content">
 <p>A matrix <span class="math notranslate nohighlight">\(A\)</span> is called nonsingular, or invertible, if it is a square
 matrix (<span class="math notranslate nohighlight">\(m=n\)</span>) of full rank.</p>
-</div></div><div class="proof proof-type-exercise" id="id20">
+</div></div><div class="proof proof-type-exercise" id="id23">
 
     <div class="proof-title">
         <span class="proof-type">Exercise 1.11</span>
@@ -370,6 +366,10 @@ matrix-matrix multiplication)?</p>
 </div></div></div>
 <div class="section" id="invertibility-and-inverses">
 <h2><span class="section-number">1.3. </span>Invertibility and inverses<a class="headerlink" href="#invertibility-and-inverses" title="Permalink to this headline">¶</a></h2>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>A video recording of this section is available <a class="reference external" href="https://player.vimeo.com/video/450171203">here</a>.</p>
+</div>
 <p>This means that an invertible matrix has columns that form a basis for
 <span class="math notranslate nohighlight">\(\mathbb{C}^m\)</span>. Given the canonical basis vectors defined by</p>
 <blockquote>
@@ -404,7 +404,7 @@ right inverse of <span class="math notranslate nohighlight">\(A\)</span>, satisf
 <p>The first four parts of the next theorem are a consequence of what
 we have so far, and we shall quote the fifth and sixth (see a linear algebra
 course).</p>
-<div class="proof proof-type-theorem" id="id21">
+<div class="proof proof-type-theorem" id="id24">
 
     <div class="proof-title">
         <span class="proof-type">Theorem 1.12</span>
@@ -419,7 +419,11 @@ course).</p>
 <li><p>0 is not an eigenvalue of <span class="math notranslate nohighlight">\(A\)</span>.</p></li>
 <li><p>The determinant <span class="math notranslate nohighlight">\(\det(A)\neq 0\)</span>.</p></li>
 </ol>
-</div></div><p>Finding the inverse of a matrix can be seen as a change of basis. Considering
+</div></div><div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>A video recording of this section is available <a class="reference external" href="https://player.vimeo.com/video/450172407">here</a>.</p>
+</div>
+<p>Finding the inverse of a matrix can be seen as a change of basis. Considering
 the equation <span class="math notranslate nohighlight">\(Ax= b\)</span>, we have <span class="math notranslate nohighlight">\(x = A^{-1}b\)</span> for invertible <span class="math notranslate nohighlight">\(A\)</span>. We have
 seen already that <span class="math notranslate nohighlight">\(b\)</span> can be written as</p>
 <blockquote>
@@ -431,7 +435,7 @@ provide the unique expansion of <span class="math notranslate nohighlight">\(b\)
 basis.  Hence, whilst the entries of <span class="math notranslate nohighlight">\(b\)</span> give basis coefficients for
 <span class="math notranslate nohighlight">\(b\)</span> in the canonical basis <span class="math notranslate nohighlight">\((e_1,e_2,\ldots,e_m)\)</span>, the entries of <span class="math notranslate nohighlight">\(x\)</span>
 give basis coefficients for <span class="math notranslate nohighlight">\(b\)</span> in the basis given by the columns of <span class="math notranslate nohighlight">\(A\)</span>.</p>
-<div class="proof proof-type-exercise" id="id22">
+<div class="proof proof-type-exercise" id="id25">
 
     <div class="proof-title">
         <span class="proof-type">Exercise 1.13</span>
@@ -458,7 +462,11 @@ cost of general purpose matrix inversion algorithms later.</p>
 </div></div></div>
 <div class="section" id="adjoints-and-hermitian-matrices">
 <h2><span class="section-number">1.4. </span>Adjoints and Hermitian matrices<a class="headerlink" href="#adjoints-and-hermitian-matrices" title="Permalink to this headline">¶</a></h2>
-<div class="proof proof-type-definition" id="id23">
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>A video recording of this section is available <a class="reference external" href="https://player.vimeo.com/video/450173092">here</a>.</p>
+</div>
+<div class="proof proof-type-definition" id="id26">
 
     <div class="proof-title">
         <span class="proof-type">Definition 1.14</span>
@@ -476,7 +484,7 @@ is a matrix <span class="math notranslate nohighlight">\(A^* \in \mathbb{C}^{n\t
 <p>For real matrices, <span class="math notranslate nohighlight">\(A^*=A^T\)</span>. If <span class="math notranslate nohighlight">\(A=A^T\)</span>, then we say that the matrix
 is symmetric.</p>
 </div></div><p>The following identity is very important when dealing with adjoints.</p>
-<div class="proof proof-type-theorem" id="id24">
+<div class="proof proof-type-theorem" id="id27">
 
     <div class="proof-title">
         <span class="proof-type">Theorem 1.15</span>
@@ -486,7 +494,7 @@ is symmetric.</p>
 be multiplied),</p>
 <div class="math notranslate nohighlight">
 \[(AB)^* = B^*A^*.\]</div>
-</div></div><div class="proof proof-type-exercise" id="id25">
+</div></div><div class="proof proof-type-exercise" id="id28">
 
     <div class="proof-title">
         <span class="proof-type">Exercise 1.16</span>
@@ -522,8 +530,12 @@ slicing.</a></p>
 </div>
 <div class="section" id="inner-products-and-orthogonality">
 <h2><span class="section-number">1.5. </span>Inner products and orthogonality<a class="headerlink" href="#inner-products-and-orthogonality" title="Permalink to this headline">¶</a></h2>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>A video recording of this section is available <a class="reference external" href="https://player.vimeo.com/video/450172520">here</a>.</p>
+</div>
 <p>The inner product is a critical tool in computational linear algebra.</p>
-<div class="proof proof-type-definition" id="id26">
+<div class="proof proof-type-definition" id="id29">
 
     <div class="proof-title">
         <span class="proof-type">Definition 1.17</span>
@@ -538,7 +550,7 @@ slicing.</a></p>
 both of the arguments.)</p>
 <p>We will frequently use the natural norm derived from the inner product
 to define size of vectors.</p>
-<div class="proof proof-type-definition" id="id27">
+<div class="proof proof-type-definition" id="id30">
 
     <div class="proof-title">
         <span class="proof-type">Definition 1.18</span>
@@ -550,7 +562,7 @@ to define size of vectors.</p>
 <div class="math notranslate nohighlight">
 \[\|x\| = \sqrt{\sum_{i=1}^m |x_i|^2} = \sqrt{x^*x}.\]</div>
 </div></div><p>Orthogonality will emerge as an early key concept in this course.</p>
-<div class="proof proof-type-definition" id="id28">
+<div class="proof proof-type-definition" id="id31">
 
     <div class="proof-title">
         <span class="proof-type">Definition 1.19</span>
@@ -597,7 +609,7 @@ Thus,</p>
 <div><div class="math notranslate nohighlight">
 \[v = \sum_{i=1}^m (q_i q_i^*)v.\]</div>
 </div></blockquote>
-<div class="proof proof-type-exercise" id="id29">
+<div class="proof proof-type-exercise" id="id32">
 
     <div class="proof-title">
         <span class="proof-type">Exercise 1.20</span>
@@ -611,7 +623,7 @@ the <code class="docutils literal notranslate"><span class="pre">test</span></co
 </div></div></div>
 <div class="section" id="unitary-matrices">
 <h2><span class="section-number">1.7. </span>Unitary matrices<a class="headerlink" href="#unitary-matrices" title="Permalink to this headline">¶</a></h2>
-<div class="proof proof-type-definition" id="id30">
+<div class="proof proof-type-definition" id="id33">
 
     <div class="proof-title">
         <span class="proof-type">Definition 1.21</span>
@@ -621,7 +633,7 @@ the <code class="docutils literal notranslate"><span class="pre">test</span></co
     </div><div class="proof-content">
 <p>A matrix <span class="math notranslate nohighlight">\(Q\in \mathbb{C}^{m\times m}\)</span> is unitary if <span class="math notranslate nohighlight">\(Q^* =Q^{-1}\)</span>.</p>
 <p>For real matrices, a matrix <span class="math notranslate nohighlight">\(Q\)</span>  is orthogonal if <span class="math notranslate nohighlight">\(Q^T=Q^{-1}\)</span>.</p>
-</div></div><div class="proof proof-type-theorem" id="id31">
+</div></div><div class="proof proof-type-theorem" id="id34">
 
     <div class="proof-title">
         <span class="proof-type">Theorem 1.22</span>
@@ -650,7 +662,7 @@ of matrix-matrix multiplication,</p>
 representing a change of orthogonal basis. If <span class="math notranslate nohighlight">\(Qx = b\)</span>, then
 <span class="math notranslate nohighlight">\(x=Q^*b\)</span> contains the coefficients of <span class="math notranslate nohighlight">\(b\)</span> expanded in the basis
 given by the orthonormal columns of <span class="math notranslate nohighlight">\(Q\)</span>.</p>
-<div class="proof proof-type-exercise" id="id32">
+<div class="proof proof-type-exercise" id="id35">
 
     <div class="proof-title">
         <span class="proof-type">Exercise 1.23</span>
@@ -677,7 +689,7 @@ solve (which uses LU factorisation, which we will discuss later):</p>
 <p>Various vector norms are useful to measure the size of a vector.
 In computational linear algebra we need them for quantifying errors
 etc.</p>
-<div class="proof proof-type-definition" id="id33">
+<div class="proof proof-type-definition" id="id36">
 
     <div class="proof-title">
         <span class="proof-type">Definition 1.24</span>
@@ -707,7 +719,7 @@ larger class of norms called p-norms, with</p>
 </div>
 <div class="section" id="projectors-and-projections">
 <h2><span class="section-number">1.9. </span>Projectors and projections<a class="headerlink" href="#projectors-and-projections" title="Permalink to this headline">¶</a></h2>
-<div class="proof proof-type-definition" id="id34">
+<div class="proof proof-type-definition" id="id37">
 
     <div class="proof-title">
         <span class="proof-type">Definition 1.25</span>
@@ -734,7 +746,7 @@ Then,</p>
 <div><div class="math notranslate nohighlight">
 \[Pv -v = -(I-P)v.\]</div>
 </div></blockquote>
-<div class="proof proof-type-definition" id="id35">
+<div class="proof proof-type-definition" id="id38">
 
     <div class="proof-title">
         <span class="proof-type">Definition 1.26</span>
@@ -774,7 +786,7 @@ of <span class="math notranslate nohighlight">\(\mathbb{C}^m\)</span> with <span
 exists a projector <span class="math notranslate nohighlight">\(P\)</span> whose range is <span class="math notranslate nohighlight">\(S_1\)</span> and whose nullspace
 is <span class="math notranslate nohighlight">\(S_2\)</span>.</p>
 <p>Now we introduce orthogonality into the concept of projectors.</p>
-<div class="proof proof-type-definition" id="id36">
+<div class="proof proof-type-definition" id="id39">
 
     <div class="proof-title">
         <span class="proof-type">Definition 1.27</span>
@@ -803,7 +815,7 @@ q_1 &amp; q_2 &amp; \ldots &amp; q_n \\
 <div class="math notranslate nohighlight">
 \[v \mapsto Pv = \underbrace{\sum_{i=1}^n (q_iq^*_i)}_{=P}v,\]</div>
 <p>is an orthogonal projector. In fact, <span class="math notranslate nohighlight">\(P\)</span> has very simple form.</p>
-<div class="proof proof-type-theorem" id="id37">
+<div class="proof proof-type-theorem" id="id40">
 <span id="orthogonal-projector"></span>
     <div class="proof-title">
         <span class="proof-type">Theorem 1.28</span>
@@ -835,14 +847,14 @@ and then</p>
 \[P = q_1q_1^*, \, P_{\perp}=I - q_1q_1^*.\]</div>
 <p>We notice that <span class="math notranslate nohighlight">\(P^* = (\hat{Q}\hat{Q}^*) = \hat{Q}\hat{Q}^* = P\)</span>.
 In fact the following is true.</p>
-<div class="proof proof-type-theorem" id="id38">
+<div class="proof proof-type-theorem" id="id41">
 
     <div class="proof-title">
         <span class="proof-type">Theorem 1.29</span>
         
     </div><div class="proof-content">
 <p><span class="math notranslate nohighlight">\(P=P^*\)</span> if and only if <span class="math notranslate nohighlight">\(Q\)</span> is orthogonal.</p>
-</div></div><div class="proof proof-type-exercise" id="id39">
+</div></div><div class="proof proof-type-exercise" id="id42">
 
     <div class="proof-title">
         <span class="proof-type">Exercise 1.30</span>
