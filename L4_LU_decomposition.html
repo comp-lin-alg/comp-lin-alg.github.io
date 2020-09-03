@@ -253,7 +253,7 @@ process of transforming <span class="math notranslate nohighlight">\(A\)</span> 
 should not be explicitly formed during the elimination process, they are just
 a mathematical concept to translate from the row operations into the final
 <span class="math notranslate nohighlight">\(L\)</span> matrix.</p>
-<div class="proof proof-type-exercise" id="id6">
+<div class="proof proof-type-exercise" id="id13">
 
     <div class="proof-title">
         <span class="proof-type">Exercise 4.1</span>
@@ -302,7 +302,7 @@ requires <span class="math notranslate nohighlight">\(m-k+1\)</span> multiplicat
 <div><div class="math notranslate nohighlight">
 \[ \begin{align}\begin{aligned}N_{\mbox{FLOPs}} = \sum_{k=1}^{m-1}\sum_{j=k+1}^m 2(m-k+1),\\= \sum_{k=1}^{m-1}2(m-k+1)\underbrace{\sum_{j={k+1}}^m 1}_{=m-k}\\= \sum_{k=1}^{m-1}2m^2 - 4mk + 2k^2\\\sim 2m^3 -4\frac{m^3}{2} + \frac{2m^3}{3} = \frac{2m^3}{3}.\end{aligned}\end{align} \]</div>
 </div></blockquote>
-<div class="proof proof-type-exercise" id="id7">
+<div class="proof proof-type-exercise" id="id14">
 
     <div class="proof-title">
         <span class="proof-type">Exercise 4.2</span>
@@ -321,7 +321,7 @@ unimplemented. It should implement this in-place low-storage
 procedure, applying the changes to the provided matrix <span class="math notranslate nohighlight">\(A\)</span>.  The
 test script <code class="docutils literal notranslate"><span class="pre">test_exercises6.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will
 test this function.</p>
-</div></div><div class="proof proof-type-exercise" id="id8">
+</div></div><div class="proof proof-type-exercise" id="id15">
 
     <div class="proof-title">
         <span class="proof-type">Exercise 4.3</span>
@@ -335,7 +335,7 @@ this outer product, and update
 <a class="reference internal" href="cla_utils.html#cla_utils.exercises6.LU_inplace" title="cla_utils.exercises6.LU_inplace"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises6.LU_inplace()</span></code></a> to make use of this
 reformulation (using <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.outer.html#numpy.outer" title="(in NumPy v1.19)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.outer()</span></code></a>). Do you notice any
 improvement in speed?</p>
-</div></div><div class="proof proof-type-exercise" id="id9">
+</div></div><div class="proof proof-type-exercise" id="id16">
 
     <div class="proof-title">
         <span class="proof-type">Exercise 4.4</span>
@@ -350,7 +350,7 @@ same time. The functions should only use one loop over the columns
 of <span class="math notranslate nohighlight">\(L\)</span> (or <span class="math notranslate nohighlight">\(U\)</span>), to efficiently solve the multiple problems. The
 test script <code class="docutils literal notranslate"><span class="pre">test_exercises6.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will
 test these functions.</p>
-</div></div><div class="proof proof-type-exercise" id="id10">
+</div></div><div class="proof proof-type-exercise" id="id17">
 
     <div class="proof-title">
         <span class="proof-type">Exercise 4.5</span>
@@ -368,7 +368,8 @@ functions.</p>
 <h2><span class="section-number">4.2. </span>Pivoting<a class="headerlink" href="#pivoting" title="Permalink to this headline">¶</a></h2>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
-<p>A video recording for this material is available <a class="reference external" href="https://player.vimeo.com/video/454098919">here</a>.</p>
+<p>Video recordings for this material is available <a class="reference external" href="https://player.vimeo.com/video/454098919">here</a>, and then
+<a class="reference external" href="https://player.vimeo.com/video/454108809">here</a>.</p>
 </div>
 <p>Gaussian elimination will fail if a zero appears on the diagonal,
 i.e. we get <span class="math notranslate nohighlight">\(x_{kk}=0\)</span> (since then we can’t divide by it). Similarly,
@@ -379,7 +380,7 @@ maximum magnitude. This would seem to mess up the <span class="math notranslate 
 procedure. However, it is not as bad as it looks, as we will now
 see.</p>
 <p>The main tool is the permutation matrix.</p>
-<div class="proof proof-type-definition" id="id11">
+<div class="proof proof-type-definition" id="id18">
 
     <div class="proof-title">
         <span class="proof-type">Definition 4.6</span>
@@ -412,6 +413,10 @@ with pivoting,</p>
 <div><div class="math notranslate nohighlight">
 \[L_{m-1}P_{m-1}\ldots L_2P_2L_1P_1 = U.\]</div>
 </div></blockquote>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>A video recording for this material is available <a class="reference external" href="https://player.vimeo.com/video/454109227">here</a>.</p>
+</div>
 <p>This looks like it has totally messed up the LU factorisation, because
 <span class="math notranslate nohighlight">\(LP\)</span> is not lower triangular for general lower triangular matrix <span class="math notranslate nohighlight">\(L\)</span>
 and permutation matrix <span class="math notranslate nohighlight">\(P\)</span>. However, we can save the situation, by
@@ -463,6 +468,10 @@ we obtain</p>
 finding the LU factorisation using the basic algorithm (except we
 can’t implement it like that because we only decide how to build <span class="math notranslate nohighlight">\(P\)</span>
 during the Gaussian elimination process).</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>A video recording for this material is available <a class="reference external" href="https://player.vimeo.com/video/454109660">here</a>.</p>
+</div>
 <p>The LU factorisation with pivoting can be expressed in the following
 pseudo-code.</p>
 <ul class="simple">
@@ -486,6 +495,10 @@ pseudo-code.</p>
 </li>
 <li><p>END FOR</p></li>
 </ul>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>A video recording for this material is available <a class="reference external" href="https://player.vimeo.com/video/454110324">here</a>.</p>
+</div>
 <p>To solve a system <span class="math notranslate nohighlight">\(Ax=b\)</span> given the a pivoted LU factorisation <span class="math notranslate nohighlight">\(PA=LU\)</span>,
 we left multiply the equation by <span class="math notranslate nohighlight">\(P\)</span> and use the factorisation get
 <span class="math notranslate nohighlight">\(LUx=Pb\)</span>. The procedure is then as before, but <span class="math notranslate nohighlight">\(b\)</span> must be permuted to
@@ -495,7 +508,7 @@ pivoting</em> additionally employs permutations <span class="math notranslate no
 swap columns of <span class="math notranslate nohighlight">\(A_k\)</span> as well as the rows swapped by the permutations
 <span class="math notranslate nohighlight">\(P_k\)</span>. By similar arguments, one can obtain the LU factorisation with
 complete pivoting, <span class="math notranslate nohighlight">\(PAQ=LU\)</span>.</p>
-<div class="proof proof-type-exercise" id="id12">
+<div class="proof proof-type-exercise" id="id19">
 
     <div class="proof-title">
         <span class="proof-type">Exercise 4.7</span>
@@ -509,7 +522,7 @@ matrix <span class="math notranslate nohighlight">\(P_{i,j}P\)</span> (also stor
 <span class="math notranslate nohighlight">\(P_{i,j}\)</span> is the permutation matrix that exchanges the entries <span class="math notranslate nohighlight">\(i\)</span>
 and <span class="math notranslate nohighlight">\(j\)</span>. The test script <code class="docutils literal notranslate"><span class="pre">test_exercises7.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code>
 directory will test this function.</p>
-</div></div><div class="proof proof-type-exercise" id="id13">
+</div></div><div class="proof proof-type-exercise" id="id20">
 
     <div class="proof-title">
         <span class="proof-type">Exercise 4.8</span>
@@ -524,7 +537,7 @@ permutation matrix, which can should be constructed using
 <a class="reference internal" href="cla_utils.html#cla_utils.exercises7.perm" title="cla_utils.exercises7.perm"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises7.perm()</span></code></a>.The test script
 <code class="docutils literal notranslate"><span class="pre">test_exercises7.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will test this
 function.</p>
-</div></div><div class="proof proof-type-exercise" id="id14">
+</div></div><div class="proof proof-type-exercise" id="id21">
 
     <div class="proof-title">
         <span class="proof-type">Exercise 4.9</span>
@@ -535,7 +548,7 @@ unimplemented. It should use the LUP code that you have written to
 solve the equation <span class="math notranslate nohighlight">\(Ax=b\)</span> for <span class="math notranslate nohighlight">\(x\)</span> given inputs <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(b\)</span>.  The
 test script <code class="docutils literal notranslate"><span class="pre">test_exercises7.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will
 test this function.</p>
-</div></div><div class="proof proof-type-exercise" id="id15">
+</div></div><div class="proof proof-type-exercise" id="id22">
 
     <div class="proof-title">
         <span class="proof-type">Exercise 4.10</span>
@@ -550,9 +563,13 @@ directory will test this function.</p>
 </div></div></div>
 <div class="section" id="stability-of-lu-factorisation">
 <h2><span class="section-number">4.3. </span>Stability of LU factorisation<a class="headerlink" href="#stability-of-lu-factorisation" title="Permalink to this headline">¶</a></h2>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>A video recording for this material is available <a class="reference external" href="https://player.vimeo.com/video/454110810">here</a>.</p>
+</div>
 <p>To characterise the stability of LU factorisation, we quote the following
 result.</p>
-<div class="proof proof-type-theorem" id="id16">
+<div class="proof proof-type-theorem" id="id23">
 
     <div class="proof-title">
         <span class="proof-type">Theorem 4.11</span>
@@ -578,7 +595,7 @@ result, see the textbook by Golub and van Loan.</p>
 small changes could potentially lead to a different pivoting matrix
 <span class="math notranslate nohighlight">\(\tilde{P}\)</span> which is then <span class="math notranslate nohighlight">\(O(1)\)</span> different from <span class="math notranslate nohighlight">\(P\)</span>. This is characterised
 in the following result (which we also do not prove).</p>
-<div class="proof proof-type-theorem" id="id17">
+<div class="proof proof-type-theorem" id="id24">
 
     <div class="proof-title">
         <span class="proof-type">Theorem 4.12</span>
@@ -610,6 +627,10 @@ leading to large <span class="math notranslate nohighlight">\(\rho\)</span> and 
 </div>
 <div class="section" id="taking-advantage-of-matrix-structure">
 <h2><span class="section-number">4.4. </span>Taking advantage of matrix structure<a class="headerlink" href="#taking-advantage-of-matrix-structure" title="Permalink to this headline">¶</a></h2>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>A video recording for this material is available <a class="reference external" href="https://player.vimeo.com/video/454111577">here</a>.</p>
+</div>
 <p>The cost of the standard Gaussian elimination algorithm to form <span class="math notranslate nohighlight">\(L\)</span>
 and <span class="math notranslate nohighlight">\(U\)</span> is <span class="math notranslate nohighlight">\(\mathcal{O}(m^3)\)</span>, which grows rather quickly as <span class="math notranslate nohighlight">\(m\)</span>
 increases. If there is structure in the matrix, then we can often
@@ -654,7 +675,7 @@ that the corresponding entries in the <span class="math notranslate nohighlight"
 Further, because there are zeros above the diagonal of <span class="math notranslate nohighlight">\(A\)</span>, these do
 not need to be updated when applying the row operations to those
 zeros.</p>
-<div class="proof proof-type-exercise" id="id18">
+<div class="proof proof-type-exercise" id="id25">
 
     <div class="proof-title">
         <span class="proof-type">Exercise 4.13</span>
@@ -702,6 +723,10 @@ is given as pseudo-code below.</p>
 </ul>
 <p>This has an operation count <span class="math notranslate nohighlight">\(\mathcal{O}(mp)\)</span>. The story is
 very similar for the back substitution.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>A video recording for this material is available <a class="reference external" href="https://player.vimeo.com/video/454112153">here</a>.</p>
+</div>
 <p>Another example that we have already encountered is unitary matrices
 <span class="math notranslate nohighlight">\(Q\)</span>. Since <span class="math notranslate nohighlight">\(Q^{-1}=Q^*\)</span>, solving the system <span class="math notranslate nohighlight">\(Qx=b\)</span> is just the cost of
 applying <span class="math notranslate nohighlight">\(Q^*\)</span>, with operation count <span class="math notranslate nohighlight">\(\mathcal{O}(m^2)\)</span>.</p>
