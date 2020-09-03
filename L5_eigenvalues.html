@@ -50,6 +50,10 @@
             
   <div class="section" id="finding-eigenvalues-of-matrices">
 <h1><span class="section-number">5. </span>Finding eigenvalues of matrices<a class="headerlink" href="#finding-eigenvalues-of-matrices" title="Permalink to this headline">¶</a></h1>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>A video recording for this material is available <a class="reference external" href="https://player.vimeo.com/video/454117340">here</a>.</p>
+</div>
 <p>We start with some preliminary terminology.  A vector <span class="math notranslate nohighlight">\(x\in
 \mathbb{C}^m\)</span> is an <em>eigenvector</em> of a square matrix <span class="math notranslate nohighlight">\(A\in
 \mathbb{C}^{m\times m}\)</span> with <em>eigenvalue</em> <span class="math notranslate nohighlight">\(\lambda\)</span> if <span class="math notranslate nohighlight">\(Ax=\lambda
@@ -77,7 +81,7 @@ polynomials is numerically unstable. All of this means that we should
 avoid using polynomials finding eigenvalues. Instead, we should try to
 apply transformations to the matrix <span class="math notranslate nohighlight">\(A\)</span> to a form that means that the
 eigenvalues can be directly extracted.</p>
-<div class="proof proof-type-example" id="id2">
+<div class="proof proof-type-example" id="id18">
 
     <div class="proof-title">
         <span class="proof-type">Example 5.1</span>
@@ -113,7 +117,11 @@ superposing the root plots on the same graph. What do you observe?
 What does it tell you about this problem and what should we
 conclude about the wisdom of finding eigenvalues using
 characteristic polynomials?</p>
-</div></div><p>The eigenvalue decomposition of a matrix <span class="math notranslate nohighlight">\(A\)</span> finds a nonsingular matrix
+</div></div><div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>A video recording for this material is available <a class="reference external" href="https://player.vimeo.com/video/454118485">here</a>.</p>
+</div>
+<p>The eigenvalue decomposition of a matrix <span class="math notranslate nohighlight">\(A\)</span> finds a nonsingular matrix
 <span class="math notranslate nohighlight">\(X\)</span> and a diagonal matrix <span class="math notranslate nohighlight">\(\Lambda\)</span> such that</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -127,7 +135,7 @@ possible to transform to an eigenvalue decomposition. Hence we shall
 look into some other eigenvalue revealing decompositions of <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <p>We quote the following result that explains when an eigenvalue
 decomposition can be found.</p>
-<div class="proof proof-type-theorem" id="id3">
+<div class="proof proof-type-theorem" id="id19">
 
     <div class="proof-title">
         <span class="proof-type">Theorem 5.2</span>
@@ -145,7 +153,11 @@ the eigenspaces do not span <span class="math notranslate nohighlight">\(\mathbb
 decomposition is not possible.</p>
 <p>This all motivates the search for other eigenvalue revealing
 decompositions of <span class="math notranslate nohighlight">\(A\)</span>.</p>
-<div class="proof proof-type-definition" id="id4">
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>A video recording for this material is available <a class="reference external" href="https://player.vimeo.com/video/454122744">here</a>.</p>
+</div>
+<div class="proof proof-type-definition" id="id20">
 
     <div class="proof-title">
         <span class="proof-type">Definition 5.3</span>
@@ -159,7 +171,7 @@ Two matrices <span class="math notranslate nohighlight">\(A\)</span> and <span c
 </div></div><p>The eigenvalue decomposition shows that (when it exists), <span class="math notranslate nohighlight">\(A\)</span> is similar
 to <span class="math notranslate nohighlight">\(\Lambda\)</span>. The following result shows that it may be useful to examine
 other similarity transformations.</p>
-<div class="proof proof-type-theorem" id="id5">
+<div class="proof proof-type-theorem" id="id21">
 
     <div class="proof-title">
         <span class="proof-type">Theorem 5.4</span>
@@ -179,7 +191,11 @@ transformed to a matrix <span class="math notranslate nohighlight">\(B\)</span> 
 eigenvalues can be easily computed (with the diagonal matrix of the
 eigenvalue decomposition being one example).</p>
 <p>One such transformation comes from the Schur factorisation.</p>
-<div class="proof proof-type-definition" id="id6">
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>A video recording for this material is available <a class="reference external" href="https://player.vimeo.com/video/454122918">here</a>.</p>
+</div>
+<div class="proof proof-type-definition" id="id22">
 
     <div class="proof-title">
         <span class="proof-type">Definition 5.5</span>
@@ -192,7 +208,7 @@ QTQ^*\)</span>, where <span class="math notranslate nohighlight">\(Q\)</span> is
 upper triangular.</p>
 </div></div><p>It turns out that, unlike the situation for the eigenvalue
 decomposition, the following is true.</p>
-<div class="proof proof-type-theorem" id="id7">
+<div class="proof proof-type-theorem" id="id23">
 
     <div class="proof-title">
         <span class="proof-type">Theorem 5.6</span>
@@ -207,7 +223,7 @@ factorisation of <span class="math notranslate nohighlight">\(A\)</span>, we can
 matrices of <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <p>There is a special case of the Schur factorisation, called the unitary
 diagonalisation</p>
-<div class="proof proof-type-definition" id="id8">
+<div class="proof proof-type-definition" id="id24">
 
     <div class="proof-title">
         <span class="proof-type">Definition 5.7</span>
@@ -220,7 +236,7 @@ Q\Lambda Q^*\)</span>, where <span class="math notranslate nohighlight">\(Q\)</s
 is diagonal.</p>
 </div></div><p>A unitary diagonalisation is a Schur factorisation <em>and</em> an eigenvalue
 decomposition.</p>
-<div class="proof proof-type-theorem" id="id9">
+<div class="proof proof-type-theorem" id="id25">
 
     <div class="proof-title">
         <span class="proof-type">Theorem 5.8</span>
@@ -233,6 +249,10 @@ obtain an eigenvalue decomposition as a bonus.</p>
 </div>
 <div class="section" id="transformations-to-schur-factorisation">
 <h2><span class="section-number">5.2. </span>Transformations to Schur factorisation<a class="headerlink" href="#transformations-to-schur-factorisation" title="Permalink to this headline">¶</a></h2>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>A video recording for this material is available <a class="reference external" href="https://player.vimeo.com/video/454123177">here</a>.</p>
+</div>
 <p>Just as for the QR factorisations, we will compute the Schur
 factorisation successively, with multiplication by a sequence of
 unitary matrices <span class="math notranslate nohighlight">\(Q_1,Q_2,\ldots\)</span>. There are two differences for the
@@ -265,6 +285,10 @@ the second, iterative, stage much faster.</p>
 </div>
 <div class="section" id="similarity-transformation-to-upper-hessenberg-form">
 <h2><span class="section-number">5.3. </span>Similarity transformation to upper Hessenberg form<a class="headerlink" href="#similarity-transformation-to-upper-hessenberg-form" title="Permalink to this headline">¶</a></h2>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>A video recording for this material is available <a class="reference external" href="https://player.vimeo.com/video/454123306">here</a>.</p>
+</div>
 <p>We already know how to use a unitary matrix to set all entries to zero
 below the diagonal in the first column of <span class="math notranslate nohighlight">\(A\)</span> by left multiplication
 <span class="math notranslate nohighlight">\(Q^*_1A\)</span>, because this is the Householder algorithm. The problem is
@@ -280,7 +304,7 @@ shouldn’t be surprised that this is impossible, because if it was,
 then we would be able to build a finite procedure for computing
 eigenvalues of the characteristic polynomial, which is impossible in
 general.</p>
-<div class="proof proof-type-exercise" id="id10">
+<div class="proof proof-type-exercise" id="id26">
 
     <div class="proof-title">
         <span class="proof-type">Exercise 5.9</span>
@@ -307,6 +331,10 @@ leaves the first two rows unchanged and puts zeros below the third
 entry in the second column, which are not spoiled by right
 multiplication by <span class="math notranslate nohighlight">\(Q_2\)</span>. Hence, we can transform <span class="math notranslate nohighlight">\(A\)</span> to a similar
 upper Hessenberg matrix <span class="math notranslate nohighlight">\(H\)</span> in <span class="math notranslate nohighlight">\(m-2\)</span> iterations.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>A video recording for this material is available <a class="reference external" href="https://player.vimeo.com/video/454123643">here</a>.</p>
+</div>
 <p>This reduction to Hessenberg form can be expressed in the following
 pseudo-code.</p>
 <ul class="simple">
@@ -323,7 +351,7 @@ pseudo-code.</p>
 </ul>
 <p>Note the similarities and differences with the Householder algorithm
 for computing the QR factorisation.</p>
-<div class="proof proof-type-exercise" id="id11">
+<div class="proof proof-type-exercise" id="id27">
 
     <div class="proof-title">
         <span class="proof-type">Exercise 5.10</span>
@@ -358,6 +386,10 @@ zeros to take advantage of, so all <span class="math notranslate nohighlight">\(
 <div><div class="math notranslate nohighlight">
 \[4\times \sum_{k=1}^{m-1} m(m-k) \sim \frac{10}{3}m^3 FLOPs.\]</div>
 </div></blockquote>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>A video recording for this material is available <a class="reference external" href="https://player.vimeo.com/video/454123926">here</a>.</p>
+</div>
 <p>In the Hermitian case, the Hessenberg matrix becomes tridiagonal, and
 these extra zeros can be exploited, leading to an operation count
 <span class="math notranslate nohighlight">\(\sim 4m^3/3\)</span>.</p>
@@ -370,7 +402,7 @@ backwards stable, i.e. in a floating point implementation, it gives
 \frac{\|\delta A\|}{\|A\|}=\mathcal{O}(\varepsilon),\]</div>
 </div></blockquote>
 <p>for some <span class="math notranslate nohighlight">\(\delta A\)</span>.</p>
-<div class="proof proof-type-exercise" id="id12">
+<div class="proof proof-type-exercise" id="id28">
 
     <div class="proof-title">
         <span class="proof-type">Exercise 5.11</span>
@@ -383,7 +415,7 @@ it should also return the matrix <span class="math notranslate nohighlight">\(Q\
 to work out how to alter the algorithm to construct this. The test
 script <code class="docutils literal notranslate"><span class="pre">test_exercises8.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will test
 this function.</p>
-</div></div><div class="proof proof-type-exercise" id="id13">
+</div></div><div class="proof proof-type-exercise" id="id29">
 
     <div class="proof-title">
         <span class="proof-type">Exercise 5.12</span>
@@ -397,7 +429,11 @@ have already created, and then calling
 eigenvectors and eigenvalues of upper Hessenberg matrices (do not
 edit this function!). The test script <code class="docutils literal notranslate"><span class="pre">test_exercises8.py</span></code> in the
 <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will test this function.</p>
-</div></div><p>In the next few sections we develop the iterative part of the
+</div></div><div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>A video recording for this material is available <a class="reference external" href="https://player.vimeo.com/video/454124279">here</a>.</p>
+</div>
+<p>In the next few sections we develop the iterative part of the
 transformation to the upper triangular matrix <span class="math notranslate nohighlight">\(T\)</span>. This algorithm
 works for a broad class of matrices, but the explanation is much
 easier for the case of real symmetric matrices, which have real
@@ -421,11 +457,15 @@ Rayleigh quotient of a vector <span class="math notranslate nohighlight">\(x \in
 <div><div class="math notranslate nohighlight">
 \[r(x) = \frac{x^T\lambda x}{x^Tx} = \lambda,\]</div>
 </div></blockquote>
-<p>i.e. the Rayleigh quotient gives the corresponding eigenvalue.  If <span class="math notranslate nohighlight">\(x\)</span>
-is not exactly an eigenvector of <span class="math notranslate nohighlight">\(A\)</span>, but is just close to one, we
-might hope that <span class="math notranslate nohighlight">\(r(x)\)</span> is close to being an eigenvalue. To investigate
-this we will consider the Taylor series expansion of <span class="math notranslate nohighlight">\(r(x)\)</span> about
-an eigenvector <span class="math notranslate nohighlight">\(q_J\)</span> of <span class="math notranslate nohighlight">\(A\)</span>. We have</p>
+<p>i.e. the Rayleigh quotient gives the corresponding eigenvalue.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>A video recording for this material is available <a class="reference external" href="https://player.vimeo.com/video/454124455">here</a>.</p>
+</div>
+<p>If <span class="math notranslate nohighlight">\(x\)</span> is not exactly an eigenvector of <span class="math notranslate nohighlight">\(A\)</span>, but is just close to one,
+we might hope that <span class="math notranslate nohighlight">\(r(x)\)</span> is close to being an eigenvalue. To
+investigate this we will consider the Taylor series expansion of
+<span class="math notranslate nohighlight">\(r(x)\)</span> about an eigenvector <span class="math notranslate nohighlight">\(q_J\)</span> of <span class="math notranslate nohighlight">\(A\)</span>. We have</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
 \[\nabla r(x) = \frac{2}{x^Tx}\left(Ax-r(x)x\right),\]</div>
@@ -446,7 +486,7 @@ x \to q_J.\]</div>
 </div></blockquote>
 <p>The Rayleigh quotient gives a quadratically accurate estimate to the
 eigenvalues of <span class="math notranslate nohighlight">\(A\)</span>.</p>
-<div class="proof proof-type-exercise" id="id14">
+<div class="proof proof-type-exercise" id="id30">
 
     <div class="proof-title">
         <span class="proof-type">Exercise 5.13</span>
@@ -469,6 +509,10 @@ by eye if the error is scaling with <span class="math notranslate nohighlight">\
 </div></div></div>
 <div class="section" id="power-iteration">
 <h2><span class="section-number">5.5. </span>Power iteration<a class="headerlink" href="#power-iteration" title="Permalink to this headline">¶</a></h2>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>A video recording for this material is available <a class="reference external" href="https://player.vimeo.com/video/454124710">here</a>.</p>
+</div>
 <p>Power iteration is a simple method for finding the eigenvalue of
 <span class="math notranslate nohighlight">\(A\)</span> with largest eigenvalue (in magnitude). It is based on the following
 idea. We expand a vector <span class="math notranslate nohighlight">\(v\)</span> in eigenvectors of <span class="math notranslate nohighlight">\(A\)</span>,</p>
@@ -510,8 +554,8 @@ quotient to see how our approximation of the eigenvalue is going.</p>
 divide by it in the Rayleigh quotient. We terminate the power
 iteration when we decide that the changes in <span class="math notranslate nohighlight">\(\lambda\)</span> indicate
 that the error is small. This is guided by the following result.</p>
-<div class="proof proof-type-theorem" id="id15">
-<span id="id1"></span>
+<div class="proof proof-type-theorem" id="id31">
+<span id="id11"></span>
     <div class="proof-title">
         <span class="proof-type">Theorem 5.14</span>
         
@@ -538,7 +582,7 @@ the second equation comes by combining the Taylor series error with
 the Rayleigh quotient error.</p>
 </div></div><p>The <span class="math notranslate nohighlight">\(\pm\)</span> feature is a bit annoying, and relates to the fact that the
 normalisation does not select <span class="math notranslate nohighlight">\(v^k\)</span> to have the direction as <span class="math notranslate nohighlight">\(q_1\)</span>.</p>
-<div class="proof proof-type-exercise" id="id16">
+<div class="proof proof-type-exercise" id="id32">
 
     <div class="proof-title">
         <span class="proof-type">Exercise 5.15</span>
@@ -551,7 +595,7 @@ docstring provides a different truncation criteria, not based on
 the Rayleigh quotient, so that it can be used for non-Hermitian
 matrices too. The test script <code class="docutils literal notranslate"><span class="pre">test_exercises9.py</span></code> in the
 <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will test this function.</p>
-</div></div><div class="proof proof-type-exercise" id="id17">
+</div></div><div class="proof proof-type-exercise" id="id33">
 
     <div class="proof-title">
         <span class="proof-type">Exercise 5.16</span>
@@ -565,6 +609,10 @@ observe? What is it about <span class="math notranslate nohighlight">\(A_3\)</sp
 </div></div></div>
 <div class="section" id="inverse-iteration">
 <h2><span class="section-number">5.6. </span>Inverse iteration<a class="headerlink" href="#inverse-iteration" title="Permalink to this headline">¶</a></h2>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>A video recording for this material is available <a class="reference external" href="https://player.vimeo.com/video/454124799">here</a>.</p>
+</div>
 <p>Inverse iteration is a modification of power iteration so that we can
 find eigenvalues other than <span class="math notranslate nohighlight">\(\lambda_1\)</span>. To do this, we use the fact
 that eigenvectors <span class="math notranslate nohighlight">\(q_j\)</span> of <span class="math notranslate nohighlight">\(A\)</span> are also eigenvectors of <span class="math notranslate nohighlight">\((A - \mu
@@ -594,12 +642,12 @@ pseudo-code below.</p>
 </ul>
 </li>
 </ul>
-<p>We can then directly extend <a class="reference internal" href="#id1"><span class="std std-numref">Theorem
+<p>We can then directly extend <a class="reference internal" href="#id11"><span class="std std-numref">Theorem
 5.14</span></a> to the inverse iteration algorithm.
 We conclude that the convergence rate is not improved relative
 to power iteration, but now we can “dial in” to different
 eigenvalues by choosing <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
-<div class="proof proof-type-exercise" id="id18">
+<div class="proof proof-type-exercise" id="id34">
 
     <div class="proof-title">
         <span class="proof-type">Exercise 5.17</span>
@@ -610,7 +658,7 @@ unimplemented. It should apply inverse iteration to a given matrix
 and initial vector, according to the docstring. The test script
 <code class="docutils literal notranslate"><span class="pre">test_exercises9.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will test this
 function.</p>
-</div></div><div class="proof proof-type-exercise" id="id19">
+</div></div><div class="proof proof-type-exercise" id="id35">
 
     <div class="proof-title">
         <span class="proof-type">Exercise 5.18</span>
@@ -621,6 +669,10 @@ using different values of <span class="math notranslate nohighlight">\(\mu\)</sp
 </div></div></div>
 <div class="section" id="rayleigh-quotient-iteration">
 <h2><span class="section-number">5.7. </span>Rayleigh quotient iteration<a class="headerlink" href="#rayleigh-quotient-iteration" title="Permalink to this headline">¶</a></h2>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>A video recording for this material is available <a class="reference external" href="https://player.vimeo.com/video/454303115">here</a>.</p>
+</div>
 <p>Since we can use the Rayleigh quotient to find an approximation of an
 eigenvalue, and we can use an approximation of an eigenvalue to find
 the nearest eigenvalue using inverse iteration, we can combine them
@@ -651,7 +703,7 @@ Then, inverse iteration gives an estimate</p>
 \[\|v^{k+1}-\pm q_J\| = \mathcal{O}(|\lambda^{(k)}-\lambda_J|
 \|v^k-q_J\|) = \mathcal{O}(\delta^3).\]</div>
 <p>Thus we have cubic convergence, which is super fast!</p>
-<div class="proof proof-type-exercise" id="id20">
+<div class="proof proof-type-exercise" id="id36">
 
     <div class="proof-title">
         <span class="proof-type">Exercise 5.19</span>
@@ -662,7 +714,7 @@ unimplemented. It should apply inverse iteration to a given matrix
 and initial vector, according to the docstring. The test script
 <code class="docutils literal notranslate"><span class="pre">test_exercises9.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will test this
 function.</p>
-</div></div><div class="proof proof-type-exercise" id="id21">
+</div></div><div class="proof proof-type-exercise" id="id37">
 
     <div class="proof-title">
         <span class="proof-type">Exercise 5.20</span>
@@ -678,6 +730,10 @@ different sizes (don’t forget to make them Hermitian).</p>
 </div></div></div>
 <div class="section" id="the-pure-qr-algorithm">
 <h2><span class="section-number">5.8. </span>The pure QR algorithm<a class="headerlink" href="#the-pure-qr-algorithm" title="Permalink to this headline">¶</a></h2>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>A video recording for this material is available <a class="reference external" href="https://player.vimeo.com/video/454124953">here</a>.</p>
+</div>
 <p>We now describe the QR algorithm, which will turn out to be an
 iterative algorithm that converges to the diagonal matrix (upper
 triangular matrix for the general nonsymmetric case) that <span class="math notranslate nohighlight">\(A\)</span> is
@@ -693,7 +749,7 @@ written as pseudo-code.</p>
 </ul>
 </li>
 </ul>
-<div class="proof proof-type-exercise" id="id22">
+<div class="proof proof-type-exercise" id="id38">
 
     <div class="proof-title">
         <span class="proof-type">Exercise 5.21</span>
@@ -708,7 +764,7 @@ method of testing for convergence has been left as well. Have a
 think about how to do this and document your implementation. The
 test script <code class="docutils literal notranslate"><span class="pre">test_exercises9.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will
 test this function.</p>
-</div></div><div class="proof proof-type-exercise" id="id23">
+</div></div><div class="proof proof-type-exercise" id="id39">
 
     <div class="proof-title">
         <span class="proof-type">Exercise 5.22</span>
@@ -739,6 +795,10 @@ another algorithm called simultaneous iteration.</p>
 </div>
 <div class="section" id="simultaneous-iteration">
 <h2><span class="section-number">5.9. </span>Simultaneous iteration<a class="headerlink" href="#simultaneous-iteration" title="Permalink to this headline">¶</a></h2>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>A video recording for this material is available <a class="reference external" href="https://player.vimeo.com/video/454125180">here</a>.</p>
+</div>
 <p>One problem with power iteration is that it only finds one
 eigenvector/eigenvalue pair at a time. Simultaneous iteration is a
 solution to this. The starting idea is simple: instead of working on
@@ -802,6 +862,10 @@ The following section confirms that they are in fact equivalent.</p>
 </div>
 <div class="section" id="the-pure-qr-algorithm-and-simultaneous-iteration-are-equivalent">
 <h2><span class="section-number">5.10. </span>The pure QR algorithm and simultaneous iteration are equivalent<a class="headerlink" href="#the-pure-qr-algorithm-and-simultaneous-iteration-are-equivalent" title="Permalink to this headline">¶</a></h2>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>A video recording for this material is available <a class="reference external" href="https://player.vimeo.com/video/454125393">here</a>.</p>
+</div>
 <p>To be precise, we will show that the pure QR algorithm is equivalent
 to simultaneous iteration when the initial independent set is the
 canonical basis <span class="math notranslate nohighlight">\(I\)</span>, i.e. <span class="math notranslate nohighlight">\(Q^{(0)}=I\)</span>. From the above, we see that
@@ -836,7 +900,7 @@ matrices, and a running product of all of the <span class="math notranslate nohi
 </ul>
 </li>
 </ul>
-<div class="proof proof-type-theorem" id="id24">
+<div class="proof proof-type-theorem" id="id40">
 
     <div class="proof-title">
         <span class="proof-type">Theorem 5.23</span>
@@ -896,6 +960,10 @@ it relates to power iteration.</p>
 </div>
 <div class="section" id="the-practical-qr-algorithm">
 <h2><span class="section-number">5.11. </span>The practical QR algorithm<a class="headerlink" href="#the-practical-qr-algorithm" title="Permalink to this headline">¶</a></h2>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>A video recording for this material is available <a class="reference external" href="https://player.vimeo.com/video/454125822">here</a>.</p>
+</div>
 <p>The practical QR algorithm for real symmetric matrices has a number of
 extra elements that make it fast. First, recall that we start by
 transforming to tridiagonal (symmetric Hessenberg) form. This cuts
