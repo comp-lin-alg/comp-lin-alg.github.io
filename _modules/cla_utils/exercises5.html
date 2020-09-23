@@ -51,17 +51,37 @@
 
 
 <div class="viewcode-block" id="randomQ"><a class="viewcode-back" href="../../cla_utils.html#cla_utils.exercises5.randomQ">[docs]</a><span class="k">def</span> <span class="nf">randomQ</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Produce a random orthogonal mxm matrix.</span>
+
+<span class="sd">    :param m: the matrix dimension parameter.</span>
+<span class="sd">    </span>
+<span class="sd">    :return Q: the mxm numpy array containing the orthogonal matrix.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">Q</span><span class="p">,</span> <span class="n">R</span> <span class="o">=</span> <span class="n">linalg</span><span class="o">.</span><span class="n">qr</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">m</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">Q</span></div>
 
 
 <div class="viewcode-block" id="randomR"><a class="viewcode-back" href="../../cla_utils.html#cla_utils.exercises5.randomR">[docs]</a><span class="k">def</span> <span class="nf">randomR</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Produce a random upper triangular mxm matrix.</span>
+
+<span class="sd">    :param m: the matrix dimension parameter.</span>
+<span class="sd">    </span>
+<span class="sd">    :return R: the mxm numpy array containing the upper triangular matrix.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
     <span class="n">A</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">numpy</span><span class="o">.</span><span class="n">triu</span><span class="p">(</span><span class="n">A</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="backward_stability_householder"><a class="viewcode-back" href="../../cla_utils.html#cla_utils.exercises5.backward_stability_householder">[docs]</a><span class="k">def</span> <span class="nf">backward_stability_householder</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Verify backward stability for QR factorisation using Householder for</span>
+<span class="sd">    real mxm matrices.</span>
 
+<span class="sd">    :param m: the matrix dimension parameter.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># repeat the experiment a few times to capture typical behaviour</span>
     <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
         <span class="n">Q1</span> <span class="o">=</span> <span class="n">randomQ</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
@@ -75,12 +95,8 @@
 <span class="sd">    Solve the system Rx=b where R is an mxm upper triangular matrix </span>
 <span class="sd">    and b is an m dimensional vector.</span>
 
-<span class="sd">    Inputs</span>
-
 <span class="sd">    :param A: an mxm-dimensional numpy array</span>
 <span class="sd">    :param b: an m-dimensional numpy array</span>
-
-<span class="sd">    Outputs</span>
 
 <span class="sd">    :param x: an m-dimensional numpy array</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -92,8 +108,6 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Verify backward stability for back substitution for</span>
 <span class="sd">    real mxm matrices.</span>
-
-<span class="sd">    Inputs</span>
 
 <span class="sd">    :param m: the matrix dimension parameter.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -109,8 +123,6 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Verify backward stability for the householder algorithm</span>
 <span class="sd">    for solving Ax=b for an m dimensional square system.</span>
-
-<span class="sd">    Inputs</span>
 
 <span class="sd">    :param m: the matrix dimension parameter.</span>
 <span class="sd">    &quot;&quot;&quot;</span>

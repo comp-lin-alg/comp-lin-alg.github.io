@@ -55,15 +55,11 @@
 <span class="sd">    Given a real mxn matrix A, find the reduction to upper triangular matrix R</span>
 <span class="sd">    using Householder transformations.</span>
 
-<span class="sd">    Inputs</span>
-
 <span class="sd">    :param A: an mxn-dimensional numpy array</span>
 <span class="sd">    :param kmax: an integer, the number of columns of A to reduce \</span>
 <span class="sd">    to upper triangular. If not present, will default to n.</span>
 
-<span class="sd">    Outputs</span>
-
-<span class="sd">    :param R: an mxn-dimensional numpy array containing the upper \</span>
+<span class="sd">    :return R: an mxn-dimensional numpy array containing the upper \</span>
 <span class="sd">    triangular matrix</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -81,15 +77,11 @@
 <span class="sd">    Given a real mxm matrix A, use the Householder transformation to solve</span>
 <span class="sd">    Ax_i=b_i, i=1,2,...,k.</span>
 
-<span class="sd">    Inputs</span>
-
 <span class="sd">    :param A: an mxm-dimensional numpy array</span>
 <span class="sd">    :param b: an mxk-dimensional numpy array whose columns are the \</span>
 <span class="sd">    right-hand side vectors b_1,b_2,...,b_k.</span>
 
-<span class="sd">    Outputs</span>
-
-<span class="sd">    :param x: an mxk-dimensional numpy array whose columns are the \</span>
+<span class="sd">    :return x: an mxk-dimensional numpy array whose columns are the \</span>
 <span class="sd">    right-hand side vectors x_1,x_2,...,x_k.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -103,14 +95,10 @@
 <span class="sd">    Given a real mxn matrix A, use the Householder transformation to find</span>
 <span class="sd">    the QR factorisation of A.</span>
 
-<span class="sd">    Inputs</span>
-
 <span class="sd">    :param A: an mxn-dimensional numpy array</span>
 
-<span class="sd">    Outputs</span>
-
-<span class="sd">    :param Q: an mxm-dimensional numpy array</span>
-<span class="sd">    :param R: an mxn-dimensional numpy array</span>
+<span class="sd">    :return Q: an mxm-dimensional numpy array</span>
+<span class="sd">    :return R: an mxn-dimensional numpy array</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">raise</span> <span class="ne">NotImplementedError</span>
@@ -123,14 +111,10 @@
 <span class="sd">    Given a real mxn matrix A and an m dimensional vector b, find the</span>
 <span class="sd">    least squares solution to Ax = b.</span>
 
-<span class="sd">    Inputs</span>
-
 <span class="sd">    :param A: an mxn-dimensional numpy array</span>
 <span class="sd">    :param A: an m-dimensional numpy array</span>
 
-<span class="sd">    Outputs</span>
-
-<span class="sd">    :param x: an n-dimensional numpy array</span>
+<span class="sd">    :return x: an n-dimensional numpy array</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">raise</span> <span class="ne">NotImplementedError</span>

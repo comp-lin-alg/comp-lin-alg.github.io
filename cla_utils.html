@@ -231,17 +231,35 @@ using b as the first basis vector.</p>
 <dl class="py function">
 <dt id="cla_utils.exercises10.get_AA100">
 <code class="sig-prename descclassname">cla_utils.exercises10.</code><code class="sig-name descname">get_AA100</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises10.html#get_AA100"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises10.get_AA100" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Get the AA100 matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return A</dt>
+<dd class="field-odd"><p>a 100x100 numpy array used in exercises 10.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt id="cla_utils.exercises10.get_BB100">
 <code class="sig-prename descclassname">cla_utils.exercises10.</code><code class="sig-name descname">get_BB100</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises10.html#get_BB100"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises10.get_BB100" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Get the BB100 matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return B</dt>
+<dd class="field-odd"><p>a 100x100 numpy array used in exercises 10.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt id="cla_utils.exercises10.get_CC100">
 <code class="sig-prename descclassname">cla_utils.exercises10.</code><code class="sig-name descname">get_CC100</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises10.html#get_CC100"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises10.get_CC100" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Get the CC100 matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return C</dt>
+<dd class="field-odd"><p>a 100x100 numpy array used in exercises 10.</p>
+</dd>
+</dl>
+</dd></dl>
 
 </div>
 <div class="section" id="module-cla_utils.exercises2">
@@ -400,7 +418,6 @@ orthogonal complement to the subspace U spanned by the vectors.</p>
 <code class="sig-prename descclassname">cla_utils.exercises3.</code><code class="sig-name descname">householder</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">A</span></em>, <em class="sig-param"><span class="n">kmax</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises3.html#householder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises3.householder" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given a real mxn matrix A, find the reduction to upper triangular matrix R
 using Householder transformations.</p>
-<p>Inputs</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -408,11 +425,8 @@ using Householder transformations.</p>
 <li><p><strong>kmax</strong> – an integer, the number of columns of A to reduce     to upper triangular. If not present, will default to n.</p></li>
 </ul>
 </dd>
-</dl>
-<p>Outputs</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>R</strong> – an mxn-dimensional numpy array containing the upper     triangular matrix</p>
+<dt class="field-even">Return R</dt>
+<dd class="field-even"><p>an mxn-dimensional numpy array containing the upper     triangular matrix</p>
 </dd>
 </dl>
 </dd></dl>
@@ -422,7 +436,6 @@ using Householder transformations.</p>
 <code class="sig-prename descclassname">cla_utils.exercises3.</code><code class="sig-name descname">householder_ls</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">A</span></em>, <em class="sig-param"><span class="n">b</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises3.html#householder_ls"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises3.householder_ls" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given a real mxn matrix A and an m dimensional vector b, find the
 least squares solution to Ax = b.</p>
-<p>Inputs</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -430,11 +443,8 @@ least squares solution to Ax = b.</p>
 <li><p><strong>A</strong> – an m-dimensional numpy array</p></li>
 </ul>
 </dd>
-</dl>
-<p>Outputs</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>x</strong> – an n-dimensional numpy array</p>
+<dt class="field-even">Return x</dt>
+<dd class="field-even"><p>an n-dimensional numpy array</p>
 </dd>
 </dl>
 </dd></dl>
@@ -444,19 +454,15 @@ least squares solution to Ax = b.</p>
 <code class="sig-prename descclassname">cla_utils.exercises3.</code><code class="sig-name descname">householder_qr</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">A</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises3.html#householder_qr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises3.householder_qr" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given a real mxn matrix A, use the Householder transformation to find
 the QR factorisation of A.</p>
-<p>Inputs</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>A</strong> – an mxn-dimensional numpy array</p>
 </dd>
-</dl>
-<p>Outputs</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>Q</strong> – an mxm-dimensional numpy array</p></li>
-<li><p><strong>R</strong> – an mxn-dimensional numpy array</p></li>
-</ul>
+<dt class="field-even">Return Q</dt>
+<dd class="field-even"><p>an mxm-dimensional numpy array</p>
+</dd>
+<dt class="field-odd">Return R</dt>
+<dd class="field-odd"><p>an mxn-dimensional numpy array</p>
 </dd>
 </dl>
 </dd></dl>
@@ -466,7 +472,6 @@ the QR factorisation of A.</p>
 <code class="sig-prename descclassname">cla_utils.exercises3.</code><code class="sig-name descname">householder_solve</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">A</span></em>, <em class="sig-param"><span class="n">b</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises3.html#householder_solve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises3.householder_solve" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given a real mxm matrix A, use the Householder transformation to solve
 Ax_i=b_i, i=1,2,…,k.</p>
-<p>Inputs</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -474,11 +479,8 @@ Ax_i=b_i, i=1,2,…,k.</p>
 <li><p><strong>b</strong> – an mxk-dimensional numpy array whose columns are the     right-hand side vectors b_1,b_2,…,b_k.</p></li>
 </ul>
 </dd>
-</dl>
-<p>Outputs</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>x</strong> – an mxk-dimensional numpy array whose columns are the     right-hand side vectors x_1,x_2,…,x_k.</p>
+<dt class="field-even">Return x</dt>
+<dd class="field-even"><p>an mxk-dimensional numpy array whose columns are the     right-hand side vectors x_1,x_2,…,x_k.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -490,16 +492,12 @@ Ax_i=b_i, i=1,2,…,k.</p>
 <dt id="cla_utils.exercises4.cond">
 <code class="sig-prename descclassname">cla_utils.exercises4.</code><code class="sig-name descname">cond</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">A</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises4.html#cond"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises4.cond" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given a real mxn matrix A, return the condition number in the 2-norm.</p>
-<p>Inputs</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>A</strong> – an mxn-dimensional numpy array</p>
+<dt class="field-odd">Return A</dt>
+<dd class="field-odd"><p>an mxn-dimensional numpy array</p>
 </dd>
-</dl>
-<p>Outputs</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>ncond</strong> – the condition number</p>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><p><strong>ncond</strong> – the condition number</p>
 </dd>
 </dl>
 </dd></dl>
@@ -508,16 +506,12 @@ Ax_i=b_i, i=1,2,…,k.</p>
 <dt id="cla_utils.exercises4.operator_2_norm">
 <code class="sig-prename descclassname">cla_utils.exercises4.</code><code class="sig-name descname">operator_2_norm</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">A</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises4.html#operator_2_norm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises4.operator_2_norm" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given a real mxn matrix A, return the operator 2-norm.</p>
-<p>Inputs</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>A</strong> – an mxn-dimensional numpy array</p>
 </dd>
-</dl>
-<p>Outputs</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>o2norm</strong> – the norm</p>
+<dt class="field-even">Return o2norm</dt>
+<dd class="field-even"><p>the norm</p>
 </dd>
 </dl>
 </dd></dl>
@@ -530,7 +524,6 @@ Ax_i=b_i, i=1,2,…,k.</p>
 <code class="sig-prename descclassname">cla_utils.exercises5.</code><code class="sig-name descname">back_stab_householder_solve</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">m</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises5.html#back_stab_householder_solve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises5.back_stab_householder_solve" title="Permalink to this definition">¶</a></dt>
 <dd><p>Verify backward stability for the householder algorithm
 for solving Ax=b for an m dimensional square system.</p>
-<p>Inputs</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>m</strong> – the matrix dimension parameter.</p>
@@ -543,7 +536,6 @@ for solving Ax=b for an m dimensional square system.</p>
 <code class="sig-prename descclassname">cla_utils.exercises5.</code><code class="sig-name descname">back_stab_solve_R</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">m</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises5.html#back_stab_solve_R"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises5.back_stab_solve_R" title="Permalink to this definition">¶</a></dt>
 <dd><p>Verify backward stability for back substitution for
 real mxm matrices.</p>
-<p>Inputs</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>m</strong> – the matrix dimension parameter.</p>
@@ -554,36 +546,55 @@ real mxm matrices.</p>
 <dl class="py function">
 <dt id="cla_utils.exercises5.backward_stability_householder">
 <code class="sig-prename descclassname">cla_utils.exercises5.</code><code class="sig-name descname">backward_stability_householder</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">m</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises5.html#backward_stability_householder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises5.backward_stability_householder" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Verify backward stability for QR factorisation using Householder for
+real mxm matrices.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>m</strong> – the matrix dimension parameter.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt id="cla_utils.exercises5.randomQ">
 <code class="sig-prename descclassname">cla_utils.exercises5.</code><code class="sig-name descname">randomQ</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">m</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises5.html#randomQ"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises5.randomQ" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Produce a random orthogonal mxm matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>m</strong> – the matrix dimension parameter.</p>
+</dd>
+<dt class="field-even">Return Q</dt>
+<dd class="field-even"><p>the mxm numpy array containing the orthogonal matrix.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt id="cla_utils.exercises5.randomR">
 <code class="sig-prename descclassname">cla_utils.exercises5.</code><code class="sig-name descname">randomR</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">m</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises5.html#randomR"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises5.randomR" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Produce a random upper triangular mxm matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>m</strong> – the matrix dimension parameter.</p>
+</dd>
+<dt class="field-even">Return R</dt>
+<dd class="field-even"><p>the mxm numpy array containing the upper triangular matrix.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt id="cla_utils.exercises5.solve_R">
 <code class="sig-prename descclassname">cla_utils.exercises5.</code><code class="sig-name descname">solve_R</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">R</span></em>, <em class="sig-param"><span class="n">b</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises5.html#solve_R"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises5.solve_R" title="Permalink to this definition">¶</a></dt>
 <dd><p>Solve the system Rx=b where R is an mxm upper triangular matrix 
 and b is an m dimensional vector.</p>
-<p>Inputs</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>A</strong> – an mxm-dimensional numpy array</p></li>
 <li><p><strong>b</strong> – an m-dimensional numpy array</p></li>
+<li><p><strong>x</strong> – an m-dimensional numpy array</p></li>
 </ul>
-</dd>
-</dl>
-<p>Outputs</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>x</strong> – an m-dimensional numpy array</p>
 </dd>
 </dl>
 </dd></dl>
@@ -827,6 +838,11 @@ for which QHQ^* = A.</p>
 <dt id="cla_utils.exercises9.get_A100">
 <code class="sig-prename descclassname">cla_utils.exercises9.</code><code class="sig-name descname">get_A100</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises9.html#get_A100"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises9.get_A100" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return A100 matrix for investigating QR factoration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return A</dt>
+<dd class="field-odd"><p>The 100x100 numpy array</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -844,6 +860,11 @@ for which QHQ^* = A.</p>
 <dt id="cla_utils.exercises9.get_B100">
 <code class="sig-prename descclassname">cla_utils.exercises9.</code><code class="sig-name descname">get_B100</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises9.html#get_B100"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises9.get_B100" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return B100 matrix for investigating QR factoration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return A</dt>
+<dd class="field-odd"><p>The 100x100 numpy array</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -861,12 +882,22 @@ for which QHQ^* = A.</p>
 <dt id="cla_utils.exercises9.get_C100">
 <code class="sig-prename descclassname">cla_utils.exercises9.</code><code class="sig-name descname">get_C100</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises9.html#get_C100"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises9.get_C100" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return C100 matrix for investigating QR factoration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return A</dt>
+<dd class="field-odd"><p>The 100x100 numpy array</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt id="cla_utils.exercises9.get_D100">
 <code class="sig-prename descclassname">cla_utils.exercises9.</code><code class="sig-name descname">get_D100</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises9.html#get_D100"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cla_utils.exercises9.get_D100" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return D100 matrix for investigating QR factoration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return A</dt>
+<dd class="field-odd"><p>The 100x100 numpy array</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
