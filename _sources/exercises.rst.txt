@@ -75,7 +75,7 @@ condition so we can compare to it later, and collect any updates which
 occur during the term. Instead, we'll create an solutions branch
 to actually work on::
 
-  cd comp-lin-alg
+  cd comp-lin-alg-course
   git checkout -b solutions
 
 Your working directory is now a current checkout of your
