@@ -33,7 +33,7 @@ Editing code
 In order to write the code required for the implementation exercise,
 you'll need to use a Python-aware text editor. There are many such
 editors available and you can use any you like. One good option is
-called `VS Code`, with installation instructions `here
+called `Visual Studio Code`, with installation instructions `here
 <https://imperial-fons-computing.github.io/vscode.html>`_.
 
 
