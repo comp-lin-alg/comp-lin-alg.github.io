@@ -92,14 +92,6 @@ cla\_utils.gstools module
    :undoc-members:
    :show-inheritance:
 
-cla\_utils.legendre module
---------------------------
-
-.. automodule:: cla_utils.legendre
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 Module contents
 ---------------
 

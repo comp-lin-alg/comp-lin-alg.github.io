@@ -361,12 +361,12 @@ computes the rank-2 matrix <span class="math notranslate nohighlight">\(A = u_1v
 <span class="math notranslate nohighlight">\(u_1,u_2\in \mathbb{C}^m\)</span> and <span class="math notranslate nohighlight">\(v_1,v_2 \in \mathbb{C}^n\)</span>. As you
 can see, the function needs to implement this rank-2 matrix by
 first forming two matrices <span class="math notranslate nohighlight">\(B\)</span> and <span class="math notranslate nohighlight">\(C\)</span> from the inputs,
-matrix-vector product <span class="math notranslate nohighlight">\(b=Ax\)</span> from inputs <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(x\)</span>. The
+and then forming <span class="math notranslate nohighlight">\(A\)</span> as the product of <span class="math notranslate nohighlight">\(B\)</span> and <span class="math notranslate nohighlight">\(C\)</span>. The
 test script <code class="docutils literal notranslate"><span class="pre">test_exercises1.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will also test this function.</p>
 <p>To measure the rank of <span class="math notranslate nohighlight">\(A\)</span>, we first need to cast it from a numpy
 array class to a numpy matrix class, and then use the built-in rank
 function:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">rank</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">matrix_rank</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>and we should find that the rank is equal to 2. Can you explain why
