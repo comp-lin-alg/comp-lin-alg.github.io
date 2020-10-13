@@ -179,7 +179,10 @@ uv_1 &amp; uv_2 &amp; \ldots &amp; uv_n
 \end{pmatrix},\]</div>
 </div></blockquote>
 <p>which means that all the columns of <span class="math notranslate nohighlight">\(uv^T\)</span> are multiples of <span class="math notranslate nohighlight">\(u\)</span>. We will
-see in the next section that this matrix has rank 1.</p>
+see in the next section that this matrix has rank 1. In the complex
+number case, the transpose $^T$ is replaced by the adjoint $^*$ which
+is the complex conjugate of the transpose. There will be more about this
+later.</p>
 <div class="proof proof-type-exercise" id="id18">
 <span id="ex-basic-matvec"></span>
     <div class="proof-title">
@@ -513,8 +516,8 @@ be multiplied),</p>
 and <span class="math notranslate nohighlight">\(A\)</span> is Hermitian. Show that <span class="math notranslate nohighlight">\(B=B^T\)</span> and <span class="math notranslate nohighlight">\(C=-C^T\)</span>. To save
 memory, instead of storing values of <span class="math notranslate nohighlight">\(A\)</span> (<span class="math notranslate nohighlight">\(m\times m\)</span> complex
 numbers to store), consider equivalently storing a real-valued
-<span class="math notranslate nohighlight">\(m\times m\)</span> array <span class="math notranslate nohighlight">\(\hat{A}\)</span> with <span class="math notranslate nohighlight">\(\hat{A}_{ij}=B_{ij}\)</span> for <span class="math notranslate nohighlight">\(i\leq j\)</span>
-and <span class="math notranslate nohighlight">\(\hat{A}_{ij}=C_{ij}\)</span> for <span class="math notranslate nohighlight">\(i&gt;j\)</span>.</p>
+<span class="math notranslate nohighlight">\(m\times m\)</span> array <span class="math notranslate nohighlight">\(\hat{A}\)</span> with <span class="math notranslate nohighlight">\(\hat{A}_{ij}=B_{ij}\)</span> for <span class="math notranslate nohighlight">\(i\geq j\)</span>
+and <span class="math notranslate nohighlight">\(\hat{A}_{ij}=C_{ij}\)</span> for <span class="math notranslate nohighlight">\(i&lt;j\)</span>.</p>
 <p>The <a class="reference internal" href="cla_utils.html#cla_utils.exercises1.ABiC" title="cla_utils.exercises1.ABiC"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises1.ABiC()</span></code></a> function has been left
 unimplemented. It should implement matrix vector multiplication
 <span class="math notranslate nohighlight">\(z=Ax\)</span>, returning the real and imaginary parts of <span class="math notranslate nohighlight">\(z\)</span>, given the
