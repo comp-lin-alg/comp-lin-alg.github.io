@@ -63,8 +63,14 @@ test, which is fixed in the public repository.</p></li>
 <li><p>Exercise 2.4. Updated the text to indicate that a copy should be made.
 Replaced <code class="docutils literal notranslate"><span class="pre">GS_modified</span></code> <span class="math notranslate nohighlight">\(\to\)</span>
 <code class="docutils literal notranslate"><span class="pre">cla_utils.GS_modified</span></code> in <code class="docutils literal notranslate"><span class="pre">test_exercises2.py</span></code>.</p></li>
-<li><p>Exercise 2.7. Don’t use <a href="#id1"><span class="problematic" id="id2">``</span></a>out==` in <span class="math notranslate nohighlight">\(GS_modified_R\)</span> as this relies on
-structure in the numpy array that may not be the same.</p></li>
+<li><p>Exercise 2.7. Don’t use <code class="docutils literal notranslate"><span class="pre">out==`</span> <span class="pre">in</span> <span class="pre">`GS_modified_R`</span> <span class="pre">as</span> <span class="pre">this</span> <span class="pre">relies</span>
+<span class="pre">on</span> <span class="pre">structure</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">numpy</span> <span class="pre">array</span> <span class="pre">that</span> <span class="pre">may</span> <span class="pre">not</span> <span class="pre">be</span> <span class="pre">the</span>
+<span class="pre">same.</span> <span class="pre">``test_GS_modified_R</span></code> has been updated in
+<code class="docutils literal notranslate"><span class="pre">test/test_exercises2.py</span></code> (there were previously <code class="docutils literal notranslate"><span class="pre">_L</span></code> where
+there shouldn’t have been, due to failing to merge a PR fixing
+various things). Finally, we have updated the parameterised <span class="math notranslate nohighlight">\(m\)</span> and
+<span class="math notranslate nohighlight">\(n\)</span> values to smaller ones, as this construction for <span class="math notranslate nohighlight">\(R\)</span> is
+numerically unstable.</p></li>
 </ol>
 </div>
 
