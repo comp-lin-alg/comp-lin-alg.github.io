@@ -705,6 +705,12 @@ solve (which uses LU factorisation, which we will discuss later):</p>
 </pre></div>
 </div>
 <p>What did you expect and was it observed?</p>
+<p>A quick way to get an orthogonal matrix is to take a general matrix $A$
+and find the QR factorisation, which we will cover in the next section.</p>
+<blockquote>
+<div><p>Q, R = numpy.linalg.qr(A)</p>
+</div></blockquote>
+<p>returns two matrices, of which <span class="math notranslate nohighlight">\(Q\)</span> is orthogonal.</p>
 </div></div></div>
 <div class="section" id="vector-norms">
 <h2><span class="section-number">1.8. </span>Vector norms<a class="headerlink" href="#vector-norms" title="Permalink to this headline">¶</a></h2>
