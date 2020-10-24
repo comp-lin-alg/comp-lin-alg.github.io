@@ -64,16 +64,18 @@ also been updated (dimensions of Q were transposed).</p></li>
 <li><p>Exercise 2.4. Updated the text to indicate that a copy should be made.
 Replaced <code class="docutils literal notranslate"><span class="pre">GS_modified</span></code> <span class="math notranslate nohighlight">\(\to\)</span>
 <code class="docutils literal notranslate"><span class="pre">cla_utils.GS_modified</span></code> in <code class="docutils literal notranslate"><span class="pre">test_exercises2.py</span></code>.</p></li>
-<li><p>Exercise 2.7. Don’t use <code class="docutils literal notranslate"><span class="pre">out==</span></code> in <code class="docutils literal notranslate"><span class="pre">GS_modified_R</span></code> as this relies
-on structure in the numpy array that may not be the
+<li><p>Exercise 2.7. Don’t use <code class="docutils literal notranslate"><span class="pre">out==</span></code> in <code class="docutils literal notranslate"><span class="pre">GS_modified_R</span></code> as this
+relies on structure in the numpy array that may not be the
 same. <code class="docutils literal notranslate"><span class="pre">test_GS_modified_R</span></code> has been updated in
 <code class="docutils literal notranslate"><span class="pre">test/test_exercises2.py</span></code> (there were previously <code class="docutils literal notranslate"><span class="pre">_L</span></code> where
 there shouldn’t have been, due to failing to merge a PR fixing
-various things). Finally, we have updated the parameterised <span class="math notranslate nohighlight">\(m\)</span> and
+various things). Make a copy of ‘A’ before using, and loop on
+<code class="docutils literal notranslate"><span class="pre">range(n)</span></code>. Finally, we have updated the parameterised <span class="math notranslate nohighlight">\(m\)</span> and
 <span class="math notranslate nohighlight">\(n\)</span> values to smaller ones, as this construction for <span class="math notranslate nohighlight">\(R\)</span> is
 numerically unstable.</p></li>
-<li><p>Exercise 2.10. Added a .conj() to the orthonormality test. And
-edited the docstring to clarify that it is the reduced QR.</p></li>
+<li><p>Exercise 2.10. Added a .conj() to the orthonormality test. Changed
+<span class="math notranslate nohighlight">\(n\)</span> to <span class="math notranslate nohighlight">\(m\)</span> in testing orthogonality for <span class="math notranslate nohighlight">\(Q\)</span>. And edited the
+docstring to clarify that it is the full QR.</p></li>
 <li><p>Exercises 2, made copies to allow comparison with in-place work.</p></li>
 </ol>
 </div>
