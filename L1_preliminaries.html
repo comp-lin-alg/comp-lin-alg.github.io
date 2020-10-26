@@ -368,8 +368,7 @@ can see, the function needs to implement this rank-2 matrix by
 first forming two matrices <span class="math notranslate nohighlight">\(B\)</span> and <span class="math notranslate nohighlight">\(C\)</span> from the inputs,
 and then forming <span class="math notranslate nohighlight">\(A\)</span> as the product of <span class="math notranslate nohighlight">\(B\)</span> and <span class="math notranslate nohighlight">\(C\)</span>. The
 test script <code class="docutils literal notranslate"><span class="pre">test_exercises1.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will also test this function.</p>
-<p>To measure the rank of <span class="math notranslate nohighlight">\(A\)</span>, we first need to cast it from a numpy
-array class to a numpy matrix class, and then use the built-in rank
+<p>To measure the rank of <span class="math notranslate nohighlight">\(A\)</span>, we can use the built-in rank
 function:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">matrix_rank</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
 </pre></div>
