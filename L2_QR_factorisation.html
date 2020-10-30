@@ -573,7 +573,15 @@ numerical round off, we choose the sign that makes <span class="math notranslate
 <div><div class="math notranslate nohighlight">
 \[v = \mbox{sign}(x_1)\|x\|e_1 + x.\]</div>
 </div></blockquote>
-<p>(Exercise, show that this choice of sign achieves this.)</p>
+<p>(Exercise, show that this choice of sign achieves this.) It is critical
+that we use a definition of <span class="math notranslate nohighlight">\(\mbox{sign}\)</span> that always returns a number
+that has magnitude 1, so we conventionally choose <span class="math notranslate nohighlight">\(\mbox{sign}(0)=1\)</span>.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Note that the <code class="docutils literal notranslate"><span class="pre">numpy.sign</span></code> function has <span class="math notranslate nohighlight">\(\mbox{sign}(0)=0\)</span>, so
+you need to take care of this case separately in your Python
+implementation.</p>
+</div>
 <p>We are now in a position to describe the algorithm in
 pseudo-code. Here it is described an “in-place” algorithm, where the
 successive transformations to the columns of <span class="math notranslate nohighlight">\(A\)</span> are implemented as
