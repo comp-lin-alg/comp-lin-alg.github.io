@@ -285,7 +285,7 @@ in a way that turns out to reduce accumulation of round-off errors.</p>
 <li><p><span class="math notranslate nohighlight">\(q_i = v_i/r_{ii}\)</span></p></li>
 <li><p>FOR <span class="math notranslate nohighlight">\(j = i+1\)</span> TO <span class="math notranslate nohighlight">\(n\)</span></p>
 <ul>
-<li><p><span class="math notranslate nohighlight">\(r_{ij} \gets q_i^*a_j\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(r_{ij} \gets q_i^*v_j\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(v_j \gets v_j - r_{ij}q_i\)</span></p></li>
 </ul>
 </li>
@@ -678,7 +678,7 @@ vectors <span class="math notranslate nohighlight">\(b_1,b_2,\ldots,b_k\)</span>
 done so, you will need to modified
 <a class="reference internal" href="cla_utils.html#cla_utils.exercises3.householder" title="cla_utils.exercises3.householder"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.householder()</span></code></a> to use the <code class="docutils literal notranslate"><span class="pre">kmax</span></code>
 argument. You may make use of the built-in triangular solve
-algorithm <a class="reference external" href="http://scipy.github.io/devdocs/generated/scipy.linalg.solve_triangular.html#scipy.linalg.solve_triangular" title="(in SciPy v1.6.0.dev0+389b2e0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.linalg.solve_triangular()</span></code></a> (we shall consider
+algorithm <a class="reference external" href="http://scipy.github.io/devdocs/generated/scipy.linalg.solve_triangular.html#scipy.linalg.solve_triangular" title="(in SciPy v1.6.0.dev0+8e2c06f)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.linalg.solve_triangular()</span></code></a> (we shall consider
 triangular matrix algorithms briefly later). The test script
 <code class="docutils literal notranslate"><span class="pre">test_exercises3.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will also test this
 function.</p>
@@ -790,7 +790,7 @@ minimising <span class="math notranslate nohighlight">\(\|Ax-b\|\)</span> over <
 appropriate augmented matrix <span class="math notranslate nohighlight">\(\hat{A}\)</span>, calling
 <a class="reference internal" href="cla_utils.html#cla_utils.exercises3.householder" title="cla_utils.exercises3.householder"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.householder()</span></code></a> and extracting appropriate
 subarrays using slice notation, before using
-<a class="reference external" href="http://scipy.github.io/devdocs/generated/scipy.linalg.solve_triangular.html#scipy.linalg.solve_triangular" title="(in SciPy v1.6.0.dev0+389b2e0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.linalg.solve_triangular()</span></code></a> to solve the resulting upper triangular
+<a class="reference external" href="http://scipy.github.io/devdocs/generated/scipy.linalg.solve_triangular.html#scipy.linalg.solve_triangular" title="(in SciPy v1.6.0.dev0+8e2c06f)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.linalg.solve_triangular()</span></code></a> to solve the resulting upper triangular
 system, before returning the solution <span class="math notranslate nohighlight">\(x\)</span>. The test script
 <code class="docutils literal notranslate"><span class="pre">test_exercises3.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will also test this
 function.</p>
