@@ -1032,7 +1032,7 @@ a solution <span class="math notranslate nohighlight">\(\tilde{x}\)</span> such 
 <p>From backward stability for the calculation of <span class="math notranslate nohighlight">\(Q^*b\)</span>, we have</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}b = (\tilde{Q}+\delta Q)\tilde{y},\\= (\tilde{Q} + \delta Q)(\tilde{R} + \delta R)x,\end{aligned}\end{align} \]</div>
+\[ \begin{align}\begin{aligned}b = (\tilde{Q}+\delta Q)\tilde{y},\\= (\tilde{Q} + \delta Q)(\tilde{R} + \delta R)\tilde{x},\end{aligned}\end{align} \]</div>
 </div></blockquote>
 <p>having substituted the backward stability formula for back
 substitution in the second line. Multiplying out the brackets
@@ -1040,9 +1040,9 @@ and using backward stability for the Householder method gives</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
 \[ \begin{align}\begin{aligned}b = (\tilde{Q}\tilde{R} + (\delta Q)\tilde{R} + \tilde{Q}\delta R
-+ (\delta Q)\delta R)\tilde{x},\\= \underbrace{(A + \delta A + (\delta Q)\tilde{R} +
++ (\delta Q)\delta R)\tilde{x},\\= (A + \underbrace{\delta A + (\delta Q)\tilde{R} +
 \tilde{Q}\delta R
-  + (\delta Q)\delta R)}_{=\Delta A}\tilde{x}.\end{aligned}\end{align} \]</div>
+  + (\delta Q)\delta R}_{=\Delta A}\tilde{x}).\end{aligned}\end{align} \]</div>
 </div></blockquote>
 <p>This defines <span class="math notranslate nohighlight">\(\Delta A\)</span> and it remains to estimate each of these
 terms. We immediately have <span class="math notranslate nohighlight">\(\|\delta A\|=\mathcal{O}(\varepsilon)\)</span>
@@ -1084,7 +1084,7 @@ R\|}{\|\tilde{R}\|}}_{\mathcal{O}(\varepsilon)}
 \underbrace{\frac{\|\delta R\|}{\|\tilde{R}\|}}_{\mathcal{O}(\varepsilon)}
 \underbrace{\frac{\|\tilde{R}\|}
 {\|A\|}}_{\mathcal{O}(1)} = \mathcal{O}(\epsilon^2),\]</div>
-<p>hence <span class="math notranslate nohighlight">\(\|\delta A\|/\|A\|=\mathcal{O}(\varepsilon)\)</span>.</p>
+<p>hence <span class="math notranslate nohighlight">\(\|\Delta A\|/\|A\|=\mathcal{O}(\varepsilon)\)</span>.</p>
 </div></div><div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <p>A video recording of this section is available <a class="reference external" href="https://player.vimeo.com/video/450215261">here</a>.</p>
