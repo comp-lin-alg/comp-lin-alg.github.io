@@ -481,12 +481,12 @@ pseudo-code.</p>
 <li><p>FOR <span class="math notranslate nohighlight">\(k=1\)</span> TO <span class="math notranslate nohighlight">\(m-1\)</span></p>
 <ul>
 <li><p>Choose <span class="math notranslate nohighlight">\(i\geq k\)</span> to maximise <span class="math notranslate nohighlight">\(|u_{ik}|\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(u_{k,k:m} \leftrightarrow u_{i,k:m}\)</span> (column swaps)</p></li>
-<li><p><span class="math notranslate nohighlight">\(l_{k,1:k-1} \leftrightarrow l_{i,1:k-1}\)</span> (column swaps)</p></li>
-<li><p><span class="math notranslate nohighlight">\(p_{k,1:m} \leftrightarrow p_{i,1:m}\)</span> (column swaps)</p></li>
+<li><p><span class="math notranslate nohighlight">\(u_{k,k:m} \leftrightarrow u_{i,k:m}\)</span> (row swaps)</p></li>
+<li><p><span class="math notranslate nohighlight">\(l_{k,1:k-1} \leftrightarrow l_{i,1:k-1}\)</span> (row swaps)</p></li>
+<li><p><span class="math notranslate nohighlight">\(p_{k,1:m} \leftrightarrow p_{i,1:m}\)</span></p></li>
 <li><p>FOR <span class="math notranslate nohighlight">\(j=k+1\)</span> TO <span class="math notranslate nohighlight">\(m\)</span></p>
 <ul>
-<li><p><span class="math notranslate nohighlight">\(l_{ik} \gets u_{jk}/u_{kk}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(l_{jk} \gets u_{jk}/u_{kk}\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(u_{j,k:m} \gets u_{j,k:m} - l_{jk}u_{k,k:m}\)</span></p></li>
 </ul>
 </li>
