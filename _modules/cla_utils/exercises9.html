@@ -139,7 +139,7 @@
 
 <span class="sd">    ||r|| &lt; tol where</span>
 
-<span class="sd">    r = Ax/||x|| - x/||x||,</span>
+<span class="sd">    r = Ax - lambda*x,</span>
 
 <span class="sd">    or the number of iterations exceeds maxit.</span>
 
@@ -154,9 +154,11 @@
 <span class="sd">    :return x: an m dimensional numpy array containing the final iterate, or \</span>
 <span class="sd">    if store_iterations, an mxmaxit dimensional numpy array containing all \</span>
 <span class="sd">    the iterates.</span>
+<span class="sd">    :return lambda0: the final eigenvalue.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+    <span class="n">Raise</span><span class="p">(</span><span class="ne">NotImplementedError</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">lambda0</span></div>
 
 
 <div class="viewcode-block" id="inverse_it"><a class="viewcode-back" href="../../cla_utils.html#cla_utils.exercises9.inverse_it">[docs]</a><span class="k">def</span> <span class="nf">inverse_it</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">tol</span><span class="p">,</span> <span class="n">maxit</span><span class="p">,</span> <span class="n">store_iterations</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>

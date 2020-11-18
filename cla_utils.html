@@ -929,7 +929,7 @@ for pow_it.</p>
 <dd><p>For a matrix A, apply the power iteration algorithm with initial
 guess x0, until either</p>
 <p>||r|| &lt; tol where</p>
-<p>r = Ax/||x|| - x/||x||,</p>
+<p>r = Ax - lambda*x,</p>
 <p>or the number of iterations exceeds maxit.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -943,6 +943,9 @@ guess x0, until either</p>
 </dd>
 <dt class="field-even">Return x</dt>
 <dd class="field-even"><p>an m dimensional numpy array containing the final iterate, or     if store_iterations, an mxmaxit dimensional numpy array containing all     the iterates.</p>
+</dd>
+<dt class="field-odd">Return lambda0</dt>
+<dd class="field-odd"><p>the final eigenvalue.</p>
 </dd>
 </dl>
 </dd></dl>
