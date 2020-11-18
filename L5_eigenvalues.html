@@ -359,7 +359,7 @@ for computing the QR factorisation.</p>
     </div><div class="proof-content">
 <p>The <a class="reference internal" href="cla_utils.html#cla_utils.exercises8.hessenberg" title="cla_utils.exercises8.hessenberg"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises8.hessenberg()</span></code></a> function has been left
 unimplemented. It should implement the algorithm above, using only
-one loop over <span class="math notranslate nohighlight">\(k\)</span>. It should return the resulting Hessenberg
+one loop over <span class="math notranslate nohighlight">\(k\)</span>. It should work “in-place”, changing the input
 matrix. At the left multiplication, your implementation should
 exploit the fact that zeros do not need to be recomputed where
 there are already expected to be zeros. The test script
