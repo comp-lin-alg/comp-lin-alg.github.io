@@ -691,14 +691,19 @@ matrices. Can the situation be improved by pivoting? (Just think about
 it, don’t need to implement it.)</p>
 </div></div><p>The Gaussian elimination algorithm (without pivoting) for a banded
 matrix is given as pseudo-code below.</p>
-<ul class="simple">
+<ul>
 <li><p><span class="math notranslate nohighlight">\(U \gets A\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(L \gets I\)</span></p></li>
-<li><p>FOR <span class="math notranslate nohighlight">\(k=j+1\)</span> TO <span class="math notranslate nohighlight">\(\min(k+p,m)\)</span></p>
-<ul>
+<li><p>FOR <span class="math notranslate nohighlight">\(k=1\)</span> TO <span class="math notranslate nohighlight">\(m-1\)</span>
+* FOR <span class="math notranslate nohighlight">\(j=k+1\)</span> TO <span class="math notranslate nohighlight">\(\min(k+p,m)\)</span></p>
+<blockquote>
+<div><ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(l_{jk} \gets u_{jk}/u_{kk}\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(n \gets \min(k+q, m)\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(u_{j,k:n} \gets u_{j,k:n}- l_{jk}u_{k,k:n}\)</span></p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
 <li><p>END FOR</p></li>
 </ul>
 </li>
