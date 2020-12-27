@@ -196,8 +196,8 @@ ill-conditioned and not useful numerically.</p>
 <p>A video recording for this material is available <a class="reference external" href="https://player.vimeo.com/video/454171516">here</a>.</p>
 </div>
 <p>The intrepretation of this is that <span class="math notranslate nohighlight">\(H_n\)</span> is the orthogonal projection
-of <span class="math notranslate nohighlight">\(A\)</span> onto the Krylov subspace <span class="math notranslate nohighlight">\(K_n\)</span>. To see this, take any vector <span class="math notranslate nohighlight">\(v\)</span>,
-and project <span class="math notranslate nohighlight">\(Av\)</span> onto the the Krylov subspace <span class="math notranslate nohighlight">\(K_n\)</span>.</p>
+of <span class="math notranslate nohighlight">\(A\)</span> onto the Krylov subspace <span class="math notranslate nohighlight">\(\mathrm{span}(K_n)\)</span>. To see this, take any vector <span class="math notranslate nohighlight">\(v\)</span>,
+and project <span class="math notranslate nohighlight">\(Av\)</span> onto the the Krylov subspace <span class="math notranslate nohighlight">\(\mathrm{span}(K_n)\)</span>.</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
 \[PAv = \hat{Q}_n\hat{Q}_n^*v.\]</div>
@@ -333,7 +333,7 @@ check that it still passes the test.</p>
 <p>The algorithm presented as pseudocode is the way to implement GMRES
 efficiently. However, we can make an alternative formulation
 of GMRES using matrix polynomials.</p>
-<p>We know that <span class="math notranslate nohighlight">\(x_n\in K_n\)</span>, so we can write</p>
+<p>We know that <span class="math notranslate nohighlight">\(x_n\in \mathrm{span}(K_n)\)</span>, so we can write</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
 \[x_n = c_0b + c_1Ab + c_2A^2b + \ldots + c_{n-1}A^{n-1}b
@@ -342,7 +342,7 @@ of GMRES using matrix polynomials.</p>
 <p>where</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
-\[p'(z) = c_0 + c_1z + c_2z^&#64; + \ldots + \ldots c_{n-1}z^{n-1} \implies
+\[p'(z) = c_0 + c_1z + c_2z^2 + \ldots + \ldots c_{n-1}z^{n-1} \implies
 p'(A) = c_0I + c_1A + c_2A^2 + \ldots + c_{n-1}A^{n-1}.\]</div>
 </div></blockquote>
 <p>Here we have introduced the idea of a matrix polynomial, where the
