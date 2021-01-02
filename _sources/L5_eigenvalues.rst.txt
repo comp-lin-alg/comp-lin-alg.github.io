@@ -294,7 +294,7 @@ pseudo-code.
   * `v_k\gets \mbox{sign}(x_1)\|x\|_2e_1 + x`
   * `v_k\gets v_k/\|v\|_2`
   * `A_{k+1:m,k:m} \gets A_{k+1:m,k:m}- 2v_k(v_k^*A_{k+1:m,k:m})`
-  * `A_{k:m,k+1:m} \gets A_{k:m,k+1:m}- 2(A_{k:m,k+1:m,k:m}v_k)v_k^*`
+  * `A_{1:m,k+1:m} \gets A_{1:m,k+1:m}- 2(A_{1:m,k+1:m,k:m}v_k)v_k^*`
 * END FOR
 
 Note the similarities and differences with the Householder algorithm
@@ -369,11 +369,11 @@ for some `\delta A`.
 .. proof:exercise::
 
    The :func:`cla_utils.exercises8.ev` function has been left
-   unimplemented. It should return the eigenvalues and eigenvectors of
+   unimplemented. It should return the eigenvectors of
    `A` by first reducing to Hessenberg form, using the functions you
    have already created, and then calling
    :func:`cla_utils.exercises8.hessenberg_ev`, which computes the
-   eigenvectors and eigenvalues of upper Hessenberg matrices (do not
+   eigenvectors of upper Hessenberg matrices (do not
    edit this function!). The test script ``test_exercises8.py`` in the
    ``test`` directory will test this function.
 
