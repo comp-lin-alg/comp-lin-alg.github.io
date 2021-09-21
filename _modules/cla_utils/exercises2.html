@@ -6,15 +6,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>cla_utils.exercises2 &#8212; Computational linear algebra course 2020.0 documentation</title>
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/fenics.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/fenics.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
-    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/proof.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
 <!--[if lte IE 6]>
@@ -121,11 +120,10 @@
 <div class="viewcode-block" id="GS_classical"><a class="viewcode-back" href="../../cla_utils.html#cla_utils.exercises2.GS_classical">[docs]</a><span class="k">def</span> <span class="nf">GS_classical</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Given an mxn matrix A, compute the QR factorisation by classical</span>
-<span class="sd">    Gram-Schmidt algorithm.</span>
+<span class="sd">    Gram-Schmidt algorithm, transforming A to Q in place and returning R.</span>
 
 <span class="sd">    :param A: mxn numpy array</span>
 
-<span class="sd">    :return Q: mxn numpy array</span>
 <span class="sd">    :return R: nxn numpy array</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -136,17 +134,17 @@
 <div class="viewcode-block" id="GS_modified"><a class="viewcode-back" href="../../cla_utils.html#cla_utils.exercises2.GS_modified">[docs]</a><span class="k">def</span> <span class="nf">GS_modified</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Given an mxn matrix A, compute the QR factorisation by modified</span>
-<span class="sd">    Gram-Schmidt algorithm, producing</span>
+<span class="sd">    Gram-Schmidt algorithm, transforming A to Q in place and returning</span>
+<span class="sd">    R.</span>
 
 <span class="sd">    :param A: mxn numpy array</span>
 
-<span class="sd">    :return Q: mxn numpy array</span>
 <span class="sd">    :return R: nxn numpy array</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
-    <span class="k">return</span> <span class="n">Q</span><span class="p">,</span> <span class="n">R</span></div>
+    <span class="k">return</span> <span class="n">R</span></div>
 
 
 <div class="viewcode-block" id="GS_modified_get_R"><a class="viewcode-back" href="../../cla_utils.html#cla_utils.exercises2.GS_modified_get_R">[docs]</a><span class="k">def</span> <span class="nf">GS_modified_get_R</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
@@ -197,7 +195,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2020, Colin J. Cotter.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.3.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
     </div>
   </body>
 </html>

@@ -267,16 +267,13 @@ using b as the first basis vector.</p>
 <dt class="sig sig-object py" id="cla_utils.exercises2.GS_classical">
 <span class="sig-prename descclassname"><span class="pre">cla_utils.exercises2.</span></span><span class="sig-name descname"><span class="pre">GS_classical</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises2.html#GS_classical"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cla_utils.exercises2.GS_classical" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given an mxn matrix A, compute the QR factorisation by classical
-Gram-Schmidt algorithm.</p>
+Gram-Schmidt algorithm, transforming A to Q in place and returning R.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>A</strong> – mxn numpy array</p>
 </dd>
-<dt class="field-even">Return Q</dt>
-<dd class="field-even"><p>mxn numpy array</p>
-</dd>
-<dt class="field-odd">Return R</dt>
-<dd class="field-odd"><p>nxn numpy array</p>
+<dt class="field-even">Return R</dt>
+<dd class="field-even"><p>nxn numpy array</p>
 </dd>
 </dl>
 </dd></dl>
@@ -285,16 +282,14 @@ Gram-Schmidt algorithm.</p>
 <dt class="sig sig-object py" id="cla_utils.exercises2.GS_modified">
 <span class="sig-prename descclassname"><span class="pre">cla_utils.exercises2.</span></span><span class="sig-name descname"><span class="pre">GS_modified</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises2.html#GS_modified"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cla_utils.exercises2.GS_modified" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given an mxn matrix A, compute the QR factorisation by modified
-Gram-Schmidt algorithm, producing</p>
+Gram-Schmidt algorithm, transforming A to Q in place and returning
+R.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>A</strong> – mxn numpy array</p>
 </dd>
-<dt class="field-even">Return Q</dt>
-<dd class="field-even"><p>mxn numpy array</p>
-</dd>
-<dt class="field-odd">Return R</dt>
-<dd class="field-odd"><p>nxn numpy array</p>
+<dt class="field-even">Return R</dt>
+<dd class="field-even"><p>nxn numpy array</p>
 </dd>
 </dl>
 </dd></dl>
