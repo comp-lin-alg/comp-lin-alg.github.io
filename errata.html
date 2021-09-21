@@ -4,17 +4,17 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Errata &#8212; Computational linear algebra course 2020.0 documentation</title>
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/fenics.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Errata for 2021/22 &#8212; Computational linear algebra course 2020.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/fenics.css" />
     <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/proof.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="1. Preliminaries" href="L1_preliminaries.html" />
@@ -47,63 +47,12 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="errata">
-<h1>Errata<a class="headerlink" href="#errata" title="Permalink to this headline">¶</a></h1>
+  <section id="errata-for-2021-22">
+<h1>Errata for 2021/22<a class="headerlink" href="#errata-for-2021-22" title="Permalink to this headline">¶</a></h1>
 <p>Here we’ll list all the updates to the exercises and coursework Classroom
-repositories for Autumn 2020. An up to date version is in the
+repositories for Autumn 2021. An up to date version is in the
 <a class="reference external" href="https://github.com/comp-lin-alg/comp-lin-alg-course">public repository</a>.</p>
-<ol class="arabic simple">
-<li><p>Exercise 1.16. In the description of the exercise, it was intended
-that <span class="math notranslate nohighlight">\(C\)</span> should be stored in the upper triangular part of <span class="math notranslate nohighlight">\(\hat{A}\)</span>,
-but the lower triangular part was specified instead. This has been
-fixed now in the notes.</p></li>
-<li><p>Exercise 2.3. There was an error in the parameterisation of the
-test, which is fixed in the public repository. The docstring has
-also been updated (dimensions of Q were transposed).</p></li>
-<li><p>Exercise 2.4. Updated the text to indicate that a copy should be made.
-Replaced <code class="docutils literal notranslate"><span class="pre">GS_modified</span></code> <span class="math notranslate nohighlight">\(\to\)</span>
-<code class="docutils literal notranslate"><span class="pre">cla_utils.GS_modified</span></code> in <code class="docutils literal notranslate"><span class="pre">test_exercises2.py</span></code>.</p></li>
-<li><p>Exercise 2.7. Don’t use <code class="docutils literal notranslate"><span class="pre">out==</span></code> in <code class="docutils literal notranslate"><span class="pre">GS_modified_R</span></code> as this
-relies on structure in the numpy array that may not be the
-same. <code class="docutils literal notranslate"><span class="pre">test_GS_modified_R</span></code> has been updated in
-<code class="docutils literal notranslate"><span class="pre">test/test_exercises2.py</span></code> (there were previously <code class="docutils literal notranslate"><span class="pre">_L</span></code> where
-there shouldn’t have been, due to failing to merge a PR fixing
-various things). Make a copy of ‘A’ before using, and loop on
-<code class="docutils literal notranslate"><span class="pre">range(n)</span></code>. Finally, we have updated the parameterised <span class="math notranslate nohighlight">\(m\)</span> and
-<span class="math notranslate nohighlight">\(n\)</span> values to smaller ones, as this construction for <span class="math notranslate nohighlight">\(R\)</span> is
-numerically unstable.</p></li>
-<li><p>Exercise 2.10. Added a .conj() to the orthonormality test. Changed
-<span class="math notranslate nohighlight">\(n\)</span> to <span class="math notranslate nohighlight">\(m\)</span> in testing orthogonality for <span class="math notranslate nohighlight">\(Q\)</span>. And edited the
-docstring to clarify that it is the full QR.</p></li>
-<li><p>Exercises 2, made copies to allow comparison with in-place work.</p></li>
-<li><p>Exercise 2.11, the test was always passing because of misplaced
-parenthesis. Test now updated.</p></li>
-<li><p>Exercise 3.26. Taking the upper triangular part of a random
-matrix makes a very badly conditioned matrix that is hard to
-compare with the result of linalg.solve. Instead, compute the
-Q, R factorisation of a random matrix - the test was updated.</p></li>
-<li><p>Exercise 3.20, fixed a sign.</p></li>
-<li><p>Exercise 4.1. Clarified the docstring and fixed the corresponding test.</p></li>
-<li><p>Exercise 4.4. Fixed the tests for <code class="docutils literal notranslate"><span class="pre">solve_L</span> <span class="pre">and</span> <span class="pre">solve_U</span></code>.</p></li>
-<li><p>Exercise 4.8. There was a spurious ] in the test.</p></li>
-<li><p>Exercise 4.9 and 4.10. Use linalg.norm in the test, and make a copy
-in <code class="docutils literal notranslate"><span class="pre">test_solve_LUP</span></code> and <code class="docutils literal notranslate"><span class="pre">test_det_LUP</span></code>, and use linalg.det
-(updated 4th Dec 2020).</p></li>
-<li><p>Exercise 4.13. I modified the example so it actually does what I wanted it
-to do.</p></li>
-<li><p>Exercise 5.9. I removed the last test condition as it isn’t correct.</p></li>
-<li><p>Exercise 5.10. I updated one of the test conditions.</p></li>
-<li><p>Exercise 5.11. I updated one of the test conditions (updated 4th Dec 2020).</p></li>
-<li><p>Exercise 5.12. Needed to get m in hessenberg_ev, and fixed the assertion.
-I fixed the test to properly test for eigenvectors.</p></li>
-<li><p>Exercise 5.15. I changed the description of termination criteria, changed
-the arguments, and updated the test.</p></li>
-<li><p>Exercise 5.17. I updated the test.</p></li>
-<li><p>Exercise 5.19. I updated the test.</p></li>
-<li><p>Exercise 5.21. I updated the test.</p></li>
-<li><p>Exercise 6.1. I updated the test. And then the docstring for <code class="docutils literal notranslate"><span class="pre">Q</span></code>.</p></li>
-</ol>
-</div>
+</section>
 
 
             <div class="clearer"></div>
@@ -114,7 +63,7 @@ the arguments, and updated the test.</p></li>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2020, Colin J. Cotter.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.3.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
     </div>
   </body>
 </html>

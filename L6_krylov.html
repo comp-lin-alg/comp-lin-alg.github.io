@@ -4,12 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>6. Iterative Krylov methods for \(Ax=b\) &#8212; Computational linear algebra course 2020.0 documentation</title>
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/fenics.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/fenics.css" />
     <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
@@ -46,7 +47,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="iterative-krylov-methods-for-ax-b">
+  <section id="iterative-krylov-methods-for-ax-b">
 <h1><span class="section-number">6. </span>Iterative Krylov methods for <span class="math notranslate nohighlight">\(Ax=b\)</span><a class="headerlink" href="#iterative-krylov-methods-for-ax-b" title="Permalink to this headline">¶</a></h1>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
@@ -70,7 +71,7 @@ even possible to solve a linear system without storing <span class="math notrans
 explicitly. Instead one can just provide a subroutine that implements
 matrix-vector multiplication in some way; this is called a
 “matrix-free” implementation.</p>
-<div class="section" id="krylov-subspace-methods">
+<section id="krylov-subspace-methods">
 <h2><span class="section-number">6.1. </span>Krylov subspace methods<a class="headerlink" href="#krylov-subspace-methods" title="Permalink to this headline">¶</a></h2>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
@@ -90,8 +91,8 @@ to orthogonalising the basis. We could simply take the QR
 factorisation of this basis, but the Arnoldi iteration coming up
 next also provides a neat way to solve the equation when projected
 onto the Krylov subspace.</p>
-</div>
-<div class="section" id="arnoldi-iteration">
+</section>
+<section id="arnoldi-iteration">
 <h2><span class="section-number">6.2. </span>Arnoldi iteration<a class="headerlink" href="#arnoldi-iteration" title="Permalink to this headline">¶</a></h2>
 <p>The key to Krylov subspace methods turns out to be the transformation
 of <span class="math notranslate nohighlight">\(A\)</span> to an upper Hessenberg matrix by orthogonal similarity
@@ -207,8 +208,8 @@ and project <span class="math notranslate nohighlight">\(Av\)</span> onto the th
 \[\hat{Q}_n^*(\hat{Q}_n\hat{Q}_n^*A)\hat{Q}_n = \hat{Q}_n^*A\hat{Q}_n
 = H_n.\]</div>
 </div></blockquote>
-</div>
-<div class="section" id="gmres">
+</section>
+<section id="gmres">
 <h2><span class="section-number">6.3. </span>GMRES<a class="headerlink" href="#gmres" title="Permalink to this headline">¶</a></h2>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
@@ -322,8 +323,8 @@ general formula is required for complex matrices, but the tests
 have been set up for real matrices only.) Modify your code so it
 uses Givens rotations to make it more efficient. Don’t forget to
 check that it still passes the test.</p>
-</div></div></div>
-<div class="section" id="convergence-of-gmres">
+</div></div></section>
+<section id="convergence-of-gmres">
 <h2><span class="section-number">6.4. </span>Convergence of GMRES<a class="headerlink" href="#convergence-of-gmres" title="Permalink to this headline">¶</a></h2>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
@@ -405,8 +406,8 @@ after each iteration (which should be provided by
 <a class="reference internal" href="cla_utils.html#cla_utils.exercises10.GMRES" title="cla_utils.exercises10.GMRES"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises10.GMRES()</span></code></a> as specified in the docstring).
 What do you observe? What is it about the three matrices that
 causes this different behaviour?</p>
-</div></div></div>
-<div class="section" id="preconditioning">
+</div></div></section>
+<section id="preconditioning">
 <h2><span class="section-number">6.5. </span>Preconditioning<a class="headerlink" href="#preconditioning" title="Permalink to this headline">¶</a></h2>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
@@ -464,8 +465,8 @@ arising in data science, engineering, physics, biology etc. can
 involve ideas from linear algebra, functional analysis, asymptotics,
 physics, etc., and represents a major activity in scientific computing
 today.</p>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -476,7 +477,7 @@ today.</p>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2020, Colin J. Cotter.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.3.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
     </div>
   </body>
 </html>

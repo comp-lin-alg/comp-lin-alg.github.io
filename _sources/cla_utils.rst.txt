@@ -84,14 +84,6 @@ cla\_utils.exercises9 module
    :undoc-members:
    :show-inheritance:
 
-cla\_utils.gstools module
--------------------------
-
-.. automodule:: cla_utils.gstools
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 Module contents
 ---------------
 
