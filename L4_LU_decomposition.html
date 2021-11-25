@@ -66,8 +66,8 @@ Supplementary video</summary><div class="video_wrapper" style="">
 <iframe allowfullscreen="true" src="https://player.vimeo.com/video/454095315" style="border: 0; height: 345px; width: 560px">
 </iframe></div></details><p>The computational way to view Gaussian elimination is through the LU
 decomposition of an invertible matrix, <span class="math notranslate nohighlight">\(A=LU\)</span>, where <span class="math notranslate nohighlight">\(L\)</span> is lower
-triangular (<span class="math notranslate nohighlight">\(l_{ij}=0\)</span> for <span class="math notranslate nohighlight">\(j&lt;i\)</span>) and <span class="math notranslate nohighlight">\(U\)</span> is upper triangular
-(<span class="math notranslate nohighlight">\(u_{ij}=0\)</span> for <span class="math notranslate nohighlight">\(j&gt;i\)</span>). Here we use the symbol <span class="math notranslate nohighlight">\(U\)</span> instead of <span class="math notranslate nohighlight">\(R\)</span> to
+triangular (<span class="math notranslate nohighlight">\(l_{ij}=0\)</span> for <span class="math notranslate nohighlight">\(j&gt;i\)</span>) and <span class="math notranslate nohighlight">\(U\)</span> is upper triangular
+(<span class="math notranslate nohighlight">\(u_{ij}=0\)</span> for <span class="math notranslate nohighlight">\(j&lt;i\)</span>). Here we use the symbol <span class="math notranslate nohighlight">\(U\)</span> instead of <span class="math notranslate nohighlight">\(R\)</span> to
 emphasise that we are looking as square matrices.  The process of
 obtaining the <span class="math notranslate nohighlight">\(LU\)</span> decomposition is very similar to the Householder
 algorithm, in that we repeatedly left multiply <span class="math notranslate nohighlight">\(A\)</span> by matrices to
@@ -121,7 +121,7 @@ way, written in pseudo-code as follows.</p>
 <li><p><span class="math notranslate nohighlight">\(x_1 \gets b_1/L_{11}\)</span></p></li>
 <li><p>FOR <span class="math notranslate nohighlight">\(i= 2\)</span> TO <span class="math notranslate nohighlight">\(m\)</span></p>
 <ul>
-<li><p><span class="math notranslate nohighlight">\(x_i \gets (b_i - \sum_{k=1}^iL_{ik}x_k)/L_{ii}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(x_i \gets (b_i - \sum_{k=1}^{i-1}L_{ik}x_k)/L_{ii}\)</span></p></li>
 </ul>
 </li>
 </ul>
@@ -519,12 +519,13 @@ complete pivoting, <span class="math notranslate nohighlight">\(PAQ=LU\)</span>.
     </div><div class="proof-content">
 <p>The function <a class="reference internal" href="cla_utils.html#cla_utils.exercises7.perm" title="cla_utils.exercises7.perm"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises7.perm()</span></code></a> has been left
 unimplemented. It should take an <span class="math notranslate nohighlight">\(m\times m\)</span> permutation matrix
-<span class="math notranslate nohighlight">\(P\)</span>, stored as a vector of indices <span class="math notranslate nohighlight">\(p\in\mathbb{N}^m\)</span> so that
-<span class="math notranslate nohighlight">\((Px)_i = x_{p_i}\)</span>, <span class="math notranslate nohighlight">\(i=1,2,\ldots, m\)</span>, and replace it with the
-matrix <span class="math notranslate nohighlight">\(P_{i,j}P\)</span> (also stored as a vector of indices) where
-<span class="math notranslate nohighlight">\(P_{i,j}\)</span> is the permutation matrix that exchanges the entries <span class="math notranslate nohighlight">\(i\)</span>
-and <span class="math notranslate nohighlight">\(j\)</span>. The test script <code class="docutils literal notranslate"><span class="pre">test_exercises7.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code>
-directory will test this function.</p>
+<span class="math notranslate nohighlight">\(P\)</span>, stored as an (integer-valued) array of indices
+<span class="math notranslate nohighlight">\(p\in\mathbb{N}^m\)</span> so that <span class="math notranslate nohighlight">\((Px)_i = x_{p_i}\)</span>, <span class="math notranslate nohighlight">\(i=1,2,\ldots, m\)</span>,
+and replace it with the matrix <span class="math notranslate nohighlight">\(P_{i,j}P\)</span> (also stored as a array
+of indices) where <span class="math notranslate nohighlight">\(P_{i,j}\)</span> is the permutation matrix that
+exchanges the entries <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>. The test script
+<code class="docutils literal notranslate"><span class="pre">test_exercises7.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will test this
+function.</p>
 </div></div><div class="proof proof-type-exercise" id="id8">
 
     <div class="proof-title">

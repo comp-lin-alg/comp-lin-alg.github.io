@@ -21,8 +21,8 @@ An algorithm for LU decomposition
 
 The computational way to view Gaussian elimination is through the LU
 decomposition of an invertible matrix, `A=LU`, where `L` is lower
-triangular (`l_{ij}=0` for `j<i`) and `U` is upper triangular
-(`u_{ij}=0` for `j>i`). Here we use the symbol `U` instead of `R` to
+triangular (`l_{ij}=0` for `j>i`) and `U` is upper triangular
+(`u_{ij}=0` for `j<i`). Here we use the symbol `U` instead of `R` to
 emphasise that we are looking as square matrices.  The process of
 obtaining the `LU` decomposition is very similar to the Householder
 algorithm, in that we repeatedly left multiply `A` by matrices to
@@ -91,7 +91,7 @@ way, written in pseudo-code as follows.
 * `x_1 \gets b_1/L_{11}`
 * FOR `i= 2` TO `m`
 
-  * `x_i \gets (b_i - \sum_{k=1}^iL_{ik}x_k)/L_{ii}`
+  * `x_i \gets (b_i - \sum_{k=1}^{i-1}L_{ik}x_k)/L_{ii}`
 
 Forward substitution has an operation count that is identical to back
 substitution, by symmetry, i.e. `\mathcal{O}(m^2)`. In contrast, we
@@ -498,12 +498,13 @@ complete pivoting, `PAQ=LU`.
 
    The function :func:`cla_utils.exercises7.perm` has been left
    unimplemented. It should take an `m\times m` permutation matrix
-   `P`, stored as a vector of indices `p\in\mathbb{N}^m` so that
-   `(Px)_i = x_{p_i}`, `i=1,2,\ldots, m`, and replace it with the
-   matrix `P_{i,j}P` (also stored as a vector of indices) where
-   `P_{i,j}` is the permutation matrix that exchanges the entries `i`
-   and `j`. The test script ``test_exercises7.py`` in the ``test``
-   directory will test this function.
+   `P`, stored as an (integer-valued) array of indices
+   `p\in\mathbb{N}^m` so that `(Px)_i = x_{p_i}`, `i=1,2,\ldots, m`,
+   and replace it with the matrix `P_{i,j}P` (also stored as a array
+   of indices) where `P_{i,j}` is the permutation matrix that
+   exchanges the entries `i` and `j`. The test script
+   ``test_exercises7.py`` in the ``test`` directory will test this
+   function.
 
 
 .. proof:exercise::

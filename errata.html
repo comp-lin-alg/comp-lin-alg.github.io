@@ -15,6 +15,7 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/proof.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="1. Preliminaries" href="L1_preliminaries.html" />
@@ -59,9 +60,17 @@ u_2*v_2^*.” See the code on the course website for the up-to-date
 version.</p></li>
 <li><p>The skeleton code for exercises2.GS_classical was amended as the
 function should just return R, not Q and R.</p></li>
-<li><p>Updated the sign of the inequality in the formula for $r$ in Section 2.2.</p></li>
-<li><p>Replaced $r_{11}/r_{11}$ by $r_{1n}/r_{11}$ in the final column of the
-right-multiplied $R$ matrix in Section 2.5.</p></li>
+<li><p>Updated the sign of the inequality in the formula for <span class="math notranslate nohighlight">\(r\)</span> in Section 2.2.</p></li>
+<li><p>Replaced <span class="math notranslate nohighlight">\(r_{11}/r_{11}\)</span> by <span class="math notranslate nohighlight">\(r_{1n}/r_{11}\)</span> in the final column of the
+right-multiplied <span class="math notranslate nohighlight">\(R\)</span> matrix in Section 2.5.</p></li>
+<li><p>Updated docstring in <code class="code docutils literal notranslate"><span class="pre">cla_utils:get_Lk</span></code> and the corresponding
+test so that <span class="math notranslate nohighlight">\(k\)</span> corresponds to the column being operated on.</p></li>
+<li><p>Corrected the upper limit of the sum in the algorithm for forward
+substitution.</p></li>
+<li><p>Corrected the sign of inequalities in <code class="code docutils literal notranslate"><span class="pre">test_solve_U</span></code> and
+<code class="code docutils literal notranslate"><span class="pre">test_solve_L</span></code>. And then uncorrected them again, they were right
+in the first place.</p></li>
+<li><p>Fixed the sign of the inequalities in the discussion of $L$ and $U$ matrices.</p></li>
 </ol>
 </section>
 
