@@ -741,14 +741,12 @@ we have to lower our aspirations depending on the condition number of <span clas
             <span class="proof-title-name">(Stability)</span>
         
     </div><div class="proof-content">
-<p>An algorithm <span class="math notranslate nohighlight">\(\tilde{f}\)</span> for <span class="math notranslate nohighlight">\(f\)</span> is stable if for each <span class="math notranslate nohighlight">\(x\in X\)</span>,</p>
+<p>An algorithm <span class="math notranslate nohighlight">\(\tilde{f}\)</span> for <span class="math notranslate nohighlight">\(f\)</span> is stable if for each <span class="math notranslate nohighlight">\(x\in X\)</span>,
+there exists <span class="math notranslate nohighlight">\(\tilde{x}\)</span> with</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
-\[\frac{\|\tilde{f}(x)-f(\tilde{x})\|}{\|f(\tilde{x})\|} = \mathcal{O}(\varepsilon),\]</div>
-</div></blockquote>
-<p>there exists <span class="math notranslate nohighlight">\(\tilde{x}\)</span> with</p>
-<blockquote>
-<div><div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\frac{\|\tilde{f}(x)-f(\tilde{x})\|}{\|f(\tilde{x})\|} = \mathcal{O}(\varepsilon),\\and\end{aligned}\end{align} \]</div>
+<div class="math notranslate nohighlight">
 \[\frac{\|\tilde{x}-x\|}{\|x\|} = \mathcal{O}(\varepsilon).\]</div>
 </div></blockquote>
 </div></div><p>We say that a stable algorithm gives nearly the right answer to nearly the
