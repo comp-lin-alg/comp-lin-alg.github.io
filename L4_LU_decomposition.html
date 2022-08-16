@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>4. LU decomposition &#8212; Computational linear algebra course 2020.0 documentation</title>
+    <title>4. LU decomposition &#8212; Computational linear algebra course 2022.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/fenics.css" />
     <link rel="stylesheet" type="text/css" href="_static/proof.css" />
@@ -316,24 +316,24 @@ rows of <span class="math notranslate nohighlight">\(U\)</span>, and the corresp
 needed for the rest of the algorithm. This creates the opportunity
 for a memory-efficient ‘in-place’ algorithm in which the matrix <span class="math notranslate nohighlight">\(A\)</span>
 is modified until it contains the values for <span class="math notranslate nohighlight">\(L\)</span> and <span class="math notranslate nohighlight">\(U\)</span>.</p>
-<p>The <a class="reference internal" href="cla_utils.html#cla_utils.exercises6.LU_inplace" title="cla_utils.exercises6.LU_inplace"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises6.LU_inplace()</span></code></a> function has been left
-unimplemented. It should implement this in-place low-storage
-procedure, applying the changes to the provided matrix <span class="math notranslate nohighlight">\(A\)</span>.  The
-test script <code class="docutils literal notranslate"><span class="pre">test_exercises6.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will
-test this function.</p>
+<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <a class="reference internal" href="cla_utils.html#cla_utils.exercises6.LU_inplace" title="cla_utils.exercises6.LU_inplace"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises6.LU_inplace()</span></code></a> function
+has been left unimplemented. It should implement this in-place
+low-storage procedure, applying the changes to the provided matrix
+<span class="math notranslate nohighlight">\(A\)</span>.  The test script <code class="docutils literal notranslate"><span class="pre">test_exercises6.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code>
+directory will test this function.</p>
 </div></div><div class="proof proof-type-exercise" id="id3">
 
     <div class="proof-title">
         <span class="proof-type">Exercise 4.3</span>
         
     </div><div class="proof-content">
-<p>The LU factorisation requires 3 loops (this is why it has a cubic
-FLOP count). In the algorithm above, there are two explicit loops
-and one explicit one (in the slice notation). It is possible to
-rewrite this in a single loop, using an outer product. Identify
-this outer product, and update
+<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The LU factorisation requires 3 loops (this is why it
+has a cubic FLOP count). In the algorithm above, there are two
+explicit loops and one explicit one (in the slice notation). It is
+possible to rewrite this in a single loop, using an outer
+product. Identify this outer product, and update
 <a class="reference internal" href="cla_utils.html#cla_utils.exercises6.LU_inplace" title="cla_utils.exercises6.LU_inplace"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises6.LU_inplace()</span></code></a> to make use of this
-reformulation (using <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.outer.html#numpy.outer" title="(in NumPy v1.21)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.outer()</span></code></a>). Do you notice any
+reformulation (using <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.outer.html#numpy.outer" title="(in NumPy v1.23)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.outer()</span></code></a>). Do you notice any
 improvement in speed?</p>
 </div></div><div class="proof proof-type-exercise" id="id4">
 
@@ -341,26 +341,25 @@ improvement in speed?</p>
         <span class="proof-type">Exercise 4.4</span>
         
     </div><div class="proof-content">
-<p>The functions <a class="reference internal" href="cla_utils.html#cla_utils.exercises6.solve_L" title="cla_utils.exercises6.solve_L"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises6.solve_L()</span></code></a> and
-<a class="reference internal" href="cla_utils.html#cla_utils.exercises6.solve_U" title="cla_utils.exercises6.solve_U"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises6.solve_U()</span></code></a> have been left unimplemented.
-They should use forward and backward substitution to solve lower
-and upper triangular systems respectively. The interfaces are set
-so that multiple right hand sides can be provided and solved at the
-same time. The functions should only use one loop over the rows
-of <span class="math notranslate nohighlight">\(L\)</span> (or <span class="math notranslate nohighlight">\(U\)</span>), to efficiently solve the multiple problems. The
-test script <code class="docutils literal notranslate"><span class="pre">test_exercises6.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will
-test these functions.</p>
+<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The function <a class="reference internal" href="cla_utils.html#cla_utils.exercises6.solve_L" title="cla_utils.exercises6.solve_L"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises6.solve_L()</span></code></a> has
+been left unimplemented.  It should use forward substitution to
+solve lower triangular systems. The interfaces are set so that
+multiple right hand sides can be provided and solved at the same
+time. The functions should only use one loop over the rows of <span class="math notranslate nohighlight">\(L\)</span>,
+to efficiently solve the multiple problems. The test script
+<code class="docutils literal notranslate"><span class="pre">test_exercises6.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will test these
+functions.</p>
 </div></div><div class="proof proof-type-exercise" id="id5">
 
     <div class="proof-title">
         <span class="proof-type">Exercise 4.5</span>
         
     </div><div class="proof-content">
-<p>Propose an algorithm to use the LU factorisation to compute the
-inverse of a matrix.  The functions
-<a class="reference internal" href="cla_utils.html#cla_utils.exercises6.inverse_LU" title="cla_utils.exercises6.inverse_LU"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises6.inverse_LU()</span></code></a> has been left unimplemented.
-Complete it using your algorithm, using functions developed in the
-previous exercises where possible. The test script
+<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> Propose an algorithm to use the LU factorisation to
+compute the inverse of a matrix.  The functions
+<a class="reference internal" href="cla_utils.html#cla_utils.exercises6.inverse_LU" title="cla_utils.exercises6.inverse_LU"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises6.inverse_LU()</span></code></a> has been left
+unimplemented.  Complete it using your algorithm, using functions
+developed in the previous exercises where possible. The test script
 <code class="docutils literal notranslate"><span class="pre">test_exercises6.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will test these
 functions.</p>
 </div></div></section>
@@ -517,9 +516,9 @@ complete pivoting, <span class="math notranslate nohighlight">\(PAQ=LU\)</span>.
         <span class="proof-type">Exercise 4.7</span>
         
     </div><div class="proof-content">
-<p>The function <a class="reference internal" href="cla_utils.html#cla_utils.exercises7.perm" title="cla_utils.exercises7.perm"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises7.perm()</span></code></a> has been left
-unimplemented. It should take an <span class="math notranslate nohighlight">\(m\times m\)</span> permutation matrix
-<span class="math notranslate nohighlight">\(P\)</span>, stored as an (integer-valued) array of indices
+<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The function <a class="reference internal" href="cla_utils.html#cla_utils.exercises7.perm" title="cla_utils.exercises7.perm"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises7.perm()</span></code></a> has
+been left unimplemented. It should take an <span class="math notranslate nohighlight">\(m\times m\)</span> permutation
+matrix <span class="math notranslate nohighlight">\(P\)</span>, stored as an (integer-valued) array of indices
 <span class="math notranslate nohighlight">\(p\in\mathbb{N}^m\)</span> so that <span class="math notranslate nohighlight">\((Px)_i = x_{p_i}\)</span>, <span class="math notranslate nohighlight">\(i=1,2,\ldots, m\)</span>,
 and replace it with the matrix <span class="math notranslate nohighlight">\(P_{i,j}P\)</span> (also stored as a array
 of indices) where <span class="math notranslate nohighlight">\(P_{i,j}\)</span> is the permutation matrix that
@@ -532,13 +531,13 @@ function.</p>
         <span class="proof-type">Exercise 4.8</span>
         
     </div><div class="proof-content">
-<p>The function <a class="reference internal" href="cla_utils.html#cla_utils.exercises7.LUP_inplace" title="cla_utils.exercises7.LUP_inplace"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises7.LUP_inplace()</span></code></a> has been left
-unimplemented. It should extend the in-place algorithm for LU
-factorisation (with the outer-product formulation, if you managed
-it) to the LUP factorisation. As well as computing L and U “in
-place” in the array where the input A is stored, it will compute a
-permutation matrix, which can and should be constructed using
-<a class="reference internal" href="cla_utils.html#cla_utils.exercises7.perm" title="cla_utils.exercises7.perm"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises7.perm()</span></code></a>.The test script
+<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The function <a class="reference internal" href="cla_utils.html#cla_utils.exercises7.LUP_inplace" title="cla_utils.exercises7.LUP_inplace"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises7.LUP_inplace()</span></code></a>
+has been left unimplemented. It should extend the in-place
+algorithm for LU factorisation (with the outer-product formulation,
+if you managed it) to the LUP factorisation. As well as computing L
+and U “in place” in the array where the input A is stored, it will
+compute a permutation matrix, which can and should be constructed
+using <a class="reference internal" href="cla_utils.html#cla_utils.exercises7.perm" title="cla_utils.exercises7.perm"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises7.perm()</span></code></a>.The test script
 <code class="docutils literal notranslate"><span class="pre">test_exercises7.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will test this
 function.</p>
 </div></div><div class="proof proof-type-exercise" id="id9">
@@ -547,21 +546,22 @@ function.</p>
         <span class="proof-type">Exercise 4.9</span>
         
     </div><div class="proof-content">
-<p>The function <a class="reference internal" href="cla_utils.html#cla_utils.exercises7.solve_LUP" title="cla_utils.exercises7.solve_LUP"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises7.solve_LUP()</span></code></a> has been left
-unimplemented. It should use the LUP code that you have written to
-solve the equation <span class="math notranslate nohighlight">\(Ax=b\)</span> for <span class="math notranslate nohighlight">\(x\)</span> given inputs <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(b\)</span>.  The
-test script <code class="docutils literal notranslate"><span class="pre">test_exercises7.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will
-test this function.</p>
+<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The function <a class="reference internal" href="cla_utils.html#cla_utils.exercises7.solve_LUP" title="cla_utils.exercises7.solve_LUP"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises7.solve_LUP()</span></code></a>
+has been left unimplemented. It should use the LUP code that you
+have written to solve the equation <span class="math notranslate nohighlight">\(Ax=b\)</span> for <span class="math notranslate nohighlight">\(x\)</span> given inputs <span class="math notranslate nohighlight">\(A\)</span>
+and <span class="math notranslate nohighlight">\(b\)</span>.  The test script <code class="docutils literal notranslate"><span class="pre">test_exercises7.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code>
+directory will test this function.</p>
 </div></div><div class="proof proof-type-exercise" id="id10">
 
     <div class="proof-title">
         <span class="proof-type">Exercise 4.10</span>
         
     </div><div class="proof-content">
-<p>Show how to compute the determinant of <span class="math notranslate nohighlight">\(A\)</span> from the LUP
-factorisation in <span class="math notranslate nohighlight">\(\mathcal{O}(m)\)</span> time (having already constructed
-the LUP factorisation which costs <span class="math notranslate nohighlight">\(\mathcal{O}(m^3)\)</span>). Complete the
-function <a class="reference internal" href="cla_utils.html#cla_utils.exercises7.det_LUP" title="cla_utils.exercises7.det_LUP"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises7.det_LUP()</span></code></a> to implement this
+<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> Show how to compute the determinant of <span class="math notranslate nohighlight">\(A\)</span> from the
+LUP factorisation in <span class="math notranslate nohighlight">\(\mathcal{O}(m)\)</span> time (having already
+constructed the LUP factorisation which costs
+<span class="math notranslate nohighlight">\(\mathcal{O}(m^3)\)</span>). Complete the function
+<a class="reference internal" href="cla_utils.html#cla_utils.exercises7.det_LUP" title="cla_utils.exercises7.det_LUP"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises7.det_LUP()</span></code></a> to implement this
 computation. The test script <code class="docutils literal notranslate"><span class="pre">test_exercises7.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code>
 directory will test this function.</p>
 </div></div></section>
@@ -881,7 +881,7 @@ by the operation inside the <span class="math notranslate nohighlight">\(j\)</sp
       <div class="clearer"></div>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, Colin J. Cotter.
+        &#169; Copyright 2020-2022, Colin J. Cotter.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
     </div>
   </body>

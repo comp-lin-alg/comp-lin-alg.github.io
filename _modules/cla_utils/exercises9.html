@@ -5,16 +5,15 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>cla_utils.exercises9 &#8212; Computational linear algebra course 2020.0 documentation</title>
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/fenics.css" type="text/css" />
+    <title>cla_utils.exercises9 &#8212; Computational linear algebra course 2022.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/fenics.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
-    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/proof.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
 <!--[if lte IE 6]>
@@ -109,12 +108,9 @@
 <span class="sd">    :return A3: a 3x3 numpy array.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">return</span> <span class="n">array</span><span class="p">([[</span> <span class="mf">0.68557183</span><span class="o">+</span><span class="mf">0.46550108</span><span class="n">j</span><span class="p">,</span>  <span class="mf">0.12934765</span><span class="o">-</span><span class="mf">0.1622676</span><span class="n">j</span> <span class="p">,</span>
-                    <span class="mf">0.24409518</span><span class="o">+</span><span class="mf">0.25335939</span><span class="n">j</span><span class="p">],</span>
-                  <span class="p">[</span> <span class="mf">0.1531015</span> <span class="o">+</span><span class="mf">0.66678983</span><span class="n">j</span><span class="p">,</span>  <span class="mf">0.45112492</span><span class="o">+</span><span class="mf">0.18206976</span><span class="n">j</span><span class="p">,</span>
-                    <span class="o">-</span><span class="mf">0.02633966</span><span class="o">+</span><span class="mf">0.43477693</span><span class="n">j</span><span class="p">],</span>
-                  <span class="p">[</span><span class="o">-</span><span class="mf">0.10817164</span><span class="o">-</span><span class="mf">1.16879196</span><span class="n">j</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.18446849</span><span class="o">+</span><span class="mf">0.03755672</span><span class="n">j</span><span class="p">,</span>
-                   <span class="mf">0.06430325</span><span class="o">-</span><span class="mf">0.44757084</span><span class="n">j</span><span class="p">]])</span></div>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mf">0.76505141</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.03865876</span><span class="p">,</span>  <span class="mf">0.42107996</span><span class="p">],</span>
+                     <span class="p">[</span><span class="o">-</span><span class="mf">0.03865876</span><span class="p">,</span>  <span class="mf">0.20264378</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.02824925</span><span class="p">],</span>
+                     <span class="p">[</span> <span class="mf">0.42107996</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.02824925</span><span class="p">,</span>  <span class="mf">0.23330481</span><span class="p">]])</span></div>
 
 
 <div class="viewcode-block" id="get_B3"><a class="viewcode-back" href="../../cla_utils.html#cla_utils.exercises9.get_B3">[docs]</a><span class="k">def</span> <span class="nf">get_B3</span><span class="p">():</span>
@@ -123,12 +119,9 @@
 
 <span class="sd">    :return B3: a 3x3 numpy array.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">array</span><span class="p">([[</span> <span class="mf">0.46870499</span><span class="o">+</span><span class="mf">0.37541453</span><span class="n">j</span><span class="p">,</span>  <span class="mf">0.19115959</span><span class="o">-</span><span class="mf">0.39233203</span><span class="n">j</span><span class="p">,</span>
-                    <span class="mf">0.12830659</span><span class="o">+</span><span class="mf">0.12102382</span><span class="n">j</span><span class="p">],</span>
-                  <span class="p">[</span> <span class="mf">0.90249603</span><span class="o">-</span><span class="mf">0.09446345</span><span class="n">j</span><span class="p">,</span>  <span class="mf">0.51584055</span><span class="o">+</span><span class="mf">0.84326503</span><span class="n">j</span><span class="p">,</span>
-                    <span class="o">-</span><span class="mf">0.02582305</span><span class="o">+</span><span class="mf">0.23259079</span><span class="n">j</span><span class="p">],</span>
-                  <span class="p">[</span> <span class="mf">0.75419973</span><span class="o">-</span><span class="mf">0.52470311</span><span class="n">j</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.59173739</span><span class="o">+</span><span class="mf">0.48075322</span><span class="n">j</span><span class="p">,</span>
-                    <span class="mf">0.51545446</span><span class="o">-</span><span class="mf">0.21867957</span><span class="n">j</span><span class="p">]])</span></div>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mf">0.76861909</span><span class="p">,</span>  <span class="mf">0.01464606</span><span class="p">,</span>  <span class="mf">0.42118629</span><span class="p">],</span>
+                     <span class="p">[</span> <span class="mf">0.01464606</span><span class="p">,</span>  <span class="mf">0.99907192</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.02666057</span><span class="p">],</span>
+                     <span class="p">[</span> <span class="mf">0.42118629</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.02666057</span><span class="p">,</span>  <span class="mf">0.23330798</span><span class="p">]])</span></div>
 
 
 <div class="viewcode-block" id="pow_it"><a class="viewcode-back" href="../../cla_utils.html#cla_utils.exercises9.pow_it">[docs]</a><span class="k">def</span> <span class="nf">pow_it</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">tol</span><span class="p">,</span> <span class="n">maxit</span><span class="p">,</span> <span class="n">store_iterations</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
@@ -179,7 +172,7 @@
 <span class="sd">    if store_iterations, an mxmaxit dimensional numpy array containing \</span>
 <span class="sd">    all the iterates.</span>
 <span class="sd">    :return l: a floating point number containing the final eigenvalue \</span>
-<span class="sd">    estimate, or if store_iterations, an m dimensional numpy array containing \</span>
+<span class="sd">    estimate, or if store_iterations, a maxit dimensional numpy array containing \</span>
 <span class="sd">    all the iterates.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -234,8 +227,8 @@
       <div class="clearer"></div>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, Colin J. Cotter.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.3.
+        &#169; Copyright 2020-2022, Colin J. Cotter.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
     </div>
   </body>
 </html>

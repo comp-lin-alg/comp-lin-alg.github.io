@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>cla_utils package &#8212; Computational linear algebra course 2020.0 documentation</title>
+    <title>cla_utils package &#8212; Computational linear algebra course 2022.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/fenics.css" />
     <link rel="stylesheet" type="text/css" href="_static/proof.css" />
@@ -17,8 +17,8 @@
     <script src="_static/proof.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Errata for 2021/22" href="errata.html" />
-    <link rel="prev" title="Computational exercises" href="exercises.html" />
+    <link rel="next" title="1. Preliminaries" href="L1_preliminaries.html" />
+    <link rel="prev" title="Errata for 2022/23" href="errata.html" />
 <!--[if lte IE 6]>
 <link rel="stylesheet" href="_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
 <![endif]-->
@@ -411,7 +411,8 @@ orthogonal complement to the subspace U spanned by the vectors.</p>
 <dt class="sig sig-object py" id="cla_utils.exercises3.householder">
 <span class="sig-prename descclassname"><span class="pre">cla_utils.exercises3.</span></span><span class="sig-name descname"><span class="pre">householder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises3.html#householder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cla_utils.exercises3.householder" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given a real mxn matrix A, find the reduction to upper triangular matrix R
-using Householder transformations.</p>
+using Householder transformations. The reduction should be done “in-place”,
+so that A is transformed to R.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -475,6 +476,25 @@ Ax_i=b_i, i=1,2,…,k.</p>
 </dd>
 <dt class="field-even">Return x</dt>
 <dd class="field-even"><p>an mxk-dimensional numpy array whose columns are the     right-hand side vectors x_1,x_2,…,x_k.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cla_utils.exercises3.solve_U">
+<span class="sig-prename descclassname"><span class="pre">cla_utils.exercises3.</span></span><span class="sig-name descname"><span class="pre">solve_U</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">U</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises3.html#solve_U"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cla_utils.exercises3.solve_U" title="Permalink to this definition">¶</a></dt>
+<dd><p>Solve systems Ux_i=b_i for x_i with U upper triangular, i=1,2,…,k</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>U</strong> – an mxm-dimensional numpy array, assumed upper triangular</p></li>
+<li><p><strong>b</strong> – an mxk-dimensional numpy array, with ith column containing 
+b_i</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return x</dt>
+<dd class="field-even"><p>an mxk-dimensional numpy array, with ith column containing 
+the solution x_i</p>
 </dd>
 </dl>
 </dd></dl>
@@ -577,22 +597,6 @@ real mxm matrices.</p>
 </dl>
 </dd></dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="cla_utils.exercises5.solve_R">
-<span class="sig-prename descclassname"><span class="pre">cla_utils.exercises5.</span></span><span class="sig-name descname"><span class="pre">solve_R</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises5.html#solve_R"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cla_utils.exercises5.solve_R" title="Permalink to this definition">¶</a></dt>
-<dd><p>Solve the system Rx=b where R is an mxm upper triangular matrix 
-and b is an m dimensional vector.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>A</strong> – an mxm-dimensional numpy array</p></li>
-<li><p><strong>b</strong> – an m-dimensional numpy array</p></li>
-<li><p><strong>x</strong> – an m-dimensional numpy array</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
 </section>
 <section id="module-cla_utils.exercises6">
 <span id="cla-utils-exercises6-module"></span><h2>cla_utils.exercises6 module<a class="headerlink" href="#module-cla_utils.exercises6" title="Permalink to this headline">¶</a></h2>
@@ -652,25 +656,6 @@ in column k given by lvec (k is inferred from the size of lvec).</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>L</strong> – an mxm-dimensional numpy array, assumed lower triangular</p></li>
-<li><p><strong>b</strong> – an mxk-dimensional numpy array, with ith column containing 
-b_i</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return x</dt>
-<dd class="field-even"><p>an mxk-dimensional numpy array, with ith column containing 
-the solution x_i</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="cla_utils.exercises6.solve_U">
-<span class="sig-prename descclassname"><span class="pre">cla_utils.exercises6.</span></span><span class="sig-name descname"><span class="pre">solve_U</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">U</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises6.html#solve_U"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cla_utils.exercises6.solve_U" title="Permalink to this definition">¶</a></dt>
-<dd><p>Solve systems Ux_i=b_i for x_i with U upper triangular, i=1,2,…,k</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>U</strong> – an mxm-dimensional numpy array, assumed upper triangular</p></li>
 <li><p><strong>b</strong> – an mxk-dimensional numpy array, with ith column containing 
 b_i</p></li>
 </ul>
@@ -812,18 +797,16 @@ for which QHQ^* = A.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="cla_utils.exercises8.hessenberg_ev">
 <span class="sig-prename descclassname"><span class="pre">cla_utils.exercises8.</span></span><span class="sig-name descname"><span class="pre">hessenberg_ev</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">H</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cla_utils/exercises8.html#hessenberg_ev"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cla_utils.exercises8.hessenberg_ev" title="Permalink to this definition">¶</a></dt>
-<dd><p>Given a Hessenberg matrix, return the eigenvalues and eigenvectors.</p>
+<dd><p>Given a Hessenberg matrix, return the eigenvectors.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>H</strong> – an mxm numpy array</p>
 </dd>
-<dt class="field-even">Return ee</dt>
-<dd class="field-even"><p>an m dimensional numpy array containing the eigenvalues of H</p>
-</dd>
-<dt class="field-odd">Return V</dt>
-<dd class="field-odd"><p>an mxm numpy array whose columns are the eigenvectors of H</p>
+<dt class="field-even">Return V</dt>
+<dd class="field-even"><p>an mxm numpy array whose columns are the eigenvectors of H</p>
 </dd>
 </dl>
+<p>Do not change this function.</p>
 </dd></dl>
 
 </section>
@@ -916,7 +899,7 @@ for pow_it.</p>
 <dd class="field-even"><p>an m dimensional numpy array containing the final iterate, or     if store_iterations, an mxmaxit dimensional numpy array containing     all the iterates.</p>
 </dd>
 <dt class="field-odd">Return l</dt>
-<dd class="field-odd"><p>a floating point number containing the final eigenvalue     estimate, or if store_iterations, an m dimensional numpy array containing     all the iterates.</p>
+<dd class="field-odd"><p>a floating point number containing the final eigenvalue     estimate, or if store_iterations, a maxit dimensional numpy array containing     all the iterates.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1005,7 +988,7 @@ for pow_it.</p>
       <div class="clearer"></div>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, Colin J. Cotter.
+        &#169; Copyright 2020-2022, Colin J. Cotter.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
     </div>
   </body>

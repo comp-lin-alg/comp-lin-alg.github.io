@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>1. Preliminaries &#8212; Computational linear algebra course 2020.0 documentation</title>
+    <title>1. Preliminaries &#8212; Computational linear algebra course 2022.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/fenics.css" />
     <link rel="stylesheet" type="text/css" href="_static/proof.css" />
@@ -19,7 +19,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="2. QR Factorisation" href="L2_QR_factorisation.html" />
-    <link rel="prev" title="Errata for 2021/22" href="errata.html" />
+    <link rel="prev" title="cla_utils package" href="cla_utils.html" />
 <!--[if lte IE 6]>
 <link rel="stylesheet" href="_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
 <![endif]-->
@@ -57,7 +57,8 @@ that should be found in an undergraduate linear algebra course.</p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <p>Before you attempt any exercises, you need to make sure that you
-have everything you need set up on your computer.</p>
+have everything you need set up on your computer. See the checklist
+in <a class="reference internal" href="exercises.html#comp-exercises"><span class="std std-ref">the exercises section</span></a>.</p>
 </div>
 <section id="matrices-vectors-and-matrix-vector-multiplication">
 <h2><span class="section-number">1.1. </span>Matrices, vectors and matrix-vector multiplication<a class="headerlink" href="#matrices-vectors-and-matrix-vector-multiplication" title="Permalink to this headline">¶</a></h2>
@@ -411,9 +412,11 @@ write</p>
 e_1 &amp; e_2 &amp; \ldots &amp; e_m
 \end{pmatrix}\\= ZA.\end{aligned}\end{align} \]</div>
 </div></blockquote>
-<p>We call <span class="math notranslate nohighlight">\(Z\)</span> a (left) inverse of <span class="math notranslate nohighlight">\(A\)</span>. (Exercises: show that <span class="math notranslate nohighlight">\(Z\)</span> is
-the unique left inverse of <span class="math notranslate nohighlight">\(A\)</span>, and show that <span class="math notranslate nohighlight">\(Z\)</span> is also the unique
-right inverse of <span class="math notranslate nohighlight">\(A\)</span>, satisfying <span class="math notranslate nohighlight">\(I = AZ\)</span>.) We write <span class="math notranslate nohighlight">\(Z=A^{-1}\)</span>.</p>
+<dl class="simple">
+<dt>We call <span class="math notranslate nohighlight">\(Z\)</span> a (left) inverse of <span class="math notranslate nohighlight">\(A\)</span>. It can be shown that <span class="math notranslate nohighlight">\(Z\)</span> is the</dt><dd><p>unique left inverse of <span class="math notranslate nohighlight">\(A\)</span>, and that <span class="math notranslate nohighlight">\(Z\)</span> is also the unique right
+inverse of <span class="math notranslate nohighlight">\(A\)</span>, satisfying <span class="math notranslate nohighlight">\(I = AZ\)</span>. We write <span class="math notranslate nohighlight">\(Z=A^{-1}\)</span>.</p>
+</dd>
+</dl>
 <p>The first four parts of the next theorem are a consequence of what
 we have so far, and we shall quote the fifth and sixth (see a linear algebra
 course).</p>
@@ -513,6 +516,8 @@ be multiplied),</p>
         <span class="proof-type">Exercise 1.16</span>
         
     </div><div class="proof-content">
+<p>(This is an advanced exercise if the other exercises are complete.
+If you are behind on the exercises please skip this one.)</p>
 <p>Consider a matrix <span class="math notranslate nohighlight">\(A=B + iC\)</span> where <span class="math notranslate nohighlight">\(B,C\in\mathbb{R}^{m\times m}\)</span>
 and <span class="math notranslate nohighlight">\(A\)</span> is Hermitian. Show that <span class="math notranslate nohighlight">\(B=B^T\)</span> and <span class="math notranslate nohighlight">\(C=-C^T\)</span>. To save
 memory, instead of storing values of <span class="math notranslate nohighlight">\(A\)</span> (<span class="math notranslate nohighlight">\(m\times m\)</span> complex
@@ -915,7 +920,7 @@ this function.</p>
       <div class="clearer"></div>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, Colin J. Cotter.
+        &#169; Copyright 2020-2022, Colin J. Cotter.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
     </div>
   </body>

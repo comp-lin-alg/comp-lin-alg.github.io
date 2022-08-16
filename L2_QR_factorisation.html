@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>2. QR Factorisation &#8212; Computational linear algebra course 2020.0 documentation</title>
+    <title>2. QR Factorisation &#8212; Computational linear algebra course 2022.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/fenics.css" />
     <link rel="stylesheet" type="text/css" href="_static/proof.css" />
@@ -115,7 +115,7 @@ should find an orthonormal basis for the orthogonal complement
 </div></blockquote>
 <p>It is expected that it will only compute this up to a tolerance.
 You should make use of the built in QR factorisation routine
-<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.qr.html#numpy.linalg.qr" title="(in NumPy v1.21)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.linalg.qr()</span></code></a>. The test script <code class="docutils literal notranslate"><span class="pre">test_exercises2.py</span></code> in
+<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.qr.html#numpy.linalg.qr" title="(in NumPy v1.23)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.linalg.qr()</span></code></a>. The test script <code class="docutils literal notranslate"><span class="pre">test_exercises2.py</span></code> in
 the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will test this function.</p>
 </div></div><p>In the rest of this section we will examine some algorithms for computing
 the QR factorisation, before discussing the application to least squares
@@ -195,7 +195,7 @@ for code blocks in pseudo-code in these notes.)</p>
         <span class="proof-type">Exercise 2.4</span>
         
     </div><div class="proof-content">
-<p>The <a class="reference internal" href="cla_utils.html#cla_utils.exercises2.GS_classical" title="cla_utils.exercises2.GS_classical"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises2.GS_classical()</span></code></a> function has been
+<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <a class="reference internal" href="cla_utils.html#cla_utils.exercises2.GS_classical" title="cla_utils.exercises2.GS_classical"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises2.GS_classical()</span></code></a> function has been
 left unimplemented. It should implement the classical Gram-Schmidt
 algorithm above, using Numpy slice notation so that only one Python
 for loop is used. The function should work “in place” by making a
@@ -203,7 +203,16 @@ copy of <span class="math notranslate nohighlight">\(A\)</span> and then changin
 introducing additional intermediate arrays (you will need to create
 a new array to store <span class="math notranslate nohighlight">\(R\)</span>). The test script <code class="docutils literal notranslate"><span class="pre">test_exercises2.py</span></code>
 in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will test this function.</p>
-</div></div></section>
+</div></div><div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>The <span class="math notranslate nohighlight">\((\ddagger)\)</span> symbol in an exercise indicates that the code for
+that exercise is in scope for use in the coursework. When the code
+is used in the coursework, we will grade the code quality, for
+appropriate use of Numpy slice operations, efficient use of array
+memory, loop minimisation, and avoiding computation inside loops
+that could be done beforehand.</p>
+</div>
+</section>
 <section id="projector-interpretation-of-gram-schmidt">
 <h2><span class="section-number">2.3. </span>Projector interpretation of Gram-Schmidt<a class="headerlink" href="#projector-interpretation-of-gram-schmidt" title="Permalink to this headline">¶</a></h2>
 <details>
@@ -307,7 +316,7 @@ in <span class="math notranslate nohighlight">\(A\)</span> with the <span class=
         <span class="proof-type">Exercise 2.5</span>
         
     </div><div class="proof-content">
-<p>The <a class="reference internal" href="cla_utils.html#cla_utils.exercises2.GS_modified" title="cla_utils.exercises2.GS_modified"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises2.GS_modified()</span></code></a> function has been
+<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <a class="reference internal" href="cla_utils.html#cla_utils.exercises2.GS_modified" title="cla_utils.exercises2.GS_modified"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises2.GS_modified()</span></code></a> function has been
 left unimplemented. It should implement the modified Gram-Schmidt
 algorithm above, using Numpy slice notation where possible.
 What is the minimal number of Python
@@ -617,11 +626,11 @@ columns from <span class="math notranslate nohighlight">\(r\)</span> to <span cl
         <span class="proof-type">Exercise 2.8</span>
         
     </div><div class="proof-content">
-<p>The <a class="reference internal" href="cla_utils.html#cla_utils.exercises3.householder" title="cla_utils.exercises3.householder"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.householder()</span></code></a> function has been left
-unimplemented. It should implement the algorithm above, using only
-one loop over <span class="math notranslate nohighlight">\(k\)</span>. It should return the resulting <span class="math notranslate nohighlight">\(R\)</span> matrix. The
-test script <code class="docutils literal notranslate"><span class="pre">test_exercises3.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will
-test this function.</p>
+<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <a class="reference internal" href="cla_utils.html#cla_utils.exercises3.householder" title="cla_utils.exercises3.householder"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.householder()</span></code></a> function
+has been left unimplemented. It should implement the algorithm
+above, using only one loop over <span class="math notranslate nohighlight">\(k\)</span>. It should return the resulting
+<span class="math notranslate nohighlight">\(R\)</span> matrix. The test script <code class="docutils literal notranslate"><span class="pre">test_exercises3.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code>
+directory will test this function.</p>
 </div></div><div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <p>Don’t forget that Python numbers from zero, which will be important
@@ -657,8 +666,22 @@ Supplementary video</summary><div class="video_wrapper" style="">
         <span class="proof-type">Exercise 2.9</span>
         
     </div><div class="proof-content">
-<p>Show that the implicit multiplication procedure is equivalent to computing
-an extended array</p>
+<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The function <a class="reference internal" href="cla_utils.html#cla_utils.exercises3.solve_U" title="cla_utils.exercises3.solve_U"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.solve_U()</span></code></a> has
+been left unimplemented.  It should use backward substitution to
+solve upper triangular systems. The interfaces are set so that
+multiple right hand sides can be provided and solved at the same
+time. The functions should only use one loop over the rows of <span class="math notranslate nohighlight">\(U\)</span>,
+to efficiently solve the multiple problems. The test script
+<code class="docutils literal notranslate"><span class="pre">test_exercises3.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will test these
+functions.</p>
+</div></div><div class="proof proof-type-exercise" id="id10">
+
+    <div class="proof-title">
+        <span class="proof-type">Exercise 2.10</span>
+        
+    </div><div class="proof-content">
+<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> Show that the implicit multiplication procedure is
+equivalent to computing an extended array</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
 \[\hat{A} = \begin{pmatrix}
@@ -687,7 +710,7 @@ vectors <span class="math notranslate nohighlight">\(b_1,b_2,\ldots,b_k\)</span>
 done so, you will need to modified
 <a class="reference internal" href="cla_utils.html#cla_utils.exercises3.householder" title="cla_utils.exercises3.householder"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.householder()</span></code></a> to use the <code class="docutils literal notranslate"><span class="pre">kmax</span></code>
 argument. You may make use of the built-in triangular solve
-algorithm <a class="reference external" href="http://scipy.github.io/devdocs/reference/generated/scipy.linalg.solve_triangular.html#scipy.linalg.solve_triangular" title="(in SciPy v1.9.0.dev0+1038.bd4b732)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.linalg.solve_triangular()</span></code></a> (we shall consider
+algorithm <a class="reference external" href="http://scipy.github.io/devdocs/reference/generated/scipy.linalg.solve_triangular.html#scipy.linalg.solve_triangular" title="(in SciPy v1.10.0.dev0+1685.9578695)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.linalg.solve_triangular()</span></code></a> (we shall consider
 triangular matrix algorithms briefly later). The test script
 <code class="docutils literal notranslate"><span class="pre">test_exercises3.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will also test this
 function.</p>
@@ -721,16 +744,17 @@ Qe_1 &amp; Qe_2 &amp; \ldots &amp; Qe_n
 \end{pmatrix},\]</div>
 </div></blockquote>
 <p>with each column using the <span class="math notranslate nohighlight">\(Q\)</span> application algorithm described above.</p>
-<div class="proof proof-type-exercise" id="id10">
+<div class="proof proof-type-exercise" id="id11">
 
     <div class="proof-title">
-        <span class="proof-type">Exercise 2.10</span>
+        <span class="proof-type">Exercise 2.11</span>
         
     </div><div class="proof-content">
-<p>Show that the implicit multiplication procedure applied to the
-columns of <span class="math notranslate nohighlight">\(I\)</span> produces <span class="math notranslate nohighlight">\(Q^*\)</span>, from which we can easily obtain <span class="math notranslate nohighlight">\(Q\)</span>,
-explaining how. Show how to implement this by applying Householder
-to an augmented matrix <span class="math notranslate nohighlight">\(\hat{A}\)</span> of some appropriate form.</p>
+<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> Show that the implicit multiplication procedure
+applied to the columns of <span class="math notranslate nohighlight">\(I\)</span> produces <span class="math notranslate nohighlight">\(Q^*\)</span>, from which we can
+easily obtain <span class="math notranslate nohighlight">\(Q\)</span>, explaining how. Show how to implement this by
+applying Householder to an augmented matrix <span class="math notranslate nohighlight">\(\hat{A}\)</span> of some
+appropriate form.</p>
 <p>The <a class="reference internal" href="cla_utils.html#cla_utils.exercises3.householder_qr" title="cla_utils.exercises3.householder_qr"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.householder_qr()</span></code></a> function has been
 left unimplemented. It takes in the <span class="math notranslate nohighlight">\(m\times n\)</span> array <span class="math notranslate nohighlight">\(A\)</span> and
 returns <span class="math notranslate nohighlight">\(Q\)</span> and <span class="math notranslate nohighlight">\(R\)</span>. It should use the method of this exercise to
@@ -784,25 +808,42 @@ as a matrix-vector product <span class="math notranslate nohighlight">\(Ax\)</sp
 <div><div class="math notranslate nohighlight">
 \[\hat{R}x = \hat{Q}^*b.\]</div>
 </div></blockquote>
-<p>This is an upper triangular system that can be solved efficiently using
-back-substitution (which we shall come to later.)</p>
-<div class="proof proof-type-exercise" id="id11">
+<p>This is an upper triangular system that can be solved efficiently
+using back-substitution. Written in components, this equation is</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}R_{11}x_1 + R_{12}x_2 + \ldots + R_{1(m-1)}x_{m-1} + R_{1m}x_m = y_1,\\0x_1 + R_{22}x_2 + \ldots + R_{2(m-1)}x_{m-1} + R_{2m}x_m = y_2,\\\vdots\\0x_1 + 0x_2 + \ldots + R_{(m-1)(m-1)}x_{m-1} + R_{(m-1)m}x_m = y_{m-1},\\ 0x_1 + 0x_2 + \ldots + 0x_{m-1} + R_{mm}x_m = y_{m}.\end{aligned}\end{align} \]</div>
+</div></blockquote>
+<p>The last equation yields <span class="math notranslate nohighlight">\(x_m\)</span> directly by dividing by <span class="math notranslate nohighlight">\(R_{mm}\)</span>, then
+we can use this value to directly compute <span class="math notranslate nohighlight">\(x_{m-1}\)</span>. This is repeated
+for all of the entries of <span class="math notranslate nohighlight">\(x\)</span> from <span class="math notranslate nohighlight">\(m\)</span> down to 1. This procedure is
+called back substitution, which we summarise in the following
+pseudo-code.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x_m  \gets y_m/R_{mm}\)</span></p></li>
+<li><p>FOR <span class="math notranslate nohighlight">\(i= m-1\)</span> TO 1 (BACKWARDS)</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(x_i \gets (y_i - \sum_{k=i+1}^mR_{ik}x_k)/R_{ii}\)</span></p></li>
+</ul>
+</li>
+</ul>
+<div class="proof proof-type-exercise" id="id12">
 
     <div class="proof-title">
-        <span class="proof-type">Exercise 2.11</span>
+        <span class="proof-type">Exercise 2.12</span>
         
     </div><div class="proof-content">
-<p>The <a class="reference internal" href="cla_utils.html#cla_utils.exercises3.householder_ls" title="cla_utils.exercises3.householder_ls"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.householder_ls()</span></code></a> function has been
-left unimplemented. It takes in the <span class="math notranslate nohighlight">\(m\times n\)</span> array <span class="math notranslate nohighlight">\(A\)</span> and a
-right-hand side vector <span class="math notranslate nohighlight">\(b\)</span> and solves the least squares problem
-minimising <span class="math notranslate nohighlight">\(\|Ax-b\|\)</span> over <span class="math notranslate nohighlight">\(x\)</span>. It should do this by forming an
-appropriate augmented matrix <span class="math notranslate nohighlight">\(\hat{A}\)</span>, calling
+<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <a class="reference internal" href="cla_utils.html#cla_utils.exercises3.householder_ls" title="cla_utils.exercises3.householder_ls"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.householder_ls()</span></code></a>
+function has been left unimplemented. It takes in the <span class="math notranslate nohighlight">\(m\times n\)</span>
+array <span class="math notranslate nohighlight">\(A\)</span> and a right-hand side vector <span class="math notranslate nohighlight">\(b\)</span> and solves the least
+squares problem minimising <span class="math notranslate nohighlight">\(\|Ax-b\|\)</span> over <span class="math notranslate nohighlight">\(x\)</span>. It should do this
+by forming an appropriate augmented matrix <span class="math notranslate nohighlight">\(\hat{A}\)</span>, calling
 <a class="reference internal" href="cla_utils.html#cla_utils.exercises3.householder" title="cla_utils.exercises3.householder"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.householder()</span></code></a> and extracting appropriate
 subarrays using slice notation, before using
-<a class="reference external" href="http://scipy.github.io/devdocs/reference/generated/scipy.linalg.solve_triangular.html#scipy.linalg.solve_triangular" title="(in SciPy v1.9.0.dev0+1038.bd4b732)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.linalg.solve_triangular()</span></code></a> to solve the resulting upper triangular
-system, before returning the solution <span class="math notranslate nohighlight">\(x\)</span>. The test script
-<code class="docutils literal notranslate"><span class="pre">test_exercises3.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will also test this
-function.</p>
+<a class="reference external" href="http://scipy.github.io/devdocs/reference/generated/scipy.linalg.solve_triangular.html#scipy.linalg.solve_triangular" title="(in SciPy v1.10.0.dev0+1685.9578695)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.linalg.solve_triangular()</span></code></a> to solve the resulting upper
+triangular system, before returning the solution <span class="math notranslate nohighlight">\(x\)</span>. The test
+script <code class="docutils literal notranslate"><span class="pre">test_exercises3.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will also
+test this function.</p>
 </div></div><div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <p>You will need to do extract the appropriate submatrix to obtain the
@@ -819,7 +860,7 @@ square (and invertible) reduced matrix <span class="math notranslate nohighlight
       <div class="clearer"></div>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, Colin J. Cotter.
+        &#169; Copyright 2020-2022, Colin J. Cotter.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
     </div>
   </body>

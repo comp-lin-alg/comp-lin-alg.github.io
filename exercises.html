@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Computational exercises &#8212; Computational linear algebra course 2020.0 documentation</title>
+    <title>Computational exercises &#8212; Computational linear algebra course 2022.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/fenics.css" />
     <link rel="stylesheet" type="text/css" href="_static/proof.css" />
@@ -17,8 +17,8 @@
     <script src="_static/proof.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="cla_utils package" href="cla_utils.html" />
-    <link rel="prev" title="Computational tools" href="tools.html" />
+    <link rel="next" title="Errata for 2022/23" href="errata.html" />
+    <link rel="prev" title="Practical matters" href="practicalities.html" />
 <!--[if lte IE 6]>
 <link rel="stylesheet" href="_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
 <![endif]-->
@@ -48,7 +48,7 @@
           <div class="body" role="main">
             
   <section id="computational-exercises">
-<h1>Computational exercises<a class="headerlink" href="#computational-exercises" title="Permalink to this headline">¶</a></h1>
+<span id="comp-exercises"></span><h1>Computational exercises<a class="headerlink" href="#computational-exercises" title="Permalink to this headline">¶</a></h1>
 <p>In the course notes you will encounter computational exercises for you
 to complete.  The object of these exercise is to build up
 understanding about how computational linear algebra algorithms
@@ -56,61 +56,271 @@ actually work. Along the way you will have the opportunity to pick up
 valuable scientific computing skills in coding, software engineering
 and rigorous testing. They involve completing unfinished “skeleton”
 code.</p>
-<section id="obtaining-the-skeleton-code">
-<h2>Obtaining the skeleton code<a class="headerlink" href="#obtaining-the-skeleton-code" title="Permalink to this headline">¶</a></h2>
-<p>This section assumes you’ve already done the <a class="reference internal" href="tools.html#bitbucket-git"><span class="std std-ref">Git tutorial</span></a>.</p>
-<section id="setting-up-your-repository">
-<h3>Setting up your repository<a class="headerlink" href="#setting-up-your-repository" title="Permalink to this headline">¶</a></h3>
-<p>We’re using a tool called <a class="reference external" href="https://classroom.github.com">GitHub classroom</a> to automate the creation of your
-copies of the repository.
-To create your repository, click <a class="reference external" href="https://classroom.github.com/a/RDyDLTSf">here</a>.</p>
+<p>In this section, we will explain how to get set up to do the
+computational exercises.</p>
+<p>You can either use the machines in the maths department labs, or
+you can use your own laptop running Windows, Linux, or macOS.</p>
+<p>There is a lot of information below, but here is a summary checklist to
+check that you have everything ready to do your work.</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Install Python, Git and a text editor using the instructions below.</p></li>
+<li><p>Check out your course repository from Github Classroom.</p></li>
+<li><p>Create a virtual environment (venv) in your course repository.</p></li>
+<li><p>Activate the venv.</p></li>
+<li><p>Install the course module to the venv.</p></li>
+<li><p>Install <cite>numpy</cite> to the venv.</p></li>
+<li><p>Remember to activate the venv every time you work on the course module.</p></li>
+</ol>
+</div></blockquote>
+<p>To follow these steps read the information below.</p>
+<section id="editing-code">
+<h2>Editing code<a class="headerlink" href="#editing-code" title="Permalink to this headline">¶</a></h2>
+<p>In order to write the code required for the implementation exercise,
+you’ll need to use a Python-aware text editor. There are many such
+editors available and you can use any you like, but you haven’t used
+Python and/or Git before, it is a good idea to use Visual Studio Code
+(VSCode) which is a Python-aware text editor, since VSCode also
+provides a command line and an interface to Git.</p>
 </section>
+<section id="getting-the-software-that-you-need">
+<h2>Getting the software that you need<a class="headerlink" href="#getting-the-software-that-you-need" title="Permalink to this headline">¶</a></h2>
+<p>The
+core requirements are Python 3, git, and a Python-aware text editor.</p>
+<section id="using-your-own-machine-recommended">
+<h3>Using your own machine (recommended)<a class="headerlink" href="#using-your-own-machine-recommended" title="Permalink to this headline">¶</a></h3>
+<p>Up to date information on how to install Python, Git and VSCode on a
+Windows, Linux or Mac machine is available at the <a class="reference external" href="https://imperial-fons-computing.github.io/">FONS Computing</a> page.</p>
+</section>
+<section id="using-the-windows-machines-in-the-computer-labs">
+<h3>Using the Windows machines in the computer labs<a class="headerlink" href="#using-the-windows-machines-in-the-computer-labs" title="Permalink to this headline">¶</a></h3>
+<p>Imperial’s lab machines have the software you need installed, in some
+cases via the <cite>Software Hub</cite>. To get started, double click the
+<cite>Software Hub</cite> icon on the desktop or visit the <a class="reference external" href="https://softwarehub.imperial.ac.uk/">Software Hub</a> page.</p>
+<p>Alternatively, from Software Hub you can run <cite>git</cite>, which will give
+you a terminal to run git and Python commands, and <cite>atom</cite>, which will
+provide you with an editor. This is the link to the <a class="reference external" href="https://imperial-fons-computing.github.io/vscode.html">VSCode
+installation instructions</a>.</p>
+</section>
+</section>
+<section id="the-command-line">
+<h2>The command line<a class="headerlink" href="#the-command-line" title="Permalink to this headline">¶</a></h2>
+<p>A lot of the routine activity involved in this module revolves around
+executing commands on the Bash terminal (sometimes referred to as the
+“command line”). For example you use the terminal to work with the
+revision control system. If you’re not familiar with the Linux
+terminal, then you can read this <a class="reference external" href="http://www.tuxarena.com/static/intro_linux_cli.php">brief guide to the terminal</a>. That guide
+focusses on the Bash shell, which is the one we will use.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>In VSCode you can get a terminal by selecting New Terminal from the
+Terminal menu. This should open a Terminal window on your VS Code
+screen.  To the top right of this window is a pulldown menu to
+select the interpreter, which needs to be Bash. The image to the
+right shows this pulldown menu.</p>
+<a class="reference internal image-reference" href="_images/bash.png"><img alt="_images/bash.png" class="align-right" src="_images/bash.png" style="width: 20ex;" /></a>
+</div>
+</section>
+<section id="python">
+<h2>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h2>
+<p>Your implementation will be written in Python based on a code skeleton
+provided. This means that you’ll need a certain familiarity with the
+Python language. But don’t panic! Python is a very easy language to
+work with. This module will use Python 3.</p>
+<p>If you haven’t done any Python before, then go through <a class="reference external" href="https://docs.python.org/3/tutorial/index.html">the official
+Python tutorial</a>
+(Sections 1 to 5 are a good start).</p>
+<p>The Matlab-like array features of Python are provided by <a class="reference external" href="http://www.numpy.org/">Numpy</a> for which there is a <a class="reference external" href="http://wiki.scipy.org/Tentative_NumPy_Tutorial">helpful tutorial</a>. There is also a
+handy <a class="reference external" href="http://wiki.scipy.org/NumPy_for_Matlab_Users">guide for Matlab users</a>. In that context, the
+code provided in this course will always use Numpy arrays, and never
+Numpy matrices.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>In VSCode, to ensure you are using the correct Python interpreter,</p>
+<ol class="arabic simple">
+<li><p>Go to the View menu and select the Command Palette.</p></li>
+<li><p>Start typing <cite>Python: Select Interpreter</cite>, and click on it when it
+comes up.</p></li>
+<li><p>Select the correct Python interpreter from the pulldown menu (on
+Mac, the one you installed from Homebrew or Anaconda, on
+Windows, the one that you installed from Anaconda).</p></li>
+</ol>
+</div>
+</section>
+<section id="github-and-git">
+<span id="bitbucket-git"></span><h2>GitHub and git<a class="headerlink" href="#github-and-git" title="Permalink to this headline">¶</a></h2>
+<p>Revision control is a mechanism for recording and managing different
+versions of changing software. This enables changes to be tracked and
+helps in the process of debugging code, and in managing conflicts when
+more than one person is working on the same project. Revision control
+can be combined with online hosting to provide secure backups and to
+enable you to work on code from different locations.</p>
+<p>In this module, you’ll use revision control to access the skeleton
+files, and to update those files if and when they change. You’ll also
+use the same revision control system to record the edits you make over
+time and to submit your work for feedback and, eventually, marking.</p>
+<p>We will be using the revision control system <a class="reference external" href="http://git-scm.com/">git</a>, which is the current state of the art and is
+widely adopted. We’ll be combining git with the online hosting service GitHub.</p>
+<section id="getting-started-with-git-and-github">
+<h3>Getting started with git and GitHub<a class="headerlink" href="#getting-started-with-git-and-github" title="Permalink to this headline">¶</a></h3>
+<p>The very first thing you’ll need is a GitHub account. Navigate to
+<a class="reference external" href="https://github.com/">GitHub</a> and sign up.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Make sure you use your Imperial College email address on
+GitHub. This enables you to request unlimited free private GitHub
+repositories and other goodies by <a class="reference external" href="https://education.github.com/pack">applying here</a>. You don’t strictly need this
+for this module, but there are some nice things in there that you
+might want anyway.</p>
+</div>
+<p>Next you need to do just a little Git setup. At the Terminal, type the
+following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">user</span><span class="o">.</span><span class="n">name</span> <span class="s2">&quot;Jane Bloggs&quot;</span>
+</pre></div>
+</div>
+<p>Obviously you put in your own name rather than “Jane Bloggs”. Similarly, you need to set your email:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">user</span><span class="o">.</span><span class="n">email</span> <span class="s2">&quot;Jane.Bloggs12@imperial.ac.uk&quot;</span>
+</pre></div>
+</div>
+<p>Once again, you obviously use your own email address. Now there is a
+small setting which makes the output of git colourful and therefore a
+lot easier to read:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">color</span><span class="o">.</span><span class="n">ui</span> <span class="s2">&quot;auto&quot;</span>
+</pre></div>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>If you are a more confident computer user, you could go ahead and
+set up git to work with ssh, the secure shell. This will save a lot
+of password typing but it’s not essential so if you are not so
+confident with computers, you can skip this bit. You can follow these <a class="reference external" href="https://help.github.com/articles/generating-an-ssh-key/">ssh key generating instructions</a>.</p>
+</div>
+<p>If you haven’t used Git before, it might be a good idea to look at the
+excellent <a class="reference external" href="https://swcarpentry.github.io/git-novice/">git tutorial</a>
+over at Software Carpentry.</p>
+</section>
+</section>
+<section id="setting-up-your-repository">
+<h2>Setting up your repository<a class="headerlink" href="#setting-up-your-repository" title="Permalink to this headline">¶</a></h2>
+<p>We’re using a tool called <a class="reference external" href="https://classroom.github.com">GitHub classroom</a> to automate the creation of your
+copies of the repository. Follow this <a class="reference external" href="https://classroom.github.com/a/_2R-riXF">create your personal repository
+for the course</a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>When you follow the link, you will be asked to select your
+“school’s identifier” from a list. This will be your user ID that
+you use to log into Outlook (e.g., sbc21). If you don’t find your
+ID on the list, <em>do not</em> click “Skip to the next step”. And, <em>do
+not</em> click someone else’s ID! Instead, contact Professor Cotter
+and ask to have your user ID added. We need to do this so that we
+can grade your work.</p>
+</div>
 <section id="cloning-a-local-copy">
 <h3>Cloning a local copy<a class="headerlink" href="#cloning-a-local-copy" title="Permalink to this headline">¶</a></h3>
-<p>At the command line on your working machine type:</p>
+<p>At the Terminal on your working machine type:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="o">&lt;</span><span class="n">url</span><span class="o">&gt;</span> <span class="n">comp</span><span class="o">-</span><span class="n">lin</span><span class="o">-</span><span class="n">alg</span><span class="o">-</span><span class="n">course</span>
 </pre></div>
 </div>
 <p>Substituting your git repository url for &lt;url&gt;. Your git repository
-url can be found by clicking on <cite>clone or download</cite> at the top right of your repository page on GitHub.</p>
+url can be found by clicking on <cite>clone or download</cite> at the top right
+of your repository page on GitHub. You have to select the <cite>ssh</cite> version
+of the repository, and it may be necessary to set up “ssh keys” for this.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>If you are using VSCode, you can do this by:</p>
+<ol class="arabic simple">
+<li><p>Opening the Command Palette using the View menu.</p></li>
+<li><p>Type <cite>git clone</cite> into the Command Palette prompt and paste in
+the repository URL.</p></li>
+</ol>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>If you get stuck cloning your repository, try reading the <a class="reference external" href="https://imperial-fons-computing.github.io/git.html">FONS help on git</a>.</p>
+</div>
 </section>
 <section id="setting-up-your-venv">
 <h3>Setting up your venv<a class="headerlink" href="#setting-up-your-venv" title="Permalink to this headline">¶</a></h3>
-<p>We’re going to use a Python venv. This is a private Python environment
-in which we’ll install the packages we need, including our own
-implementation exercise. This minimises interference between this
-project and anything else which might be using Python on the
-system. We can run a script from the git repository to make the venv:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">comp</span><span class="o">-</span><span class="n">lin</span><span class="o">-</span><span class="n">alg</span><span class="o">-</span><span class="n">course</span><span class="o">/</span><span class="n">scripts</span><span class="o">/</span><span class="n">cla_install_venv</span> <span class="n">venv</span>
+<p>We’re going to use a Python Virtual Environment (venv). This is a
+private Python environment in which we’ll install the packages we
+need, including our own implementation exercise. This minimises
+interference between this project and anything else which might be
+using Python on the system.  You need to get this right or we won’t be
+able to mark your code correctly.</p>
+<p>In your Terminal, change folder to the repository that you just
+checked out (this should contain folders called <cite>doc</cite>, <cite>cla_utils</cite>,
+<cite>test</cite>, etc.). Then, create the venv by typing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="n">clavenv</span>
 </pre></div>
 </div>
-<p>This has to install several packages in the venv, so it might take a
-few minutes to run.</p>
-<p>On Windows, the set of commands is somewhat different. In this case
-you would run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">comp</span><span class="o">-</span><span class="n">lin</span><span class="o">-</span><span class="n">alg</span><span class="o">-</span><span class="n">course</span><span class="o">/</span><span class="n">scripts</span><span class="o">/</span><span class="n">cla_install_venv_win</span> <span class="n">venv</span>
-</pre></div>
+<p>This creates a venv called “clavenv” (it is recommended you keep this
+name to avoid spuriously committing venv files to the git repository).</p>
+<p>In VSCode, you will be asked if you want to make this venv the default
+for your project. Select “yes” as this will help to ensure that it is
+activated.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>To change folder in the terminal, type <cite>cd &lt;path&gt;</cite> where <cite>&lt;path&gt;</cite>
+is the path to the folder you want to change to. Paths can be
+“absolute” e.g. <cite>/home/users/jbloggs/comp-lin-alg/</cite> or “relative”
+e.g. if you are currently in <cite>/home/users/jbloggs</cite> then you can use
+<cite>comp-lin-alg</cite>.  Typing <cite>pwd</cite> shows the current path, and typing
+<cite>ls</cite> shows the contents of the current folder.  Typing <cite>cd ..</cite>
+changes to the enclosing folder, and typing <cite>cd -</cite> changes back to
+the previous folder. For more information see the “brief guide to
+the terminal” linked above.</p>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>If you get stuck with your venv, try reading the <a class="reference external" href="https://imperial-fons-computing.github.io/python.html#python-virtual-environments">FONS help on venvs</a>.</p>
 </div>
 </section>
 <section id="activating-your-venv">
 <h3>Activating your venv<a class="headerlink" href="#activating-your-venv" title="Permalink to this headline">¶</a></h3>
 <p><strong>Every time</strong> you want to work on the implementation exercise, you need
-to activate the venv. On Linux or Mac do this with:</p>
+to activate the venv. On Linux or Mac do this in the Terminal with:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">venv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
 </pre></div>
 </div>
-<p>while on Windows the command is:</p>
+<p>This assumes that you have already changed folder to the repository
+that you just checked out (this should contain folders called <cite>doc</cite>,
+<cite>cla_utils</cite>, <cite>test</cite>, etc.). Otherwise, you need to provide the full
+path to <cite>venv/bin/activate</cite>.</p>
+<p>On Windows the command is:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">venv</span><span class="o">/</span><span class="n">Scripts</span><span class="o">/</span><span class="n">activate</span>
 </pre></div>
 </div>
-<p>Obviously if you are typing this in a directory other than the one
+<p>Obviously if you are typing this in a folder other than the one
 containing the venv, you need to modify the path accordingly.</p>
 </section>
+<section id="installing-the-course-package-to-the-venv">
+<h3>Installing the course package to the venv<a class="headerlink" href="#installing-the-course-package-to-the-venv" title="Permalink to this headline">¶</a></h3>
+<p>In this course we will be working on skeleton code stored as a Python
+package in the repository. This means that we will be able to import
+everything as a module using <cite>from cla_utils import *</cite> without needing
+to be in a particular directory. This is what makes the tests work,
+for example.</p>
+<dl class="simple">
+<dt>To do this:</dt><dd><ol class="arabic simple">
+<li><p>Activate the venv as above.</p></li>
+<li><p>Change folder to the repository that you just checked out (this</p></li>
+</ol>
+</dd>
+<dt>should contain folders called <cite>doc</cite>, <cite>cla_utils</cite>, <cite>test</cite>, etc.).</dt><dd><ol class="arabic simple" start="3">
+<li><p>Type <cite>python -m pip install -e .</cite></p></li>
+</ol>
+</dd>
+</dl>
+<p>The package has a dependency on Numpy (Numeric Python). To install
+Numpy, follow steps 1-2 above and then type <cite>python -m pip install
+numpy</cite>.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Here is some useful information on <a class="reference external" href="https://object-oriented-python.github.io/2_programs_in_files.html#modules">Modules</a>
+and <a class="reference external" href="https://object-oriented-python.github.io/2_programs_in_files.html#packages">Packages</a>
+that might be useful later.</p>
+</div>
 </section>
-<section id="skeleton-code-documentation">
-<h2>Skeleton code documentation<a class="headerlink" href="#skeleton-code-documentation" title="Permalink to this headline">¶</a></h2>
-<p>There is web documentation for the complete <a class="reference internal" href="cla_utils.html"><span class="doc">cla_utils package</span></a>. There is
-also an <a class="reference internal" href="genindex.html"><span class="std std-ref">alphabetical index</span></a> and a <a class="reference internal" href="search.html"><span class="std std-ref">search page</span></a>.</p>
 </section>
 <section id="how-to-do-the-computational-exercises">
 <h2>How to do the computational exercises<a class="headerlink" href="#how-to-do-the-computational-exercises" title="Permalink to this headline">¶</a></h2>
@@ -118,38 +328,114 @@ also an <a class="reference internal" href="genindex.html"><span class="std std-
 infrastructure you will need is provided already. Your task is to
 write the crucial mathematical operations at key points, as described
 on this website.</p>
-<p>The code on which you will build is in the <code class="docutils literal notranslate"><span class="pre">cla_utils</span></code> directory of
+<p>The code on which you will build is in the <code class="docutils literal notranslate"><span class="pre">cla_utils</span></code> folder of
 your repository. The code has embedded documentation which is used to
 build the <a class="reference internal" href="cla_utils.html"><span class="doc">cla_utils package</span></a> web documentation.</p>
 <p>As you do the exercises, <strong>commit your code</strong> to your repository. This
 will build up your computational exercise solution sets. You should
 commit code early and often - small commits are easier to understand
-and debug than large ones. <strong>Do not commit to the feedback branch</strong>
-This branch is just there so that we can provide feedback on your
-changes to the main branch.</p>
+and debug than large ones.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>In Git, we use the Terminal to commit changes and push them to the
+remote repository on Github Classroom. A repository is a record of
+the history of the code as you are working.  To add a file to the
+list of files whose changes will be committed to the repository,
+type <cite>git add &lt;filename&gt; -m &lt;log message&gt;</cite>, where <cite>&lt;log message&gt;</cite>
+is a short description of the changes you made.  To commit those
+changes, type <cite>git commit</cite>. They will now be saved locally.  To
+push these changes to the “remote” repository on Github Classroom,
+type <cite>git push</cite> (you may be asked to set the name of the remote,
+just paste the suggested command into the Terminal). To pull
+changes from the remote repository on Github Classroom, type <cite>git
+pull</cite>. For further features and better explanation, please take
+a look at the Github Tutorial linked above.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Never use <cite>git add *</cite>, since this will add unwanted files to the
+repository which shouldn’t be there. You should never add machine
+specific files such as your venv, or <cite>.pyc</cite> files which are
+temporary machine specific files generated by the Python
+interpreter.  This really slows down the marking process and makes
+the markers grumpy. You should only add the <cite>.py</cite> files that you
+are working on.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Do not commit to the feedback branch.  This branch is just there so
+that we can provide feedback on your changes to the main branch,
+and if you commit there, it will mess up our marking system.</p>
+</div>
+</section>
+<section id="running-your-work">
+<h2>Running your work<a class="headerlink" href="#running-your-work" title="Permalink to this headline">¶</a></h2>
+<p>If you want to execute your code written in <cite>cla_utils</cite>, this can be
+imported into IPython (in the terminal, or using a Jupyter notebook),
+or in a script.</p>
+<p>To use IPython, type <cite>ipython</cite> in the Terminal (when the venv is
+activated). You may need to install it first using <cite>python -m install
+ipython</cite>. Then you can import <cite>cla_utils</cite> interactively using <cite>from
+cla_utils import *</cite>. To exit IPython type Ctrl-D.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Here is some <a class="reference external" href="https://object-oriented-python.github.io/2_programs_in_files.html#ipython">Information about IPython</a>.</p>
+</div>
+<p>If you also import <cite>numpy</cite> then you can create
+example <cite>numpy</cite> arrays and pass them to <cite>cla_utils</cite> functions to try
+them out. You can also do this in a script, e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cla_utils</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.0</span><span class="o">+</span><span class="mf">1.0</span><span class="n">j</span><span class="p">],</span>
+                <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">3.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">],</span>
+                <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">],</span>
+                <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.</span><span class="p">],</span>
+                <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">]])</span>
+<span class="n">xr</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.</span><span class="p">,</span><span class="mf">2.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.3</span><span class="p">])</span>
+<span class="n">xi</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.1</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="o">-</span><span class="mf">0.7</span><span class="p">])</span>
+<span class="n">ABiC</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">xr</span><span class="p">,</span> <span class="n">xi</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>After saving your text to a script with a filename ending in <cite>.py</cite>,
+e.g.  <cite>run_ABiC.py</cite>, you can execute the script in the Terminal by
+typing <cite>python run_ABiC.py</cite> (remember to change to the folder where
+the file is located). Scripts are better because you can run the whole
+thing again more easily if you make a mistake, and you can save them.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Here is some <a class="reference external" href="https://object-oriented-python.github.io/2_programs_in_files.html#python-scripts-and-text-editors">information about Python scripts</a>.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Don’t clutter up your repository by adding these experimental scripts
+with <cite>git add</cite>. If you want to store them it is best to use another
+separate git repository for that.</p>
+</div>
 </section>
 <section id="testing-your-work">
 <h2>Testing your work<a class="headerlink" href="#testing-your-work" title="Permalink to this headline">¶</a></h2>
 <p>As you complete the exercises, there will often be test scripts which
-exercise the code you have just written. These are located in the
-<code class="docutils literal notranslate"><span class="pre">test</span></code> directory and employ the <a class="reference external" href="http://pytest.org/">pytest</a>
+check the code you have just written. These are located in the
+<code class="docutils literal notranslate"><span class="pre">test</span></code> folder and employ the <a class="reference external" href="http://pytest.org/">pytest</a>
 testing framework. You run the tests with:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">py</span><span class="o">.</span><span class="n">test</span> <span class="n">test_script</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
-<p>from the bash command line, replacing <code class="docutils literal notranslate"><span class="pre">test_script.py</span></code> with the appropriate
+<p>from the bash Terminal, replacing <code class="docutils literal notranslate"><span class="pre">test_script.py</span></code> with the appropriate
 test file name. The <code class="docutils literal notranslate"><span class="pre">-x</span></code> option to <code class="docutils literal notranslate"><span class="pre">py.test</span></code> will cause the test
 to stop at the first failure it finds, which is often the best place
 to start fixing a problem. For those familiar with debuggers, the
 <code class="docutils literal notranslate"><span class="pre">--pdb</span></code> option will drop you into the Python debugger at the first
 error.</p>
 <p>You can also run all the tests by running <code class="docutils literal notranslate"><span class="pre">py.test</span></code> on the tests
-directory. This works particularly well with the -x option, resulting
+folder. This works particularly well with the -x option, resulting
 in the tests being run in course order and stopping at the first
 failing test:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">py</span><span class="o">.</span><span class="n">test</span> <span class="o">-</span><span class="n">x</span> <span class="n">tests</span><span class="o">/</span>
 </pre></div>
 </div>
+<p>You should make sure that your code passes tests before moving on
+to the next exercise.</p>
 </section>
 <section id="coding-style-and-commenting">
 <h2>Coding style and commenting<a class="headerlink" href="#coding-style-and-commenting" title="Permalink to this headline">¶</a></h2>
@@ -164,6 +450,11 @@ a more experienced programmer, to follow PEP8 in your
 implementation. However nobody is going to lose marks for PEP8
 failures.</p>
 </section>
+<section id="skeleton-code-documentation">
+<h2>Skeleton code documentation<a class="headerlink" href="#skeleton-code-documentation" title="Permalink to this headline">¶</a></h2>
+<p>There is web documentation for the complete <a class="reference internal" href="cla_utils.html"><span class="doc">cla_utils package</span></a>. There is
+also an <a class="reference internal" href="genindex.html"><span class="std std-ref">alphabetical index</span></a> and a <a class="reference internal" href="search.html"><span class="std std-ref">search page</span></a>.</p>
+</section>
 </section>
 
 
@@ -174,7 +465,7 @@ failures.</p>
       <div class="clearer"></div>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, Colin J. Cotter.
+        &#169; Copyright 2020-2022, Colin J. Cotter.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
     </div>
   </body>

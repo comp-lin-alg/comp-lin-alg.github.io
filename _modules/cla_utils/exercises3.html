@@ -5,16 +5,15 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>cla_utils.exercises3 &#8212; Computational linear algebra course 2020.0 documentation</title>
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/fenics.css" type="text/css" />
+    <title>cla_utils.exercises3 &#8212; Computational linear algebra course 2022.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/fenics.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
-    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/proof.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
 <!--[if lte IE 6]>
@@ -52,7 +51,8 @@
 <div class="viewcode-block" id="householder"><a class="viewcode-back" href="../../cla_utils.html#cla_utils.exercises3.householder">[docs]</a><span class="k">def</span> <span class="nf">householder</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">kmax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Given a real mxn matrix A, find the reduction to upper triangular matrix R</span>
-<span class="sd">    using Householder transformations.</span>
+<span class="sd">    using Householder transformations. The reduction should be done &quot;in-place&quot;,</span>
+<span class="sd">    so that A is transformed to R.</span>
 
 <span class="sd">    :param A: an mxn-dimensional numpy array</span>
 <span class="sd">    :param kmax: an integer, the number of columns of A to reduce \</span>
@@ -66,9 +66,22 @@
     <span class="k">if</span> <span class="n">kmax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">kmax</span> <span class="o">=</span> <span class="n">n</span>
 
-    <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+    <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
-    <span class="k">return</span> <span class="n">R</span></div>
+
+<div class="viewcode-block" id="solve_U"><a class="viewcode-back" href="../../cla_utils.html#cla_utils.exercises3.solve_U">[docs]</a><span class="k">def</span> <span class="nf">solve_U</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Solve systems Ux_i=b_i for x_i with U upper triangular, i=1,2,...,k</span>
+
+<span class="sd">    :param U: an mxm-dimensional numpy array, assumed upper triangular</span>
+<span class="sd">    :param b: an mxk-dimensional numpy array, with ith column containing </span>
+<span class="sd">       b_i</span>
+<span class="sd">    :return x: an mxk-dimensional numpy array, with ith column containing </span>
+<span class="sd">       the solution x_i</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+                     
+    <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
 
 <div class="viewcode-block" id="householder_solve"><a class="viewcode-back" href="../../cla_utils.html#cla_utils.exercises3.householder_solve">[docs]</a><span class="k">def</span> <span class="nf">householder_solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
@@ -128,8 +141,8 @@
       <div class="clearer"></div>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, Colin J. Cotter.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.3.
+        &#169; Copyright 2020-2022, Colin J. Cotter.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
     </div>
   </body>
 </html>
