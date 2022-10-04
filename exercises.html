@@ -255,6 +255,20 @@ checked out (this should contain folders called <cite>doc</cite>, <cite>cla_util
 </div>
 <p>This creates a venv called “clavenv” (it is recommended you keep this
 name to avoid spuriously committing venv files to the git repository).</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>There is an alternative method if you are using Anaconda Python. In
+this case, you need to type:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">--</span><span class="n">name</span> <span class="n">clavenv</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>If you decide to give your venv a different name, please add that
+name to the .gitignore file in your git repository. If you don’t
+know what this means, probably best to use the name “clavenv”.</p>
+</div>
 <p>In VSCode, you will be asked if you want to make this venv the default
 for your project. Select “yes” as this will help to ensure that it is
 activated.</p>
@@ -292,6 +306,11 @@ path to <cite>venv/bin/activate</cite>.</p>
 </div>
 <p>Obviously if you are typing this in a folder other than the one
 containing the venv, you need to modify the path accordingly.</p>
+<p>If you are using Anaconda Python, you need to instead type:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">activate</span> <span class="n">clavenv</span>
+<span class="n">conda</span> <span class="n">deactivate</span>
+</pre></div>
+</div>
 </section>
 <section id="installing-the-course-package-to-the-venv">
 <h3>Installing the course package to the venv<a class="headerlink" href="#installing-the-course-package-to-the-venv" title="Permalink to this headline">¶</a></h3>
@@ -418,20 +437,20 @@ separate git repository for that.</p>
 check the code you have just written. These are located in the
 <code class="docutils literal notranslate"><span class="pre">test</span></code> folder and employ the <a class="reference external" href="http://pytest.org/">pytest</a>
 testing framework. You run the tests with:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">py</span><span class="o">.</span><span class="n">test</span> <span class="n">test_script</span><span class="o">.</span><span class="n">py</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pytest</span> <span class="n">test_script</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
 <p>from the bash Terminal, replacing <code class="docutils literal notranslate"><span class="pre">test_script.py</span></code> with the appropriate
-test file name. The <code class="docutils literal notranslate"><span class="pre">-x</span></code> option to <code class="docutils literal notranslate"><span class="pre">py.test</span></code> will cause the test
+test file name. The <code class="docutils literal notranslate"><span class="pre">-x</span></code> option to <code class="docutils literal notranslate"><span class="pre">pytest</span></code> will cause the test
 to stop at the first failure it finds, which is often the best place
 to start fixing a problem. For those familiar with debuggers, the
 <code class="docutils literal notranslate"><span class="pre">--pdb</span></code> option will drop you into the Python debugger at the first
 error.</p>
-<p>You can also run all the tests by running <code class="docutils literal notranslate"><span class="pre">py.test</span></code> on the tests
+<p>You can also run all the tests by running <code class="docutils literal notranslate"><span class="pre">pytest</span></code> on the tests
 folder. This works particularly well with the -x option, resulting
 in the tests being run in course order and stopping at the first
 failing test:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">py</span><span class="o">.</span><span class="n">test</span> <span class="o">-</span><span class="n">x</span> <span class="n">tests</span><span class="o">/</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pytest</span> <span class="o">-</span><span class="n">x</span> <span class="n">tests</span><span class="o">/</span>
 </pre></div>
 </div>
 <p>You should make sure that your code passes tests before moving on
