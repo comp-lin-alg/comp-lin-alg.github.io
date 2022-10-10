@@ -709,11 +709,7 @@ vectors <span class="math notranslate nohighlight">\(b_1,b_2,\ldots,b_k\)</span>
 <a class="reference internal" href="cla_utils.html#cla_utils.exercises3.householder" title="cla_utils.exercises3.householder"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.householder()</span></code></a>.  If you have not already
 done so, you will need to modified
 <a class="reference internal" href="cla_utils.html#cla_utils.exercises3.householder" title="cla_utils.exercises3.householder"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.householder()</span></code></a> to use the <code class="docutils literal notranslate"><span class="pre">kmax</span></code>
-argument. You may make use of the built-in triangular solve
-algorithm <a class="reference external" href="http://scipy.github.io/devdocs/reference/generated/scipy.linalg.solve_triangular.html#scipy.linalg.solve_triangular" title="(in SciPy v1.10.0.dev0+2025.74946d2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.linalg.solve_triangular()</span></code></a> (we shall consider
-triangular matrix algorithms briefly later). The test script
-<code class="docutils literal notranslate"><span class="pre">test_exercises3.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will also test this
-function.</p>
+argument. You will also need <a class="reference internal" href="cla_utils.html#cla_utils.exercises3.solve_U" title="cla_utils.exercises3.solve_U"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.solve_U()</span></code></a>.</p>
 </div></div><p>If we really need <span class="math notranslate nohighlight">\(Q\)</span>, we can get it by matrix-vector products with
 each element of the canonical basis <span class="math notranslate nohighlight">\((e_1,e_2,\ldots,e_n)\)</span>.  This
 means that first we need to compute a matrix-vector product <span class="math notranslate nohighlight">\(Qx\)</span> with
