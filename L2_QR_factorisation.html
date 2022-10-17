@@ -195,14 +195,14 @@ for code blocks in pseudo-code in these notes.)</p>
         <span class="proof-type">Exercise 2.4</span>
         
     </div><div class="proof-content">
-<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <a class="reference internal" href="cla_utils.html#cla_utils.exercises2.GS_classical" title="cla_utils.exercises2.GS_classical"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises2.GS_classical()</span></code></a> function has been
-left unimplemented. It should implement the classical Gram-Schmidt
-algorithm above, using Numpy slice notation so that only one Python
-for loop is used. The function should work “in place” by making a
-copy of <span class="math notranslate nohighlight">\(A\)</span> and then changing the values in the copy, without
-introducing additional intermediate arrays (you will need to create
-a new array to store <span class="math notranslate nohighlight">\(R\)</span>). The test script <code class="docutils literal notranslate"><span class="pre">test_exercises2.py</span></code>
-in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will test this function.</p>
+<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <a class="reference internal" href="cla_utils.html#cla_utils.exercises2.GS_classical" title="cla_utils.exercises2.GS_classical"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises2.GS_classical()</span></code></a> function
+has been left unimplemented. It should implement the classical
+Gram-Schmidt algorithm above, using Numpy slice notation so that
+only one Python for loop is used. The function should work “in
+place” by changing the values in <span class="math notranslate nohighlight">\(A\)</span>, without introducing
+additional intermediate arrays (you will need to create a new array
+to store <span class="math notranslate nohighlight">\(R\)</span>). The test script <code class="docutils literal notranslate"><span class="pre">test_exercises2.py</span></code> in the
+<code class="docutils literal notranslate"><span class="pre">test</span></code> directory will test this function.</p>
 </div></div><div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <p>The <span class="math notranslate nohighlight">\((\ddagger)\)</span> symbol in an exercise indicates that the code for
@@ -321,9 +321,9 @@ left unimplemented. It should implement the modified Gram-Schmidt
 algorithm above, using Numpy slice notation where possible.
 What is the minimal number of Python
 for loops possible?</p>
-<p>The function should work “in place” by making a
-copy of <span class="math notranslate nohighlight">\(A\)</span> and then changing those values, without introducing
-additional intermediate arrays. The test script
+<p>The function should work “in place” by changing the values in <span class="math notranslate nohighlight">\(A\)</span>,
+without introducing additional intermediate arrays (you will need
+to create a new array to store <span class="math notranslate nohighlight">\(R\)</span>). The test script
 <code class="docutils literal notranslate"><span class="pre">test_exercises2.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will test this
 function.</p>
 </div></div><div class="proof proof-type-exercise" id="id6">
@@ -836,7 +836,7 @@ squares problem minimising <span class="math notranslate nohighlight">\(\|Ax-b\|
 by forming an appropriate augmented matrix <span class="math notranslate nohighlight">\(\hat{A}\)</span>, calling
 <a class="reference internal" href="cla_utils.html#cla_utils.exercises3.householder" title="cla_utils.exercises3.householder"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.householder()</span></code></a> and extracting appropriate
 subarrays using slice notation, before using
-<a class="reference external" href="http://scipy.github.io/devdocs/reference/generated/scipy.linalg.solve_triangular.html#scipy.linalg.solve_triangular" title="(in SciPy v1.10.0.dev0+2025.74946d2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.linalg.solve_triangular()</span></code></a> to solve the resulting upper
+<a class="reference external" href="http://scipy.github.io/devdocs/reference/generated/scipy.linalg.solve_triangular.html#scipy.linalg.solve_triangular" title="(in SciPy v1.10.0.dev0+2059.a082eb4)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.linalg.solve_triangular()</span></code></a> to solve the resulting upper
 triangular system, before returning the solution <span class="math notranslate nohighlight">\(x\)</span>. The test
 script <code class="docutils literal notranslate"><span class="pre">test_exercises3.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will also
 test this function.</p>
