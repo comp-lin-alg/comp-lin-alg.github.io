@@ -413,7 +413,7 @@ for that stage). Then, we end up with the result of Gaussian elimination
 with pivoting,</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
-\[L_{m-1}P_{m-1}\ldots L_2P_2L_1P_1 = U.\]</div>
+\[L_{m-1}P_{m-1}\ldots L_2P_2L_1P_1A = U.\]</div>
 </div></blockquote>
 <details>
 <summary>
@@ -430,8 +430,8 @@ preserve the lower triangular matrix structure.</p>
 of Gaussian elimination. We have</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
-\[A_2 = L_2P_2L_1P_1 = L_2\underbrace{P_2L_1P_2}_{=L_1^{(2)}}P_2P_1
-= L_2L_1^{(2)}P_2P_1,\]</div>
+\[A_2 = L_2P_2L_1P_1A = L_2\underbrace{P_2L_1P_2}_{=L_1^{(2)}}P_2P_1A
+= L_2L_1^{(2)}P_2P_1A,\]</div>
 </div></blockquote>
 <p>having used <span class="math notranslate nohighlight">\(P_2^{-1}=P_2\)</span>. Left multiplication with <span class="math notranslate nohighlight">\(P_2\)</span> exchanges
 row 2 with some other row <span class="math notranslate nohighlight">\(j\)</span> with <span class="math notranslate nohighlight">\(j&gt;2\)</span>. Hence, right multiplication
@@ -446,8 +446,8 @@ is the same as <span class="math notranslate nohighlight">\(L_1\)</span> but wit
 <p>Moving on to the next stage, and we have</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
-\[A_3 = L_3P_3L_2L_1P_2P_1 = L_3\underbrace{P_3L_2P_3}_{=L_2^{(3)}}
-\underbrace{P_3L_1P_3}_{=L_1^{(3)}}P_3P_2P_1.\]</div>
+\[A_3 = L_3P_3L_2L_1P_2P_1A = L_3\underbrace{P_3L_2P_3}_{=L_2^{(3)}}
+\underbrace{P_3L_1P_3}_{=L_1^{(3)}}P_3P_2P_1A.\]</div>
 </div></blockquote>
 <p>By similar arguments we see that <span class="math notranslate nohighlight">\(L_2^{(3)}\)</span> is the same as <span class="math notranslate nohighlight">\(L_2\)</span> but
 with <span class="math notranslate nohighlight">\(l_{23}\)</span> exchanged with <span class="math notranslate nohighlight">\(l_{2j}\)</span> for some (different) <span class="math notranslate nohighlight">\(j\)</span>, and
@@ -456,7 +456,7 @@ with <span class="math notranslate nohighlight">\(l_{23}\)</span> exchanged with
 <blockquote>
 <div><div class="math notranslate nohighlight">
 \[\underbrace{L_{m-1}^{(m-1)}\ldots L_2^{(m-1)}L_1^{(m-1)}}_{L^{-1}}
-\underbrace{P_{m-1}\ldots P_2P_1}_P = U,\]</div>
+\underbrace{P_{m-1}\ldots P_2P_1}_PA = U,\]</div>
 </div></blockquote>
 <p>where we just need to keep track of the permutations in the <span class="math notranslate nohighlight">\(L\)</span>
 matrices as we go through the Gaussian elimination stages. These <span class="math notranslate nohighlight">\(L\)</span>

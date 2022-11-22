@@ -114,7 +114,7 @@ over <span class="math notranslate nohighlight">\(j\)</span>, which we can estim
 <blockquote>
 <div><div class="math notranslate nohighlight">
 \[N_{\mbox{FLOPS}} \sim \sum_{i=1}^n \sum_{j=i+1}^n 4m
-\sim 4m \int_0^n \int_{x}^n x'\,d x' \,d x
+\sim 4m \int_0^n \int_{x}^n \,d x' \,d x
 = 4m\frac{n^2}{2} = 2mn^2,\]</div>
 </div></blockquote>
 <p>as suggested above.</p>
@@ -460,7 +460,7 @@ Supplementary video</summary><div class="video_wrapper" style="">
 <iframe allowfullscreen="true" src="https://player.vimeo.com/video/450211558" style="border: 0; height: 345px; width: 560px">
 </iframe></div></details><p>As a first example, consider the problem of finding the square root,
 <span class="math notranslate nohighlight">\(f:x\mapsto \sqrt{x}\)</span>, a one dimensional problem. In this case,
-<span class="math notranslate nohighlight">\(J=x^{1/2}/2\)</span>. The (linear) condition number is</p>
+<span class="math notranslate nohighlight">\(J=x^{-1/2}/2\)</span>. The (linear) condition number is</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
 \[\kappa = \frac{|x^{-1/2}/2||x|}{|x^{1/2}|}=1/2.\]</div>
