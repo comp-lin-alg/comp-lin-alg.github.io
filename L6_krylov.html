@@ -1,19 +1,17 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>6. Iterative Krylov methods for \(Ax=b\) &#8212; Computational linear algebra course 2022.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/fenics.css" />
     <link rel="stylesheet" type="text/css" href="_static/proof.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/proof.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -48,7 +46,7 @@
           <div class="body" role="main">
             
   <section id="iterative-krylov-methods-for-ax-b">
-<h1><span class="section-number">6. </span>Iterative Krylov methods for <span class="math notranslate nohighlight">\(Ax=b\)</span><a class="headerlink" href="#iterative-krylov-methods-for-ax-b" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">6. </span>Iterative Krylov methods for <span class="math notranslate nohighlight">\(Ax=b\)</span><a class="headerlink" href="#iterative-krylov-methods-for-ax-b" title="Permalink to this heading">¶</a></h1>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -72,7 +70,7 @@ explicitly. Instead one can just provide a subroutine that implements
 matrix-vector multiplication in some way; this is called a
 “matrix-free” implementation.</p>
 <section id="krylov-subspace-methods">
-<h2><span class="section-number">6.1. </span>Krylov subspace methods<a class="headerlink" href="#krylov-subspace-methods" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">6.1. </span>Krylov subspace methods<a class="headerlink" href="#krylov-subspace-methods" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -93,7 +91,7 @@ next also provides a neat way to solve the equation when projected
 onto the Krylov subspace.</p>
 </section>
 <section id="arnoldi-iteration">
-<h2><span class="section-number">6.2. </span>Arnoldi iteration<a class="headerlink" href="#arnoldi-iteration" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">6.2. </span>Arnoldi iteration<a class="headerlink" href="#arnoldi-iteration" title="Permalink to this heading">¶</a></h2>
 <p>The key to Krylov subspace methods turns out to be the transformation
 of <span class="math notranslate nohighlight">\(A\)</span> to an upper Hessenberg matrix by orthogonal similarity
 transforms, so that <span class="math notranslate nohighlight">\(A=QHQ^*\)</span>. We have already looked at using
@@ -156,7 +154,7 @@ provide as pseudo-code below.</p>
         <span class="proof-type">Exercise 6.1</span>
         
     </div><div class="proof-content">
-<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <a class="reference internal" href="cla_utils.html#cla_utils.exercises10.arnoldi" title="cla_utils.exercises10.arnoldi"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises10.arnoldi()</span></code></a> function has
+<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises10.arnoldi()</span></code> function has
 been left unimplemented. It should implement the Arnoldi algorithm
 using Numpy array operations where possible, and return the <span class="math notranslate nohighlight">\(Q\)</span> and
 <span class="math notranslate nohighlight">\(H\)</span> matrices after the requested number of iterations is complete.
@@ -212,7 +210,7 @@ and project <span class="math notranslate nohighlight">\(Av\)</span> onto the th
 </div></blockquote>
 </section>
 <section id="gmres">
-<h2><span class="section-number">6.3. </span>GMRES<a class="headerlink" href="#gmres" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">6.3. </span>GMRES<a class="headerlink" href="#gmres" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -276,10 +274,10 @@ Supplementary video</summary><div class="video_wrapper" style="">
         <span class="proof-type">Exercise 6.2</span>
         
     </div><div class="proof-content">
-<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <a class="reference internal" href="cla_utils.html#cla_utils.exercises10.GMRES" title="cla_utils.exercises10.GMRES"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises10.GMRES()</span></code></a> function has
+<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises10.GMRES()</span></code> function has
 been left unimplemented. It should implement the basic GMRES
 algorithm above, using one loop over the iteration count. You can
-paste code from your <a class="reference internal" href="cla_utils.html#cla_utils.exercises10.arnoldi" title="cla_utils.exercises10.arnoldi"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises10.arnoldi()</span></code></a>
+paste code from your <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises10.arnoldi()</span></code>
 implementation, and you should use your least squares code to solve
 the least squares problem.  The test script <code class="docutils literal notranslate"><span class="pre">test_exercises10.py</span></code>
 in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will test this function.</p>
@@ -304,7 +302,7 @@ the least squares problem. These are not the same.</p>
 </div>
 </section>
 <section id="convergence-of-gmres">
-<h2><span class="section-number">6.4. </span>Convergence of GMRES<a class="headerlink" href="#convergence-of-gmres" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">6.4. </span>Convergence of GMRES<a class="headerlink" href="#convergence-of-gmres" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -380,16 +378,16 @@ to zero.</p>
         
     </div><div class="proof-content">
 <p>Investigate the convergence of the matrices provided by the
-functions <a class="reference internal" href="cla_utils.html#cla_utils.exercises10.get_AA100" title="cla_utils.exercises10.get_AA100"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises10.get_AA100()</span></code></a>,
-<a class="reference internal" href="cla_utils.html#cla_utils.exercises10.get_BB100" title="cla_utils.exercises10.get_BB100"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises10.get_BB100()</span></code></a>, and
-<a class="reference internal" href="cla_utils.html#cla_utils.exercises10.get_CC100" title="cla_utils.exercises10.get_CC100"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises10.get_CC100()</span></code></a>, by looking at the residual
+functions <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises10.get_AA100()</span></code>,
+<code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises10.get_BB100()</span></code>, and
+<code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises10.get_CC100()</span></code>, by looking at the residual
 after each iteration (which should be provided by
-<a class="reference internal" href="cla_utils.html#cla_utils.exercises10.GMRES" title="cla_utils.exercises10.GMRES"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises10.GMRES()</span></code></a> as specified in the docstring).
+<code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises10.GMRES()</span></code> as specified in the docstring).
 What do you observe? What is it about the three matrices that
 causes this different behaviour?</p>
 </div></div></section>
 <section id="preconditioning">
-<h2><span class="section-number">6.5. </span>Preconditioning<a class="headerlink" href="#preconditioning" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">6.5. </span>Preconditioning<a class="headerlink" href="#preconditioning" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -458,7 +456,7 @@ today.</p>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2020-2022, Colin J. Cotter.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
     </div>
   </body>
 </html>

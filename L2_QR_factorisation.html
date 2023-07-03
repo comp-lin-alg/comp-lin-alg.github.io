@@ -1,19 +1,17 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>2. QR Factorisation &#8212; Computational linear algebra course 2022.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/fenics.css" />
     <link rel="stylesheet" type="text/css" href="_static/proof.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/proof.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -49,7 +47,7 @@
           <div class="body" role="main">
             
   <section id="qr-factorisation">
-<h1><span class="section-number">2. </span>QR Factorisation<a class="headerlink" href="#qr-factorisation" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">2. </span>QR Factorisation<a class="headerlink" href="#qr-factorisation" title="Permalink to this heading">¶</a></h1>
 <p>A common theme in computational linear algebra is transformations
 of matrices and algorithms to implement them. A transformation is
 only useful if it can be computed efficiently and sufficiently
@@ -59,7 +57,7 @@ powerful and insightful transformation is the QR factorisation.
 In this section we will introduce the QR factorisation and some
 good and bad algorithms to compute it.</p>
 <section id="what-is-the-qr-factorisation">
-<h2><span class="section-number">2.1. </span>What is the QR factorisation?<a class="headerlink" href="#what-is-the-qr-factorisation" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.1. </span>What is the QR factorisation?<a class="headerlink" href="#what-is-the-qr-factorisation" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -93,9 +91,11 @@ that <span class="math notranslate nohighlight">\(A=QR\)</span>.</p>
 polynomial fitting. It is also at the core of one of the most widely
 used algorithms for finding eigenvalues of matrices. We shall discuss
 all of this later during this course.</p>
-<p>When <span class="math notranslate nohighlight">\(m &gt; n\)</span>, <span class="math notranslate nohighlight">\(R\)</span> must have all zero rows after the <span class="math notranslate nohighlight">\(n\)</span> block of <span class="math notranslate nohighlight">\(R\)</span>
+<p>When <span class="math notranslate nohighlight">\(m &gt; n\)</span>, <span class="math notranslate nohighlight">\(R\)</span> must have all zero rows after the <span class="math notranslate nohighlight">\(n`th row. Hence,
+it makes sense to only work with the top `n\times n\)</span> block of <span class="math notranslate nohighlight">\(R\)</span>
 consisting of the first <span class="math notranslate nohighlight">\(n\)</span> rows, which we call <span class="math notranslate nohighlight">\(\hat{R}\)</span>. Similarly,
-in the matrix vector product <span class="math notranslate nohighlight">\(QR\)</span>, all columns of <span class="math notranslate nohighlight">\(Q\)</span> beyond the <span class="math notranslate nohighlight">\(n\)</span>, so it makes sense to
+in the matrix vector product <span class="math notranslate nohighlight">\(QR\)</span>, all columns of <span class="math notranslate nohighlight">\(Q\)</span> beyond the <span class="math notranslate nohighlight">\(n`th
+column get multiplied by those zero rows in `R\)</span>, so it makes sense to
 only work with the first <span class="math notranslate nohighlight">\(n\)</span> columns of <span class="math notranslate nohighlight">\(Q\)</span>, which we call <span class="math notranslate nohighlight">\(\hat{Q}\)</span>.
 We then have the reduced QR factorisation, <span class="math notranslate nohighlight">\(\hat{Q}\hat{R}\)</span>.</p>
 <div class="proof proof-type-exercise" id="id3">
@@ -104,7 +104,7 @@ We then have the reduced QR factorisation, <span class="math notranslate nohighl
         <span class="proof-type">Exercise 2.3</span>
         
     </div><div class="proof-content">
-<p>The <a class="reference internal" href="cla_utils.html#cla_utils.exercises2.orthog_space" title="cla_utils.exercises2.orthog_space"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises2.orthog_space()</span></code></a> function has been
+<p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises2.orthog_space()</span></code> function has been
 left unimplemented. Given a set of vectors <span class="math notranslate nohighlight">\(v_1,v_2,\ldots,v_n\)</span>
 that span the subspace <span class="math notranslate nohighlight">\(U \subset \mathbb{C}^m\)</span>, the function
 should find an orthonormal basis for the orthogonal complement
@@ -115,7 +115,7 @@ should find an orthonormal basis for the orthogonal complement
 </div></blockquote>
 <p>It is expected that it will only compute this up to a tolerance.
 You should make use of the built in QR factorisation routine
-<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.qr.html#numpy.linalg.qr" title="(in NumPy v1.23)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.linalg.qr()</span></code></a>. The test script <code class="docutils literal notranslate"><span class="pre">test_exercises2.py</span></code> in
+<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.qr.html#numpy.linalg.qr" title="(in NumPy v1.25)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.linalg.qr()</span></code></a>. The test script <code class="docutils literal notranslate"><span class="pre">test_exercises2.py</span></code> in
 the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will test this function.</p>
 </div></div><p>In the rest of this section we will examine some algorithms for computing
 the QR factorisation, before discussing the application to least squares
@@ -123,7 +123,7 @@ problems. We will start with a bad algorithm, before moving on to some
 better ones.</p>
 </section>
 <section id="qr-factorisation-by-classical-gram-schmidt-algorithm">
-<h2><span class="section-number">2.2. </span>QR factorisation by classical Gram-Schmidt algorithm<a class="headerlink" href="#qr-factorisation-by-classical-gram-schmidt-algorithm" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.2. </span>QR factorisation by classical Gram-Schmidt algorithm<a class="headerlink" href="#qr-factorisation-by-classical-gram-schmidt-algorithm" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -195,7 +195,7 @@ for code blocks in pseudo-code in these notes.)</p>
         <span class="proof-type">Exercise 2.4</span>
         
     </div><div class="proof-content">
-<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <a class="reference internal" href="cla_utils.html#cla_utils.exercises2.GS_classical" title="cla_utils.exercises2.GS_classical"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises2.GS_classical()</span></code></a> function
+<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises2.GS_classical()</span></code> function
 has been left unimplemented. It should implement the classical
 Gram-Schmidt algorithm above, using Numpy slice notation so that
 only one Python for loop is used. The function should work “in
@@ -214,7 +214,7 @@ that could be done beforehand.</p>
 </div>
 </section>
 <section id="projector-interpretation-of-gram-schmidt">
-<h2><span class="section-number">2.3. </span>Projector interpretation of Gram-Schmidt<a class="headerlink" href="#projector-interpretation-of-gram-schmidt" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.3. </span>Projector interpretation of Gram-Schmidt<a class="headerlink" href="#projector-interpretation-of-gram-schmidt" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -234,7 +234,7 @@ is <span class="math notranslate nohighlight">\(\hat{Q}_{j-1}\hat{Q}_{j-1}^*\)</
 \hat{Q}_{j-1}\hat{Q}_{j-1}^*\)</span>.</p>
 </section>
 <section id="modified-gram-schmidt">
-<h2><span class="section-number">2.4. </span>Modified Gram-Schmidt<a class="headerlink" href="#modified-gram-schmidt" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.4. </span>Modified Gram-Schmidt<a class="headerlink" href="#modified-gram-schmidt" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -316,7 +316,7 @@ in <span class="math notranslate nohighlight">\(A\)</span> with the <span class=
         <span class="proof-type">Exercise 2.5</span>
         
     </div><div class="proof-content">
-<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <a class="reference internal" href="cla_utils.html#cla_utils.exercises2.GS_modified" title="cla_utils.exercises2.GS_modified"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises2.GS_modified()</span></code></a> function has been
+<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises2.GS_modified()</span></code> function has been
 left unimplemented. It should implement the modified Gram-Schmidt
 algorithm above, using Numpy slice notation where possible.
 What is the minimal number of Python
@@ -345,7 +345,7 @@ illustrates the differences in orthogonality between the two
 algorithms.</p>
 </div></div></section>
 <section id="modified-gram-schmidt-as-triangular-orthogonalisation">
-<h2><span class="section-number">2.5. </span>Modified Gram-Schmidt as triangular orthogonalisation<a class="headerlink" href="#modified-gram-schmidt-as-triangular-orthogonalisation" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.5. </span>Modified Gram-Schmidt as triangular orthogonalisation<a class="headerlink" href="#modified-gram-schmidt-as-triangular-orthogonalisation" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -429,7 +429,7 @@ above).</p>
         
     </div><div class="proof-content">
 <p>In a break from the format so far, the
-<a class="reference internal" href="cla_utils.html#cla_utils.exercises2.GS_modified_R" title="cla_utils.exercises2.GS_modified_R"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises2.GS_modified_R()</span></code></a> function has been
+<code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises2.GS_modified_R()</span></code> function has been
 implemented. It implements the modified Gram-Schmidt algorithm in
 the form describe above using upper triangular matrices. This is
 not a good way to implement the algorithm, because of the inversion
@@ -440,14 +440,14 @@ understanding the modified Gram-Schmidt algorithm as a triangular
 orthogonalisation process, and so it is good to see this in a code
 implementation. Study this function to check that you understand
 what is happening.</p>
-<p>However, the <a class="reference internal" href="cla_utils.html#cla_utils.exercises2.GS_modified_get_R" title="cla_utils.exercises2.GS_modified_get_R"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises2.GS_modified_get_R()</span></code></a>
+<p>However, the <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises2.GS_modified_get_R()</span></code>
 function has not been implemented. This function computes the <span class="math notranslate nohighlight">\(R_k\)</span>
 matrices at each step of the process. Complete this code. The test
 script <code class="docutils literal notranslate"><span class="pre">test_exercises2.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will also
 test this function.</p>
 </div></div></section>
 <section id="householder-triangulation">
-<h2><span class="section-number">2.6. </span>Householder triangulation<a class="headerlink" href="#householder-triangulation" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.6. </span>Householder triangulation<a class="headerlink" href="#householder-triangulation" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -626,7 +626,7 @@ columns from <span class="math notranslate nohighlight">\(r\)</span> to <span cl
         <span class="proof-type">Exercise 2.8</span>
         
     </div><div class="proof-content">
-<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <a class="reference internal" href="cla_utils.html#cla_utils.exercises3.householder" title="cla_utils.exercises3.householder"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.householder()</span></code></a> function
+<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.householder()</span></code> function
 has been left unimplemented. It should implement the algorithm
 above, using only one loop over <span class="math notranslate nohighlight">\(k\)</span>. It should return the resulting
 <span class="math notranslate nohighlight">\(R\)</span> matrix. The test script <code class="docutils literal notranslate"><span class="pre">test_exercises3.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code>
@@ -689,7 +689,7 @@ pseudo-code.</p>
         <span class="proof-type">Exercise 2.9</span>
         
     </div><div class="proof-content">
-<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The function <a class="reference internal" href="cla_utils.html#cla_utils.exercises3.solve_U" title="cla_utils.exercises3.solve_U"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.solve_U()</span></code></a> has
+<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The function <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.solve_U()</span></code> has
 been left unimplemented.  It should use backward substitution to
 solve upper triangular systems. The interfaces are set so that
 multiple right hand sides can be provided and solved at the same
@@ -724,15 +724,15 @@ we shall discuss later.</p>
 <span class="math notranslate nohighlight">\(b=b_i\)</span>, <span class="math notranslate nohighlight">\(i=1,2,\ldots,k\)</span>. Extend this idea above to the case
 <span class="math notranslate nohighlight">\(k&gt;1\)</span>, by describing an extended <span class="math notranslate nohighlight">\(\hat{A}\)</span> containing all the <span class="math notranslate nohighlight">\(b_i\)</span>
 vectors.</p>
-<p>The <a class="reference internal" href="cla_utils.html#cla_utils.exercises3.householder_solve" title="cla_utils.exercises3.householder_solve"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.householder_solve()</span></code></a> function has
+<p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.householder_solve()</span></code> function has
 been left unimplemented. It takes in a set of right hand side
 vectors <span class="math notranslate nohighlight">\(b_1,b_2,\ldots,b_k\)</span> and returns a set of solutions
 <span class="math notranslate nohighlight">\(x_1,x_2,\ldots,x_k\)</span>.  It should construct an extended array
 <span class="math notranslate nohighlight">\(\hat{A}\)</span>, and then pass it to
-<a class="reference internal" href="cla_utils.html#cla_utils.exercises3.householder" title="cla_utils.exercises3.householder"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.householder()</span></code></a>.  If you have not already
+<code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.householder()</span></code>.  If you have not already
 done so, you will need to modified
-<a class="reference internal" href="cla_utils.html#cla_utils.exercises3.householder" title="cla_utils.exercises3.householder"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.householder()</span></code></a> to use the <code class="docutils literal notranslate"><span class="pre">kmax</span></code>
-argument. You will also need <a class="reference internal" href="cla_utils.html#cla_utils.exercises3.solve_U" title="cla_utils.exercises3.solve_U"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.solve_U()</span></code></a>.</p>
+<code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.householder()</span></code> to use the <code class="docutils literal notranslate"><span class="pre">kmax</span></code>
+argument. You will also need <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.solve_U()</span></code>.</p>
 </div></div><p>If we really need <span class="math notranslate nohighlight">\(Q\)</span>, we can get it by matrix-vector products with
 each element of the canonical basis <span class="math notranslate nohighlight">\((e_1,e_2,\ldots,e_n)\)</span>.  This
 means that first we need to compute a matrix-vector product <span class="math notranslate nohighlight">\(Qx\)</span> with
@@ -774,17 +774,17 @@ applied to the columns of <span class="math notranslate nohighlight">\(I\)</span
 easily obtain <span class="math notranslate nohighlight">\(Q\)</span>, explaining how. Show how to implement this by
 applying Householder to an augmented matrix <span class="math notranslate nohighlight">\(\hat{A}\)</span> of some
 appropriate form.</p>
-<p>The <a class="reference internal" href="cla_utils.html#cla_utils.exercises3.householder_qr" title="cla_utils.exercises3.householder_qr"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.householder_qr()</span></code></a> function has been
+<p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.householder_qr()</span></code> function has been
 left unimplemented. It takes in the <span class="math notranslate nohighlight">\(m\times n\)</span> array <span class="math notranslate nohighlight">\(A\)</span> and
 returns <span class="math notranslate nohighlight">\(Q\)</span> and <span class="math notranslate nohighlight">\(R\)</span>. It should use the method of this exercise to
 compute them by forming an appropriate <span class="math notranslate nohighlight">\(\hat{A}\)</span>, calling
-<a class="reference internal" href="cla_utils.html#cla_utils.exercises3.householder" title="cla_utils.exercises3.householder"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.householder()</span></code></a> and then extracting
+<code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.householder()</span></code> and then extracting
 appropriate subarrays using slice notation. The test script
 <code class="docutils literal notranslate"><span class="pre">test_exercises3.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will also test
 this function.</p>
 </div></div></section>
 <section id="application-least-squares-problems">
-<h2><span class="section-number">2.7. </span>Application: Least squares problems<a class="headerlink" href="#application-least-squares-problems" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.7. </span>Application: Least squares problems<a class="headerlink" href="#application-least-squares-problems" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -835,14 +835,14 @@ using back-substitution.</p>
         <span class="proof-type">Exercise 2.12</span>
         
     </div><div class="proof-content">
-<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <a class="reference internal" href="cla_utils.html#cla_utils.exercises3.householder_ls" title="cla_utils.exercises3.householder_ls"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.householder_ls()</span></code></a>
+<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.householder_ls()</span></code>
 function has been left unimplemented. It takes in the <span class="math notranslate nohighlight">\(m\times n\)</span>
 array <span class="math notranslate nohighlight">\(A\)</span> and a right-hand side vector <span class="math notranslate nohighlight">\(b\)</span> and solves the least
 squares problem minimising <span class="math notranslate nohighlight">\(\|Ax-b\|\)</span> over <span class="math notranslate nohighlight">\(x\)</span>. It should do this
 by forming an appropriate augmented matrix <span class="math notranslate nohighlight">\(\hat{A}\)</span>, calling
-<a class="reference internal" href="cla_utils.html#cla_utils.exercises3.householder" title="cla_utils.exercises3.householder"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.householder()</span></code></a> and extracting appropriate
+<code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.householder()</span></code> and extracting appropriate
 subarrays using slice notation, before using
-<a class="reference internal" href="cla_utils.html#cla_utils.exercises3.solve_U" title="cla_utils.exercises3.solve_U"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.solve_U()</span></code></a> to solve the resulting upper
+<code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.solve_U()</span></code> to solve the resulting upper
 triangular system, before returning the solution <span class="math notranslate nohighlight">\(x\)</span>. The test
 script <code class="docutils literal notranslate"><span class="pre">test_exercises3.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will also
 test this function.</p>
@@ -863,7 +863,7 @@ square (and invertible) reduced matrix <span class="math notranslate nohighlight
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2020-2022, Colin J. Cotter.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
     </div>
   </body>
 </html>

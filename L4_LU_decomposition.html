@@ -1,19 +1,17 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>4. LU decomposition &#8212; Computational linear algebra course 2022.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/fenics.css" />
     <link rel="stylesheet" type="text/css" href="_static/proof.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/proof.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -49,7 +47,7 @@
           <div class="body" role="main">
             
   <section id="lu-decomposition">
-<h1><span class="section-number">4. </span>LU decomposition<a class="headerlink" href="#lu-decomposition" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">4. </span>LU decomposition<a class="headerlink" href="#lu-decomposition" title="Permalink to this heading">¶</a></h1>
 <p>In this section we look at the some other algorithms for solving the
 equation <span class="math notranslate nohighlight">\(Ax=b\)</span> when <span class="math notranslate nohighlight">\(A\)</span> is invertible. On the one hand the <span class="math notranslate nohighlight">\(QR\)</span>
 factorisation has great stability properties. On the other, it can be
@@ -59,7 +57,7 @@ explore the the family of methods that go right back to the technique
 of Gaussian elimination, that you will have been familiar with since
 secondary school.</p>
 <section id="an-algorithm-for-lu-decomposition">
-<h2><span class="section-number">4.1. </span>An algorithm for LU decomposition<a class="headerlink" href="#an-algorithm-for-lu-decomposition" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.1. </span>An algorithm for LU decomposition<a class="headerlink" href="#an-algorithm-for-lu-decomposition" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -232,7 +230,7 @@ where <span class="math notranslate nohighlight">\(e_k\)</span> is nonzero. If w
 <div><div class="math notranslate nohighlight">
 \[L = I + \sum_{i=1}^{m-1}l_ie_i^*.\]</div>
 </div></blockquote>
-<p>Hence, the <span class="math notranslate nohighlight">\(k\)</span> is the same as the <span class="math notranslate nohighlight">\(k\)</span>,
+<p>Hence, the <span class="math notranslate nohighlight">\(k`th column of `L\)</span> is the same as the <span class="math notranslate nohighlight">\(k`th column of `L_k^{-1}\)</span>,
 i.e.,</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -261,7 +259,7 @@ a mathematical concept to translate from the row operations into the final
     </div><div class="proof-content">
 <p>Having said that, let’s take a moment to compute some examples
 using the <span class="math notranslate nohighlight">\(L_1,L_2,\ldots\)</span> matrices (to help with understanding).
-The <a class="reference internal" href="cla_utils.html#cla_utils.exercises6.get_Lk" title="cla_utils.exercises6.get_Lk"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises6.get_Lk()</span></code></a> function has been left
+The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises6.get_Lk()</span></code> function has been left
 unimplemented. It should return one of these matrices given the
 <span class="math notranslate nohighlight">\(l_k\)</span> entries.  The test script <code class="docutils literal notranslate"><span class="pre">test_exercises6.py</span></code> in the
 <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will test this function.</p>
@@ -316,7 +314,7 @@ rows of <span class="math notranslate nohighlight">\(U\)</span>, and the corresp
 needed for the rest of the algorithm. This creates the opportunity
 for a memory-efficient ‘in-place’ algorithm in which the matrix <span class="math notranslate nohighlight">\(A\)</span>
 is modified until it contains the values for <span class="math notranslate nohighlight">\(L\)</span> and <span class="math notranslate nohighlight">\(U\)</span>.</p>
-<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <a class="reference internal" href="cla_utils.html#cla_utils.exercises6.LU_inplace" title="cla_utils.exercises6.LU_inplace"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises6.LU_inplace()</span></code></a> function
+<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises6.LU_inplace()</span></code> function
 has been left unimplemented. It should implement this in-place
 low-storage procedure, applying the changes to the provided matrix
 <span class="math notranslate nohighlight">\(A\)</span>.  The test script <code class="docutils literal notranslate"><span class="pre">test_exercises6.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code>
@@ -332,8 +330,8 @@ has a cubic FLOP count). In the algorithm above, there are two
 explicit loops and one explicit one (in the slice notation). It is
 possible to rewrite this in a single loop, using an outer
 product. Identify this outer product, and update
-<a class="reference internal" href="cla_utils.html#cla_utils.exercises6.LU_inplace" title="cla_utils.exercises6.LU_inplace"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises6.LU_inplace()</span></code></a> to make use of this
-reformulation (using <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.outer.html#numpy.outer" title="(in NumPy v1.23)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.outer()</span></code></a>). Do you notice any
+<code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises6.LU_inplace()</span></code> to make use of this
+reformulation (using <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.outer.html#numpy.outer" title="(in NumPy v1.25)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.outer()</span></code></a>). Do you notice any
 improvement in speed?</p>
 </div></div><div class="proof proof-type-exercise" id="id4">
 
@@ -341,7 +339,7 @@ improvement in speed?</p>
         <span class="proof-type">Exercise 4.4</span>
         
     </div><div class="proof-content">
-<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The function <a class="reference internal" href="cla_utils.html#cla_utils.exercises6.solve_L" title="cla_utils.exercises6.solve_L"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises6.solve_L()</span></code></a> has
+<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The function <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises6.solve_L()</span></code> has
 been left unimplemented.  It should use forward substitution to
 solve lower triangular systems. The interfaces are set so that
 multiple right hand sides can be provided and solved at the same
@@ -357,14 +355,14 @@ functions.</p>
     </div><div class="proof-content">
 <p><span class="math notranslate nohighlight">\((\ddagger)\)</span> Propose an algorithm to use the LU factorisation to
 compute the inverse of a matrix.  The functions
-<a class="reference internal" href="cla_utils.html#cla_utils.exercises6.inverse_LU" title="cla_utils.exercises6.inverse_LU"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises6.inverse_LU()</span></code></a> has been left
+<code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises6.inverse_LU()</span></code> has been left
 unimplemented.  Complete it using your algorithm, using functions
 developed in the previous exercises where possible. The test script
 <code class="docutils literal notranslate"><span class="pre">test_exercises6.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will test these
 functions.</p>
 </div></div></section>
 <section id="pivoting">
-<h2><span class="section-number">4.2. </span>Pivoting<a class="headerlink" href="#pivoting" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.2. </span>Pivoting<a class="headerlink" href="#pivoting" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -398,7 +396,8 @@ entry in row <span class="math notranslate nohighlight">\(i\)</span> of <span cl
 matrix <span class="math notranslate nohighlight">\(P\)</span> simply rearranges the entries in <span class="math notranslate nohighlight">\(x\)</span>, with <span class="math notranslate nohighlight">\((Px)_i =
 x_{p_i}\)</span>.</p>
 <p>During Gaussian elimination, say that we are at stage <span class="math notranslate nohighlight">\(k\)</span>, and
-<span class="math notranslate nohighlight">\((A_k)_{kk}\)</span> is not the largest magnitude entry in the <span class="math notranslate nohighlight">\(k\)</span>. We reorder the rows to fix this, and this is what we call
+<span class="math notranslate nohighlight">\((A_k)_{kk}\)</span> is not the largest magnitude entry in the <span class="math notranslate nohighlight">\(k`th column of
+`A_k\)</span>. We reorder the rows to fix this, and this is what we call
 <em>pivoting</em>. Mathematically this reordering is equivalent to
 multiplication by a permutation matrix <span class="math notranslate nohighlight">\(P_k\)</span>. Then we continue the
 Gaussian elimination procedure by left multiplying by <span class="math notranslate nohighlight">\(L_k\)</span>, placing
@@ -516,7 +515,7 @@ complete pivoting, <span class="math notranslate nohighlight">\(PAQ=LU\)</span>.
         <span class="proof-type">Exercise 4.7</span>
         
     </div><div class="proof-content">
-<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The function <a class="reference internal" href="cla_utils.html#cla_utils.exercises7.perm" title="cla_utils.exercises7.perm"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises7.perm()</span></code></a> has
+<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The function <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises7.perm()</span></code> has
 been left unimplemented. It should take an <span class="math notranslate nohighlight">\(m\times m\)</span> permutation
 matrix <span class="math notranslate nohighlight">\(P\)</span>, stored as an (integer-valued) array of indices
 <span class="math notranslate nohighlight">\(p\in\mathbb{N}^m\)</span> so that <span class="math notranslate nohighlight">\((Px)_i = x_{p_i}\)</span>, <span class="math notranslate nohighlight">\(i=1,2,\ldots, m\)</span>,
@@ -531,13 +530,13 @@ function.</p>
         <span class="proof-type">Exercise 4.8</span>
         
     </div><div class="proof-content">
-<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The function <a class="reference internal" href="cla_utils.html#cla_utils.exercises7.LUP_inplace" title="cla_utils.exercises7.LUP_inplace"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises7.LUP_inplace()</span></code></a>
+<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The function <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises7.LUP_inplace()</span></code>
 has been left unimplemented. It should extend the in-place
 algorithm for LU factorisation (with the outer-product formulation,
 if you managed it) to the LUP factorisation. As well as computing L
 and U “in place” in the array where the input A is stored, it will
 compute a permutation matrix, which can and should be constructed
-using <a class="reference internal" href="cla_utils.html#cla_utils.exercises7.perm" title="cla_utils.exercises7.perm"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises7.perm()</span></code></a>.The test script
+using <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises7.perm()</span></code>.The test script
 <code class="docutils literal notranslate"><span class="pre">test_exercises7.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will test this
 function.</p>
 </div></div><div class="proof proof-type-exercise" id="id9">
@@ -546,7 +545,7 @@ function.</p>
         <span class="proof-type">Exercise 4.9</span>
         
     </div><div class="proof-content">
-<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The function <a class="reference internal" href="cla_utils.html#cla_utils.exercises7.solve_LUP" title="cla_utils.exercises7.solve_LUP"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises7.solve_LUP()</span></code></a>
+<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The function <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises7.solve_LUP()</span></code>
 has been left unimplemented. It should use the LUP code that you
 have written to solve the equation <span class="math notranslate nohighlight">\(Ax=b\)</span> for <span class="math notranslate nohighlight">\(x\)</span> given inputs <span class="math notranslate nohighlight">\(A\)</span>
 and <span class="math notranslate nohighlight">\(b\)</span>.  The test script <code class="docutils literal notranslate"><span class="pre">test_exercises7.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code>
@@ -561,12 +560,12 @@ directory will test this function.</p>
 LUP factorisation in <span class="math notranslate nohighlight">\(\mathcal{O}(m)\)</span> time (having already
 constructed the LUP factorisation which costs
 <span class="math notranslate nohighlight">\(\mathcal{O}(m^3)\)</span>). Complete the function
-<a class="reference internal" href="cla_utils.html#cla_utils.exercises7.det_LUP" title="cla_utils.exercises7.det_LUP"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises7.det_LUP()</span></code></a> to implement this
+<code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises7.det_LUP()</span></code> to implement this
 computation. The test script <code class="docutils literal notranslate"><span class="pre">test_exercises7.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code>
 directory will test this function.</p>
 </div></div></section>
 <section id="stability-of-lu-factorisation">
-<h2><span class="section-number">4.3. </span>Stability of LU factorisation<a class="headerlink" href="#stability-of-lu-factorisation" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.3. </span>Stability of LU factorisation<a class="headerlink" href="#stability-of-lu-factorisation" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -630,7 +629,7 @@ still be pathological cases where entries in <span class="math notranslate nohig
 leading to large <span class="math notranslate nohighlight">\(\rho\)</span> and unstable computations.</p>
 </section>
 <section id="taking-advantage-of-matrix-structure">
-<h2><span class="section-number">4.4. </span>Taking advantage of matrix structure<a class="headerlink" href="#taking-advantage-of-matrix-structure" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.4. </span>Taking advantage of matrix structure<a class="headerlink" href="#taking-advantage-of-matrix-structure" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -750,7 +749,7 @@ solving an upper Hessenberg system has operation count
 <span class="math notranslate nohighlight">\(\mathcal{O}(m^2)\)</span>.</p>
 </section>
 <section id="cholesky-factorisation">
-<h2><span class="section-number">4.5. </span>Cholesky factorisation<a class="headerlink" href="#cholesky-factorisation" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.5. </span>Cholesky factorisation<a class="headerlink" href="#cholesky-factorisation" title="Permalink to this heading">¶</a></h2>
 <p>An example of extra structure which we shall discuss in a bit more
 detail is the case of Hermitian positive definite matrices. Recall
 that a Hermitian matrix satisfies <span class="math notranslate nohighlight">\(A^*=A\)</span>, whilst positive definite
@@ -882,7 +881,7 @@ by the operation inside the <span class="math notranslate nohighlight">\(j\)</sp
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2020-2022, Colin J. Cotter.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
     </div>
   </body>
 </html>

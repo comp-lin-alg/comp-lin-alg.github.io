@@ -1,19 +1,17 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>5. Finding eigenvalues of matrices &#8212; Computational linear algebra course 2022.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/fenics.css" />
     <link rel="stylesheet" type="text/css" href="_static/proof.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/proof.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -49,7 +47,7 @@
           <div class="body" role="main">
             
   <section id="finding-eigenvalues-of-matrices">
-<h1><span class="section-number">5. </span>Finding eigenvalues of matrices<a class="headerlink" href="#finding-eigenvalues-of-matrices" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">5. </span>Finding eigenvalues of matrices<a class="headerlink" href="#finding-eigenvalues-of-matrices" title="Permalink to this heading">¶</a></h1>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -70,7 +68,7 @@ involving <span class="math notranslate nohighlight">\(A\)</span>.</p></li>
 <li><p>…</p></li>
 </ol>
 <section id="how-to-find-eigenvalues">
-<h2><span class="section-number">5.1. </span>How to find eigenvalues?<a class="headerlink" href="#how-to-find-eigenvalues" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.1. </span>How to find eigenvalues?<a class="headerlink" href="#how-to-find-eigenvalues" title="Permalink to this heading">¶</a></h2>
 <p>The method that we first encounter in our mathematical education is to
 find solutions of <span class="math notranslate nohighlight">\((A-\lambda I)x = 0\)</span>, which implies that
 <span class="math notranslate nohighlight">\(\det(A-\lambda I)=0\)</span>. This gives a degree <span class="math notranslate nohighlight">\(m\)</span> polynomial to solve for
@@ -106,11 +104,11 @@ eigenvalues can be directly extracted.</p>
 <p>and the eigenvalues are clearly <span class="math notranslate nohighlight">\(1,2,3,\ldots,m\)</span>. This is called
 the Wilkinson Polynomial. Numpy has some tools for manipulating
 polynomials which are useful here. When an <span class="math notranslate nohighlight">\(m\times m\)</span> array is
-passed in to <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.poly.html#numpy.poly" title="(in NumPy v1.23)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.poly()</span></code></a>, it returns an array of
+passed in to <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.poly.html#numpy.poly" title="(in NumPy v1.25)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.poly()</span></code></a>, it returns an array of
 coefficients of the polynomial. For <span class="math notranslate nohighlight">\(m=20\)</span>, obtain this array and
 then perturb the coefficients <span class="math notranslate nohighlight">\(a_k \to \tilde{a}_k =
 a_k(1+10^{-10}r_k)\)</span> where <span class="math notranslate nohighlight">\(r_k\)</span> are randomly sampled normally
-distributed numbers with mean 0 and variance 1. <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.roots.html#numpy.roots" title="(in NumPy v1.23)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.roots()</span></code></a>
+distributed numbers with mean 0 and variance 1. <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.roots.html#numpy.roots" title="(in NumPy v1.25)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.roots()</span></code></a>
 will compute the roots of this perturbed polynomial. Plot these
 roots as points in the complex plane. Repeat this 100 times,
 superposing the root plots on the same graph. What do you observe?
@@ -248,7 +246,7 @@ factorisation strategy (such as we shall develop in this section), and
 obtain an eigenvalue decomposition as a bonus.</p>
 </section>
 <section id="transformations-to-schur-factorisation">
-<h2><span class="section-number">5.2. </span>Transformations to Schur factorisation<a class="headerlink" href="#transformations-to-schur-factorisation" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.2. </span>Transformations to Schur factorisation<a class="headerlink" href="#transformations-to-schur-factorisation" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -284,7 +282,7 @@ then <span class="math notranslate nohighlight">\(H\)</span> will be tridiagonal
 the second, iterative, stage much faster.</p>
 </section>
 <section id="similarity-transformation-to-upper-hessenberg-form">
-<h2><span class="section-number">5.3. </span>Similarity transformation to upper Hessenberg form<a class="headerlink" href="#similarity-transformation-to-upper-hessenberg-form" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.3. </span>Similarity transformation to upper Hessenberg form<a class="headerlink" href="#similarity-transformation-to-upper-hessenberg-form" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -310,7 +308,7 @@ general.</p>
         <span class="proof-type">Exercise 5.9</span>
         
     </div><div class="proof-content">
-<p>The <a class="reference internal" href="cla_utils.html#cla_utils.exercises8.Q1AQ1s" title="cla_utils.exercises8.Q1AQ1s"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises8.Q1AQ1s()</span></code></a> function has been left
+<p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises8.Q1AQ1s()</span></code> function has been left
 uncompleted. It should apply the Householder transformation <span class="math notranslate nohighlight">\(Q_1\)</span>
 to the input <span class="math notranslate nohighlight">\(A\)</span> (without forming <span class="math notranslate nohighlight">\(Q_1\)</span> of course) that transforms
 the first column of <span class="math notranslate nohighlight">\(A\)</span> to have zeros below the diagonal, and then
@@ -357,7 +355,7 @@ for computing the QR factorisation.</p>
         <span class="proof-type">Exercise 5.10</span>
         
     </div><div class="proof-content">
-<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <a class="reference internal" href="cla_utils.html#cla_utils.exercises8.hessenberg" title="cla_utils.exercises8.hessenberg"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises8.hessenberg()</span></code></a> function
+<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises8.hessenberg()</span></code> function
 has been left unimplemented. It should implement the algorithm
 above, using only one loop over <span class="math notranslate nohighlight">\(k\)</span>. It should work “in-place”,
 changing the input matrix. At the left multiplication, your
@@ -408,7 +406,7 @@ backwards stable, i.e. in a floating point implementation, it gives
         <span class="proof-type">Exercise 5.11</span>
         
     </div><div class="proof-content">
-<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <a class="reference internal" href="cla_utils.html#cla_utils.exercises8.hessenbergQ" title="cla_utils.exercises8.hessenbergQ"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises8.hessenbergQ()</span></code></a> function
+<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises8.hessenbergQ()</span></code> function
 has been left unimplemented. It should implement the Hessenberg
 algorithm again (you can just copy paste the code from the previous
 exercise) but it should also return the matrix <span class="math notranslate nohighlight">\(Q\)</span> such that
@@ -421,11 +419,11 @@ construct this. The test script <code class="docutils literal notranslate"><span
         <span class="proof-type">Exercise 5.12</span>
         
     </div><div class="proof-content">
-<p>The <a class="reference internal" href="cla_utils.html#cla_utils.exercises8.ev" title="cla_utils.exercises8.ev"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises8.ev()</span></code></a> function has been left
+<p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises8.ev()</span></code> function has been left
 unimplemented. It should return the eigenvectors of
 <span class="math notranslate nohighlight">\(A\)</span> by first reducing to Hessenberg form, using the functions you
 have already created, and then calling
-<a class="reference internal" href="cla_utils.html#cla_utils.exercises8.hessenberg_ev" title="cla_utils.exercises8.hessenberg_ev"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises8.hessenberg_ev()</span></code></a>, which computes the
+<code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises8.hessenberg_ev()</span></code>, which computes the
 eigenvectors of upper Hessenberg matrices (do not
 edit this function!). The test script <code class="docutils literal notranslate"><span class="pre">test_exercises8.py</span></code> in the
 <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will test this function.</p>
@@ -444,7 +442,7 @@ case. Before describing the iterative transformation, we will discuss
 a few key tools in explaining how it works.</p>
 </section>
 <section id="rayleigh-quotient">
-<h2><span class="section-number">5.4. </span>Rayleigh quotient<a class="headerlink" href="#rayleigh-quotient" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.4. </span>Rayleigh quotient<a class="headerlink" href="#rayleigh-quotient" title="Permalink to this heading">¶</a></h2>
 <p>The first tool that we shall consider is the Rayleigh quotient. If
 <span class="math notranslate nohighlight">\(A\in \mathbb{C}^{m\times m}\)</span> is a real symmetric matrix, then the
 Rayleigh quotient of a vector <span class="math notranslate nohighlight">\(x \in \mathbb{C}^{m}\)</span> is defined as</p>
@@ -492,14 +490,14 @@ eigenvalues of <span class="math notranslate nohighlight">\(A\)</span>.</p>
         <span class="proof-type">Exercise 5.13</span>
         
     </div><div class="proof-content">
-<p>Add a function to <a class="reference internal" href="cla_utils.html#module-cla_utils.exercises8" title="cla_utils.exercises8"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cla_utils.exercises8</span></code></a> that investigates
+<p>Add a function to <code class="xref py py-mod docutils literal notranslate"><span class="pre">cla_utils.exercises8</span></code> that investigates
 this property by:</p>
 <ol class="arabic simple">
 <li><p>Forming a Hermitian matrix <span class="math notranslate nohighlight">\(A\)</span>,</p></li>
-<li><p>Finding an eigenvector <span class="math notranslate nohighlight">\(v\)</span> of <span class="math notranslate nohighlight">\(A\)</span> with eigenvalue <span class="math notranslate nohighlight">\(\lambda\)</span> (you can use <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html#numpy.linalg.eig" title="(in NumPy v1.23)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.linalg.eig()</span></code></a> for this),</p></li>
+<li><p>Finding an eigenvector <span class="math notranslate nohighlight">\(v\)</span> of <span class="math notranslate nohighlight">\(A\)</span> with eigenvalue <span class="math notranslate nohighlight">\(\lambda\)</span> (you can use <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html#numpy.linalg.eig" title="(in NumPy v1.25)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.linalg.eig()</span></code></a> for this),</p></li>
 <li><p>Choosing a perturbation vector <span class="math notranslate nohighlight">\(r\)</span>, and perturbation parameter <span class="math notranslate nohighlight">\(\epsilon&gt;0\)</span>,</p></li>
 <li><p>Comparing the Rayleigh quotient of <span class="math notranslate nohighlight">\(v + \epsilon r\)</span> with <span class="math notranslate nohighlight">\(\lambda\)</span>,</p></li>
-<li><p>Plotting (on a log-log graph, use <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.loglog.html#matplotlib.pyplot.loglog" title="(in Matplotlib v3.6.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.pyplot.loglog()</span></code></a>) the error in estimating the eigenvalue as a function of <span class="math notranslate nohighlight">\(\epsilon\)</span>.</p></li>
+<li><p>Plotting (on a log-log graph, use <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.loglog.html#matplotlib.pyplot.loglog" title="(in Matplotlib v3.7.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.pyplot.loglog()</span></code></a>) the error in estimating the eigenvalue as a function of <span class="math notranslate nohighlight">\(\epsilon\)</span>.</p></li>
 </ol>
 <p>The best way to do this is to plot the computed data values as points,
 and then superpose a line plot of <span class="math notranslate nohighlight">\(a\epsilon^k\)</span> for appropriate
@@ -508,7 +506,7 @@ from the points on the same scale. This means that we can check
 by eye if the error is scaling with <span class="math notranslate nohighlight">\(\epsilon\)</span> at the expected rate.</p>
 </div></div></section>
 <section id="power-iteration">
-<h2><span class="section-number">5.5. </span>Power iteration<a class="headerlink" href="#power-iteration" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.5. </span>Power iteration<a class="headerlink" href="#power-iteration" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -588,7 +586,7 @@ normalisation does not select <span class="math notranslate nohighlight">\(v^k\)
         <span class="proof-type">Exercise 5.15</span>
         
     </div><div class="proof-content">
-<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <a class="reference internal" href="cla_utils.html#cla_utils.exercises9.pow_it" title="cla_utils.exercises9.pow_it"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.pow_it()</span></code></a> function has
+<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.pow_it()</span></code> function has
 been left unimplemented. It should apply power iteration to a given
 matrix and initial vector, according to the docstring. The test
 script <code class="docutils literal notranslate"><span class="pre">test_exercises9.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will test
@@ -601,12 +599,12 @@ this function.</p>
     </div><div class="proof-content">
 <p>The functions <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.A3()</span></code> and
 <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.B3()</span></code> each return a 3x3 matrix, <span class="math notranslate nohighlight">\(A_3\)</span> and
-<span class="math notranslate nohighlight">\(B_3\)</span> respectively. Apply <a class="reference internal" href="cla_utils.html#cla_utils.exercises9.pow_it" title="cla_utils.exercises9.pow_it"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.pow_it()</span></code></a> to
+<span class="math notranslate nohighlight">\(B_3\)</span> respectively. Apply <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.pow_it()</span></code> to
 each of these functions. What differences in behaviour do you
 observe? What is it about <span class="math notranslate nohighlight">\(A_3\)</span> and <span class="math notranslate nohighlight">\(B_3\)</span> that causes this?</p>
 </div></div></section>
 <section id="inverse-iteration">
-<h2><span class="section-number">5.6. </span>Inverse iteration<a class="headerlink" href="#inverse-iteration" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.6. </span>Inverse iteration<a class="headerlink" href="#inverse-iteration" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -651,7 +649,7 @@ eigenvalues by choosing <span class="math notranslate nohighlight">\(\mu\)</span
         <span class="proof-type">Exercise 5.17</span>
         
     </div><div class="proof-content">
-<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <a class="reference internal" href="cla_utils.html#cla_utils.exercises9.inverse_it" title="cla_utils.exercises9.inverse_it"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.inverse_it()</span></code></a> function
+<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.inverse_it()</span></code> function
 has been left unimplemented. It should apply inverse iteration to a
 given matrix and initial vector, according to the docstring. The
 test script <code class="docutils literal notranslate"><span class="pre">test_exercises9.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will
@@ -666,7 +664,7 @@ test this function.</p>
 using different values of <span class="math notranslate nohighlight">\(\mu\)</span>. What do you observe?</p>
 </div></div></section>
 <section id="rayleigh-quotient-iteration">
-<h2><span class="section-number">5.7. </span>Rayleigh quotient iteration<a class="headerlink" href="#rayleigh-quotient-iteration" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.7. </span>Rayleigh quotient iteration<a class="headerlink" href="#rayleigh-quotient-iteration" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -707,7 +705,7 @@ Then, inverse iteration gives an estimate</p>
         <span class="proof-type">Exercise 5.19</span>
         
     </div><div class="proof-content">
-<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <a class="reference internal" href="cla_utils.html#cla_utils.exercises9.rq_it" title="cla_utils.exercises9.rq_it"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.rq_it()</span></code></a> function has
+<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.rq_it()</span></code> function has
 been left unimplemented. It should apply inverse iteration to a
 given matrix and initial vector, according to the docstring. The
 test script <code class="docutils literal notranslate"><span class="pre">test_exercises9.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will
@@ -718,8 +716,8 @@ test this function.</p>
         <span class="proof-type">Exercise 5.20</span>
         
     </div><div class="proof-content">
-<p>The interfaces to <a class="reference internal" href="cla_utils.html#cla_utils.exercises9.inverse_it" title="cla_utils.exercises9.inverse_it"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.inverse_it()</span></code></a> and
-<a class="reference internal" href="cla_utils.html#cla_utils.exercises9.rq_it" title="cla_utils.exercises9.rq_it"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.rq_it()</span></code></a> have been designed to optionally
+<p>The interfaces to <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.inverse_it()</span></code> and
+<code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.rq_it()</span></code> have been designed to optionally
 provide the iterated values of the eigenvector and eigenvalue.  For
 a given initial condition (and choice of <span class="math notranslate nohighlight">\(\mu\)</span> in the case of
 inverse iteration), compare the convergence speeds of the
@@ -727,7 +725,7 @@ eigenvectors and eigenvalues, using some example matrices of
 different sizes (don’t forget to make them Hermitian).</p>
 </div></div></section>
 <section id="the-pure-qr-algorithm">
-<h2><span class="section-number">5.8. </span>The pure QR algorithm<a class="headerlink" href="#the-pure-qr-algorithm" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.8. </span>The pure QR algorithm<a class="headerlink" href="#the-pure-qr-algorithm" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -753,7 +751,7 @@ written as pseudo-code.</p>
         <span class="proof-type">Exercise 5.21</span>
         
     </div><div class="proof-content">
-<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <a class="reference internal" href="cla_utils.html#cla_utils.exercises9.pure_QR" title="cla_utils.exercises9.pure_QR"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.pure_QR()</span></code></a> function has
+<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.pure_QR()</span></code> function has
 been left unimplemented. It should implement the pure QR algorithm
 as above, using your previous code for finding the QR factorisation
 using Householder transformations. You should think about avoiding
@@ -769,11 +767,11 @@ test this function.</p>
         
     </div><div class="proof-content">
 <p>Investigate the behaviour of the pure QR algorithm applied to the
-functions provided by <a class="reference internal" href="cla_utils.html#cla_utils.exercises9.get_A100" title="cla_utils.exercises9.get_A100"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.get_A100()</span></code></a>,
-<a class="reference internal" href="cla_utils.html#cla_utils.exercises9.get_B100" title="cla_utils.exercises9.get_B100"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.get_B100()</span></code></a>,
-<a class="reference internal" href="cla_utils.html#cla_utils.exercises9.get_C100" title="cla_utils.exercises9.get_C100"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.get_C100()</span></code></a>, and
-<a class="reference internal" href="cla_utils.html#cla_utils.exercises9.get_D100" title="cla_utils.exercises9.get_D100"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.get_D100()</span></code></a>. You can use
-<a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.pcolor.html#matplotlib.pyplot.pcolor" title="(in Matplotlib v3.6.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.pyplot.pcolor()</span></code></a> to visualise the entries,
+functions provided by <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.get_A100()</span></code>,
+<code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.get_B100()</span></code>,
+<code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.get_C100()</span></code>, and
+<code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.get_D100()</span></code>. You can use
+<a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.pcolor.html#matplotlib.pyplot.pcolor" title="(in Matplotlib v3.7.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.pyplot.pcolor()</span></code></a> to visualise the entries,
 or compute norms of the components of the matrices below the diagonal,
 for example. What do you observe? How does this relate to the structure
 of the four matrices?</p>
@@ -792,7 +790,7 @@ To see this, we have to show that the QR algorithm is equivalent to
 another algorithm called simultaneous iteration.</p>
 </section>
 <section id="simultaneous-iteration">
-<h2><span class="section-number">5.9. </span>Simultaneous iteration<a class="headerlink" href="#simultaneous-iteration" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.9. </span>Simultaneous iteration<a class="headerlink" href="#simultaneous-iteration" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -814,7 +812,7 @@ magnitude of corresponding eigenvalue. Similarly we can choose the
 first one of the remaining projected vectors as an approximation of
 <span class="math notranslate nohighlight">\(q_2\)</span> and project it again from the rest.</p>
 <p>We can translate this idea to matrices by defining <span class="math notranslate nohighlight">\(V^{(0)}\)</span> to be the
-matrix with columns given by the set of initial <span class="math notranslate nohighlight">\(v\)</span>
+matrix with columns given by the set of initial <span class="math notranslate nohighlight">\(v`s. Then after `k\)</span>
 applications of <span class="math notranslate nohighlight">\(A\)</span>, we have <span class="math notranslate nohighlight">\(V^{(k)}=A^{k} V^{(0)}\)</span>. By the column space
 interpretation of matrix-matrix multiplication, each column of <span class="math notranslate nohighlight">\(V^{(k)}\)</span>
 is <span class="math notranslate nohighlight">\(A^{k}\)</span> multiplied by the corresponding column of <span class="math notranslate nohighlight">\(V^{(0)}\)</span>. To make the
@@ -859,7 +857,7 @@ and so it converges under the same two conditions listed above.</p>
 The following section confirms that they are in fact equivalent.</p>
 </section>
 <section id="the-pure-qr-algorithm-and-simultaneous-iteration-are-equivalent">
-<h2><span class="section-number">5.10. </span>The pure QR algorithm and simultaneous iteration are equivalent<a class="headerlink" href="#the-pure-qr-algorithm-and-simultaneous-iteration-are-equivalent" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.10. </span>The pure QR algorithm and simultaneous iteration are equivalent<a class="headerlink" href="#the-pure-qr-algorithm-and-simultaneous-iteration-are-equivalent" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -957,7 +955,7 @@ that the QR algorithm finds an orthonormal basis (the columns of
 it relates to power iteration.</p>
 </section>
 <section id="the-practical-qr-algorithm">
-<h2><span class="section-number">5.11. </span>The practical QR algorithm<a class="headerlink" href="#the-practical-qr-algorithm" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.11. </span>The practical QR algorithm<a class="headerlink" href="#the-practical-qr-algorithm" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -1026,7 +1024,7 @@ Wilkinson shift, but we won’t discuss that here.</p>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2020-2022, Colin J. Cotter.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
     </div>
   </body>
 </html>

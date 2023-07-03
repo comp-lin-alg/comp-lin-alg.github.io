@@ -1,19 +1,17 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>3. Analysing algorithms &#8212; Computational linear algebra course 2022.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/fenics.css" />
     <link rel="stylesheet" type="text/css" href="_static/proof.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/proof.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -49,7 +47,7 @@
           <div class="body" role="main">
             
   <section id="analysing-algorithms">
-<h1><span class="section-number">3. </span>Analysing algorithms<a class="headerlink" href="#analysing-algorithms" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">3. </span>Analysing algorithms<a class="headerlink" href="#analysing-algorithms" title="Permalink to this heading">¶</a></h1>
 <p>In the previous section we saw three algorithms to compute the QR
 factorisation of a matrix. They have a beautiful mathematical
 structure based on orthogonal projectors. But are they useful? To
@@ -66,7 +64,7 @@ of speed), and answers to the second question by analysing stability.</p>
 some general concepts but also looking at the examples of the QR
 algorithms that we have seen so far.</p>
 <section id="operation-count">
-<h2><span class="section-number">3.1. </span>Operation count<a class="headerlink" href="#operation-count" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.1. </span>Operation count<a class="headerlink" href="#operation-count" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -89,7 +87,7 @@ schemes. We shall also concentrate on asymptotic results in the limit
 of large <span class="math notranslate nohighlight">\(n\)</span> and/or <span class="math notranslate nohighlight">\(m\)</span>.</p>
 </section>
 <section id="operation-count-for-modified-gram-schmidt">
-<h2><span class="section-number">3.2. </span>Operation count for modified Gram-Schmidt<a class="headerlink" href="#operation-count-for-modified-gram-schmidt" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.2. </span>Operation count for modified Gram-Schmidt<a class="headerlink" href="#operation-count-for-modified-gram-schmidt" title="Permalink to this heading">¶</a></h2>
 <p>We shall discuss operation counts through the example of the modified
 Gram-Schmidt algorithm. We shall find that the operation count
 is <span class="math notranslate nohighlight">\(\sim 2mn^2\)</span> to compute the QR factorisation, where the <span class="math notranslate nohighlight">\(\sim\)</span> symbol
@@ -120,7 +118,7 @@ over <span class="math notranslate nohighlight">\(j\)</span>, which we can estim
 <p>as suggested above.</p>
 </section>
 <section id="operation-count-for-householder">
-<h2><span class="section-number">3.3. </span>Operation count for Householder<a class="headerlink" href="#operation-count-for-householder" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.3. </span>Operation count for Householder<a class="headerlink" href="#operation-count-for-householder" title="Permalink to this heading">¶</a></h2>
 <p>In the Householder algorithm, the computation is dominated by the
 transformation</p>
 <blockquote>
@@ -205,7 +203,7 @@ algorithm as pseudo-code and compute the FLOP count, comparing with
 the FLOP count for the standard algorithm.</p>
 </div></div></section>
 <section id="matrix-norms-for-discussing-stability">
-<h2><span class="section-number">3.4. </span>Matrix norms for discussing stability<a class="headerlink" href="#matrix-norms-for-discussing-stability" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.4. </span>Matrix norms for discussing stability<a class="headerlink" href="#matrix-norms-for-discussing-stability" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -278,11 +276,11 @@ on <span class="math notranslate nohighlight">\(\mathbb{C}^m\)</span> and <span 
 <span class="math notranslate nohighlight">\(\lambda\)</span> must be an eigenvalue of some matrix (which you should
 compute). Hence, given those eigenvalues, provide an expression
 for the operator norm of <span class="math notranslate nohighlight">\(A\)</span>.</p>
-<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <a class="reference internal" href="cla_utils.html#cla_utils.exercises4.operator_2_norm" title="cla_utils.exercises4.operator_2_norm"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises4.operator_2_norm()</span></code></a>
+<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises4.operator_2_norm()</span></code>
 function has been left unimplemented. It takes in an <span class="math notranslate nohighlight">\(m\times n\)</span>
 matrix <span class="math notranslate nohighlight">\(A\)</span> and returns the operator norm using the procedure in
 this exercise.  You may use the built in function
-<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html#numpy.linalg.eig" title="(in NumPy v1.23)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.linalg.eig()</span></code></a> to compute the eigenvalues of any matrices
+<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html#numpy.linalg.eig" title="(in NumPy v1.25)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.linalg.eig()</span></code></a> to compute the eigenvalues of any matrices
 that you need. (We will discuss algorithms to compute eigenvalues
 later in the course.) The test script <code class="docutils literal notranslate"><span class="pre">test_exercises4.py</span></code> in the
 <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will test this function.</p>
@@ -292,13 +290,13 @@ later in the course.) The test script <code class="docutils literal notranslate"
         <span class="proof-type">Exercise 3.8</span>
         
     </div><div class="proof-content">
-<p>Add a function to <a class="reference internal" href="cla_utils.html#module-cla_utils.exercises4" title="cla_utils.exercises4"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cla_utils.exercises4</span></code></a> to verify the
+<p>Add a function to <code class="xref py py-mod docutils literal notranslate"><span class="pre">cla_utils.exercises4</span></code> to verify the
 inequality <span class="math notranslate nohighlight">\(\|Ax\|\leq \|A\|\|x\|\)</span> using
-<a class="reference internal" href="cla_utils.html#cla_utils.exercises4.operator_2_norm" title="cla_utils.exercises4.operator_2_norm"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises4.operator_2_norm()</span></code></a>, considering various
+<code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises4.operator_2_norm()</span></code>, considering various
 <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
 </div></div></section>
 <section id="norm-inequalities">
-<h2><span class="section-number">3.5. </span>Norm inequalities<a class="headerlink" href="#norm-inequalities" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.5. </span>Norm inequalities<a class="headerlink" href="#norm-inequalities" title="Permalink to this heading">¶</a></h2>
 <p>Often it is difficult to find exact values for norms, so we compute upper
 bounds using inequalities instead. Here are a few useful inequalities.</p>
 <div class="proof proof-type-definition" id="id9">
@@ -373,11 +371,11 @@ product <span class="math notranslate nohighlight">\(A=uv^*\)</span> of two vect
         <span class="proof-type">Exercise 3.12</span>
         
     </div><div class="proof-content">
-<p>Add a function to <a class="reference internal" href="cla_utils.html#module-cla_utils.exercises4" title="cla_utils.exercises4"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cla_utils.exercises4</span></code></a> to verify this
+<p>Add a function to <code class="xref py py-mod docutils literal notranslate"><span class="pre">cla_utils.exercises4</span></code> to verify this
 theorem for various <span class="math notranslate nohighlight">\(l\)</span>, <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
 </div></div></section>
 <section id="condition-number">
-<h2><span class="section-number">3.6. </span>Condition number<a class="headerlink" href="#condition-number" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.6. </span>Condition number<a class="headerlink" href="#condition-number" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -494,7 +492,7 @@ catastrophically ill conditioned. For an even more vivid example, see
 the conditioning of the roots of the Wilkinson polynomial.</p>
 </section>
 <section id="conditioning-of-linear-algebra-computations">
-<h2><span class="section-number">3.7. </span>Conditioning of linear algebra computations<a class="headerlink" href="#conditioning-of-linear-algebra-computations" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.7. </span>Conditioning of linear algebra computations<a class="headerlink" href="#conditioning-of-linear-algebra-computations" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -568,18 +566,18 @@ number for this problem is the condition number of <span class="math notranslate
         <span class="proof-type">Exercise 3.16</span>
         
     </div><div class="proof-content">
-<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <a class="reference internal" href="cla_utils.html#cla_utils.exercises4.cond" title="cla_utils.exercises4.cond"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises4.cond()</span></code></a> function has
+<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises4.cond()</span></code> function has
 been left unimplemented. It takes in an <span class="math notranslate nohighlight">\(m\times m\)</span> matrix <span class="math notranslate nohighlight">\(A\)</span> and
 returns the condition number. You should use a method similar to
 that in <a class="reference internal" href="#o2norm"><span class="std std-numref">Exercise 3.7</span></a>, using the
-<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html#numpy.linalg.eig" title="(in NumPy v1.23)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.linalg.eig()</span></code></a> to compute the eigenvalues of any matrices
+<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html#numpy.linalg.eig" title="(in NumPy v1.25)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.linalg.eig()</span></code></a> to compute the eigenvalues of any matrices
 that you need. Try to think about minimising the number of
 eigenvalue calculations you need to do. The test script
 <code class="docutils literal notranslate"><span class="pre">test_exercises4.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will test this
 function.</p>
 </div></div></section>
 <section id="floating-point-numbers-and-arithmetic">
-<h2><span class="section-number">3.8. </span>Floating point numbers and arithmetic<a class="headerlink" href="#floating-point-numbers-and-arithmetic" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.8. </span>Floating point numbers and arithmetic<a class="headerlink" href="#floating-point-numbers-and-arithmetic" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -688,7 +686,7 @@ point arithmetic (the default floating point numbers in
 Python/NumPy). Which is more accurate? Why is this?</p>
 </div></div></section>
 <section id="stability">
-<h2><span class="section-number">3.9. </span>Stability<a class="headerlink" href="#stability" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.9. </span>Stability<a class="headerlink" href="#stability" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -826,7 +824,7 @@ than forward analysis, where one would simply try to keep a running
 tally of errors committed during each step of the algorithm.</p>
 </section>
 <section id="backward-stability-of-the-householder-algorithm">
-<h2><span class="section-number">3.10. </span>Backward stability of the Householder algorithm<a class="headerlink" href="#backward-stability-of-the-householder-algorithm" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.10. </span>Backward stability of the Householder algorithm<a class="headerlink" href="#backward-stability-of-the-householder-algorithm" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -876,20 +874,20 @@ backwards stable, i.e. the result <span class="math notranslate nohighlight">\(\
         <span class="proof-type">Exercise 3.25</span>
         
     </div><div class="proof-content">
-<p>The <a class="reference internal" href="cla_utils.html#cla_utils.exercises5.backward_stability_householder" title="cla_utils.exercises5.backward_stability_householder"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises5.backward_stability_householder()</span></code></a>
+<p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises5.backward_stability_householder()</span></code>
 function has been left unimplemented. It generates random <span class="math notranslate nohighlight">\(Q_1\)</span> and
 <span class="math notranslate nohighlight">\(R_1\)</span> matrices of dimension <span class="math notranslate nohighlight">\(m\)</span> provided, and forms <span class="math notranslate nohighlight">\(A=QR\)</span>. It is
 very important that the two matrices <span class="math notranslate nohighlight">\(Q_1\)</span> and <span class="math notranslate nohighlight">\(R_1\)</span> are
 uncorrelated (in particular, computing them as the QR factorisation
 of the same matrix would spoil the experiment). To complete the
 function, pass <span class="math notranslate nohighlight">\(A\)</span> to the built-in QR factorisation function
-<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.qr.html#numpy.linalg.qr" title="(in NumPy v1.23)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.linalg.qr()</span></code></a> (which uses Householder transformations) to
+<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.qr.html#numpy.linalg.qr" title="(in NumPy v1.25)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.linalg.qr()</span></code></a> (which uses Householder transformations) to
 get <span class="math notranslate nohighlight">\(Q_2\)</span> and <span class="math notranslate nohighlight">\(R_2\)</span>. Print out the value of <span class="math notranslate nohighlight">\(\|Q_2-Q_1\|\)</span>,
 <span class="math notranslate nohighlight">\(\|R_2-R_1\|\)</span>, <span class="math notranslate nohighlight">\(\|A-Q_2R_2\|\)</span>. Explain what you see using what you
 know about the stability of the Householder algorithm.</p>
 </div></div></section>
 <section id="backward-stability-for-solving-a-linear-system-using-qr">
-<h2><span class="section-number">3.11. </span>Backward stability for solving a linear system using QR<a class="headerlink" href="#backward-stability-for-solving-a-linear-system-using-qr" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.11. </span>Backward stability for solving a linear system using QR<a class="headerlink" href="#backward-stability-for-solving-a-linear-system-using-qr" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -984,7 +982,7 @@ floating point implementation of backward substitution produces
         <span class="proof-type">Exercise 3.26</span>
         
     </div><div class="proof-content">
-<p>Complete the function <a class="reference internal" href="cla_utils.html#cla_utils.exercises5.back_stab_solve_U" title="cla_utils.exercises5.back_stab_solve_U"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises5.back_stab_solve_U()</span></code></a>
+<p>Complete the function <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises5.back_stab_solve_U()</span></code>
 so that it verifies backward stability for back substitution, using
 <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises5.solve_U()</span></code>.</p>
 </div></div><p>Using the individual backward stability of these three algorithms,
@@ -1101,9 +1099,9 @@ backward stability that we just derived, we know that</p>
         <span class="proof-type">Exercise 3.29</span>
         
     </div><div class="proof-content">
-<p>Complete the function <a class="reference internal" href="cla_utils.html#cla_utils.exercises5.back_stab_householder_solve" title="cla_utils.exercises5.back_stab_householder_solve"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises5.back_stab_householder_solve()</span></code></a>
+<p>Complete the function <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises5.back_stab_householder_solve()</span></code>
 so that it verifies backward stability for solving <span class="math notranslate nohighlight">\(m\times m\)</span> dimensional
-square systems <span class="math notranslate nohighlight">\(Ax=b\)</span> using <a class="reference internal" href="cla_utils.html#cla_utils.exercises3.householder_solve" title="cla_utils.exercises3.householder_solve"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.householder_solve()</span></code></a>.</p>
+square systems <span class="math notranslate nohighlight">\(Ax=b\)</span> using <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.householder_solve()</span></code>.</p>
 </div></div></section>
 </section>
 
@@ -1116,7 +1114,7 @@ square systems <span class="math notranslate nohighlight">\(Ax=b\)</span> using 
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2020-2022, Colin J. Cotter.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
     </div>
   </body>
 </html>
