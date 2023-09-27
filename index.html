@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Computational Linear Algebra &#8212; Computational linear algebra course 2022.0 documentation</title>
+    <title>Computational Linear Algebra &#8212; Computational linear algebra course 2023.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/fenics.css" />
     <link rel="stylesheet" type="text/css" href="_static/proof.css" />
@@ -15,7 +15,7 @@
     <script src="_static/proof.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Practical matters" href="practicalities.html" />
+    <link rel="next" title="General course information" href="practicalities.html" />
 <!--[if lte IE 6]>
 <link rel="stylesheet" href="_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
 <![endif]-->
@@ -45,17 +45,17 @@
           <div class="body" role="main">
             
   <p>This is the webpage for the <a class="reference external" href="http://www.imperial.ac.uk/maths">Imperial College London Mathematics</a>  module
-MATH96023/MATH97032/MATH97140 - Computational Linear Algebra.</p>
+MATH60024/MATH70024 - Computational Linear Algebra.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>This course is due for substantial revision and reorganisation
-before Academic Year 23/24, and hence these pages are likely to
-change in substantial ways before then.</p>
+<p>This course is undergoing substantial revision and reorganisation
+going into Academic Year 23/24, and hence these pages are likely to
+change in substantial ways as the course goes underway.</p>
 </div>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="practicalities.html">Practical matters</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="practicalities.html#lecturer">Lecturer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="practicalities.html">General course information</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="practicalities.html#course-leader">Course leader</a></li>
 <li class="toctree-l2"><a class="reference internal" href="practicalities.html#accreditation">Accreditation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="practicalities.html#assumed-knowledge">Assumed knowledge</a></li>
 <li class="toctree-l2"><a class="reference internal" href="practicalities.html#assessment">Assessment</a><ul>
@@ -65,113 +65,72 @@ change in substantial ways before then.</p>
 <li class="toctree-l2"><a class="reference internal" href="practicalities.html#blackboard">Blackboard</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="exercises.html">Computational exercises</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="exercises.html#editing-code">Editing code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="exercises.html#getting-the-software-that-you-need">Getting the software that you need</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="exercises.html#using-your-own-machine-recommended">Using your own machine (recommended)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="exercises.html#using-the-windows-machines-in-the-computer-labs">Using the Windows machines in the computer labs</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="exercises.html#the-command-line">The command line</a></li>
-<li class="toctree-l2"><a class="reference internal" href="exercises.html#python">Python</a></li>
-<li class="toctree-l2"><a class="reference internal" href="exercises.html#github-and-git">GitHub and git</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="exercises.html#getting-started-with-git-and-github">Getting started with git and GitHub</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="exercises.html#setting-up-your-repository">Setting up your repository</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="exercises.html#cloning-a-local-copy">Cloning a local copy</a></li>
-<li class="toctree-l3"><a class="reference internal" href="exercises.html#setting-up-your-venv">Setting up your venv</a></li>
-<li class="toctree-l3"><a class="reference internal" href="exercises.html#activating-your-venv">Activating your venv</a></li>
-<li class="toctree-l3"><a class="reference internal" href="exercises.html#installing-the-course-package-to-the-venv">Installing the course package to the venv</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="exercises.html#how-to-do-the-computational-exercises">How to do the computational exercises</a></li>
-<li class="toctree-l2"><a class="reference internal" href="exercises.html#running-your-work">Running your work</a></li>
-<li class="toctree-l2"><a class="reference internal" href="exercises.html#testing-your-work">Testing your work</a></li>
-<li class="toctree-l2"><a class="reference internal" href="exercises.html#coding-style-and-commenting">Coding style and commenting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="exercises.html#skeleton-code-documentation">Skeleton code documentation</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="errata.html">Errata for 2022/23</a></li>
+<li class="toctree-l1"><a class="reference internal" href="errata.html">Errata for 2023/24</a></li>
 </ul>
 </div>
 <a class="reference internal image-reference" href="_images/trefbau.jpg"><img alt="_images/trefbau.jpg" class="align-right" src="_images/trefbau.jpg" style="width: 20ex;" /></a>
-<p>This module is led by <a class="reference external" href="http://www.imperial.ac.uk/people/colin.cotter">Prof. Colin Cotter</a>.</p>
 <p>A PDF version of the course notes is <a class="reference external" href="Computationallinearalgebracourse.pdf">available here</a>.  The lecture material for this
 course is available as videos linked from the web version of the
 notes.</p>
 <p>The text for this part of the module is Trefethen and Bau
 <em>Numerical Linear Algebra</em>. Another very useful reference is
 Golub and van Loan <em>Matrix Computations</em>.</p>
-<p>The automated documentation for the skeleton code is below.</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="cla_utils.html">cla_utils package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cla_utils.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cla_utils.html#cla-utils-exercises1-module">cla_utils.exercises1 module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cla_utils.html#cla-utils-exercises10-module">cla_utils.exercises10 module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cla_utils.html#cla-utils-exercises2-module">cla_utils.exercises2 module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cla_utils.html#cla-utils-exercises3-module">cla_utils.exercises3 module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cla_utils.html#cla-utils-exercises4-module">cla_utils.exercises4 module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cla_utils.html#cla-utils-exercises5-module">cla_utils.exercises5 module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cla_utils.html#cla-utils-exercises6-module">cla_utils.exercises6 module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cla_utils.html#cla-utils-exercises7-module">cla_utils.exercises7 module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cla_utils.html#cla-utils-exercises8-module">cla_utils.exercises8 module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cla_utils.html#cla-utils-exercises9-module">cla_utils.exercises9 module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cla_utils.html#module-contents">Module contents</a></li>
-</ul>
-</li>
-</ul>
-</div>
 <p>We provide a complete set of notes for the course below.</p>
 <section id="lecture-notes">
 <h1>Lecture notes:<a class="headerlink" href="#lecture-notes" title="Permalink to this heading">¶</a></h1>
 </section>
 <div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="L1_preliminaries.html">1. Preliminaries</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="L1_preliminaries.html#matrices-vectors-and-matrix-vector-multiplication">1.1. Matrices, vectors and matrix-vector multiplication</a></li>
-<li class="toctree-l2"><a class="reference internal" href="L1_preliminaries.html#range-nullspace-and-rank">1.2. Range, nullspace and rank</a></li>
-<li class="toctree-l2"><a class="reference internal" href="L1_preliminaries.html#invertibility-and-inverses">1.3. Invertibility and inverses</a></li>
-<li class="toctree-l2"><a class="reference internal" href="L1_preliminaries.html#adjoints-and-hermitian-matrices">1.4. Adjoints and Hermitian matrices</a></li>
-<li class="toctree-l2"><a class="reference internal" href="L1_preliminaries.html#inner-products-and-orthogonality">1.5. Inner products and orthogonality</a></li>
-<li class="toctree-l2"><a class="reference internal" href="L1_preliminaries.html#orthogonal-components-of-a-vector">1.6. Orthogonal components of a vector</a></li>
-<li class="toctree-l2"><a class="reference internal" href="L1_preliminaries.html#unitary-matrices">1.7. Unitary matrices</a></li>
-<li class="toctree-l2"><a class="reference internal" href="L1_preliminaries.html#vector-norms">1.8. Vector norms</a></li>
-<li class="toctree-l2"><a class="reference internal" href="L1_preliminaries.html#projectors-and-projections">1.9. Projectors and projections</a></li>
-<li class="toctree-l2"><a class="reference internal" href="L1_preliminaries.html#constructing-orthogonal-projectors-from-sets-of-orthonormal-vectors">1.10. Constructing orthogonal projectors from sets of orthonormal vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L0_setup.html">1. Getting ready for computational exercises</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="L0_setup.html#getting-the-software-that-you-need">1.1. Getting the software that you need</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L0_setup.html#the-terminal">1.2. The Terminal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L0_setup.html#python-virtual-environment">1.3. Python virtual environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L0_setup.html#github-and-git">1.4. GitHub and git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L0_setup.html#setting-up-your-repository">1.5. Setting up your repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L0_setup.html#how-to-do-the-computational-exercises">1.6. How to do the computational exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L0_setup.html#running-your-work">1.7. Running your work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L0_setup.html#testing-your-work">1.8. Testing your work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L0_setup.html#coding-style-and-commenting">1.9. Coding style and commenting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L0_setup.html#skeleton-code-documentation">1.10. Skeleton code documentation</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="L2_QR_factorisation.html">2. QR Factorisation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="L2_QR_factorisation.html#what-is-the-qr-factorisation">2.1. What is the QR factorisation?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="L2_QR_factorisation.html#qr-factorisation-by-classical-gram-schmidt-algorithm">2.2. QR factorisation by classical Gram-Schmidt algorithm</a></li>
-<li class="toctree-l2"><a class="reference internal" href="L2_QR_factorisation.html#projector-interpretation-of-gram-schmidt">2.3. Projector interpretation of Gram-Schmidt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="L2_QR_factorisation.html#modified-gram-schmidt">2.4. Modified Gram-Schmidt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="L2_QR_factorisation.html#modified-gram-schmidt-as-triangular-orthogonalisation">2.5. Modified Gram-Schmidt as triangular orthogonalisation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="L2_QR_factorisation.html#householder-triangulation">2.6. Householder triangulation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="L2_QR_factorisation.html#application-least-squares-problems">2.7. Application: Least squares problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L1_preliminaries.html">2. Linear algebra preliminaries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="L1_preliminaries.html#matrices-vectors-and-matrix-vector-multiplication">2.1. Matrices, vectors and matrix-vector multiplication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L1_preliminaries.html#range-nullspace-and-rank">2.2. Range, nullspace and rank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L1_preliminaries.html#invertibility-and-inverses">2.3. Invertibility and inverses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L1_preliminaries.html#adjoints-and-hermitian-matrices">2.4. Adjoints and Hermitian matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L1_preliminaries.html#inner-products-and-orthogonality">2.5. Inner products and orthogonality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L1_preliminaries.html#orthogonal-components-of-a-vector">2.6. Orthogonal components of a vector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L1_preliminaries.html#unitary-matrices">2.7. Unitary matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L1_preliminaries.html#vector-norms">2.8. Vector norms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L1_preliminaries.html#projectors-and-projections">2.9. Projectors and projections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L1_preliminaries.html#constructing-orthogonal-projectors-from-sets-of-orthonormal-vectors">2.10. Constructing orthogonal projectors from sets of orthonormal vectors</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="L3_analysing_algorithms.html">3. Analysing algorithms</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="L3_analysing_algorithms.html#operation-count">3.1. Operation count</a></li>
-<li class="toctree-l2"><a class="reference internal" href="L3_analysing_algorithms.html#operation-count-for-modified-gram-schmidt">3.2. Operation count for modified Gram-Schmidt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="L3_analysing_algorithms.html#operation-count-for-householder">3.3. Operation count for Householder</a></li>
-<li class="toctree-l2"><a class="reference internal" href="L3_analysing_algorithms.html#matrix-norms-for-discussing-stability">3.4. Matrix norms for discussing stability</a></li>
-<li class="toctree-l2"><a class="reference internal" href="L3_analysing_algorithms.html#norm-inequalities">3.5. Norm inequalities</a></li>
-<li class="toctree-l2"><a class="reference internal" href="L3_analysing_algorithms.html#condition-number">3.6. Condition number</a></li>
-<li class="toctree-l2"><a class="reference internal" href="L3_analysing_algorithms.html#conditioning-of-linear-algebra-computations">3.7. Conditioning of linear algebra computations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="L3_analysing_algorithms.html#floating-point-numbers-and-arithmetic">3.8. Floating point numbers and arithmetic</a></li>
-<li class="toctree-l2"><a class="reference internal" href="L3_analysing_algorithms.html#stability">3.9. Stability</a></li>
-<li class="toctree-l2"><a class="reference internal" href="L3_analysing_algorithms.html#backward-stability-of-the-householder-algorithm">3.10. Backward stability of the Householder algorithm</a></li>
-<li class="toctree-l2"><a class="reference internal" href="L3_analysing_algorithms.html#backward-stability-for-solving-a-linear-system-using-qr">3.11. Backward stability for solving a linear system using QR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L2_QR_factorisation.html">3. QR factorisation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="L2_QR_factorisation.html#what-is-the-qr-factorisation">3.1. What is the QR factorisation?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L2_QR_factorisation.html#qr-factorisation-by-classical-gram-schmidt-algorithm">3.2. QR factorisation by classical Gram-Schmidt algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L2_QR_factorisation.html#projector-interpretation-of-gram-schmidt">3.3. Projector interpretation of Gram-Schmidt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L2_QR_factorisation.html#modified-gram-schmidt">3.4. Modified Gram-Schmidt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L2_QR_factorisation.html#modified-gram-schmidt-as-triangular-orthogonalisation">3.5. Modified Gram-Schmidt as triangular orthogonalisation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L2_QR_factorisation.html#householder-triangulation">3.6. Householder triangulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L2_QR_factorisation.html#application-least-squares-problems">3.7. Application: Least squares problems</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="L4_LU_decomposition.html">4. LU decomposition</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="L4_LU_decomposition.html#an-algorithm-for-lu-decomposition">4.1. An algorithm for LU decomposition</a></li>
-<li class="toctree-l2"><a class="reference internal" href="L4_LU_decomposition.html#pivoting">4.2. Pivoting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="L4_LU_decomposition.html#stability-of-lu-factorisation">4.3. Stability of LU factorisation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="L4_LU_decomposition.html#taking-advantage-of-matrix-structure">4.4. Taking advantage of matrix structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="L4_LU_decomposition.html#cholesky-factorisation">4.5. Cholesky factorisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L3_analysing_algorithms.html">4. Analysing algorithms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="L3_analysing_algorithms.html#operation-count">4.1. Operation count</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L3_analysing_algorithms.html#operation-count-for-modified-gram-schmidt">4.2. Operation count for modified Gram-Schmidt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L3_analysing_algorithms.html#operation-count-for-householder">4.3. Operation count for Householder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L3_analysing_algorithms.html#matrix-norms-for-discussing-stability">4.4. Matrix norms for discussing stability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L3_analysing_algorithms.html#norm-inequalities">4.5. Norm inequalities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L3_analysing_algorithms.html#condition-number">4.6. Condition number</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L3_analysing_algorithms.html#conditioning-of-linear-algebra-computations">4.7. Conditioning of linear algebra computations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L3_analysing_algorithms.html#floating-point-numbers-and-arithmetic">4.8. Floating point numbers and arithmetic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L3_analysing_algorithms.html#stability">4.9. Stability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L3_analysing_algorithms.html#backward-stability-of-the-householder-algorithm">4.10. Backward stability of the Householder algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L3_analysing_algorithms.html#backward-stability-for-solving-a-linear-system-using-qr">4.11. Backward stability for solving a linear system using QR</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="L5_eigenvalues.html">5. Finding eigenvalues of matrices</a><ul>
@@ -193,7 +152,27 @@ Golub and van Loan <em>Matrix Computations</em>.</p>
 <li class="toctree-l2"><a class="reference internal" href="L6_krylov.html#arnoldi-iteration">6.2. Arnoldi iteration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="L6_krylov.html#gmres">6.3. GMRES</a></li>
 <li class="toctree-l2"><a class="reference internal" href="L6_krylov.html#convergence-of-gmres">6.4. Convergence of GMRES</a></li>
-<li class="toctree-l2"><a class="reference internal" href="L6_krylov.html#preconditioning">6.5. Preconditioning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L6_krylov.html#preconditioned-gmres">6.5. Preconditioned GMRES</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>The automated documentation for the skeleton code is below.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cla_utils.html">cla_utils package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cla_utils.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cla_utils.html#cla-utils-exercises1-module">cla_utils.exercises1 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cla_utils.html#cla-utils-exercises10-module">cla_utils.exercises10 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cla_utils.html#cla-utils-exercises2-module">cla_utils.exercises2 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cla_utils.html#cla-utils-exercises3-module">cla_utils.exercises3 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cla_utils.html#cla-utils-exercises4-module">cla_utils.exercises4 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cla_utils.html#cla-utils-exercises5-module">cla_utils.exercises5 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cla_utils.html#cla-utils-exercises6-module">cla_utils.exercises6 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cla_utils.html#cla-utils-exercises7-module">cla_utils.exercises7 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cla_utils.html#cla-utils-exercises8-module">cla_utils.exercises8 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cla_utils.html#cla-utils-exercises9-module">cla_utils.exercises9 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cla_utils.html#module-contents">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -207,7 +186,7 @@ Golub and van Loan <em>Matrix Computations</em>.</p>
       <div class="clearer"></div>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020-2022, Colin J. Cotter.
+        &#169; Copyright 2020-2023, Colin J. Cotter.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
     </div>
   </body>

@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2. QR Factorisation &#8212; Computational linear algebra course 2022.0 documentation</title>
+    <title>3. QR factorisation &#8212; Computational linear algebra course 2023.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/fenics.css" />
     <link rel="stylesheet" type="text/css" href="_static/proof.css" />
@@ -16,8 +16,8 @@
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="3. Analysing algorithms" href="L3_analysing_algorithms.html" />
-    <link rel="prev" title="1. Preliminaries" href="L1_preliminaries.html" />
+    <link rel="next" title="4. Analysing algorithms" href="L3_analysing_algorithms.html" />
+    <link rel="prev" title="2. Linear algebra preliminaries" href="L1_preliminaries.html" />
 <!--[if lte IE 6]>
 <link rel="stylesheet" href="_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
 <![endif]-->
@@ -47,7 +47,7 @@
           <div class="body" role="main">
             
   <section id="qr-factorisation">
-<h1><span class="section-number">2. </span>QR Factorisation<a class="headerlink" href="#qr-factorisation" title="Permalink to this heading">¶</a></h1>
+<h1><span class="section-number">3. </span>QR factorisation<a class="headerlink" href="#qr-factorisation" title="Permalink to this heading">¶</a></h1>
 <p>A common theme in computational linear algebra is transformations
 of matrices and algorithms to implement them. A transformation is
 only useful if it can be computed efficiently and sufficiently
@@ -57,7 +57,7 @@ powerful and insightful transformation is the QR factorisation.
 In this section we will introduce the QR factorisation and some
 good and bad algorithms to compute it.</p>
 <section id="what-is-the-qr-factorisation">
-<h2><span class="section-number">2.1. </span>What is the QR factorisation?<a class="headerlink" href="#what-is-the-qr-factorisation" title="Permalink to this heading">¶</a></h2>
+<h2><span class="section-number">3.1. </span>What is the QR factorisation?<a class="headerlink" href="#what-is-the-qr-factorisation" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -66,7 +66,7 @@ Supplementary video</summary><div class="video_wrapper" style="">
 <div class="proof proof-type-definition" id="id1">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 2.1</span>
+        <span class="proof-type">Definition 3.1</span>
         
             <span class="proof-title-name">(Upper triangular matrix)</span>
         
@@ -79,7 +79,7 @@ on and above the main diagonal of <span class="math notranslate nohighlight">\(R
 <div class="proof proof-type-definition" id="id2">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 2.2</span>
+        <span class="proof-type">Definition 3.2</span>
         
             <span class="proof-title-name">(QR factorisation)</span>
         
@@ -101,7 +101,7 @@ We then have the reduced QR factorisation, <span class="math notranslate nohighl
 <div class="proof proof-type-exercise" id="id3">
 
     <div class="proof-title">
-        <span class="proof-type">Exercise 2.3</span>
+        <span class="proof-type">Exercise 3.3</span>
         
     </div><div class="proof-content">
 <p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises2.orthog_space()</span></code> function has been
@@ -115,7 +115,7 @@ should find an orthonormal basis for the orthogonal complement
 </div></blockquote>
 <p>It is expected that it will only compute this up to a tolerance.
 You should make use of the built in QR factorisation routine
-<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.qr.html#numpy.linalg.qr" title="(in NumPy v1.25)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.linalg.qr()</span></code></a>. The test script <code class="docutils literal notranslate"><span class="pre">test_exercises2.py</span></code> in
+<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.qr.html#numpy.linalg.qr" title="(in NumPy v1.26)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.linalg.qr()</span></code></a>. The test script <code class="docutils literal notranslate"><span class="pre">test_exercises2.py</span></code> in
 the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will test this function.</p>
 </div></div><p>In the rest of this section we will examine some algorithms for computing
 the QR factorisation, before discussing the application to least squares
@@ -123,7 +123,7 @@ problems. We will start with a bad algorithm, before moving on to some
 better ones.</p>
 </section>
 <section id="qr-factorisation-by-classical-gram-schmidt-algorithm">
-<h2><span class="section-number">2.2. </span>QR factorisation by classical Gram-Schmidt algorithm<a class="headerlink" href="#qr-factorisation-by-classical-gram-schmidt-algorithm" title="Permalink to this heading">¶</a></h2>
+<h2><span class="section-number">3.2. </span>QR factorisation by classical Gram-Schmidt algorithm<a class="headerlink" href="#qr-factorisation-by-classical-gram-schmidt-algorithm" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -192,7 +192,7 @@ for code blocks in pseudo-code in these notes.)</p>
 <div class="proof proof-type-exercise" id="id4">
 
     <div class="proof-title">
-        <span class="proof-type">Exercise 2.4</span>
+        <span class="proof-type">Exercise 3.4</span>
         
     </div><div class="proof-content">
 <p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises2.GS_classical()</span></code> function
@@ -214,7 +214,7 @@ that could be done beforehand.</p>
 </div>
 </section>
 <section id="projector-interpretation-of-gram-schmidt">
-<h2><span class="section-number">2.3. </span>Projector interpretation of Gram-Schmidt<a class="headerlink" href="#projector-interpretation-of-gram-schmidt" title="Permalink to this heading">¶</a></h2>
+<h2><span class="section-number">3.3. </span>Projector interpretation of Gram-Schmidt<a class="headerlink" href="#projector-interpretation-of-gram-schmidt" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -234,7 +234,7 @@ is <span class="math notranslate nohighlight">\(\hat{Q}_{j-1}\hat{Q}_{j-1}^*\)</
 \hat{Q}_{j-1}\hat{Q}_{j-1}^*\)</span>.</p>
 </section>
 <section id="modified-gram-schmidt">
-<h2><span class="section-number">2.4. </span>Modified Gram-Schmidt<a class="headerlink" href="#modified-gram-schmidt" title="Permalink to this heading">¶</a></h2>
+<h2><span class="section-number">3.4. </span>Modified Gram-Schmidt<a class="headerlink" href="#modified-gram-schmidt" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -313,7 +313,7 @@ in <span class="math notranslate nohighlight">\(A\)</span> with the <span class=
 <div class="proof proof-type-exercise" id="id5">
 
     <div class="proof-title">
-        <span class="proof-type">Exercise 2.5</span>
+        <span class="proof-type">Exercise 3.5</span>
         
     </div><div class="proof-content">
 <p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises2.GS_modified()</span></code> function has been
@@ -329,7 +329,7 @@ function.</p>
 </div></div><div class="proof proof-type-exercise" id="id6">
 
     <div class="proof-title">
-        <span class="proof-type">Exercise 2.6</span>
+        <span class="proof-type">Exercise 3.6</span>
         
     </div><div class="proof-content">
 <p>Investigate the mutual orthogonality of the <span class="math notranslate nohighlight">\(Q\)</span> matrices that are
@@ -345,7 +345,7 @@ illustrates the differences in orthogonality between the two
 algorithms.</p>
 </div></div></section>
 <section id="modified-gram-schmidt-as-triangular-orthogonalisation">
-<h2><span class="section-number">2.5. </span>Modified Gram-Schmidt as triangular orthogonalisation<a class="headerlink" href="#modified-gram-schmidt-as-triangular-orthogonalisation" title="Permalink to this heading">¶</a></h2>
+<h2><span class="section-number">3.5. </span>Modified Gram-Schmidt as triangular orthogonalisation<a class="headerlink" href="#modified-gram-schmidt-as-triangular-orthogonalisation" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -425,7 +425,7 @@ above).</p>
 <div class="proof proof-type-exercise" id="id7">
 
     <div class="proof-title">
-        <span class="proof-type">Exercise 2.7</span>
+        <span class="proof-type">Exercise 3.7</span>
         
     </div><div class="proof-content">
 <p>In a break from the format so far, the
@@ -447,7 +447,7 @@ script <code class="docutils literal notranslate"><span class="pre">test_exercis
 test this function.</p>
 </div></div></section>
 <section id="householder-triangulation">
-<h2><span class="section-number">2.6. </span>Householder triangulation<a class="headerlink" href="#householder-triangulation" title="Permalink to this heading">¶</a></h2>
+<h2><span class="section-number">3.6. </span>Householder triangulation<a class="headerlink" href="#householder-triangulation" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -623,7 +623,7 @@ columns from <span class="math notranslate nohighlight">\(r\)</span> to <span cl
 <div class="proof proof-type-exercise" id="id8">
 
     <div class="proof-title">
-        <span class="proof-type">Exercise 2.8</span>
+        <span class="proof-type">Exercise 3.8</span>
         
     </div><div class="proof-content">
 <p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.householder()</span></code> function
@@ -686,7 +686,7 @@ pseudo-code.</p>
 <div class="proof proof-type-exercise" id="id9">
 
     <div class="proof-title">
-        <span class="proof-type">Exercise 2.9</span>
+        <span class="proof-type">Exercise 3.9</span>
         
     </div><div class="proof-content">
 <p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The function <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.solve_U()</span></code> has
@@ -700,7 +700,7 @@ functions.</p>
 </div></div><div class="proof proof-type-exercise" id="id10">
 
     <div class="proof-title">
-        <span class="proof-type">Exercise 2.10</span>
+        <span class="proof-type">Exercise 3.10</span>
         
     </div><div class="proof-content">
 <p><span class="math notranslate nohighlight">\((\ddagger)\)</span> Show that the implicit multiplication procedure is
@@ -766,7 +766,7 @@ Qe_1 &amp; Qe_2 &amp; \ldots &amp; Qe_n
 <div class="proof proof-type-exercise" id="id11">
 
     <div class="proof-title">
-        <span class="proof-type">Exercise 2.11</span>
+        <span class="proof-type">Exercise 3.11</span>
         
     </div><div class="proof-content">
 <p><span class="math notranslate nohighlight">\((\ddagger)\)</span> Show that the implicit multiplication procedure
@@ -784,7 +784,7 @@ appropriate subarrays using slice notation. The test script
 this function.</p>
 </div></div></section>
 <section id="application-least-squares-problems">
-<h2><span class="section-number">2.7. </span>Application: Least squares problems<a class="headerlink" href="#application-least-squares-problems" title="Permalink to this heading">¶</a></h2>
+<h2><span class="section-number">3.7. </span>Application: Least squares problems<a class="headerlink" href="#application-least-squares-problems" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -805,7 +805,7 @@ the 2-norm of the residual <span class="math notranslate nohighlight">\(r=b-Ax\)
 <p>This residual will not be zero in general, when <span class="math notranslate nohighlight">\(b\)</span> is not in the
 range of <span class="math notranslate nohighlight">\(A\)</span>. The nearest point in the range of <span class="math notranslate nohighlight">\(A\)</span> to <span class="math notranslate nohighlight">\(b\)</span> is <span class="math notranslate nohighlight">\(Pb\)</span>,
 where <span class="math notranslate nohighlight">\(P\)</span> is the orthogonal projector onto the range of <span class="math notranslate nohighlight">\(A\)</span>. From
-<a class="reference internal" href="L1_preliminaries.html#orthogonal-projector"><span class="std std-numref">Theorem 1.28</span></a>, we know that
+<a class="reference internal" href="L1_preliminaries.html#orthogonal-projector"><span class="std std-numref">Theorem 2.28</span></a>, we know that
 <span class="math notranslate nohighlight">\(P=\hat{Q}\hat{Q}^*\)</span>, where <span class="math notranslate nohighlight">\(\hat{Q}\)</span> from the reduced <span class="math notranslate nohighlight">\(QR\)</span>
 factorisation has the same column space as <span class="math notranslate nohighlight">\(A\)</span> (but with orthogonal
 columns).</p>
@@ -832,7 +832,7 @@ using back-substitution.</p>
 <div class="proof proof-type-exercise" id="id12">
 
     <div class="proof-title">
-        <span class="proof-type">Exercise 2.12</span>
+        <span class="proof-type">Exercise 3.12</span>
         
     </div><div class="proof-content">
 <p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.householder_ls()</span></code>
@@ -862,7 +862,7 @@ square (and invertible) reduced matrix <span class="math notranslate nohighlight
       <div class="clearer"></div>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020-2022, Colin J. Cotter.
+        &#169; Copyright 2020-2023, Colin J. Cotter.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
     </div>
   </body>

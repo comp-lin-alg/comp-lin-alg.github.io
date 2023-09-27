@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>4. LU decomposition &#8212; Computational linear algebra course 2022.0 documentation</title>
+    <title>LU decomposition &#8212; Computational linear algebra course 2023.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/fenics.css" />
     <link rel="stylesheet" type="text/css" href="_static/proof.css" />
@@ -16,8 +16,6 @@
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="5. Finding eigenvalues of matrices" href="L5_eigenvalues.html" />
-    <link rel="prev" title="3. Analysing algorithms" href="L3_analysing_algorithms.html" />
 <!--[if lte IE 6]>
 <link rel="stylesheet" href="_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
 <![endif]-->
@@ -47,7 +45,7 @@
           <div class="body" role="main">
             
   <section id="lu-decomposition">
-<h1><span class="section-number">4. </span>LU decomposition<a class="headerlink" href="#lu-decomposition" title="Permalink to this heading">¶</a></h1>
+<h1>LU decomposition<a class="headerlink" href="#lu-decomposition" title="Permalink to this heading">¶</a></h1>
 <p>In this section we look at the some other algorithms for solving the
 equation <span class="math notranslate nohighlight">\(Ax=b\)</span> when <span class="math notranslate nohighlight">\(A\)</span> is invertible. On the one hand the <span class="math notranslate nohighlight">\(QR\)</span>
 factorisation has great stability properties. On the other, it can be
@@ -57,7 +55,7 @@ explore the the family of methods that go right back to the technique
 of Gaussian elimination, that you will have been familiar with since
 secondary school.</p>
 <section id="an-algorithm-for-lu-decomposition">
-<h2><span class="section-number">4.1. </span>An algorithm for LU decomposition<a class="headerlink" href="#an-algorithm-for-lu-decomposition" title="Permalink to this heading">¶</a></h2>
+<h2>An algorithm for LU decomposition<a class="headerlink" href="#an-algorithm-for-lu-decomposition" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -254,7 +252,7 @@ a mathematical concept to translate from the row operations into the final
 <div class="proof proof-type-exercise" id="id1">
 
     <div class="proof-title">
-        <span class="proof-type">Exercise 4.1</span>
+        <span class="proof-type">Exercise </span>
         
     </div><div class="proof-content">
 <p>Having said that, let’s take a moment to compute some examples
@@ -303,7 +301,7 @@ requires <span class="math notranslate nohighlight">\(m-k+1\)</span> multiplicat
 <div class="proof proof-type-exercise" id="id2">
 
     <div class="proof-title">
-        <span class="proof-type">Exercise 4.2</span>
+        <span class="proof-type">Exercise </span>
         
     </div><div class="proof-content">
 <p>Since the diagonal entries of <span class="math notranslate nohighlight">\(L\)</span> are all ones, the total amount of
@@ -322,7 +320,7 @@ directory will test this function.</p>
 </div></div><div class="proof proof-type-exercise" id="id3">
 
     <div class="proof-title">
-        <span class="proof-type">Exercise 4.3</span>
+        <span class="proof-type">Exercise </span>
         
     </div><div class="proof-content">
 <p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The LU factorisation requires 3 loops (this is why it
@@ -331,12 +329,12 @@ explicit loops and one explicit one (in the slice notation). It is
 possible to rewrite this in a single loop, using an outer
 product. Identify this outer product, and update
 <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises6.LU_inplace()</span></code> to make use of this
-reformulation (using <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.outer.html#numpy.outer" title="(in NumPy v1.25)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.outer()</span></code></a>). Do you notice any
+reformulation (using <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.outer.html#numpy.outer" title="(in NumPy v1.26)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.outer()</span></code></a>). Do you notice any
 improvement in speed?</p>
 </div></div><div class="proof proof-type-exercise" id="id4">
 
     <div class="proof-title">
-        <span class="proof-type">Exercise 4.4</span>
+        <span class="proof-type">Exercise </span>
         
     </div><div class="proof-content">
 <p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The function <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises6.solve_L()</span></code> has
@@ -350,7 +348,7 @@ functions.</p>
 </div></div><div class="proof proof-type-exercise" id="id5">
 
     <div class="proof-title">
-        <span class="proof-type">Exercise 4.5</span>
+        <span class="proof-type">Exercise </span>
         
     </div><div class="proof-content">
 <p><span class="math notranslate nohighlight">\((\ddagger)\)</span> Propose an algorithm to use the LU factorisation to
@@ -362,7 +360,7 @@ developed in the previous exercises where possible. The test script
 functions.</p>
 </div></div></section>
 <section id="pivoting">
-<h2><span class="section-number">4.2. </span>Pivoting<a class="headerlink" href="#pivoting" title="Permalink to this heading">¶</a></h2>
+<h2>Pivoting<a class="headerlink" href="#pivoting" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -383,7 +381,7 @@ see.</p>
 <div class="proof proof-type-definition" id="id6">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 4.6</span>
+        <span class="proof-type">Definition </span>
         
             <span class="proof-title-name">(Permutation matrix)</span>
         
@@ -512,7 +510,7 @@ complete pivoting, <span class="math notranslate nohighlight">\(PAQ=LU\)</span>.
 <div class="proof proof-type-exercise" id="id7">
 
     <div class="proof-title">
-        <span class="proof-type">Exercise 4.7</span>
+        <span class="proof-type">Exercise </span>
         
     </div><div class="proof-content">
 <p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The function <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises7.perm()</span></code> has
@@ -527,7 +525,7 @@ function.</p>
 </div></div><div class="proof proof-type-exercise" id="id8">
 
     <div class="proof-title">
-        <span class="proof-type">Exercise 4.8</span>
+        <span class="proof-type">Exercise </span>
         
     </div><div class="proof-content">
 <p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The function <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises7.LUP_inplace()</span></code>
@@ -542,7 +540,7 @@ function.</p>
 </div></div><div class="proof proof-type-exercise" id="id9">
 
     <div class="proof-title">
-        <span class="proof-type">Exercise 4.9</span>
+        <span class="proof-type">Exercise </span>
         
     </div><div class="proof-content">
 <p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The function <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises7.solve_LUP()</span></code>
@@ -553,7 +551,7 @@ directory will test this function.</p>
 </div></div><div class="proof proof-type-exercise" id="id10">
 
     <div class="proof-title">
-        <span class="proof-type">Exercise 4.10</span>
+        <span class="proof-type">Exercise </span>
         
     </div><div class="proof-content">
 <p><span class="math notranslate nohighlight">\((\ddagger)\)</span> Show how to compute the determinant of <span class="math notranslate nohighlight">\(A\)</span> from the
@@ -565,7 +563,7 @@ computation. The test script <code class="docutils literal notranslate"><span cl
 directory will test this function.</p>
 </div></div></section>
 <section id="stability-of-lu-factorisation">
-<h2><span class="section-number">4.3. </span>Stability of LU factorisation<a class="headerlink" href="#stability-of-lu-factorisation" title="Permalink to this heading">¶</a></h2>
+<h2>Stability of LU factorisation<a class="headerlink" href="#stability-of-lu-factorisation" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -575,7 +573,7 @@ result.</p>
 <div class="proof proof-type-theorem" id="id11">
 
     <div class="proof-title">
-        <span class="proof-type">Theorem 4.11</span>
+        <span class="proof-type">Theorem </span>
         
     </div><div class="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\tilde{L}\)</span> and <span class="math notranslate nohighlight">\(\tilde{U}\)</span> be the result of the Gaussian
@@ -601,7 +599,7 @@ in the following result (which we also do not prove).</p>
 <div class="proof proof-type-theorem" id="id12">
 
     <div class="proof-title">
-        <span class="proof-type">Theorem 4.12</span>
+        <span class="proof-type">Theorem </span>
         
     </div><div class="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\tilde{P}\)</span>, <span class="math notranslate nohighlight">\(\tilde{L}\)</span> and <span class="math notranslate nohighlight">\(\tilde{U}\)</span> be the result of the
@@ -629,7 +627,7 @@ still be pathological cases where entries in <span class="math notranslate nohig
 leading to large <span class="math notranslate nohighlight">\(\rho\)</span> and unstable computations.</p>
 </section>
 <section id="taking-advantage-of-matrix-structure">
-<h2><span class="section-number">4.4. </span>Taking advantage of matrix structure<a class="headerlink" href="#taking-advantage-of-matrix-structure" title="Permalink to this heading">¶</a></h2>
+<h2>Taking advantage of matrix structure<a class="headerlink" href="#taking-advantage-of-matrix-structure" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -681,7 +679,7 @@ zeros.</p>
 <div class="proof proof-type-exercise" id="id13">
 
     <div class="proof-title">
-        <span class="proof-type">Exercise 4.13</span>
+        <span class="proof-type">Exercise </span>
         
     </div><div class="proof-content">
 <p>Construct the <span class="math notranslate nohighlight">\(100\times 100\)</span> matrix <span class="math notranslate nohighlight">\(A\)</span> as follows: take <span class="math notranslate nohighlight">\(A=3I\)</span>,
@@ -749,7 +747,7 @@ solving an upper Hessenberg system has operation count
 <span class="math notranslate nohighlight">\(\mathcal{O}(m^2)\)</span>.</p>
 </section>
 <section id="cholesky-factorisation">
-<h2><span class="section-number">4.5. </span>Cholesky factorisation<a class="headerlink" href="#cholesky-factorisation" title="Permalink to this heading">¶</a></h2>
+<h2>Cholesky factorisation<a class="headerlink" href="#cholesky-factorisation" title="Permalink to this heading">¶</a></h2>
 <p>An example of extra structure which we shall discuss in a bit more
 detail is the case of Hermitian positive definite matrices. Recall
 that a Hermitian matrix satisfies <span class="math notranslate nohighlight">\(A^*=A\)</span>, whilst positive definite
@@ -880,7 +878,7 @@ by the operation inside the <span class="math notranslate nohighlight">\(j\)</sp
       <div class="clearer"></div>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020-2022, Colin J. Cotter.
+        &#169; Copyright 2020-2023, Colin J. Cotter.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
     </div>
   </body>

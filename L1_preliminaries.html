@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>1. Preliminaries &#8212; Computational linear algebra course 2022.0 documentation</title>
+    <title>2. Linear algebra preliminaries &#8212; Computational linear algebra course 2023.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/fenics.css" />
     <link rel="stylesheet" type="text/css" href="_static/proof.css" />
@@ -16,8 +16,8 @@
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="2. QR Factorisation" href="L2_QR_factorisation.html" />
-    <link rel="prev" title="cla_utils package" href="cla_utils.html" />
+    <link rel="next" title="3. QR factorisation" href="L2_QR_factorisation.html" />
+    <link rel="prev" title="1. Getting ready for computational exercises" href="L0_setup.html" />
 <!--[if lte IE 6]>
 <link rel="stylesheet" href="_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
 <![endif]-->
@@ -46,8 +46,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="preliminaries">
-<h1><span class="section-number">1. </span>Preliminaries<a class="headerlink" href="#preliminaries" title="Permalink to this heading">¶</a></h1>
+  <section id="linear-algebra-preliminaries">
+<h1><span class="section-number">2. </span>Linear algebra preliminaries<a class="headerlink" href="#linear-algebra-preliminaries" title="Permalink to this heading">¶</a></h1>
 <p>In this preliminary section, we revise a few key linear algebra
 concepts that will be used in the rest of the course, emphasising
 the column space of matrices. We will quote some standard results
@@ -56,10 +56,10 @@ that should be found in an undergraduate linear algebra course.</p>
 <p class="admonition-title">Hint</p>
 <p>Before you attempt any exercises, you need to make sure that you
 have everything you need set up on your computer. See the checklist
-in <a class="reference internal" href="exercises.html#comp-exercises"><span class="std std-ref">the exercises section</span></a>.</p>
+in <a class="reference internal" href="L0_setup.html#comp-exercises"><span class="std std-ref">the exercises section</span></a>.</p>
 </div>
 <section id="matrices-vectors-and-matrix-vector-multiplication">
-<h2><span class="section-number">1.1. </span>Matrices, vectors and matrix-vector multiplication<a class="headerlink" href="#matrices-vectors-and-matrix-vector-multiplication" title="Permalink to this heading">¶</a></h2>
+<h2><span class="section-number">2.1. </span>Matrices, vectors and matrix-vector multiplication<a class="headerlink" href="#matrices-vectors-and-matrix-vector-multiplication" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -93,7 +93,7 @@ so that the product</p>
 <p>produces <span class="math notranslate nohighlight">\(b \in \mathbb{C}^m\)</span>, defined by</p>
 <blockquote>
 <div><div class="math notranslate nohighlight" id="equation-matvec">
-<span class="eqno">(1.1)<a class="headerlink" href="#equation-matvec" title="Permalink to this equation">¶</a></span>\[b_i = \sum_{j=1}^n a_{ij}x_j, \, i=1,2,\ldots,m.\]</div>
+<span class="eqno">(2.1)<a class="headerlink" href="#equation-matvec" title="Permalink to this equation">¶</a></span>\[b_i = \sum_{j=1}^n a_{ij}x_j, \, i=1,2,\ldots,m.\]</div>
 </div></blockquote>
 <p>In this course it is important to
 consider the general case where <span class="math notranslate nohighlight">\(m \neq n\)</span>, which has many applications
@@ -185,14 +185,14 @@ later.</p>
 <div class="proof proof-type-exercise" id="id2">
 <span id="ex-basic-matvec"></span>
     <div class="proof-title">
-        <span class="proof-type">Exercise 1.1</span>
+        <span class="proof-type">Exercise 2.1</span>
         
     </div><div class="proof-content">
 <p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises1.basic_matvec()</span></code> function has been left
 unimplemented. To finish the function, add code so that it
 computes the matrix-vector product <span class="math notranslate nohighlight">\(b=Ax\)</span> from inputs <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(x\)</span>.
 In this first implementation, you should simply implement
-<a class="reference internal" href="#equation-matvec">(1.1)</a> with a double nested for loop (one for the sum over <span class="math notranslate nohighlight">\(j\)</span>,
+<a class="reference internal" href="#equation-matvec">(2.1)</a> with a double nested for loop (one for the sum over <span class="math notranslate nohighlight">\(j\)</span>,
 and one for the <span class="math notranslate nohighlight">\(i\)</span> elements of <span class="math notranslate nohighlight">\(b\)</span>). Run this script to test your code
 (and all the exercises from this exercise set):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">py</span><span class="o">.</span><span class="n">test</span> <span class="n">test</span><span class="o">/</span><span class="n">test_exercises1</span><span class="o">.</span><span class="n">py</span>
@@ -204,10 +204,17 @@ and push them to your fork of the course repository.</p>
 <p class="admonition-title">Hint</p>
 <p>Don’t forget to activate the virtual environment before running the tests to make sure that you have access to all the necessary packages</p>
 </div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>The Matlab-like array features of Python are provided by <a class="reference external" href="http://www.numpy.org/">Numpy</a> for which there is a <a class="reference external" href="http://wiki.scipy.org/Tentative_NumPy_Tutorial">helpful tutorial</a>. There is also a
+handy <a class="reference external" href="http://wiki.scipy.org/NumPy_for_Matlab_Users">guide for Matlab users</a>. In that context, the
+code provided in this course will always use Numpy arrays, and never
+Numpy matrices.</p>
+</div>
 <div class="proof proof-type-exercise" id="id3">
 <span id="ex-column-matvec"></span>
     <div class="proof-title">
-        <span class="proof-type">Exercise 1.2</span>
+        <span class="proof-type">Exercise 2.2</span>
         
     </div><div class="proof-content">
 <p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises1.column_matvec()</span></code> function has been
@@ -232,7 +239,7 @@ For more information, see the <a class="reference external" href="https://numpy.
 <div class="proof proof-type-exercise" id="id4">
 
     <div class="proof-title">
-        <span class="proof-type">Exercise 1.3</span>
+        <span class="proof-type">Exercise 2.3</span>
         
     </div><div class="proof-content">
 <p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises1.time_matvecs()</span></code> function computes
@@ -264,7 +271,7 @@ Numpy built-in operations (which will often make the code more maths-like
 and readable, as well as potentially faster).</p>
 </div></div></section>
 <section id="range-nullspace-and-rank">
-<h2><span class="section-number">1.2. </span>Range, nullspace and rank<a class="headerlink" href="#range-nullspace-and-rank" title="Permalink to this heading">¶</a></h2>
+<h2><span class="section-number">2.2. </span>Range, nullspace and rank<a class="headerlink" href="#range-nullspace-and-rank" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -273,7 +280,7 @@ Supplementary video</summary><div class="video_wrapper" style="">
 <div class="proof proof-type-definition" id="id5">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 1.4</span>
+        <span class="proof-type">Definition 2.4</span>
         
             <span class="proof-title-name">(Range)</span>
         
@@ -285,14 +292,14 @@ interpretation of matrix-vector multiplication.</p>
 <div class="proof proof-type-theorem" id="id6">
 
     <div class="proof-title">
-        <span class="proof-type">Theorem 1.5</span>
+        <span class="proof-type">Theorem 2.5</span>
         
     </div><div class="proof-content">
 <p><span class="math notranslate nohighlight">\(\mbox{range}(A)\)</span> is the vector space spanned by the columns of <span class="math notranslate nohighlight">\(A\)</span>.</p>
 </div></div><div class="proof proof-type-definition" id="id7">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 1.6</span>
+        <span class="proof-type">Definition 2.6</span>
         
             <span class="proof-title-name">(Nullspace)</span>
         
@@ -308,7 +315,7 @@ Supplementary video</summary><div class="video_wrapper" style="">
 </iframe></div></details><div class="proof proof-type-definition" id="id8">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 1.7</span>
+        <span class="proof-type">Definition 2.7</span>
         
             <span class="proof-title-name">(Rank)</span>
         
@@ -329,7 +336,7 @@ a_1 &amp; a_2 &amp; \ldots &amp; a_n \\
 <div class="proof proof-type-definition" id="id9">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 1.8</span>
+        <span class="proof-type">Definition 2.8</span>
         
     </div><div class="proof-content">
 <p>An <span class="math notranslate nohighlight">\(m\times n\)</span> matrix <span class="math notranslate nohighlight">\(A\)</span> is full rank if it has maximum possible rank
@@ -340,7 +347,7 @@ interpretation of matrix-vector multiplication.</p>
 <div class="proof proof-type-theorem" id="id10">
 
     <div class="proof-title">
-        <span class="proof-type">Theorem 1.9</span>
+        <span class="proof-type">Theorem 2.9</span>
         
     </div><div class="proof-content">
 <p>An <span class="math notranslate nohighlight">\(m\times n\)</span> matrix <span class="math notranslate nohighlight">\(A\)</span> is full rank if and only if it maps no two
@@ -348,7 +355,7 @@ distinct vectors to the same vector.</p>
 </div></div><div class="proof proof-type-definition" id="id11">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 1.10</span>
+        <span class="proof-type">Definition 2.10</span>
         
     </div><div class="proof-content">
 <p>A matrix <span class="math notranslate nohighlight">\(A\)</span> is called nonsingular, or invertible, if it is a square
@@ -356,7 +363,7 @@ matrix (<span class="math notranslate nohighlight">\(m=n\)</span>) of full rank.
 </div></div><div class="proof proof-type-exercise" id="id12">
 
     <div class="proof-title">
-        <span class="proof-type">Exercise 1.11</span>
+        <span class="proof-type">Exercise 2.11</span>
         
     </div><div class="proof-content">
 <p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises1.rank2()</span></code> function has been left
@@ -377,7 +384,7 @@ this should be the case (use the column space interpretation of
 matrix-matrix multiplication)?</p>
 </div></div></section>
 <section id="invertibility-and-inverses">
-<h2><span class="section-number">1.3. </span>Invertibility and inverses<a class="headerlink" href="#invertibility-and-inverses" title="Permalink to this heading">¶</a></h2>
+<h2><span class="section-number">2.3. </span>Invertibility and inverses<a class="headerlink" href="#invertibility-and-inverses" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -421,7 +428,7 @@ course).</p>
 <div class="proof proof-type-theorem" id="id13">
 
     <div class="proof-title">
-        <span class="proof-type">Theorem 1.12</span>
+        <span class="proof-type">Theorem 2.12</span>
         
     </div><div class="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(A \in \mathbb{C}^{m\times m}\)</span>. Then the following are equivalent.</p>
@@ -452,7 +459,7 @@ give basis coefficients for <span class="math notranslate nohighlight">\(b\)</sp
 <div class="proof proof-type-exercise" id="id14">
 
     <div class="proof-title">
-        <span class="proof-type">Exercise 1.13</span>
+        <span class="proof-type">Exercise 2.13</span>
         
     </div><div class="proof-content">
 <p>For matrices of the form, <span class="math notranslate nohighlight">\(A = I + uv^*\)</span>, where <span class="math notranslate nohighlight">\(I\)</span> is the <span class="math notranslate nohighlight">\(m\times
@@ -475,7 +482,7 @@ inverse:</p>
 cost of general purpose matrix inversion algorithms later.</p>
 </div></div></section>
 <section id="adjoints-and-hermitian-matrices">
-<h2><span class="section-number">1.4. </span>Adjoints and Hermitian matrices<a class="headerlink" href="#adjoints-and-hermitian-matrices" title="Permalink to this heading">¶</a></h2>
+<h2><span class="section-number">2.4. </span>Adjoints and Hermitian matrices<a class="headerlink" href="#adjoints-and-hermitian-matrices" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -483,7 +490,7 @@ Supplementary video</summary><div class="video_wrapper" style="">
 </iframe></div></details><div class="proof proof-type-definition" id="id15">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 1.14</span>
+        <span class="proof-type">Definition 2.14</span>
         
             <span class="proof-title-name">(Adjoint)</span>
         
@@ -501,7 +508,7 @@ is symmetric.</p>
 <div class="proof proof-type-theorem" id="id16">
 
     <div class="proof-title">
-        <span class="proof-type">Theorem 1.15</span>
+        <span class="proof-type">Theorem 2.15</span>
         
     </div><div class="proof-content">
 <p>For matrices <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(B\)</span> with compatible dimensions (so that they can
@@ -511,7 +518,7 @@ be multiplied),</p>
 </div></div><div class="proof proof-type-exercise" id="id17">
 
     <div class="proof-title">
-        <span class="proof-type">Exercise 1.16</span>
+        <span class="proof-type">Exercise 2.16</span>
         
     </div><div class="proof-content">
 <p>(This is an advanced exercise if the other exercises are complete.
@@ -545,7 +552,7 @@ slicing.</a></p>
 </div>
 </section>
 <section id="inner-products-and-orthogonality">
-<h2><span class="section-number">1.5. </span>Inner products and orthogonality<a class="headerlink" href="#inner-products-and-orthogonality" title="Permalink to this heading">¶</a></h2>
+<h2><span class="section-number">2.5. </span>Inner products and orthogonality<a class="headerlink" href="#inner-products-and-orthogonality" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -554,7 +561,7 @@ Supplementary video</summary><div class="video_wrapper" style="">
 <div class="proof proof-type-definition" id="id18">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 1.17</span>
+        <span class="proof-type">Definition 2.17</span>
         
             <span class="proof-title-name">(Inner product)</span>
         
@@ -567,7 +574,7 @@ to define size of vectors.</p>
 <div class="proof proof-type-definition" id="id19">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 1.18</span>
+        <span class="proof-type">Definition 2.18</span>
         
             <span class="proof-title-name">(2-Norm)</span>
         
@@ -579,7 +586,7 @@ to define size of vectors.</p>
 <div class="proof proof-type-definition" id="id20">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 1.19</span>
+        <span class="proof-type">Definition 2.19</span>
         
             <span class="proof-title-name">(Orthogonal vectors)</span>
         
@@ -597,7 +604,7 @@ are orthogonal if</p>
 for all <span class="math notranslate nohighlight">\(x\in S\)</span>.</p>
 </div></div></section>
 <section id="orthogonal-components-of-a-vector">
-<h2><span class="section-number">1.6. </span>Orthogonal components of a vector<a class="headerlink" href="#orthogonal-components-of-a-vector" title="Permalink to this heading">¶</a></h2>
+<h2><span class="section-number">2.6. </span>Orthogonal components of a vector<a class="headerlink" href="#orthogonal-components-of-a-vector" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -630,7 +637,7 @@ Thus,</p>
 <div class="proof proof-type-exercise" id="id21">
 
     <div class="proof-title">
-        <span class="proof-type">Exercise 1.20</span>
+        <span class="proof-type">Exercise 2.20</span>
         
     </div><div class="proof-content">
 <p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises2.orthog_cpts()</span></code> function has been left
@@ -640,7 +647,7 @@ orthonormal direction. The test script <code class="docutils literal notranslate
 the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will test this function.</p>
 </div></div></section>
 <section id="unitary-matrices">
-<h2><span class="section-number">1.7. </span>Unitary matrices<a class="headerlink" href="#unitary-matrices" title="Permalink to this heading">¶</a></h2>
+<h2><span class="section-number">2.7. </span>Unitary matrices<a class="headerlink" href="#unitary-matrices" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -648,7 +655,7 @@ Supplementary video</summary><div class="video_wrapper" style="">
 </iframe></div></details><div class="proof proof-type-definition" id="id22">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 1.21</span>
+        <span class="proof-type">Definition 2.21</span>
         
             <span class="proof-title-name">(Unitary matrices)</span>
         
@@ -658,7 +665,7 @@ Supplementary video</summary><div class="video_wrapper" style="">
 </div></div><div class="proof proof-type-theorem" id="id23">
 
     <div class="proof-title">
-        <span class="proof-type">Theorem 1.22</span>
+        <span class="proof-type">Theorem 2.22</span>
         
     </div><div class="proof-content">
 <p>The columns of a unitary matrix <span class="math notranslate nohighlight">\(Q\)</span> are orthonormal.</p>
@@ -687,7 +694,7 @@ given by the orthonormal columns of <span class="math notranslate nohighlight">\
 <div class="proof proof-type-exercise" id="id24">
 
     <div class="proof-title">
-        <span class="proof-type">Exercise 1.23</span>
+        <span class="proof-type">Exercise 2.23</span>
         
     </div><div class="proof-content">
 <p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises2.solveQ()</span></code> function has been left
@@ -713,7 +720,7 @@ and find the QR factorisation, which we will cover in the next section.</p>
 <p>returns two matrices, of which <span class="math notranslate nohighlight">\(Q\)</span> is orthogonal.</p>
 </div></div></section>
 <section id="vector-norms">
-<h2><span class="section-number">1.8. </span>Vector norms<a class="headerlink" href="#vector-norms" title="Permalink to this heading">¶</a></h2>
+<h2><span class="section-number">2.8. </span>Vector norms<a class="headerlink" href="#vector-norms" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -724,7 +731,7 @@ etc.</p>
 <div class="proof proof-type-definition" id="id25">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 1.24</span>
+        <span class="proof-type">Definition 2.24</span>
         
             <span class="proof-title-name">(Norms)</span>
         
@@ -750,7 +757,7 @@ larger class of norms called p-norms, with</p>
 <p>where <span class="math notranslate nohighlight">\(W\)</span> is a matrix.</p>
 </section>
 <section id="projectors-and-projections">
-<h2><span class="section-number">1.9. </span>Projectors and projections<a class="headerlink" href="#projectors-and-projections" title="Permalink to this heading">¶</a></h2>
+<h2><span class="section-number">2.9. </span>Projectors and projections<a class="headerlink" href="#projectors-and-projections" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -758,7 +765,7 @@ Supplementary video</summary><div class="video_wrapper" style="">
 </iframe></div></details><div class="proof proof-type-definition" id="id26">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 1.25</span>
+        <span class="proof-type">Definition 2.25</span>
         
             <span class="proof-title-name">(Projector)</span>
         
@@ -785,7 +792,7 @@ Then,</p>
 <div class="proof proof-type-definition" id="id27">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 1.26</span>
+        <span class="proof-type">Definition 2.26</span>
         
             <span class="proof-title-name">(Complementary projector)</span>
         
@@ -829,7 +836,7 @@ Supplementary video</summary><div class="video_wrapper" style="">
 <div class="proof proof-type-definition" id="id28">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 1.27</span>
+        <span class="proof-type">Definition 2.27</span>
         
             <span class="proof-title-name">(Orthogonal projector)</span>
         
@@ -840,7 +847,7 @@ Supplementary video</summary><div class="video_wrapper" style="">
 </div></div><p>In this case, <span class="math notranslate nohighlight">\(P\)</span> separates the space into two orthogonal subspaces.</p>
 </section>
 <section id="constructing-orthogonal-projectors-from-sets-of-orthonormal-vectors">
-<h2><span class="section-number">1.10. </span>Constructing orthogonal projectors from sets of orthonormal vectors<a class="headerlink" href="#constructing-orthogonal-projectors-from-sets-of-orthonormal-vectors" title="Permalink to this heading">¶</a></h2>
+<h2><span class="section-number">2.10. </span>Constructing orthogonal projectors from sets of orthonormal vectors<a class="headerlink" href="#constructing-orthogonal-projectors-from-sets-of-orthonormal-vectors" title="Permalink to this heading">¶</a></h2>
 <p>Let <span class="math notranslate nohighlight">\(\{q_1,\ldots,q_n\}\)</span> be an orthonormal set of vectors in
 <span class="math notranslate nohighlight">\(\mathbb{C}^m\)</span>. We write</p>
 <div class="math notranslate nohighlight">
@@ -858,7 +865,7 @@ q_1 &amp; q_2 &amp; \ldots &amp; q_n \\
 <div class="proof proof-type-theorem" id="id29">
 <span id="orthogonal-projector"></span>
     <div class="proof-title">
-        <span class="proof-type">Theorem 1.28</span>
+        <span class="proof-type">Theorem 2.28</span>
         
     </div><div class="proof-content">
 <p>The orthogonal projector <span class="math notranslate nohighlight">\(P\)</span> takes the form</p>
@@ -890,14 +897,14 @@ In fact the following is true.</p>
 <div class="proof proof-type-theorem" id="id30">
 
     <div class="proof-title">
-        <span class="proof-type">Theorem 1.29</span>
+        <span class="proof-type">Theorem 2.29</span>
         
     </div><div class="proof-content">
 <p><span class="math notranslate nohighlight">\(P=P^*\)</span> if and only if <span class="math notranslate nohighlight">\(\hat{Q}\)</span> is orthogonal.</p>
 </div></div><div class="proof proof-type-exercise" id="id31">
 
     <div class="proof-title">
-        <span class="proof-type">Exercise 1.30</span>
+        <span class="proof-type">Exercise 2.30</span>
         
     </div><div class="proof-content">
 <p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises2.orthog_proj()</span></code> function has been left
@@ -916,7 +923,7 @@ this function.</p>
       <div class="clearer"></div>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020-2022, Colin J. Cotter.
+        &#169; Copyright 2020-2023, Colin J. Cotter.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
     </div>
   </body>
