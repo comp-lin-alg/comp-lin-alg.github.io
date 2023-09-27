@@ -56,7 +56,7 @@ that should be found in an undergraduate linear algebra course.</p>
 <p class="admonition-title">Hint</p>
 <p>Before you attempt any exercises, you need to make sure that you
 have everything you need set up on your computer. See the checklist
-in <a class="reference internal" href="L0_setup.html#comp-exercises"><span class="std std-ref">the exercises section</span></a>.</p>
+in <a class="reference internal" href="L0_setup.html#comp-exercises"><span class="std std-ref">the previous section</span></a>.</p>
 </div>
 <section id="matrices-vectors-and-matrix-vector-multiplication">
 <h2><span class="section-number">2.1. </span>Matrices, vectors and matrix-vector multiplication<a class="headerlink" href="#matrices-vectors-and-matrix-vector-multiplication" title="Permalink to this heading">¶</a></h2>
@@ -182,6 +182,19 @@ see in the next section that this matrix has rank 1. In the complex
 number case, the transpose $^T$ is replaced by the adjoint $^*$ which
 is the complex conjugate of the transpose. There will be more about this
 later.</p>
+<section id="your-first-programming-exercises">
+<h3><span class="section-number">2.1.1. </span>Your first programming exercises<a class="headerlink" href="#your-first-programming-exercises" title="Permalink to this heading">¶</a></h3>
+<p>In this course, there will be programming exercises, the first one of
+which is coming up right now. The aim of these programming exercises
+is to gain understanding of the mathematical algorithms by expressing
+them as code. The <span class="math notranslate nohighlight">\(numpy\)</span> Python package has a module called
+<span class="math notranslate nohighlight">\(numpy.linalg\)</span> that contains many of these algorithms. Hence for this
+course we will not use this module, just use the functions and classes
+available when you import <span class="math notranslate nohighlight">\(numpy\)</span> itself. There is one exception,
+which is that <span class="math notranslate nohighlight">\(numpy.linalg.norm\)</span> is quite useful, but also covers a lot
+of different cases which are not very edifying to replicate. Hence,
+we have included <span class="math notranslate nohighlight">\(numpy.linalg.norm\)</span> in the <span class="math notranslate nohighlight">\(cla_utils\)</span> package as
+<span class="math notranslate nohighlight">\(cla_utils.norm\)</span>, should you wish to use it.</p>
 <div class="proof proof-type-exercise" id="id2">
 <span id="ex-basic-matvec"></span>
     <div class="proof-title">
@@ -198,8 +211,8 @@ and one for the <span class="math notranslate nohighlight">\(i\)</span> elements
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">py</span><span class="o">.</span><span class="n">test</span> <span class="n">test</span><span class="o">/</span><span class="n">test_exercises1</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
-<p>from the Bash command line. Make sure you commit your modifications
-and push them to your fork of the course repository.</p>
+<p>from the Bash Terminal. Make sure you commit your modifications
+and push them to your course repository.</p>
 </div></div><div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <p>Don’t forget to activate the virtual environment before running the tests to make sure that you have access to all the necessary packages</p>
@@ -270,6 +283,7 @@ In these exercises you should consider the best way to make use of
 Numpy built-in operations (which will often make the code more maths-like
 and readable, as well as potentially faster).</p>
 </div></div></section>
+</section>
 <section id="range-nullspace-and-rank">
 <h2><span class="section-number">2.2. </span>Range, nullspace and rank<a class="headerlink" href="#range-nullspace-and-rank" title="Permalink to this heading">¶</a></h2>
 <details>

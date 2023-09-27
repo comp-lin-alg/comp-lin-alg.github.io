@@ -26,7 +26,8 @@ check that you have everything ready to do your work.
 
    1. Install Python, Git and a text editor using the instructions below.
    2. Create a working folder and put a virtual environment in it (venv).
-   3. Check out your course repository from Github Classroom.
+   3. Clone your course repository from Github Classroom into the
+      working folder.
    4. Activate the venv.
    5. Install `numpy` to the venv, and `pytest`.
    6. Install the course module to the venv.
@@ -125,8 +126,9 @@ of the Principles of Programming website.
 
 .. proof:task::
 
-   Create a new virtual environment for your Computational Linear Algebra
-   work, following the instructions of Section 1.3 of PoP linked above.
+   Create a new virtual environment for your Computational Linear
+   Algebra work and activate it, following the instructions of Section
+   1.3 of PoP linked above.
 
    Two differences are as follows.
 
@@ -232,7 +234,7 @@ of the Principles of Programming website.
    files that are marked as not added. Do not try to click them to
    remove the marks.
 
-.. hint::
+.. warning::
 
    Never clone a repository inside the folder of another folder.
    
@@ -242,7 +244,9 @@ Setting up your repository
 We're using a tool called `GitHub classroom
 <https://classroom.github.com>`_ to automate the creation of your
 copies of the repository. Follow the link on Blackboard marked "Course
-Repository" to create your personal repository for the course.
+Repository" to create your personal repository for the course. Then,
+clone it to your working folder on your computer following the
+instructions in the previous section.
 
 .. warning::
 
@@ -363,7 +367,7 @@ imported into IPython (in the terminal, or using a Jupyter notebook),
 or in a script.
 
 To use IPython, type `ipython` in the Terminal (when the venv is
-activated). You may need to install it first using `python -m install
+activated). You may need to install it first using `python -m pip install
 ipython` (you must start the venv first). Then you can import
 `cla_utils` interactively using `from cla_utils import *`. To exit
 IPython type Ctrl-D.
@@ -413,21 +417,21 @@ check the code you have just written. These are located in the
 ``test`` folder and employ the `pytest <http://pytest.org/>`_
 testing framework. You run the tests with:: 
 
-   pytest test_script.py
+   python -m pytest test_script.py
 
-from the bash Terminal, replacing ``test_script.py`` with the appropriate
-test file name. The ``-x`` option to ``pytest`` will cause the test
-to stop at the first failure it finds, which is often the best place
-to start fixing a problem. For those familiar with debuggers, the
-``--pdb`` option will drop you into the Python debugger at the first
-error.
+from the bash Terminal, replacing ``test_script.py`` with the
+appropriate test file name (remember to activate the venv first). The
+``-x`` option to ``pytest`` will cause the test to stop at the first
+failure it finds, which is often the best place to start fixing a
+problem. For those familiar with debuggers, the ``--pdb`` option will
+drop you into the Python debugger at the first error.
 
 You can also run all the tests by running ``pytest`` on the tests
 folder. This works particularly well with the -x option, resulting
 in the tests being run in course order and stopping at the first
 failing test::
 
-  pytest -x tests/
+  python -m pytest -x tests/
 
 You should make sure that your code passes tests before moving on
 to the next exercise.
