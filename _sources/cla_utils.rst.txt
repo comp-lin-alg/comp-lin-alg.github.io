@@ -36,22 +36,6 @@ cla\_utils.exercises3 module
    :undoc-members:
    :show-inheritance:
 
-cla\_utils.exercises4 module
-----------------------------
-
-.. automodule:: cla_utils.exercises4
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-cla\_utils.exercises5 module
-----------------------------
-
-.. automodule:: cla_utils.exercises5
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 cla\_utils.exercises6 module
 ----------------------------
 

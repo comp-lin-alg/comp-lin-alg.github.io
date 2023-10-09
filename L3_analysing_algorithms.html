@@ -276,33 +276,15 @@ on <span class="math notranslate nohighlight">\(\mathbb{C}^m\)</span> and <span 
 <span class="math notranslate nohighlight">\(\lambda\)</span> must be an eigenvalue of some matrix (which you should
 compute). Hence, given those eigenvalues, provide an expression
 for the operator norm of <span class="math notranslate nohighlight">\(A\)</span>.</p>
-<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises4.operator_2_norm()</span></code>
-function has been left unimplemented. It takes in an <span class="math notranslate nohighlight">\(m\times n\)</span>
-matrix <span class="math notranslate nohighlight">\(A\)</span> and returns the operator norm using the procedure in
-this exercise.  You may use the built in function
-<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html#numpy.linalg.eig" title="(in NumPy v1.26)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.linalg.eig()</span></code></a> to compute the eigenvalues of any matrices
-that you need. (We will discuss algorithms to compute eigenvalues
-later in the course.) The test script <code class="docutils literal notranslate"><span class="pre">test_exercises4.py</span></code> in the
-<code class="docutils literal notranslate"><span class="pre">test</span></code> directory will test this function.</p>
-</div></div><div class="proof proof-type-exercise" id="id8">
-
-    <div class="proof-title">
-        <span class="proof-type">Exercise 4.8</span>
-        
-    </div><div class="proof-content">
-<p>Add a function to <code class="xref py py-mod docutils literal notranslate"><span class="pre">cla_utils.exercises4</span></code> to verify the
-inequality <span class="math notranslate nohighlight">\(\|Ax\|\leq \|A\|\|x\|\)</span> using
-<code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises4.operator_2_norm()</span></code>, considering various
-<span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
 </div></div></section>
 <section id="norm-inequalities">
 <h2><span class="section-number">4.5. </span>Norm inequalities<a class="headerlink" href="#norm-inequalities" title="Permalink to this heading">¶</a></h2>
 <p>Often it is difficult to find exact values for norms, so we compute upper
 bounds using inequalities instead. Here are a few useful inequalities.</p>
-<div class="proof proof-type-definition" id="id9">
+<div class="proof proof-type-definition" id="id8">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 4.9</span>
+        <span class="proof-type">Definition 4.8</span>
         
             <span class="proof-title-name">(Hölder inequality)</span>
         
@@ -314,10 +296,10 @@ bounds using inequalities instead. Here are a few useful inequalities.</p>
 \[|x^*y| \leq \|x\|_p\|y\|_q.\]</div>
 </div></blockquote>
 </div></div><p>In the case <span class="math notranslate nohighlight">\(p=q=2\)</span> this becomes the Cauchy-Schwartz inequality.</p>
-<div class="proof proof-type-definition" id="id10">
+<div class="proof proof-type-definition" id="id9">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 4.10</span>
+        <span class="proof-type">Definition 4.9</span>
         
             <span class="proof-title-name">(Cauchy-Schwartz inequality)</span>
         
@@ -336,10 +318,10 @@ product <span class="math notranslate nohighlight">\(A=uv^*\)</span> of two vect
 </div></blockquote>
 <p>so <span class="math notranslate nohighlight">\(\|A\|_2 \leq \|u\|_2\|v\|_2\)</span>.</p>
 <p>We can also compute bounds for <span class="math notranslate nohighlight">\(\|AB\|_2\)</span>.</p>
-<div class="proof proof-type-theorem" id="id11">
+<div class="proof proof-type-theorem" id="id10">
 
     <div class="proof-title">
-        <span class="proof-type">Theorem 4.11</span>
+        <span class="proof-type">Theorem 4.10</span>
         
     </div><div class="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(A\in \mathbb{C}^{l\times m}\)</span>, <span class="math notranslate nohighlight">\(B\in \mathbb{C}^{m\times n}\)</span>. Then</p>
@@ -365,14 +347,6 @@ product <span class="math notranslate nohighlight">\(A=uv^*\)</span> of two vect
 \leq \|A\|_{(l,m)}\|B\|_{(m,n)},\]</div>
 </div></blockquote>
 <p>as required.</p>
-</div></div><div class="proof proof-type-exercise" id="id12">
-
-    <div class="proof-title">
-        <span class="proof-type">Exercise 4.12</span>
-        
-    </div><div class="proof-content">
-<p>Add a function to <code class="xref py py-mod docutils literal notranslate"><span class="pre">cla_utils.exercises4</span></code> to verify this
-theorem for various <span class="math notranslate nohighlight">\(l\)</span>, <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
 </div></div></section>
 <section id="condition-number">
 <h2><span class="section-number">4.6. </span>Condition number<a class="headerlink" href="#condition-number" title="Permalink to this heading">¶</a></h2>
@@ -388,10 +362,10 @@ mathematical problem as a function <span class="math notranslate nohighlight">\(
 normed vector spaces (further generalisations are possible). It is
 often the case that <span class="math notranslate nohighlight">\(f\)</span> has different properties under perturbation
 for different values of <span class="math notranslate nohighlight">\(x\in X\)</span>.</p>
-<div class="proof proof-type-definition" id="id13">
+<div class="proof proof-type-definition" id="id11">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 4.13</span>
+        <span class="proof-type">Definition 4.11</span>
         
             <span class="proof-title-name">(Well conditioned and ill conditioned.)</span>
         
@@ -401,10 +375,10 @@ in <span class="math notranslate nohighlight">\(x\)</span> lead to small changes
 ill conditioned if small changes in <span class="math notranslate nohighlight">\(x\)</span> lead to large changes in
 <span class="math notranslate nohighlight">\(f(x)\)</span>.</p>
 </div></div><p>These changes are measured by the condition number.</p>
-<div class="proof proof-type-definition" id="id14">
+<div class="proof proof-type-definition" id="id12">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 4.14</span>
+        <span class="proof-type">Definition 4.12</span>
         
             <span class="proof-title-name">(Absolute condition number.)</span>
         
@@ -430,10 +404,10 @@ a Jacobian matrix <span class="math notranslate nohighlight">\(J(x)\)</span> suc
 <p>which is the operator norm of <span class="math notranslate nohighlight">\(J(x)\)</span>.</p>
 </div></div><p>This definition could be improved by measuring this change relative to the
 size of <span class="math notranslate nohighlight">\(f\)</span> itself.</p>
-<div class="proof proof-type-definition" id="id15">
+<div class="proof proof-type-definition" id="id13">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 4.15</span>
+        <span class="proof-type">Definition 4.13</span>
         
             <span class="proof-title-name">(Relative condition number.)</span>
         
@@ -560,22 +534,7 @@ condition number, we can drop the nonlinear term, and we get</p>
 </div></blockquote>
 <p>having used the bound for <span class="math notranslate nohighlight">\(\delta x\)</span>. Hence the bound on the condition
 number for this problem is the condition number of <span class="math notranslate nohighlight">\(A\)</span>.</p>
-<div class="proof proof-type-exercise" id="id16">
-
-    <div class="proof-title">
-        <span class="proof-type">Exercise 4.16</span>
-        
-    </div><div class="proof-content">
-<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises4.cond()</span></code> function has
-been left unimplemented. It takes in an <span class="math notranslate nohighlight">\(m\times m\)</span> matrix <span class="math notranslate nohighlight">\(A\)</span> and
-returns the condition number. You should use a method similar to
-that in <a class="reference internal" href="#o2norm"><span class="std std-numref">Exercise 4.7</span></a>, using the
-<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html#numpy.linalg.eig" title="(in NumPy v1.26)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.linalg.eig()</span></code></a> to compute the eigenvalues of any matrices
-that you need. Try to think about minimising the number of
-eigenvalue calculations you need to do. The test script
-<code class="docutils literal notranslate"><span class="pre">test_exercises4.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will test this
-function.</p>
-</div></div></section>
+</section>
 <section id="floating-point-numbers-and-arithmetic">
 <h2><span class="section-number">4.8. </span>Floating point numbers and arithmetic<a class="headerlink" href="#floating-point-numbers-and-arithmetic" title="Permalink to this heading">¶</a></h2>
 <details>
@@ -618,10 +577,10 @@ in <span class="math notranslate nohighlight">\(\mathbb{F}\)</span>.</p>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
 <iframe allowfullscreen="true" src="https://player.vimeo.com/video/450213018" style="border: 0; height: 345px; width: 560px">
-</iframe></div></details><div class="proof proof-type-definition" id="id17">
+</iframe></div></details><div class="proof proof-type-definition" id="id14">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 4.17</span>
+        <span class="proof-type">Definition 4.14</span>
         
             <span class="proof-title-name">(Floating point rounding function)</span>
         
@@ -630,10 +589,10 @@ Supplementary video</summary><div class="video_wrapper" style="">
 <span class="math notranslate nohighlight">\(x\in \mathbb{R}\)</span> to the nearest floating point number.</p>
 </div></div><p>The following axiom is just a formal presentation of the properties
 of floating point numbers that we discussed below.</p>
-<div class="proof proof-type-definition" id="id18">
+<div class="proof proof-type-definition" id="id15">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 4.18</span>
+        <span class="proof-type">Definition 4.15</span>
         
             <span class="proof-title-name">(Floating point axiom I)</span>
         
@@ -651,10 +610,10 @@ above) are constructed such that</p>
 \[x\odot y = f_L(x\cdot y),\]</div>
 </div></blockquote>
 <p>for <span class="math notranslate nohighlight">\(x,y\in \mathbb{F}\)</span>, with <span class="math notranslate nohighlight">\(\cdot\)</span> being one of <span class="math notranslate nohighlight">\(+,-,\times,\div\)</span>.</p>
-<div class="proof proof-type-definition" id="id19">
+<div class="proof proof-type-definition" id="id16">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 4.19</span>
+        <span class="proof-type">Definition 4.16</span>
         
             <span class="proof-title-name">(Floating point axiom II)</span>
         
@@ -662,10 +621,10 @@ above) are constructed such that</p>
 <div class="math notranslate nohighlight">
 \[ \begin{align}\begin{aligned}\forall x,y \in \mathbb{F}, \exists \epsilon' \mbox{ with }
 |\epsilon'|\leq \varepsilon,\mbox{ such that }\\x\odot y = (x\cdot y)(1 + \epsilon').\end{aligned}\end{align} \]</div>
-</div></div><div class="proof proof-type-exercise" id="id20">
+</div></div><div class="proof proof-type-exercise" id="id17">
 
     <div class="proof-title">
-        <span class="proof-type">Exercise 4.20</span>
+        <span class="proof-type">Exercise 4.17</span>
         
     </div><div class="proof-content">
 <p>The formula for the roots of a quadratic equation <span class="math notranslate nohighlight">\(x^2 - 2px - q=0\)</span>
@@ -733,10 +692,10 @@ to accurate to machine precision, i.e.</p>
 unrealistically, that we have a sequence of computers with smaller and
 smaller $varepsilon$). We shall see below that we have to lower our
 aspirations depending on the condition number of <span class="math notranslate nohighlight">\(A\)</span>.</p>
-<div class="proof proof-type-definition" id="id21">
+<div class="proof proof-type-definition" id="id18">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 4.21</span>
+        <span class="proof-type">Definition 4.18</span>
         
             <span class="proof-title-name">(Stability)</span>
         
@@ -759,10 +718,10 @@ Supplementary video</summary><div class="video_wrapper" style="">
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
 <iframe allowfullscreen="true" src="https://player.vimeo.com/video/454094432" style="border: 0; height: 345px; width: 560px">
-</iframe></div></details><div class="proof proof-type-definition" id="id22">
+</iframe></div></details><div class="proof proof-type-definition" id="id19">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 4.22</span>
+        <span class="proof-type">Definition 4.19</span>
         
             <span class="proof-title-name">(Backward stability)</span>
         
@@ -779,10 +738,10 @@ Supplementary video</summary><div class="video_wrapper" style="">
 the right answer. The following result shows what accuracy we can expect
 from a backward stable algorithm, which involves the condition number
 of <span class="math notranslate nohighlight">\(f\)</span>.</p>
-<div class="proof proof-type-theorem" id="id23">
+<div class="proof proof-type-theorem" id="id20">
 <span id="accuracy-backward"></span>
     <div class="proof-title">
-        <span class="proof-type">Theorem 4.23</span>
+        <span class="proof-type">Theorem 4.20</span>
         
             <span class="proof-title-name">(Accuracy of a backward stable algorithm)</span>
         
@@ -847,10 +806,10 @@ A\)</span>. This means that there is very small backward error,</p>
 \[\frac{\|A-\tilde{Q}\tilde{R}\|}{\|A\|} = \mathcal{O}(\varepsilon).\]</div>
 </div></blockquote>
 <p>It turns out that the Householder method is backwards stable.</p>
-<div class="proof proof-type-theorem" id="id24">
+<div class="proof proof-type-theorem" id="id21">
 
     <div class="proof-title">
-        <span class="proof-type">Theorem 4.24</span>
+        <span class="proof-type">Theorem 4.21</span>
         
     </div><div class="proof-content">
 <p>Let the QR factorisation be computed for <span class="math notranslate nohighlight">\(A\)</span> using a floating point
@@ -868,21 +827,21 @@ backwards stable, i.e. the result <span class="math notranslate nohighlight">\(\
         
     </div><div class="proof-content">
 <p>See the textbook by Trefethen and Bau, Lecture 16.</p>
-</div></div><div class="proof proof-type-exercise" id="id25">
+</div></div><div class="proof proof-type-exercise" id="id22">
 
     <div class="proof-title">
-        <span class="proof-type">Exercise 4.25</span>
+        <span class="proof-type">Exercise 4.22</span>
         
     </div><div class="proof-content">
-<p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises5.backward_stability_householder()</span></code>
-function has been left unimplemented. It generates random <span class="math notranslate nohighlight">\(Q_1\)</span> and
-<span class="math notranslate nohighlight">\(R_1\)</span> matrices of dimension <span class="math notranslate nohighlight">\(m\)</span> provided, and forms <span class="math notranslate nohighlight">\(A=QR\)</span>. It is
-very important that the two matrices <span class="math notranslate nohighlight">\(Q_1\)</span> and <span class="math notranslate nohighlight">\(R_1\)</span> are
-uncorrelated (in particular, computing them as the QR factorisation
-of the same matrix would spoil the experiment). To complete the
-function, pass <span class="math notranslate nohighlight">\(A\)</span> to the built-in QR factorisation function
-<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.qr.html#numpy.linalg.qr" title="(in NumPy v1.26)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.linalg.qr()</span></code></a> (which uses Householder transformations) to
-get <span class="math notranslate nohighlight">\(Q_2\)</span> and <span class="math notranslate nohighlight">\(R_2\)</span>. Print out the value of <span class="math notranslate nohighlight">\(\|Q_2-Q_1\|\)</span>,
+<p>Use your Householder implementation to generate random <span class="math notranslate nohighlight">\(Q_1\)</span> and
+<span class="math notranslate nohighlight">\(R_1\)</span> matrices of dimension <span class="math notranslate nohighlight">\(m\)</span>. It is very important that the two
+matrices <span class="math notranslate nohighlight">\(Q_1\)</span> and <span class="math notranslate nohighlight">\(R_1\)</span> are uncorrelated. In particular, computing
+them as the QR factorisation of the same matrix would spoil the
+experiment). So what you need to do is to randomly generate two
+independent <span class="math notranslate nohighlight">\(m\times m\)</span> matrices <span class="math notranslate nohighlight">\(A_1\)</span> and <span class="math notranslate nohighlight">\(A_2\)</span>. Then <span class="math notranslate nohighlight">\(Q_1\)</span> should
+come from the QR factorisation of <span class="math notranslate nohighlight">\(A_1\)</span>, and <span class="math notranslate nohighlight">\(R_2\)</span> should come from
+the QR factorisation of <span class="math notranslate nohighlight">\(A_2\)</span>.</p>
+<p>Print out the value of <span class="math notranslate nohighlight">\(\|Q_2-Q_1\|\)</span>,
 <span class="math notranslate nohighlight">\(\|R_2-R_1\|\)</span>, <span class="math notranslate nohighlight">\(\|A-Q_2R_2\|\)</span>. Explain what you see using what you
 know about the stability of the Householder algorithm.</p>
 </div></div></section>
@@ -976,21 +935,12 @@ floating point implementation of backward substitution produces
 </div></blockquote>
 <p>for some upper triangular perturbation such that <span class="math notranslate nohighlight">\(\|\delta
 \tilde{R}\|/\|\tilde{R}\|=\mathcal{O}(\varepsilon)\)</span>.</p>
-<div class="proof proof-type-exercise" id="id26">
-
-    <div class="proof-title">
-        <span class="proof-type">Exercise 4.26</span>
-        
-    </div><div class="proof-content">
-<p>Complete the function <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises5.back_stab_solve_U()</span></code>
-so that it verifies backward stability for back substitution, using
-<code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises5.solve_U()</span></code>.</p>
-</div></div><p>Using the individual backward stability of these three algorithms,
+<p>Using the individual backward stability of these three algorithms,
 we show the following result.</p>
-<div class="proof proof-type-theorem" id="id27">
+<div class="proof proof-type-theorem" id="id23">
 
     <div class="proof-title">
-        <span class="proof-type">Theorem 4.27</span>
+        <span class="proof-type">Theorem 4.23</span>
         
     </div><div class="proof-content">
 <p>The QR algorithm to solve <span class="math notranslate nohighlight">\(Ax=b\)</span> is backward stable, producing
@@ -1066,10 +1016,10 @@ R\|}{\|\tilde{R}\|}}_{\mathcal{O}(\varepsilon)}
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
 <iframe allowfullscreen="true" src="https://player.vimeo.com/video/450215261" style="border: 0; height: 345px; width: 560px">
-</iframe></div></details><div class="proof proof-type-corollary" id="id28">
+</iframe></div></details><div class="proof proof-type-corollary" id="id24">
 
     <div class="proof-title">
-        <span class="proof-type">Corollary 4.28</span>
+        <span class="proof-type">Corollary 4.24</span>
         
     </div><div class="proof-content">
 <p>When solving <span class="math notranslate nohighlight">\(Ax=b\)</span> using the QR factorisation procedure above, the
@@ -1085,7 +1035,7 @@ floating point implementation produces an approximate solution
         <span class="proof-type">Proof </span>
         
     </div><div class="proof-content">
-<p>From <a class="reference internal" href="#accuracy-backward"><span class="std std-numref">Theorem 4.23</span></a>, using the
+<p>From <a class="reference internal" href="#accuracy-backward"><span class="std std-numref">Theorem 4.20</span></a>, using the
 backward stability that we just derived, we know that</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -1093,15 +1043,6 @@ backward stability that we just derived, we know that</p>
 </div></blockquote>
 <p>where <span class="math notranslate nohighlight">\(\kappa\)</span> is the condition number of the problem of solving
 <span class="math notranslate nohighlight">\(Ax=b\)</span>, which we have shown is bounded from above by <span class="math notranslate nohighlight">\(\kappa(A)\)</span>.</p>
-</div></div><div class="proof proof-type-exercise" id="id29">
-
-    <div class="proof-title">
-        <span class="proof-type">Exercise 4.29</span>
-        
-    </div><div class="proof-content">
-<p>Complete the function <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises5.back_stab_householder_solve()</span></code>
-so that it verifies backward stability for solving <span class="math notranslate nohighlight">\(m\times m\)</span> dimensional
-square systems <span class="math notranslate nohighlight">\(Ax=b\)</span> using <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.householder_solve()</span></code>.</p>
 </div></div></section>
 </section>
 

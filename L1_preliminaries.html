@@ -179,7 +179,7 @@ uv_1 &amp; uv_2 &amp; \ldots &amp; uv_n
 </div></blockquote>
 <p>which means that all the columns of <span class="math notranslate nohighlight">\(uv^T\)</span> are multiples of <span class="math notranslate nohighlight">\(u\)</span>. We will
 see in the next section that this matrix has rank 1. In the complex
-number case, the transpose $^T$ is replaced by the adjoint $^*$ which
+number case, the transpose <span class="math notranslate nohighlight">\(^T\)</span> is replaced by the adjoint <span class="math notranslate nohighlight">\(^*\)</span> which
 is the complex conjugate of the transpose. There will be more about this
 later.</p>
 <section id="your-first-programming-exercises">
@@ -187,14 +187,14 @@ later.</p>
 <p>In this course, there will be programming exercises, the first one of
 which is coming up right now. The aim of these programming exercises
 is to gain understanding of the mathematical algorithms by expressing
-them as code. The <span class="math notranslate nohighlight">\(numpy\)</span> Python package has a module called
-<span class="math notranslate nohighlight">\(numpy.linalg\)</span> that contains many of these algorithms. Hence for this
+them as code. The <a class="reference external" href="https://numpy.org/doc/stable/reference/index.html#module-numpy" title="(in NumPy v1.26)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">numpy</span></code></a> Python package has a module called
+<a class="reference external" href="https://numpy.org/doc/stable/reference/routines.linalg.html#module-numpy.linalg" title="(in NumPy v1.26)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">numpy.linalg</span></code></a> that contains many of these algorithms. Hence for this
 course we will not use this module, just use the functions and classes
-available when you import <span class="math notranslate nohighlight">\(numpy\)</span> itself. There is one exception,
-which is that <span class="math notranslate nohighlight">\(numpy.linalg.norm\)</span> is quite useful, but also covers a lot
+available when you import <a class="reference external" href="https://numpy.org/doc/stable/reference/index.html#module-numpy" title="(in NumPy v1.26)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">numpy</span></code></a> itself. There is one exception,
+which is that <code class="xref py py-meth docutils literal notranslate"><span class="pre">numpy.linalg.norm()</span></code> is quite useful, but also covers a lot
 of different cases which are not very edifying to replicate. Hence,
-we have included <span class="math notranslate nohighlight">\(numpy.linalg.norm\)</span> in the <span class="math notranslate nohighlight">\(cla_utils\)</span> package as
-<span class="math notranslate nohighlight">\(cla_utils.norm\)</span>, should you wish to use it.</p>
+we have included <code class="xref py py-meth docutils literal notranslate"><span class="pre">numpy.linalg.norm()</span></code> in the <code class="xref py py-mod docutils literal notranslate"><span class="pre">cla_utils</span></code> package as
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">cla_utils.norm()</span></code>, should you wish to use it.</p>
 <div class="proof proof-type-exercise" id="id2">
 <span id="ex-basic-matvec"></span>
     <div class="proof-title">
