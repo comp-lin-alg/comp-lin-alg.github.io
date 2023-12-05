@@ -258,7 +258,7 @@ Schur factorisation. First, the matrices must be multiplied not just
 on the left but also on the right with the inverse, i.e.</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
-\[A \mapsto \underbrace{Q_1^*AQ_1}_{A_1} \mapsto \underbrace{Q_2^*Q_1^*AQ_2Q_1}_{A_2}, \ldots\]</div>
+\[A \mapsto \underbrace{Q_1^*AQ_1}_{A_1} \mapsto \underbrace{Q_2^*Q_1^*AQ_1Q_2}_{A_2}, \ldots\]</div>
 </div></blockquote>
 <p>At each stage, we have a similarity transformation,</p>
 <blockquote>
@@ -308,7 +308,7 @@ general.</p>
         <span class="proof-type">Exercise 5.9</span>
         
     </div><div class="proof-content">
-<p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises8.Q1AQ1s()</span></code> function has been left
+<p>The <a class="reference internal" href="cla_utils.html#cla_utils.exercises8.Q1AQ1s" title="cla_utils.exercises8.Q1AQ1s"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises8.Q1AQ1s()</span></code></a> function has been left
 uncompleted. It should apply the Householder transformation <span class="math notranslate nohighlight">\(Q_1\)</span>
 to the input <span class="math notranslate nohighlight">\(A\)</span> (without forming <span class="math notranslate nohighlight">\(Q_1\)</span> of course) that transforms
 the first column of <span class="math notranslate nohighlight">\(A\)</span> to have zeros below the diagonal, and then
@@ -355,7 +355,7 @@ for computing the QR factorisation.</p>
         <span class="proof-type">Exercise 5.10</span>
         
     </div><div class="proof-content">
-<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises8.hessenberg()</span></code> function
+<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <a class="reference internal" href="cla_utils.html#cla_utils.exercises8.hessenberg" title="cla_utils.exercises8.hessenberg"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises8.hessenberg()</span></code></a> function
 has been left unimplemented. It should implement the algorithm
 above, using only one loop over <span class="math notranslate nohighlight">\(k\)</span>. It should work “in-place”,
 changing the input matrix. At the left multiplication, your
@@ -406,7 +406,7 @@ backwards stable, i.e. in a floating point implementation, it gives
         <span class="proof-type">Exercise 5.11</span>
         
     </div><div class="proof-content">
-<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises8.hessenbergQ()</span></code> function
+<p>The <a class="reference internal" href="cla_utils.html#cla_utils.exercises8.hessenbergQ" title="cla_utils.exercises8.hessenbergQ"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises8.hessenbergQ()</span></code></a> function
 has been left unimplemented. It should implement the Hessenberg
 algorithm again (you can just copy paste the code from the previous
 exercise) but it should also return the matrix <span class="math notranslate nohighlight">\(Q\)</span> such that
@@ -419,11 +419,11 @@ construct this. The test script <code class="docutils literal notranslate"><span
         <span class="proof-type">Exercise 5.12</span>
         
     </div><div class="proof-content">
-<p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises8.ev()</span></code> function has been left
+<p>The <a class="reference internal" href="cla_utils.html#cla_utils.exercises8.ev" title="cla_utils.exercises8.ev"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises8.ev()</span></code></a> function has been left
 unimplemented. It should return the eigenvectors of
 <span class="math notranslate nohighlight">\(A\)</span> by first reducing to Hessenberg form, using the functions you
 have already created, and then calling
-<code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises8.hessenberg_ev()</span></code>, which computes the
+<a class="reference internal" href="cla_utils.html#cla_utils.exercises8.hessenberg_ev" title="cla_utils.exercises8.hessenberg_ev"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises8.hessenberg_ev()</span></code></a>, which computes the
 eigenvectors of upper Hessenberg matrices (do not
 edit this function!). The test script <code class="docutils literal notranslate"><span class="pre">test_exercises8.py</span></code> in the
 <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will test this function.</p>
@@ -490,14 +490,14 @@ eigenvalues of <span class="math notranslate nohighlight">\(A\)</span>.</p>
         <span class="proof-type">Exercise 5.13</span>
         
     </div><div class="proof-content">
-<p>Add a function to <code class="xref py py-mod docutils literal notranslate"><span class="pre">cla_utils.exercises8</span></code> that investigates
+<p>Add a function to <a class="reference internal" href="cla_utils.html#module-cla_utils.exercises8" title="cla_utils.exercises8"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cla_utils.exercises8</span></code></a> that investigates
 this property by:</p>
 <ol class="arabic simple">
 <li><p>Forming a Hermitian matrix <span class="math notranslate nohighlight">\(A\)</span>,</p></li>
 <li><p>Finding an eigenvector <span class="math notranslate nohighlight">\(v\)</span> of <span class="math notranslate nohighlight">\(A\)</span> with eigenvalue <span class="math notranslate nohighlight">\(\lambda\)</span> (you can use <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html#numpy.linalg.eig" title="(in NumPy v1.26)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.linalg.eig()</span></code></a> for this),</p></li>
 <li><p>Choosing a perturbation vector <span class="math notranslate nohighlight">\(r\)</span>, and perturbation parameter <span class="math notranslate nohighlight">\(\epsilon&gt;0\)</span>,</p></li>
 <li><p>Comparing the Rayleigh quotient of <span class="math notranslate nohighlight">\(v + \epsilon r\)</span> with <span class="math notranslate nohighlight">\(\lambda\)</span>,</p></li>
-<li><p>Plotting (on a log-log graph, use <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.loglog.html#matplotlib.pyplot.loglog" title="(in Matplotlib v3.8.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.pyplot.loglog()</span></code></a>) the error in estimating the eigenvalue as a function of <span class="math notranslate nohighlight">\(\epsilon\)</span>.</p></li>
+<li><p>Plotting (on a log-log graph, use <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.loglog.html#matplotlib.pyplot.loglog" title="(in Matplotlib v3.8.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.pyplot.loglog()</span></code></a>) the error in estimating the eigenvalue as a function of <span class="math notranslate nohighlight">\(\epsilon\)</span>.</p></li>
 </ol>
 <p>The best way to do this is to plot the computed data values as points,
 and then superpose a line plot of <span class="math notranslate nohighlight">\(a\epsilon^k\)</span> for appropriate
@@ -586,7 +586,7 @@ normalisation does not select <span class="math notranslate nohighlight">\(v^k\)
         <span class="proof-type">Exercise 5.15</span>
         
     </div><div class="proof-content">
-<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.pow_it()</span></code> function has
+<p>The <a class="reference internal" href="cla_utils.html#cla_utils.exercises9.pow_it" title="cla_utils.exercises9.pow_it"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.pow_it()</span></code></a> function has
 been left unimplemented. It should apply power iteration to a given
 matrix and initial vector, according to the docstring. The test
 script <code class="docutils literal notranslate"><span class="pre">test_exercises9.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will test
@@ -599,7 +599,7 @@ this function.</p>
     </div><div class="proof-content">
 <p>The functions <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.A3()</span></code> and
 <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.B3()</span></code> each return a 3x3 matrix, <span class="math notranslate nohighlight">\(A_3\)</span> and
-<span class="math notranslate nohighlight">\(B_3\)</span> respectively. Apply <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.pow_it()</span></code> to
+<span class="math notranslate nohighlight">\(B_3\)</span> respectively. Apply <a class="reference internal" href="cla_utils.html#cla_utils.exercises9.pow_it" title="cla_utils.exercises9.pow_it"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.pow_it()</span></code></a> to
 each of these functions. What differences in behaviour do you
 observe? What is it about <span class="math notranslate nohighlight">\(A_3\)</span> and <span class="math notranslate nohighlight">\(B_3\)</span> that causes this?</p>
 </div></div></section>
@@ -649,7 +649,7 @@ eigenvalues by choosing <span class="math notranslate nohighlight">\(\mu\)</span
         <span class="proof-type">Exercise 5.17</span>
         
     </div><div class="proof-content">
-<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.inverse_it()</span></code> function
+<p>The <a class="reference internal" href="cla_utils.html#cla_utils.exercises9.inverse_it" title="cla_utils.exercises9.inverse_it"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.inverse_it()</span></code></a> function
 has been left unimplemented. It should apply inverse iteration to a
 given matrix and initial vector, according to the docstring. The
 test script <code class="docutils literal notranslate"><span class="pre">test_exercises9.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will
@@ -705,7 +705,7 @@ Then, inverse iteration gives an estimate</p>
         <span class="proof-type">Exercise 5.19</span>
         
     </div><div class="proof-content">
-<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.rq_it()</span></code> function has
+<p>The <a class="reference internal" href="cla_utils.html#cla_utils.exercises9.rq_it" title="cla_utils.exercises9.rq_it"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.rq_it()</span></code></a> function has
 been left unimplemented. It should apply inverse iteration to a
 given matrix and initial vector, according to the docstring. The
 test script <code class="docutils literal notranslate"><span class="pre">test_exercises9.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will
@@ -716,8 +716,8 @@ test this function.</p>
         <span class="proof-type">Exercise 5.20</span>
         
     </div><div class="proof-content">
-<p>The interfaces to <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.inverse_it()</span></code> and
-<code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.rq_it()</span></code> have been designed to optionally
+<p>The interfaces to <a class="reference internal" href="cla_utils.html#cla_utils.exercises9.inverse_it" title="cla_utils.exercises9.inverse_it"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.inverse_it()</span></code></a> and
+<a class="reference internal" href="cla_utils.html#cla_utils.exercises9.rq_it" title="cla_utils.exercises9.rq_it"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.rq_it()</span></code></a> have been designed to optionally
 provide the iterated values of the eigenvector and eigenvalue.  For
 a given initial condition (and choice of <span class="math notranslate nohighlight">\(\mu\)</span> in the case of
 inverse iteration), compare the convergence speeds of the
@@ -751,7 +751,7 @@ written as pseudo-code.</p>
         <span class="proof-type">Exercise 5.21</span>
         
     </div><div class="proof-content">
-<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.pure_QR()</span></code> function has
+<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <a class="reference internal" href="cla_utils.html#cla_utils.exercises9.pure_QR" title="cla_utils.exercises9.pure_QR"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.pure_QR()</span></code></a> function has
 been left unimplemented. It should implement the pure QR algorithm
 as above, using your previous code for finding the QR factorisation
 using Householder transformations. You should think about avoiding
@@ -767,11 +767,11 @@ test this function.</p>
         
     </div><div class="proof-content">
 <p>Investigate the behaviour of the pure QR algorithm applied to the
-functions provided by <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.get_A100()</span></code>,
-<code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.get_B100()</span></code>,
-<code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.get_C100()</span></code>, and
-<code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.get_D100()</span></code>. You can use
-<a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.pcolor.html#matplotlib.pyplot.pcolor" title="(in Matplotlib v3.8.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.pyplot.pcolor()</span></code></a> to visualise the entries,
+functions provided by <a class="reference internal" href="cla_utils.html#cla_utils.exercises9.get_A100" title="cla_utils.exercises9.get_A100"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.get_A100()</span></code></a>,
+<a class="reference internal" href="cla_utils.html#cla_utils.exercises9.get_B100" title="cla_utils.exercises9.get_B100"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.get_B100()</span></code></a>,
+<a class="reference internal" href="cla_utils.html#cla_utils.exercises9.get_C100" title="cla_utils.exercises9.get_C100"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.get_C100()</span></code></a>, and
+<a class="reference internal" href="cla_utils.html#cla_utils.exercises9.get_D100" title="cla_utils.exercises9.get_D100"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.get_D100()</span></code></a>. You can use
+<a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.pcolor.html#matplotlib.pyplot.pcolor" title="(in Matplotlib v3.8.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.pyplot.pcolor()</span></code></a> to visualise the entries,
 or compute norms of the components of the matrices below the diagonal,
 for example. What do you observe? How does this relate to the structure
 of the four matrices?</p>
@@ -812,7 +812,7 @@ magnitude of corresponding eigenvalue. Similarly we can choose the
 first one of the remaining projected vectors as an approximation of
 <span class="math notranslate nohighlight">\(q_2\)</span> and project it again from the rest.</p>
 <p>We can translate this idea to matrices by defining <span class="math notranslate nohighlight">\(V^{(0)}\)</span> to be the
-matrix with columns given by the set of initial <span class="math notranslate nohighlight">\(v`s. Then after `k\)</span>
+matrix with columns given by the set of initial <span class="math notranslate nohighlight">\(v\)</span> s. Then after <span class="math notranslate nohighlight">\(k\)</span>
 applications of <span class="math notranslate nohighlight">\(A\)</span>, we have <span class="math notranslate nohighlight">\(V^{(k)}=A^{k} V^{(0)}\)</span>. By the column space
 interpretation of matrix-matrix multiplication, each column of <span class="math notranslate nohighlight">\(V^{(k)}\)</span>
 is <span class="math notranslate nohighlight">\(A^{k}\)</span> multiplied by the corresponding column of <span class="math notranslate nohighlight">\(V^{(0)}\)</span>. To make the
@@ -954,8 +954,47 @@ that the QR algorithm finds an orthonormal basis (the columns of
 <span class="math notranslate nohighlight">\({Q'}^{(k)}\)</span>) from the columns of each power of <span class="math notranslate nohighlight">\(A^k\)</span>; this is how
 it relates to power iteration.</p>
 </section>
+<section id="connections-between-power-iteration-inverse-iteration-and-qr-algorithm">
+<h2><span class="section-number">5.11. </span>Connections between power iteration, inverse iteration, and QR algorithm<a class="headerlink" href="#connections-between-power-iteration-inverse-iteration-and-qr-algorithm" title="Permalink to this heading">¶</a></h2>
+<p>There are some subtle connections between these algorithms that we can
+exploit to accelerate the convergence of the QR algorithm. After <span class="math notranslate nohighlight">\(k\)</span>
+iterations we have</p>
+<div class="math notranslate nohighlight">
+\[A^k = {Q'}^{(k)}{R'}^{(k)},\]</div>
+<p>from the above theorem. (Remember that <span class="math notranslate nohighlight">\({Q'}^{(k)}\)</span> and <span class="math notranslate nohighlight">\({R'}^{(k)}\)</span>,
+are different from <span class="math notranslate nohighlight">\({Q}^{(k)}\)</span> and <span class="math notranslate nohighlight">\({R}^{(k)}\)</span>.)  In particular, the
+first column of <span class="math notranslate nohighlight">\({R'}^{(k)}\)</span> is <span class="math notranslate nohighlight">\(e_1r_{11}^{(k)}\)</span> (because <span class="math notranslate nohighlight">\({R'}^{(k)}\)</span> is
+an upper triangular matrix), so the first column of <span class="math notranslate nohighlight">\(A^k\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[A^ke_1 = r_{11}^{(k)}{Q'}^{(k)}e_1.\]</div>
+<p>In other words, the first column of <span class="math notranslate nohighlight">\({Q'}^{(k)}\)</span> is the result of <span class="math notranslate nohighlight">\(k\)</span>
+iterations of power iteration starting at <span class="math notranslate nohighlight">\(e_1\)</span>. (We already knew this
+from the previous theorem, but here we are introducing ways to look at
+different components of <span class="math notranslate nohighlight">\({Q'}^{(k)}\)</span> and <span class="math notranslate nohighlight">\({R'}^{(k)}\)</span>). This means that
+it will converge to the eigenvector of <span class="math notranslate nohighlight">\(A\)</span> with the eigenvalue of
+largest magnitude, and the convergence rate will depend on the gap
+between the magnitude of that eigenvalue and the magnitude of the next
+largest.</p>
+<p>To look at connections with inverse iteration, we use the inverse formula,</p>
+<div class="math notranslate nohighlight">
+\[A^{-k} = \left({R'}^{(k)}\right)^{-1}\left({Q'}^{(k)}\right)^* :=
+{\tilde{R}}^{(k)}\left({Q'}^{(k)}\right)^*,\]</div>
+<p>where <span class="math notranslate nohighlight">\({\tilde{R}}^{(k)}=\left({R'}^{(k)}\right)^{-1}\)</span> is also upper
+triangular since invertible upper triangular matrices form a group.</p>
+<p>Then,</p>
+<div class="math notranslate nohighlight">
+\[(A^{-k})^T =
+{Q'}^{(k)}({\tilde{R}}^{(k)})^T.\]</div>
+<p>The last column of <span class="math notranslate nohighlight">\(({\tilde{R}}^{(k)})^T\)</span> is <span class="math notranslate nohighlight">\(\tilde{r}^{(k)}_{nn}e_n\)</span>,
+so the last column of <span class="math notranslate nohighlight">\((A^{-k})^T\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[(A^{-k})^Te_n = {Q'}^{(k)}\tilde{r}_{nn} e_n,\]</div>
+<p>i.e. the last column of <span class="math notranslate nohighlight">\({Q'}^{(k)}\)</span> corresponds to the <span class="math notranslate nohighlight">\(k\)</span> th step of
+inverse iteration applied to <span class="math notranslate nohighlight">\(A^T\)</span>. When <span class="math notranslate nohighlight">\(A\)</span> is symmetric, this is the
+same as inverse iteration applied to <span class="math notranslate nohighlight">\(e_n\)</span>.</p>
+</section>
 <section id="the-practical-qr-algorithm">
-<h2><span class="section-number">5.11. </span>The practical QR algorithm<a class="headerlink" href="#the-practical-qr-algorithm" title="Permalink to this heading">¶</a></h2>
+<h2><span class="section-number">5.12. </span>The practical QR algorithm<a class="headerlink" href="#the-practical-qr-algorithm" title="Permalink to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -963,10 +1002,17 @@ Supplementary video</summary><div class="video_wrapper" style="">
 </iframe></div></details><p>The practical QR algorithm for real symmetric matrices has a number of
 extra elements that make it fast. First, recall that we start by
 transforming to tridiagonal (symmetric Hessenberg) form. This cuts
-down the numerical cost of the steps of the QR algorithm. Second, the
-Rayleigh quotient algorithm idea is incorporated by applying shifts
-<span class="math notranslate nohighlight">\(A^{(k)}-\mu^{(k)}I\)</span>, where <span class="math notranslate nohighlight">\(\mu^{(k)}\)</span> is some eigenvalue
-estimate. Third, when an eigenvalue is found (i.e. an eigenvalue
+down the numerical cost of the steps of the QR algorithm.</p>
+<p>For the second element, the Rayleigh quotient algorithm idea is
+incorporated by applying shifts <span class="math notranslate nohighlight">\(A^{(k)}-\mu^{(k)}I\)</span>, where
+<span class="math notranslate nohighlight">\(\mu^{(k)}\)</span> is some eigenvalue estimate for the smallest
+eigenvalues. Relying on the fact that if <span class="math notranslate nohighlight">\(A\)</span> is symmetric, then we
+know that the last diagonal in <span class="math notranslate nohighlight">\(R^{(k)}\)</span> will be converging to the
+smallest eigenvalue of <span class="math notranslate nohighlight">\(A\)</span> via inverse iteration. Then, applying QR to
+the shifted matrix, the last diagonal will converge to the eigenvalue
+of <span class="math notranslate nohighlight">\(A\)</span> closest to <span class="math notranslate nohighlight">\(\mu^{(k)}\)</span>. This will happen quickly if <span class="math notranslate nohighlight">\(\mu^{(k)}\)</span>
+is an accurate estimate of an eigenvalue of <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p>For the third element, when an eigenvalue is found (i.e. an eigenvalue
 appears accurately on the diagonal of <span class="math notranslate nohighlight">\(A^{(k)}\)</span>) the off-diagonal
 components are very small, and the matrix decouples into a block
 diagonal matrix where the QR algorithm can be independently applied to

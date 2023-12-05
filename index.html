@@ -144,7 +144,8 @@ Golub and van Loan <em>Matrix Computations</em>.</p>
 <li class="toctree-l2"><a class="reference internal" href="L5_eigenvalues.html#the-pure-qr-algorithm">5.8. The pure QR algorithm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="L5_eigenvalues.html#simultaneous-iteration">5.9. Simultaneous iteration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="L5_eigenvalues.html#the-pure-qr-algorithm-and-simultaneous-iteration-are-equivalent">5.10. The pure QR algorithm and simultaneous iteration are equivalent</a></li>
-<li class="toctree-l2"><a class="reference internal" href="L5_eigenvalues.html#the-practical-qr-algorithm">5.11. The practical QR algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L5_eigenvalues.html#connections-between-power-iteration-inverse-iteration-and-qr-algorithm">5.11. Connections between power iteration, inverse iteration, and QR algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L5_eigenvalues.html#the-practical-qr-algorithm">5.12. The practical QR algorithm</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="L6_krylov.html">6. Iterative Krylov methods for <span class="math notranslate nohighlight">\(Ax=b\)</span></a><ul>
@@ -153,6 +154,19 @@ Golub and van Loan <em>Matrix Computations</em>.</p>
 <li class="toctree-l2"><a class="reference internal" href="L6_krylov.html#gmres">6.3. GMRES</a></li>
 <li class="toctree-l2"><a class="reference internal" href="L6_krylov.html#convergence-of-gmres">6.4. Convergence of GMRES</a></li>
 <li class="toctree-l2"><a class="reference internal" href="L6_krylov.html#preconditioned-gmres">6.5. Preconditioned GMRES</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L6_krylov.html#knowing-when-to-stop">6.6. Knowing when to stop</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="L7_preconditioning.html">7. Preconditioning Krylov methods</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="L7_preconditioning.html#stationary-iterative-methods">7.1. Stationary iterative methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L7_preconditioning.html#using-splitting-methods-as-preconditioners">7.2. Using splitting methods as preconditioners</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L7_preconditioning.html#symmetric-iterative-methods">7.3. Symmetric iterative methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L7_preconditioning.html#convergence-criteria-for-stationary-methods">7.4. Convergence criteria for stationary methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L7_preconditioning.html#splitting-methods-as-preconditioners">7.5. Splitting methods as preconditioners</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L7_preconditioning.html#convergence-analysis-for-richardson">7.6. Convergence analysis for Richardson</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L7_preconditioning.html#convergence-analysis-for-symmetric-matrices">7.7. Convergence analysis for symmetric matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L7_preconditioning.html#an-example-matrix">7.8. An example matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L7_preconditioning.html#chebyshev-acceleration">7.9. Chebyshev acceleration</a></li>
 </ul>
 </li>
 </ul>
@@ -162,15 +176,67 @@ Golub and van Loan <em>Matrix Computations</em>.</p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="cla_utils.html">cla_utils package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="cla_utils.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cla_utils.html#cla-utils-exercises1-module">cla_utils.exercises1 module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cla_utils.html#cla-utils-exercises10-module">cla_utils.exercises10 module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cla_utils.html#cla-utils-exercises2-module">cla_utils.exercises2 module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cla_utils.html#cla-utils-exercises3-module">cla_utils.exercises3 module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cla_utils.html#cla-utils-exercises6-module">cla_utils.exercises6 module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cla_utils.html#cla-utils-exercises7-module">cla_utils.exercises7 module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cla_utils.html#cla-utils-exercises8-module">cla_utils.exercises8 module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cla_utils.html#cla-utils-exercises9-module">cla_utils.exercises9 module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cla_utils.html#module-contents">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cla_utils.html#module-cla_utils.exercises1">cla_utils.exercises1 module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cla_utils.html#cla_utils.exercises1.ABiC"><code class="docutils literal notranslate"><span class="pre">ABiC()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cla_utils.html#cla_utils.exercises1.basic_matvec"><code class="docutils literal notranslate"><span class="pre">basic_matvec()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cla_utils.html#cla_utils.exercises1.column_matvec"><code class="docutils literal notranslate"><span class="pre">column_matvec()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cla_utils.html#cla_utils.exercises1.rank1pert_inv"><code class="docutils literal notranslate"><span class="pre">rank1pert_inv()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cla_utils.html#cla_utils.exercises1.rank2"><code class="docutils literal notranslate"><span class="pre">rank2()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cla_utils.html#cla_utils.exercises1.time_matvecs"><code class="docutils literal notranslate"><span class="pre">time_matvecs()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cla_utils.html#cla_utils.exercises1.timeable_basic_matvec"><code class="docutils literal notranslate"><span class="pre">timeable_basic_matvec()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cla_utils.html#cla_utils.exercises1.timeable_column_matvec"><code class="docutils literal notranslate"><span class="pre">timeable_column_matvec()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cla_utils.html#cla_utils.exercises1.timeable_numpy_matvec"><code class="docutils literal notranslate"><span class="pre">timeable_numpy_matvec()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cla_utils.html#module-cla_utils.exercises10">cla_utils.exercises10 module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cla_utils.html#cla_utils.exercises10.GMRES"><code class="docutils literal notranslate"><span class="pre">GMRES()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cla_utils.html#cla_utils.exercises10.arnoldi"><code class="docutils literal notranslate"><span class="pre">arnoldi()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cla_utils.html#cla_utils.exercises10.get_AA100"><code class="docutils literal notranslate"><span class="pre">get_AA100()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cla_utils.html#cla_utils.exercises10.get_BB100"><code class="docutils literal notranslate"><span class="pre">get_BB100()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cla_utils.html#cla_utils.exercises10.get_CC100"><code class="docutils literal notranslate"><span class="pre">get_CC100()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cla_utils.html#module-cla_utils.exercises2">cla_utils.exercises2 module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cla_utils.html#cla_utils.exercises2.GS_classical"><code class="docutils literal notranslate"><span class="pre">GS_classical()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cla_utils.html#cla_utils.exercises2.GS_modified"><code class="docutils literal notranslate"><span class="pre">GS_modified()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cla_utils.html#cla_utils.exercises2.GS_modified_R"><code class="docutils literal notranslate"><span class="pre">GS_modified_R()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cla_utils.html#cla_utils.exercises2.GS_modified_get_R"><code class="docutils literal notranslate"><span class="pre">GS_modified_get_R()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cla_utils.html#cla_utils.exercises2.orthog_cpts"><code class="docutils literal notranslate"><span class="pre">orthog_cpts()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cla_utils.html#cla_utils.exercises2.orthog_proj"><code class="docutils literal notranslate"><span class="pre">orthog_proj()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cla_utils.html#cla_utils.exercises2.orthog_space"><code class="docutils literal notranslate"><span class="pre">orthog_space()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cla_utils.html#cla_utils.exercises2.solve_Q"><code class="docutils literal notranslate"><span class="pre">solve_Q()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cla_utils.html#module-cla_utils.exercises3">cla_utils.exercises3 module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cla_utils.html#cla_utils.exercises3.householder"><code class="docutils literal notranslate"><span class="pre">householder()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cla_utils.html#cla_utils.exercises3.householder_ls"><code class="docutils literal notranslate"><span class="pre">householder_ls()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cla_utils.html#cla_utils.exercises3.householder_qr"><code class="docutils literal notranslate"><span class="pre">householder_qr()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cla_utils.html#cla_utils.exercises3.householder_solve"><code class="docutils literal notranslate"><span class="pre">householder_solve()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cla_utils.html#cla_utils.exercises3.solve_U"><code class="docutils literal notranslate"><span class="pre">solve_U()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cla_utils.html#module-cla_utils.exercises8">cla_utils.exercises8 module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cla_utils.html#cla_utils.exercises8.Q1AQ1s"><code class="docutils literal notranslate"><span class="pre">Q1AQ1s()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cla_utils.html#cla_utils.exercises8.ev"><code class="docutils literal notranslate"><span class="pre">ev()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cla_utils.html#cla_utils.exercises8.hessenberg"><code class="docutils literal notranslate"><span class="pre">hessenberg()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cla_utils.html#cla_utils.exercises8.hessenbergQ"><code class="docutils literal notranslate"><span class="pre">hessenbergQ()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cla_utils.html#cla_utils.exercises8.hessenberg_ev"><code class="docutils literal notranslate"><span class="pre">hessenberg_ev()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cla_utils.html#module-cla_utils.exercises9">cla_utils.exercises9 module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cla_utils.html#cla_utils.exercises9.get_A100"><code class="docutils literal notranslate"><span class="pre">get_A100()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cla_utils.html#cla_utils.exercises9.get_A3"><code class="docutils literal notranslate"><span class="pre">get_A3()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cla_utils.html#cla_utils.exercises9.get_B100"><code class="docutils literal notranslate"><span class="pre">get_B100()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cla_utils.html#cla_utils.exercises9.get_B3"><code class="docutils literal notranslate"><span class="pre">get_B3()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cla_utils.html#cla_utils.exercises9.get_C100"><code class="docutils literal notranslate"><span class="pre">get_C100()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cla_utils.html#cla_utils.exercises9.get_D100"><code class="docutils literal notranslate"><span class="pre">get_D100()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cla_utils.html#cla_utils.exercises9.inverse_it"><code class="docutils literal notranslate"><span class="pre">inverse_it()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cla_utils.html#cla_utils.exercises9.pow_it"><code class="docutils literal notranslate"><span class="pre">pow_it()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cla_utils.html#cla_utils.exercises9.pure_QR"><code class="docutils literal notranslate"><span class="pre">pure_QR()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cla_utils.html#cla_utils.exercises9.rq_it"><code class="docutils literal notranslate"><span class="pre">rq_it()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cla_utils.html#module-cla_utils">Module contents</a></li>
 </ul>
 </li>
 </ul>

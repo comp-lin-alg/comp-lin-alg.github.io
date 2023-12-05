@@ -16,7 +16,7 @@
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="cla_utils package" href="cla_utils.html" />
+    <link rel="next" title="7. Preconditioning Krylov methods" href="L7_preconditioning.html" />
     <link rel="prev" title="5. Finding eigenvalues of matrices" href="L5_eigenvalues.html" />
 <!--[if lte IE 6]>
 <link rel="stylesheet" href="_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
@@ -126,7 +126,7 @@ Supplementary video</summary><div class="video_wrapper" style="">
 we see that the <span class="math notranslate nohighlight">\(n\)</span>-th column is</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
-\[Aq_n = h_{1n}q_1 + h_{2n}q_n + \ldots + h_{n,n}q_n + h_{n+1,n}q_{n+1}.\]</div>
+\[Aq_n = h_{1n}q_1 + h_{2n}q_2 + \ldots + h_{n,n}q_n + h_{n+1,n}q_{n+1}.\]</div>
 </div></blockquote>
 <p>This formula shows us how to construct the non-zero entries of the
 nth column of <span class="math notranslate nohighlight">\(H\)</span>; this defines the Arnoldi algorithm which we
@@ -155,7 +155,7 @@ provide as pseudo-code below.</p>
         <span class="proof-type">Exercise 6.1</span>
         
     </div><div class="proof-content">
-<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises10.arnoldi()</span></code> function has
+<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <a class="reference internal" href="cla_utils.html#cla_utils.exercises10.arnoldi" title="cla_utils.exercises10.arnoldi"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises10.arnoldi()</span></code></a> function has
 been left unimplemented. It should implement the Arnoldi algorithm
 using Numpy array operations where possible, and return the <span class="math notranslate nohighlight">\(Q\)</span> and
 <span class="math notranslate nohighlight">\(H\)</span> matrices after the requested number of iterations is complete.
@@ -275,10 +275,10 @@ Supplementary video</summary><div class="video_wrapper" style="">
         <span class="proof-type">Exercise 6.2</span>
         
     </div><div class="proof-content">
-<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises10.GMRES()</span></code> function has
+<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The <a class="reference internal" href="cla_utils.html#cla_utils.exercises10.GMRES" title="cla_utils.exercises10.GMRES"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises10.GMRES()</span></code></a> function has
 been left unimplemented. It should implement the basic GMRES
 algorithm above, using one loop over the iteration count. You can
-paste code from your <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises10.arnoldi()</span></code>
+paste code from your <a class="reference internal" href="cla_utils.html#cla_utils.exercises10.arnoldi" title="cla_utils.exercises10.arnoldi"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises10.arnoldi()</span></code></a>
 implementation, and you should use your least squares code to solve
 the least squares problem.  The test script <code class="docutils literal notranslate"><span class="pre">test_exercises10.py</span></code>
 in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will test this function.</p>
@@ -288,7 +288,7 @@ in the <code class="docutils literal notranslate"><span class="pre">test</span><
         <span class="proof-type">Exercise 6.3</span>
         
     </div><div class="proof-content">
-<p><span class="math notranslate nohighlight">\((\ddagger)\)</span> The least squares problem in GMRES requires the QR
+<p>The least squares problem in GMRES requires the QR
 factorisation of <span class="math notranslate nohighlight">\(H_k\)</span>. It is wasteful to rebuild this from scratch
 given that we just computed the QR factorisation of
 <span class="math notranslate nohighlight">\(H_{k-1}\)</span>. Modify your code so that it recycles the QR
@@ -379,11 +379,11 @@ to zero.</p>
         
     </div><div class="proof-content">
 <p>Investigate the convergence of the matrices provided by the
-functions <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises10.get_AA100()</span></code>,
-<code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises10.get_BB100()</span></code>, and
-<code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises10.get_CC100()</span></code>, by looking at the residual
+functions <a class="reference internal" href="cla_utils.html#cla_utils.exercises10.get_AA100" title="cla_utils.exercises10.get_AA100"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises10.get_AA100()</span></code></a>,
+<a class="reference internal" href="cla_utils.html#cla_utils.exercises10.get_BB100" title="cla_utils.exercises10.get_BB100"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises10.get_BB100()</span></code></a>, and
+<a class="reference internal" href="cla_utils.html#cla_utils.exercises10.get_CC100" title="cla_utils.exercises10.get_CC100"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises10.get_CC100()</span></code></a>, by looking at the residual
 after each iteration (which should be provided by
-<code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises10.GMRES()</span></code> as specified in the docstring).
+<a class="reference internal" href="cla_utils.html#cla_utils.exercises10.GMRES" title="cla_utils.exercises10.GMRES"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises10.GMRES()</span></code></a> as specified in the docstring).
 What do you observe? What is it about the three matrices that
 causes this different behaviour?</p>
 </div></div></section>
@@ -397,24 +397,24 @@ Supplementary video</summary><div class="video_wrapper" style="">
 over the last 30 years. Typically, the matrices that we want to solve
 do not have eigenvalues clustered in a small number of groups, and so
 GMRES is slow. The solution (and the challenge) is to find a matrix
-<span class="math notranslate nohighlight">\(M\)</span> such that <span class="math notranslate nohighlight">\(Mx = y\)</span> is cheap to solve (diagonal, or triangular, or
-something else) and such that <span class="math notranslate nohighlight">\(M^{-1}A\)</span> <em>does</em> have eigenvalues clustered
-in a small number of groups (e.g. <span class="math notranslate nohighlight">\(M\)</span> is a good approximation of <span class="math notranslate nohighlight">\(A\)</span>, so
-that <span class="math notranslate nohighlight">\(M^{-1}A\approx I\)</span> which has eigenvalues all equal to 1). We call
-<span class="math notranslate nohighlight">\(M\)</span> the preconditioning matrix, and the idea is to apply GMRES to
+<span class="math notranslate nohighlight">\(\hat{A}\)</span> such that <span class="math notranslate nohighlight">\(\hat{A}x = y\)</span> is cheap to solve (diagonal, or triangular, or
+something else) and such that <span class="math notranslate nohighlight">\(\hat{A}^{-1}A\)</span> <em>does</em> have eigenvalues clustered
+in a small number of groups (e.g. <span class="math notranslate nohighlight">\(\hat{A}\)</span> is a good approximation of <span class="math notranslate nohighlight">\(A\)</span>, so
+that <span class="math notranslate nohighlight">\(\hat{A}^{-1}A\approx I\)</span> which has eigenvalues all equal to 1). We call
+<span class="math notranslate nohighlight">\(\hat{A}\)</span> the preconditioning matrix, and the idea is to apply GMRES to
 the (left) preconditioned system</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
-\[M^{-1}Ax = M^{-1}b.\]</div>
+\[\hat{A}^{-1}Ax = \hat{A}^{-1}b.\]</div>
 </div></blockquote>
 <p>GMRES on this preconditioned system is equivalent to the following algorithm,
 called preconditioned GMRES.</p>
 <ul class="simple">
-<li><p>SOLVE <span class="math notranslate nohighlight">\(M\tilde{b}=b\)</span>.</p></li>
+<li><p>SOLVE <span class="math notranslate nohighlight">\(\hat{A}\tilde{b}=b\)</span>.</p></li>
 <li><p><span class="math notranslate nohighlight">\(q_1 \gets \tilde{b}/\|\tilde{b}\|\)</span></p></li>
 <li><p>FOR <span class="math notranslate nohighlight">\(n=1,2,\dots\)</span></p>
 <ul>
-<li><p>SOLVE <span class="math notranslate nohighlight">\(Mv = Aq_n\)</span></p></li>
+<li><p>SOLVE <span class="math notranslate nohighlight">\(\hat{A}v = Aq_n\)</span></p></li>
 <li><p>FOR <span class="math notranslate nohighlight">\(j=1\)</span> TO <span class="math notranslate nohighlight">\(n\)</span></p>
 <ul>
 <li><p><span class="math notranslate nohighlight">\(h_{jn}=q_j^*v\)</span></p></li>
@@ -439,12 +439,44 @@ called preconditioned GMRES.</p>
     </div><div class="proof-content">
 <p>Show that this algorithm is equivalent to GMRES applied to the
 preconditioned system.</p>
-</div></div><p>The art and science of finding preconditioning matrices <span class="math notranslate nohighlight">\(M\)</span> (or
-matrix-free procedures for solving <span class="math notranslate nohighlight">\(Mx=y\)</span>) for specific problems
+</div></div><p>The art and science of finding preconditioning matrices <span class="math notranslate nohighlight">\(\hat{A}\)</span> (or
+matrix-free procedures for solving <span class="math notranslate nohighlight">\(\hat{A}x=y\)</span>) for specific problems
 arising in data science, engineering, physics, biology etc. can
 involve ideas from linear algebra, functional analysis, asymptotics,
 physics, etc., and represents a major activity in scientific computing
 today.</p>
+</section>
+<section id="knowing-when-to-stop">
+<h2><span class="section-number">6.6. </span>Knowing when to stop<a class="headerlink" href="#knowing-when-to-stop" title="Permalink to this heading">¶</a></h2>
+<p>We should stop an iterative method when the error is sufficiently small.
+But, we don’t have access the the exact solution, so we can’t compute the
+error. Two things we can look at are:</p>
+<ul class="simple">
+<li><p>The residual <span class="math notranslate nohighlight">\({r}^k=A{x}^k-{b}\)</span>, or</p></li>
+<li><p>The pseudo-residual <span class="math notranslate nohighlight">\({s}^k = {x}^{k+1}-{x}^k\)</span>,
+which both tend to zero as <span class="math notranslate nohighlight">\({x}^k\to{x}^*\)</span> provided that <span class="math notranslate nohighlight">\(A\)</span> is
+invertible.</p></li>
+</ul>
+<p>How do their sizes relate to the size of <span class="math notranslate nohighlight">\({e}^k={x}^k-{x}^*\)</span>?</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}{e}^k  = &amp; {x}^* - {x}^k \\
+ = &amp; A^{-1}(A{x}^*-A{x}^k) \\
+ = &amp; A^{-1}({b}-A{x}^k) \\
+ = &amp; A^{-1}{r}^k,\end{split}\]</div>
+<p>so <span class="math notranslate nohighlight">\(\|e^k\| \leq \|A^{-1}\|\|r^k\|\)</span>.</p>
+<p>The relative error <span class="math notranslate nohighlight">\(\|e^k\|/\|x^*\|\)</span> satisfies</p>
+<div class="math notranslate nohighlight">
+\[\frac{\|e^k\|}{\|x^*\|}
+= \frac{\|A^{-1}r^k\|}{\|x\|}
+\leq \|A^{-1}\|\frac{\|r^k\|}{\|x\|}
+\leq \|A^{-1}\|\|A\|\frac{\|r^k\|}{\|b\|},\]</div>
+<p>so the relative error is bounded from above by
+the condition number of <span class="math notranslate nohighlight">\(\|A\|\)</span> multiplied by
+the relative residual <span class="math notranslate nohighlight">\(\|r^k\|/\|b\|\)</span>. If the condition
+number is large, it is possible to have a small residual
+but still have a large condition number.</p>
+<p>Similar results hold for the pseudoresidual, but are
+more complicated to show for the case of GMRES.</p>
 </section>
 </section>
 

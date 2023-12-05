@@ -193,7 +193,7 @@ course we will not use this module, just use the functions and classes
 available when you import <a class="reference external" href="https://numpy.org/doc/stable/reference/index.html#module-numpy" title="(in NumPy v1.26)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">numpy</span></code></a> itself. There is one exception,
 which is that <code class="xref py py-meth docutils literal notranslate"><span class="pre">numpy.linalg.norm()</span></code> is quite useful, but also covers a lot
 of different cases which are not very edifying to replicate. Hence,
-we have included <code class="xref py py-meth docutils literal notranslate"><span class="pre">numpy.linalg.norm()</span></code> in the <code class="xref py py-mod docutils literal notranslate"><span class="pre">cla_utils</span></code> package as
+we have included <code class="xref py py-meth docutils literal notranslate"><span class="pre">numpy.linalg.norm()</span></code> in the <a class="reference internal" href="cla_utils.html#module-cla_utils" title="cla_utils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cla_utils</span></code></a> package as
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">cla_utils.norm()</span></code>, should you wish to use it.</p>
 <div class="proof proof-type-exercise" id="id2">
 <span id="ex-basic-matvec"></span>
@@ -201,7 +201,7 @@ we have included <code class="xref py py-meth docutils literal notranslate"><spa
         <span class="proof-type">Exercise 2.1</span>
         
     </div><div class="proof-content">
-<p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises1.basic_matvec()</span></code> function has been left
+<p>The <a class="reference internal" href="cla_utils.html#cla_utils.exercises1.basic_matvec" title="cla_utils.exercises1.basic_matvec"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises1.basic_matvec()</span></code></a> function has been left
 unimplemented. To finish the function, add code so that it
 computes the matrix-vector product <span class="math notranslate nohighlight">\(b=Ax\)</span> from inputs <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(x\)</span>.
 In this first implementation, you should simply implement
@@ -230,7 +230,7 @@ Numpy matrices.</p>
         <span class="proof-type">Exercise 2.2</span>
         
     </div><div class="proof-content">
-<p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises1.column_matvec()</span></code> function has been
+<p>The <a class="reference internal" href="cla_utils.html#cla_utils.exercises1.column_matvec" title="cla_utils.exercises1.column_matvec"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises1.column_matvec()</span></code></a> function has been
 left unimplemented.  To finish the function, add code so that it
 computes the matrix-vector product <span class="math notranslate nohighlight">\(b=Ax\)</span> from inputs <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(x\)</span>.
 This second implementation should use the column-space formulation
@@ -255,7 +255,7 @@ For more information, see the <a class="reference external" href="https://numpy.
         <span class="proof-type">Exercise 2.3</span>
         
     </div><div class="proof-content">
-<p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises1.time_matvecs()</span></code> function computes
+<p>The <a class="reference internal" href="cla_utils.html#cla_utils.exercises1.time_matvecs" title="cla_utils.exercises1.time_matvecs"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises1.time_matvecs()</span></code></a> function computes
 the execution time for these two implementations for some example
 matrices and compares them with the built-in Numpy matrix-vector
 product. Run this function and examine the output. You should
@@ -380,7 +380,7 @@ matrix (<span class="math notranslate nohighlight">\(m=n\)</span>) of full rank.
         <span class="proof-type">Exercise 2.11</span>
         
     </div><div class="proof-content">
-<p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises1.rank2()</span></code> function has been left
+<p>The <a class="reference internal" href="cla_utils.html#cla_utils.exercises1.rank2" title="cla_utils.exercises1.rank2"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises1.rank2()</span></code></a> function has been left
 unimplemented.  To finish the function, add code so that it
 computes the rank-2 matrix <span class="math notranslate nohighlight">\(A = u_1v_1^* + u_2v_2^*\)</span> from
 <span class="math notranslate nohighlight">\(u_1,u_2\in \mathbb{C}^m\)</span> and <span class="math notranslate nohighlight">\(v_1,v_2 \in \mathbb{C}^n\)</span>. As you
@@ -480,12 +480,12 @@ give basis coefficients for <span class="math notranslate nohighlight">\(b\)</sp
 m\)</span> identity matrix, and <span class="math notranslate nohighlight">\(u,v \in \mathbb{C}^m\)</span>, show that whenever
 <span class="math notranslate nohighlight">\(A\)</span> is invertible, the inverse is of the form <span class="math notranslate nohighlight">\(A^{-1} = I + \alpha uv^*\)</span>
 where <span class="math notranslate nohighlight">\(\alpha \in \mathbb{C}\)</span>, and calculate the form of <span class="math notranslate nohighlight">\(\alpha\)</span>.</p>
-<p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises1.rank1pert_inv()</span></code> function has been
+<p>The <a class="reference internal" href="cla_utils.html#cla_utils.exercises1.rank1pert_inv" title="cla_utils.exercises1.rank1pert_inv"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises1.rank1pert_inv()</span></code></a> function has been
 left unimplemented.  To finish the function, add code so that it
 computes <span class="math notranslate nohighlight">\(A^{-1}\)</span> using your formula (and not any built-in matrix
 inversion routines). The test script <code class="docutils literal notranslate"><span class="pre">test_exercises1.py</span></code> in the
 <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will also test this function.</p>
-<p>Add a function to <code class="xref py py-mod docutils literal notranslate"><span class="pre">cla_utils.exercises1</span></code> that measures the
+<p>Add a function to <a class="reference internal" href="cla_utils.html#module-cla_utils.exercises1" title="cla_utils.exercises1"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cla_utils.exercises1</span></code></a> that measures the
 time to compute the inverse of <span class="math notranslate nohighlight">\(A\)</span> for an input matrix of size 400,
 and compare with the time to compute the inverse of <span class="math notranslate nohighlight">\(A\)</span> using the built-in
 inverse:</p>
@@ -543,7 +543,7 @@ memory, instead of storing values of <span class="math notranslate nohighlight">
 numbers to store), consider equivalently storing a real-valued
 <span class="math notranslate nohighlight">\(m\times m\)</span> array <span class="math notranslate nohighlight">\(\hat{A}\)</span> with <span class="math notranslate nohighlight">\(\hat{A}_{ij}=B_{ij}\)</span> for <span class="math notranslate nohighlight">\(i\geq j\)</span>
 and <span class="math notranslate nohighlight">\(\hat{A}_{ij}=C_{ij}\)</span> for <span class="math notranslate nohighlight">\(i&lt;j\)</span>.</p>
-<p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises1.ABiC()</span></code> function has been left
+<p>The <a class="reference internal" href="cla_utils.html#cla_utils.exercises1.ABiC" title="cla_utils.exercises1.ABiC"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises1.ABiC()</span></code></a> function has been left
 unimplemented. It should implement matrix vector multiplication
 <span class="math notranslate nohighlight">\(z=Ax\)</span>, returning the real and imaginary parts of <span class="math notranslate nohighlight">\(z\)</span>, given the
 real and imaginary parts of <span class="math notranslate nohighlight">\(x\)</span> as inputs, and given the real array
@@ -654,7 +654,7 @@ Thus,</p>
         <span class="proof-type">Exercise 2.20</span>
         
     </div><div class="proof-content">
-<p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises2.orthog_cpts()</span></code> function has been left
+<p>The <a class="reference internal" href="cla_utils.html#cla_utils.exercises2.orthog_cpts" title="cla_utils.exercises2.orthog_cpts"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises2.orthog_cpts()</span></code></a> function has been left
 unimplemented. It should implement the above computation, returning
 <span class="math notranslate nohighlight">\(r\)</span> and the coefficients of the component of <span class="math notranslate nohighlight">\(v\)</span> in each
 orthonormal direction. The test script <code class="docutils literal notranslate"><span class="pre">test_exercises2.py</span></code> in
@@ -717,7 +717,7 @@ it should solve <span class="math notranslate nohighlight">\(Qx=b\)</span> using
 to work when <span class="math notranslate nohighlight">\(Q\)</span> is not unitary or square). The test script
 <code class="docutils literal notranslate"><span class="pre">test_exercises2.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will test this
 function.</p>
-<p>Add a function to <code class="xref py py-mod docutils literal notranslate"><span class="pre">cla_utils.exercises2</span></code> that measures the
+<p>Add a function to <a class="reference internal" href="cla_utils.html#module-cla_utils.exercises2" title="cla_utils.exercises2"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cla_utils.exercises2</span></code></a> that measures the
 time to solve <span class="math notranslate nohighlight">\(Qx=b\)</span> using <code class="docutils literal notranslate"><span class="pre">solveQ</span></code> for an input matrix of sizes 100,
 200, 400,
 and compare with the times to solve the equation using the general purpose
@@ -921,7 +921,7 @@ In fact the following is true.</p>
         <span class="proof-type">Exercise 2.30</span>
         
     </div><div class="proof-content">
-<p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises2.orthog_proj()</span></code> function has been left
+<p>The <a class="reference internal" href="cla_utils.html#cla_utils.exercises2.orthog_proj" title="cla_utils.exercises2.orthog_proj"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises2.orthog_proj()</span></code></a> function has been left
 unimplemented. Given an orthonormal set <span class="math notranslate nohighlight">\(q_1,q_2,\ldots,q_n\)</span>, it
 should provide the orthogonal projector <span class="math notranslate nohighlight">\(P\)</span>. The test script
 <code class="docutils literal notranslate"><span class="pre">test_exercises2.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will also test

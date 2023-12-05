@@ -1,18 +1,16 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>cla_utils.exercises3 &#8212; Computational linear algebra course 2022.0 documentation</title>
+    <title>cla_utils.exercises3 &#8212; Computational linear algebra course 2023.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/fenics.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/proof.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -49,7 +47,7 @@
 
 
 <div class="viewcode-block" id="householder"><a class="viewcode-back" href="../../cla_utils.html#cla_utils.exercises3.householder">[docs]</a><span class="k">def</span> <span class="nf">householder</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">kmax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Given a real mxn matrix A, find the reduction to upper triangular matrix R</span>
 <span class="sd">    using Householder transformations. The reduction should be done &quot;in-place&quot;,</span>
 <span class="sd">    so that A is transformed to R.</span>
@@ -57,9 +55,6 @@
 <span class="sd">    :param A: an mxn-dimensional numpy array</span>
 <span class="sd">    :param kmax: an integer, the number of columns of A to reduce \</span>
 <span class="sd">    to upper triangular. If not present, will default to n.</span>
-
-<span class="sd">    :return R: an mxn-dimensional numpy array containing the upper \</span>
-<span class="sd">    triangular matrix</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">m</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span>
@@ -70,7 +65,7 @@
 
 
 <div class="viewcode-block" id="solve_U"><a class="viewcode-back" href="../../cla_utils.html#cla_utils.exercises3.solve_U">[docs]</a><span class="k">def</span> <span class="nf">solve_U</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Solve systems Ux_i=b_i for x_i with U upper triangular, i=1,2,...,k</span>
 
 <span class="sd">    :param U: an mxm-dimensional numpy array, assumed upper triangular</span>
@@ -85,7 +80,7 @@
 
 
 <div class="viewcode-block" id="householder_solve"><a class="viewcode-back" href="../../cla_utils.html#cla_utils.exercises3.householder_solve">[docs]</a><span class="k">def</span> <span class="nf">householder_solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Given a real mxm matrix A, use the Householder transformation to solve</span>
 <span class="sd">    Ax_i=b_i, i=1,2,...,k.</span>
 
@@ -103,7 +98,7 @@
 
 
 <div class="viewcode-block" id="householder_qr"><a class="viewcode-back" href="../../cla_utils.html#cla_utils.exercises3.householder_qr">[docs]</a><span class="k">def</span> <span class="nf">householder_qr</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Given a real mxn matrix A, use the Householder transformation to find</span>
 <span class="sd">    the full QR factorisation of A.</span>
 
@@ -119,7 +114,7 @@
 
 
 <div class="viewcode-block" id="householder_ls"><a class="viewcode-back" href="../../cla_utils.html#cla_utils.exercises3.householder_ls">[docs]</a><span class="k">def</span> <span class="nf">householder_ls</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Given a real mxn matrix A and an m dimensional vector b, find the</span>
 <span class="sd">    least squares solution to Ax = b.</span>
 
@@ -141,8 +136,8 @@
       <div class="clearer"></div>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020-2022, Colin J. Cotter.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
+        &#169; Copyright 2020-2023, Colin J. Cotter.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
     </div>
   </body>
 </html>
