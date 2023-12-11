@@ -21,7 +21,7 @@ as follows.
 .. proof:definition:: Stationary iterative methods
 
    A stationary iterative method is constructed from matrices `M` and
-   `N`with `A=M+N`. Then the iterative method is defined by
+   `N` with `A=M+N`. Then the iterative method is defined by
 
    .. math::
 
