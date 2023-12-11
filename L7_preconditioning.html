@@ -488,8 +488,8 @@ symmetric and positive definite, so there exists a unique symmetric
 positive definite matrix square root <span class="math notranslate nohighlight">\(S\)</span> such that <span class="math notranslate nohighlight">\(SS =
 M_s\)</span>. Then,</p>
 <div class="math notranslate nohighlight">
-\[M^{S}A = SSA = S(SAS)S^{-1}.\]</div>
-<p>Thus, <span class="math notranslate nohighlight">\(M_sA\)</span> is similar to (and therefore has the same eigenvalues as)
+\[M_s^{-1}A = SSA = S(SAS)S^{-1}.\]</div>
+<p>Thus, <span class="math notranslate nohighlight">\(M_s^{-1}A\)</span> is similar to (and therefore has the same eigenvalues as)
 <span class="math notranslate nohighlight">\(SAS\)</span>, which is symmetric, and therefore has real eigenvalues,
 and the result follows.</p>
 </div></div></section>
@@ -502,7 +502,7 @@ M = I, \, N = A-I, \, \implies C = I-A.\]</div>
 <p>Let <span class="math notranslate nohighlight">\({e}\)</span> be an eigenvector of <span class="math notranslate nohighlight">\(A\)</span> with eigenvalue <span class="math notranslate nohighlight">\(\lambda\)</span>, so
 <span class="math notranslate nohighlight">\(A{e}=\lambda{e}\)</span>.  Then <span class="math notranslate nohighlight">\((I-A){e}={e}-\lambda{e}=(1-\lambda){e}\)</span>.
 So, <span class="math notranslate nohighlight">\({e}\)</span> is an eigenvector of <span class="math notranslate nohighlight">\(I-A\)</span> with eigenvalue <span class="math notranslate nohighlight">\(1-\lambda\)</span>.
-Richardson’s method will converge if <span class="math notranslate nohighlight">\(\rho(C)&lt;1\)</span> emph{i.e.}
+Richardson’s method will converge if <span class="math notranslate nohighlight">\(\rho(C)&lt;1\)</span> i.e.
 <span class="math notranslate nohighlight">\(|1-\lambda|&lt;1\)</span> for all eigenvalues <span class="math notranslate nohighlight">\(\lambda\)</span> of <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <p>This is restrictive, which motivates the scaled Richardson iteration,</p>
 <div class="math notranslate nohighlight">
