@@ -173,14 +173,17 @@ variables by a permutation does alter the algorithm.</p></li>
 <h2><span class="section-number">7.2. </span>Using splitting methods as preconditioners<a class="headerlink" href="#using-splitting-methods-as-preconditioners" title="Permalink to this heading">¶</a></h2>
 <p>A (non-symmetric) preconditioner <span class="math notranslate nohighlight">\(\hat{A}\)</span> can be built from a
 splitting method by applying one iteration with initial guess
-<span class="math notranslate nohighlight">\({z}^0={0}\)</span>. Then</p>
+<span class="math notranslate nohighlight">\({x}^0={0}\)</span>.</p>
+<p>A preconditioner is used to compute <span class="math notranslate nohighlight">\(v\)</span> by solving</p>
 <div class="math notranslate nohighlight">
-\[\hat{A}^{-1}A{x} = {z},\]</div>
-<p>where</p>
+\[\hat{A}v = r,\]</div>
+<p>such that <span class="math notranslate nohighlight">\(Av \approx r\)</span>, and the above equation is easy to solve.
+We can use a stationary method by setting <span class="math notranslate nohighlight">\(v=x^1\)</span> and <span class="math notranslate nohighlight">\(x^0=0\)</span>,</p>
+<p>to get</p>
 <div class="math notranslate nohighlight">
-\[M{z} = -N{z}^0 + A{x} = A{x},\]</div>
-<p>i.e. <span class="math notranslate nohighlight">\(\hat{A}=M\)</span>. Later we shall see how to relate convergence
-properties of splitting methods to the convergence of
+\[Mv:= M{x}^1 = -N\underbrace{x^0}_{=0} + r = r,\]</div>
+<p>i.e. we are choosing <span class="math notranslate nohighlight">\(\hat{A}=M\)</span>. Later we shall see how to relate
+convergence properties of splitting methods to the convergence of
 preconditioned CG using <span class="math notranslate nohighlight">\(\hat{A}=M\)</span>.</p>
 </section>
 <section id="symmetric-iterative-methods">
