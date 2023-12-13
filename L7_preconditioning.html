@@ -649,15 +649,15 @@ the (real) maximum eigenvalue of <span class="math notranslate nohighlight">\(D^
 <span class="math notranslate nohighlight">\(M^T+M-A=2D/\omega-A\)</span>. To check positive definiteness we need to
 show that</p>
 <div class="math notranslate nohighlight">
-\[x^T\left(\frac{2}{\omega}D - A)^x &gt; 0,\]</div>
+\[x^T\left(\frac{2}{\omega}D - A\right)x &gt; 0,\]</div>
 <p>for all <span class="math notranslate nohighlight">\(x\neq 0\)</span>.</p>
 <p>To show this, we write <span class="math notranslate nohighlight">\(x = D^{-1/2}y\)</span>, so that</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}x^T\left(\frac{2}{\omega}D - A)^x &amp; =
-y^T\left(\frac{2}{\omega}I - D^{-1/2}AD^{-1/2})^y \\
+\[\begin{split}x^T\left(\frac{2}{\omega}D - A\right)x &amp; =
+y^T\left(\frac{2}{\omega}I - D^{-1/2}AD^{-1/2}\right)y \\
 &amp; \geq \mu \|y\|^2 &gt; 0,\end{split}\]</div>
 <p>provided that the minimum eigenvalue <span class="math notranslate nohighlight">\(\mu\)</span> of
-<span class="math notranslate nohighlight">\(F=\frac{2}{\omega}I - D^{-1/2}AD^{-1/2})\)</span> is positive (it is real
+<span class="math notranslate nohighlight">\(F=\frac{2}{\omega}I - D^{-1/2}AD^{-1/2}\)</span> is positive (it is real
 since <span class="math notranslate nohighlight">\(F\)</span> is symmetric). We have <span class="math notranslate nohighlight">\(\mu=2/\omega - \lambda\)</span>
 Hence, <span class="math notranslate nohighlight">\(2D/\omega-A\)</span> is positive
 definite (so scaled Jacobi converges) if <span class="math notranslate nohighlight">\(2/\omega-\lambda&gt;0\)</span>
