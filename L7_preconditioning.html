@@ -646,16 +646,22 @@ the (real) maximum eigenvalue of <span class="math notranslate nohighlight">\(D^
         
     </div><div class="proof-content">
 <p>For scaled Jacobi iteration with <span class="math notranslate nohighlight">\(M=D/\omega\)</span>, we have
-<span class="math notranslate nohighlight">\(M^T+M-A=2D/\omega-A\)</span>. We have</p>
+<span class="math notranslate nohighlight">\(M^T+M-A=2D/\omega-A\)</span>. To check positive definiteness we need to
+show that</p>
 <div class="math notranslate nohighlight">
-\[2D/\omega-A=D^{1/2}(2I/\omega-D^{-1}A)D^{1/2},\]</div>
-<p>so <span class="math notranslate nohighlight">\(2D/\omega-A\)</span> and <span class="math notranslate nohighlight">\(2I/\omega-D^{-1}A\)</span> have the same eigenvalues.
-If <span class="math notranslate nohighlight">\(\lambda\)</span> is the maximum eigenvalue of <span class="math notranslate nohighlight">\(D^{-1}A\)</span> (which has real
-eigenvalues because it is similar to <span class="math notranslate nohighlight">\(D^{-1/2}AD^{1/2}\)</span>, a symmetric
-matrix), then <span class="math notranslate nohighlight">\(2/\omega-\lambda\)</span> is the minimum eigenvalue of
-<span class="math notranslate nohighlight">\(2I/\omega-D^{-1}A\)</span> and hence of <span class="math notranslate nohighlight">\(2D/\omega-A\)</span>. Hence, <span class="math notranslate nohighlight">\(2D/\omega-A\)</span>
-is positive definite (so scaled Jacobi converges) if
-<span class="math notranslate nohighlight">\(2/\omega-\lambda&gt;0\)</span> i.e. <span class="math notranslate nohighlight">\(\omega&lt;2/\lambda\)</span>.</p>
+\[x^T\left(\frac{2}{\omega}D - A)^x &gt; 0,\]</div>
+<p>for all <span class="math notranslate nohighlight">\(x\neq 0\)</span>.</p>
+<p>To show this, we write <span class="math notranslate nohighlight">\(x = D^{-1/2}y\)</span>, so that</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}x^T\left(\frac{2}{\omega}D - A)^x &amp; =
+y^T\left(\frac{2}{\omega}I - D^{-1/2}AD^{-1/2})^y \\
+&amp; \geq \mu \|y\|^2 &gt; 0,\end{split}\]</div>
+<p>provided that the minimum eigenvalue <span class="math notranslate nohighlight">\(\mu\)</span> of
+<span class="math notranslate nohighlight">\(F=\frac{2}{\omega}I - D^{-1/2}AD^{-1/2})\)</span> is positive (it is real
+since <span class="math notranslate nohighlight">\(F\)</span> is symmetric). We have <span class="math notranslate nohighlight">\(\mu=2/\omega - \lambda\)</span>
+Hence, <span class="math notranslate nohighlight">\(2D/\omega-A\)</span> is positive
+definite (so scaled Jacobi converges) if <span class="math notranslate nohighlight">\(2/\omega-\lambda&gt;0\)</span>
+i.e. <span class="math notranslate nohighlight">\(\omega&lt;2/\lambda\)</span>.</p>
 </div></div><div class="proof proof-type-proposition" id="id23">
 
     <div class="proof-title">
