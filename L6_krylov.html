@@ -163,7 +163,7 @@ What is the minimal number of Python for loops possible?</p>
 <p>The test
 script <code class="docutils literal notranslate"><span class="pre">test_exercises10.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will test
 this function.</p>
-</div></div><p>If we were to form the QR factorisation of the <span class="math notranslate nohighlight">\(m\times n\)</span> Krylov
+</div></div><p>If we were to form the (reduced) QR factorisation of the <span class="math notranslate nohighlight">\(m\times n\)</span> Krylov
 matrix</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -171,7 +171,7 @@ matrix</p>
 b &amp; Ab &amp; \ldots &amp; A^{n_1}b \\
 \end{pmatrix}\end{split}\]</div>
 </div></blockquote>
-<p>then we would get <span class="math notranslate nohighlight">\(Q=Q_n\)</span>. Importantly, in the Arnoldi iteration, we
+<p>then we would get <span class="math notranslate nohighlight">\(Q=\hat{Q}_n\)</span>. Importantly, in the Arnoldi iteration, we
 never form <span class="math notranslate nohighlight">\(K_n\)</span> or <span class="math notranslate nohighlight">\(R_n\)</span> explicitly, since these are very
 ill-conditioned and not useful numerically.</p>
 <details>
@@ -229,12 +229,12 @@ orthonormal basis, and seek approximate solutions of the form <span class="math 
 that minimises the residual</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
-\[\mathcal{R}_n = \|AQ_ny - b\|.\]</div>
+\[\mathcal{R}_n = \|A\hat{Q}_ny - b\|.\]</div>
 </div></blockquote>
 <p>This explains the Minimum Residual part of the name. We also see from
 this definition that the residual cannot increase with iterations,
 because it only increases the subspace where we seek a solution.</p>
-<p>This problem can be simplified further by using <span class="math notranslate nohighlight">\(AQ_n = Q_{n+1}\tilde{H}_n\)</span>,
+<p>This problem can be simplified further by using <span class="math notranslate nohighlight">\(A\hat{Q}_n = \hat{Q}_{n+1}\tilde{H}_n\)</span>,
 so</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
