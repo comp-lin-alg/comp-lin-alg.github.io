@@ -132,8 +132,8 @@ total cost of <span class="math notranslate nohighlight">\(\sim 2(n-k)(m-k)\)</s
 in the previous example). To evaluate the part marked 2 then requires
 the outer product of two vectors in <span class="math notranslate nohighlight">\(\mathbb{C}^{m-k}\)</span> and
 <span class="math notranslate nohighlight">\(\mathbb{C}^{n-k}\)</span> respectively, at a total cost of <span class="math notranslate nohighlight">\((m-k)(n-k)\)</span> FLOPs.
-Finally two <span class="math notranslate nohighlight">\((k-m)\times(n-k)\)</span> matrices are substracted, at cost
-<span class="math notranslate nohighlight">\((k-m)(n-k)\)</span>. Putting all this together gives <span class="math notranslate nohighlight">\(\sim 4(n-k)(m-k)\)</span> FLOPs
+Finally two <span class="math notranslate nohighlight">\((m-k)\times(n-k)\)</span> matrices are substracted, at cost
+<span class="math notranslate nohighlight">\((m-k)(n-k)\)</span>. Putting all this together gives <span class="math notranslate nohighlight">\(\sim 4(n-k)(m-k)\)</span> FLOPs
 per <span class="math notranslate nohighlight">\(k\)</span> iteration.</p>
 <p>Now we have to sum this over <span class="math notranslate nohighlight">\(k\)</span>, so the total operation count is</p>
 <blockquote>
