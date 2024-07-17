@@ -115,7 +115,7 @@ should find an orthonormal basis for the orthogonal complement
 </div></blockquote>
 <p>It is expected that it will only compute this up to a tolerance.
 You should make use of the built in QR factorisation routine
-<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.qr.html#numpy.linalg.qr" title="(in NumPy v1.26)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.linalg.qr()</span></code></a>. The test script <code class="docutils literal notranslate"><span class="pre">test_exercises2.py</span></code> in
+<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.qr.html#numpy.linalg.qr" title="(in NumPy v2.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.linalg.qr()</span></code></a>. The test script <code class="docutils literal notranslate"><span class="pre">test_exercises2.py</span></code> in
 the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory will test this function.</p>
 </div></div><p>In the rest of this section we will examine some algorithms for computing
 the QR factorisation, before discussing the application to least squares
@@ -727,12 +727,10 @@ vectors.</p>
 <p>The <a class="reference internal" href="cla_utils.html#cla_utils.exercises3.householder_solve" title="cla_utils.exercises3.householder_solve"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.householder_solve()</span></code></a> function has
 been left unimplemented. It takes in a set of right hand side
 vectors <span class="math notranslate nohighlight">\(b_1,b_2,\ldots,b_k\)</span> and returns a set of solutions
-<span class="math notranslate nohighlight">\(x_1,x_2,\ldots,x_k\)</span>.  It should construct an extended array
-<span class="math notranslate nohighlight">\(\hat{A}\)</span>, and then pass it to
-<a class="reference internal" href="cla_utils.html#cla_utils.exercises3.householder" title="cla_utils.exercises3.householder"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.householder()</span></code></a>.  If you have not already
-done so, you will need to modified
-<a class="reference internal" href="cla_utils.html#cla_utils.exercises3.householder" title="cla_utils.exercises3.householder"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.householder()</span></code></a> to use the <code class="docutils literal notranslate"><span class="pre">kmax</span></code>
-argument. You will also need <a class="reference internal" href="cla_utils.html#cla_utils.exercises3.solve_U" title="cla_utils.exercises3.solve_U"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.solve_U()</span></code></a>.</p>
+<span class="math notranslate nohighlight">\(x_1,x_2,\ldots,x_k\)</span>.  In the course of solving, it should
+construct an extended array <span class="math notranslate nohighlight">\(\hat{A}\)</span>, and then pass it to
+<a class="reference internal" href="cla_utils.html#cla_utils.exercises3.householder" title="cla_utils.exercises3.householder"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.householder()</span></code></a>. You will also need
+<a class="reference internal" href="cla_utils.html#cla_utils.exercises3.solve_U" title="cla_utils.exercises3.solve_U"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises3.solve_U()</span></code></a>.</p>
 </div></div><p>If we really need <span class="math notranslate nohighlight">\(Q\)</span>, we can get it by matrix-vector products with
 each element of the canonical basis <span class="math notranslate nohighlight">\((e_1,e_2,\ldots,e_n)\)</span>.  This
 means that first we need to compute a matrix-vector product <span class="math notranslate nohighlight">\(Qx\)</span> with

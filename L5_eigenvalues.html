@@ -104,11 +104,11 @@ eigenvalues can be directly extracted.</p>
 <p>and the eigenvalues are clearly <span class="math notranslate nohighlight">\(1,2,3,\ldots,m\)</span>. This is called
 the Wilkinson Polynomial. Numpy has some tools for manipulating
 polynomials which are useful here. When an <span class="math notranslate nohighlight">\(m\times m\)</span> array is
-passed in to <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.poly.html#numpy.poly" title="(in NumPy v1.26)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.poly()</span></code></a>, it returns an array of
+passed in to <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.poly.html#numpy.poly" title="(in NumPy v2.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.poly()</span></code></a>, it returns an array of
 coefficients of the polynomial. For <span class="math notranslate nohighlight">\(m=20\)</span>, obtain this array and
 then perturb the coefficients <span class="math notranslate nohighlight">\(a_k \to \tilde{a}_k =
 a_k(1+10^{-10}r_k)\)</span> where <span class="math notranslate nohighlight">\(r_k\)</span> are randomly sampled normally
-distributed numbers with mean 0 and variance 1. <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.roots.html#numpy.roots" title="(in NumPy v1.26)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.roots()</span></code></a>
+distributed numbers with mean 0 and variance 1. <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.roots.html#numpy.roots" title="(in NumPy v2.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.roots()</span></code></a>
 will compute the roots of this perturbed polynomial. Plot these
 roots as points in the complex plane. Repeat this 100 times,
 superposing the root plots on the same graph. What do you observe?
@@ -494,10 +494,10 @@ eigenvalues of <span class="math notranslate nohighlight">\(A\)</span>.</p>
 this property by:</p>
 <ol class="arabic simple">
 <li><p>Forming a Hermitian matrix <span class="math notranslate nohighlight">\(A\)</span>,</p></li>
-<li><p>Finding an eigenvector <span class="math notranslate nohighlight">\(v\)</span> of <span class="math notranslate nohighlight">\(A\)</span> with eigenvalue <span class="math notranslate nohighlight">\(\lambda\)</span> (you can use <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html#numpy.linalg.eig" title="(in NumPy v1.26)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.linalg.eig()</span></code></a> for this),</p></li>
+<li><p>Finding an eigenvector <span class="math notranslate nohighlight">\(v\)</span> of <span class="math notranslate nohighlight">\(A\)</span> with eigenvalue <span class="math notranslate nohighlight">\(\lambda\)</span> (you can use <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html#numpy.linalg.eig" title="(in NumPy v2.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.linalg.eig()</span></code></a> for this),</p></li>
 <li><p>Choosing a perturbation vector <span class="math notranslate nohighlight">\(r\)</span>, and perturbation parameter <span class="math notranslate nohighlight">\(\epsilon&gt;0\)</span>,</p></li>
 <li><p>Comparing the Rayleigh quotient of <span class="math notranslate nohighlight">\(v + \epsilon r\)</span> with <span class="math notranslate nohighlight">\(\lambda\)</span>,</p></li>
-<li><p>Plotting (on a log-log graph, use <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.loglog.html#matplotlib.pyplot.loglog" title="(in Matplotlib v3.8.4)"><code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.pyplot.loglog()</span></code></a>) the error in estimating the eigenvalue as a function of <span class="math notranslate nohighlight">\(\epsilon\)</span>.</p></li>
+<li><p>Plotting (on a log-log graph, use <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.loglog.html#matplotlib.pyplot.loglog" title="(in Matplotlib v3.9.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.pyplot.loglog()</span></code></a>) the error in estimating the eigenvalue as a function of <span class="math notranslate nohighlight">\(\epsilon\)</span>.</p></li>
 </ol>
 <p>The best way to do this is to plot the computed data values as points,
 and then superpose a line plot of <span class="math notranslate nohighlight">\(a\epsilon^k\)</span> for appropriate
@@ -771,7 +771,7 @@ functions provided by <a class="reference internal" href="cla_utils.html#cla_uti
 <a class="reference internal" href="cla_utils.html#cla_utils.exercises9.get_B100" title="cla_utils.exercises9.get_B100"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.get_B100()</span></code></a>,
 <a class="reference internal" href="cla_utils.html#cla_utils.exercises9.get_C100" title="cla_utils.exercises9.get_C100"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.get_C100()</span></code></a>, and
 <a class="reference internal" href="cla_utils.html#cla_utils.exercises9.get_D100" title="cla_utils.exercises9.get_D100"><code class="xref py py-func docutils literal notranslate"><span class="pre">cla_utils.exercises9.get_D100()</span></code></a>. You can use
-<a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.pcolor.html#matplotlib.pyplot.pcolor" title="(in Matplotlib v3.8.4)"><code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.pyplot.pcolor()</span></code></a> to visualise the entries,
+<a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.pcolor.html#matplotlib.pyplot.pcolor" title="(in Matplotlib v3.9.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.pyplot.pcolor()</span></code></a> to visualise the entries,
 or compute norms of the components of the matrices below the diagonal,
 for example. What do you observe? How does this relate to the structure
 of the four matrices?</p>
