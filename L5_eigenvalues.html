@@ -775,7 +775,15 @@ functions provided by <a class="reference internal" href="cla_utils.html#cla_uti
 or compute norms of the components of the matrices below the diagonal,
 for example. What do you observe? How does this relate to the structure
 of the four matrices?</p>
-</div></div><p>The algorithm simply finds the QR factorisation of <span class="math notranslate nohighlight">\(A\)</span>, swaps Q and R,
+</div></div><div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Some of this examples will require a complex valued QR factorisation.
+This just requires a minor modification of your Householder QR code.
+If you have complex entries, then you should replace <span class="math notranslate nohighlight">\(\sign(x_1)\)</span>
+with <span class="math notranslate nohighlight">\(-e^{i\arg(x_1)}\)</span> which is the numerically stable choice in the
+complex case.</p>
+</div>
+<p>The algorithm simply finds the QR factorisation of <span class="math notranslate nohighlight">\(A\)</span>, swaps Q and R,
 and repeats. We call this algorithm the “pure” QR algorithm, since it
 can be accelerated with some modifications that comprise the
 “practical” QR algorithm that is used in practice.</p>
