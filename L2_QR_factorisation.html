@@ -633,8 +633,25 @@ above, using only one loop over <span class="math notranslate nohighlight">\(k\)
 directory will test this function.</p>
 </div></div><div class="admonition hint">
 <p class="admonition-title">Hint</p>
+<p>The “slice” notation using colons “:” is more an more important
+when we are doing operations on submatrices. For example,</p>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
 <p>Don’t forget that Python numbers from zero, which will be important
 when implementing the submatrices using Numpy slice notation.</p>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>The Python functions “inner”, “outer”, and “dot” are very useful
+for succinctly expressing many linear algebra
+operations. “inner(a,b)” multiplies each component of a
+multidimensional array <span class="math notranslate nohighlight">\(a\)</span> with the corresponding component of another
+array <span class="math notranslate nohighlight">\(b\)</span> (with the same “shape”) and sums over all indices.
+“dot(a, b)” only sums over the last index of <span class="math notranslate nohighlight">\(a\)</span> and the first
+index of <span class="math notranslate nohighlight">\(b\)</span>. For some algorithms it may be necessary to swap
+the order of <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> and make use of transposes to sum
+over the correct index.</p>
 </div>
 <details>
 <summary>
