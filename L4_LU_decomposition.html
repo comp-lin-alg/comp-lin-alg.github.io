@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>LU decomposition &#8212; Computational linear algebra course 2023.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/fenics.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/fenics.css?v=16c5e00f" />
     <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/documentation_options.js?v=f1ab3ab9"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/proof.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -45,7 +45,7 @@
           <div class="body" role="main">
             
   <section id="lu-decomposition">
-<h1>LU decomposition<a class="headerlink" href="#lu-decomposition" title="Permalink to this heading">¶</a></h1>
+<h1>LU decomposition<a class="headerlink" href="#lu-decomposition" title="Link to this heading">¶</a></h1>
 <p>In this section we look at the some other algorithms for solving the
 equation <span class="math notranslate nohighlight">\(Ax=b\)</span> when <span class="math notranslate nohighlight">\(A\)</span> is invertible. On the one hand the <span class="math notranslate nohighlight">\(QR\)</span>
 factorisation has great stability properties. On the other, it can be
@@ -55,7 +55,7 @@ explore the the family of methods that go right back to the technique
 of Gaussian elimination, that you will have been familiar with since
 secondary school.</p>
 <section id="an-algorithm-for-lu-decomposition">
-<h2>An algorithm for LU decomposition<a class="headerlink" href="#an-algorithm-for-lu-decomposition" title="Permalink to this heading">¶</a></h2>
+<h2>An algorithm for LU decomposition<a class="headerlink" href="#an-algorithm-for-lu-decomposition" title="Link to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -365,7 +365,7 @@ developed in the previous exercises where possible. The test script
 functions.</p>
 </div></div></section>
 <section id="pivoting">
-<h2>Pivoting<a class="headerlink" href="#pivoting" title="Permalink to this heading">¶</a></h2>
+<h2>Pivoting<a class="headerlink" href="#pivoting" title="Link to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -568,7 +568,7 @@ computation. The test script <code class="docutils literal notranslate"><span cl
 directory will test this function.</p>
 </div></div></section>
 <section id="stability-of-lu-factorisation">
-<h2>Stability of LU factorisation<a class="headerlink" href="#stability-of-lu-factorisation" title="Permalink to this heading">¶</a></h2>
+<h2>Stability of LU factorisation<a class="headerlink" href="#stability-of-lu-factorisation" title="Link to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -632,7 +632,7 @@ still be pathological cases where entries in <span class="math notranslate nohig
 leading to large <span class="math notranslate nohighlight">\(\rho\)</span> and unstable computations.</p>
 </section>
 <section id="taking-advantage-of-matrix-structure">
-<h2>Taking advantage of matrix structure<a class="headerlink" href="#taking-advantage-of-matrix-structure" title="Permalink to this heading">¶</a></h2>
+<h2>Taking advantage of matrix structure<a class="headerlink" href="#taking-advantage-of-matrix-structure" title="Link to this heading">¶</a></h2>
 <details>
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
@@ -752,7 +752,7 @@ solving an upper Hessenberg system has operation count
 <span class="math notranslate nohighlight">\(\mathcal{O}(m^2)\)</span>.</p>
 </section>
 <section id="cholesky-factorisation">
-<h2>Cholesky factorisation<a class="headerlink" href="#cholesky-factorisation" title="Permalink to this heading">¶</a></h2>
+<h2>Cholesky factorisation<a class="headerlink" href="#cholesky-factorisation" title="Link to this heading">¶</a></h2>
 <p>An example of extra structure which we shall discuss in a bit more
 detail is the case of Hermitian positive definite matrices. Recall
 that a Hermitian matrix satisfies <span class="math notranslate nohighlight">\(A^*=A\)</span>, whilst positive definite
@@ -883,8 +883,8 @@ by the operation inside the <span class="math notranslate nohighlight">\(j\)</sp
       <div class="clearer"></div>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020-2023, Colin J. Cotter.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    &#169; Copyright 2020-2023, Colin J. Cotter.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
     </div>
   </body>
 </html>
