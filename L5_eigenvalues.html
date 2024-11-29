@@ -147,7 +147,7 @@ number of times that the eigenvalue is repeated as a root in the
 characteristic polynomial <span class="math notranslate nohighlight">\(\det(I\lambda - A)=0\)</span>.</p>
 </div></div><p>If the algebraic multiplicity is greater than the geometric
 multiplicity for any eigenvalue of <span class="math notranslate nohighlight">\(A\)</span>, then the matrix is defective,
-the eigenspaces do not span <span class="math notranslate nohighlight">\(\mathbb{C}^m\)</span>, and an eigenvalue
+the eigenvectors do not span <span class="math notranslate nohighlight">\(\mathbb{C}^m\)</span>, and an eigenvalue
 decomposition is not possible.</p>
 <p>This all motivates the search for other eigenvalue revealing
 decompositions of <span class="math notranslate nohighlight">\(A\)</span>.</p>
@@ -240,7 +240,7 @@ decomposition.</p>
         <span class="proof-type">Theorem </span>
         
     </div><div class="proof-content">
-<p>A Hermitian matrix is unitary diagonalisable, with real <span class="math notranslate nohighlight">\(\Lambda\)</span>.</p>
+<p>A Hermitian matrix is unitarily diagonalisable, with real <span class="math notranslate nohighlight">\(\Lambda\)</span>.</p>
 </div></div><p>Hence, if we have a Hermitian matrix, we can follow a Schur
 factorisation strategy (such as we shall develop in this section), and
 obtain an eigenvalue decomposition as a bonus.</p>
@@ -511,15 +511,15 @@ by eye if the error is scaling with <span class="math notranslate nohighlight">\
 <summary>
 Supplementary video</summary><div class="video_wrapper" style="">
 <iframe allowfullscreen="true" src="https://player.vimeo.com/video/454124701" style="border: 0; height: 345px; width: 560px">
-</iframe></div></details><p>Power iteration is a simple method for finding the eigenvalue of
-<span class="math notranslate nohighlight">\(A\)</span> with largest eigenvalue (in magnitude). It is based on the following
+</iframe></div></details><p>Power iteration is a simple method for finding the largest eigenvalue of
+<span class="math notranslate nohighlight">\(A\)</span> (in magnitude). It is based on the following
 idea. We expand a vector <span class="math notranslate nohighlight">\(v\)</span> in eigenvectors of <span class="math notranslate nohighlight">\(A\)</span>,</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
 \[v = a_1q_1 + a_2q_2 + \ldots a_mq_m,\]</div>
 </div></blockquote>
 <p>where we have ordered the eigenvalues so that <span class="math notranslate nohighlight">\(|\lambda_1|\geq |\lambda_2|
-\geq |\lambda 3| \geq \ldots \geq |\lambda_m\)</span>.</p>
+\geq |\lambda_3| \geq \ldots \geq |\lambda_m\)</span>.</p>
 <p>Then,</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -814,7 +814,7 @@ set <span class="math notranslate nohighlight">\(v_1^{k},v_2^{k},\ldots,v_n^{k}\
 will be very close to <span class="math notranslate nohighlight">\(q_1\)</span>, the eigenvector with largest magnitude of
 corresponding eigenvalue. We can choose <span class="math notranslate nohighlight">\(v_1^{k}\)</span> as our approximation
 of <span class="math notranslate nohighlight">\(q_1\)</span>, and project this approximation of <span class="math notranslate nohighlight">\(q_1\)</span> from the rest of the
-vectors <span class="math notranslate nohighlight">\(v_2^{k},v_3^{k},\ldots v_m^{k}\)</span>.  All the remaining vectors
+vectors <span class="math notranslate nohighlight">\(v_2^{k},v_3^{k},\ldots v_n^{k}\)</span>.  All the remaining vectors
 will be close to <span class="math notranslate nohighlight">\(q_2\)</span>, the eigenvector with the next largest
 magnitude of corresponding eigenvalue. Similarly we can choose the
 first one of the remaining projected vectors as an approximation of
