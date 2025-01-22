@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>4. Analysing algorithms &#8212; Computational linear algebra course 2023.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/fenics.css?v=16c5e00f" />
     <link rel="stylesheet" type="text/css" href="_static/proof.css" />
     <script src="_static/documentation_options.js?v=f1ab3ab9"></script>
-    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/proof.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -144,7 +144,7 @@ per <span class="math notranslate nohighlight">\(k\)</span> iteration.</p>
 <div class="proof proof-type-exercise" id="id1">
 
     <div class="proof-title">
-        <span class="proof-type">Exercise </span>
+        <span class="proof-type">Exercise 4.1</span>
         
     </div><div class="proof-content">
 <p>Compute FLOP counts for the following operations.</p>
@@ -158,7 +158,7 @@ per <span class="math notranslate nohighlight">\(k\)</span> iteration.</p>
 </div></div><div class="proof proof-type-exercise" id="id2">
 
     <div class="proof-title">
-        <span class="proof-type">Exercise </span>
+        <span class="proof-type">Exercise 4.2</span>
         
     </div><div class="proof-content">
 <p>Suppose <span class="math notranslate nohighlight">\(D=ABC\)</span> where <span class="math notranslate nohighlight">\(A\in \mathbb{C}^{m\times n}\)</span>,
@@ -170,7 +170,7 @@ of <span class="math notranslate nohighlight">\(m,n,p,q\)</span> would the first
 </div></div><div class="proof proof-type-exercise" id="id3">
 
     <div class="proof-title">
-        <span class="proof-type">Exercise </span>
+        <span class="proof-type">Exercise 4.3</span>
         
     </div><div class="proof-content">
 <p>Suppose <span class="math notranslate nohighlight">\(W\in \mathbb{C}^{n\times n}\)</span> is defined by</p>
@@ -192,7 +192,7 @@ E_{ki}F_{ki}G_{lk}H_{lm}F_{lm}G_{mj}.\]</div>
 </div></div><div class="proof proof-type-exercise" id="id4">
 
     <div class="proof-title">
-        <span class="proof-type">Exercise </span>
+        <span class="proof-type">Exercise 4.4</span>
         
     </div><div class="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(L_1,L_2\in\mathbb{C}^{m\times m}\)</span> be lower triangular
@@ -221,7 +221,7 @@ entries of a vector and evaluating the 2-norm.</p>
 <div class="proof proof-type-definition" id="id5">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 4.1</span>
+        <span class="proof-type">Definition 4.5</span>
         
             <span class="proof-title-name">(Frobenius norm)</span>
         
@@ -237,7 +237,7 @@ can cause when multiplying a vector.</p>
 <div class="proof proof-type-definition" id="id6">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 4.2</span>
+        <span class="proof-type">Definition 4.6</span>
         
             <span class="proof-title-name">(Induced matrix norm)</span>
         
@@ -261,7 +261,7 @@ can cause when multiplying a vector.</p>
 <div class="proof proof-type-exercise" id="id7">
 <span id="o2norm"></span>
     <div class="proof-title">
-        <span class="proof-type">Exercise </span>
+        <span class="proof-type">Exercise 4.7</span>
         
     </div><div class="proof-content">
 <p>We can reformulate the induced definition as a constrained optimisation
@@ -284,7 +284,7 @@ bounds using inequalities instead. Here are a few useful inequalities.</p>
 <div class="proof proof-type-definition" id="id8">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 4.3</span>
+        <span class="proof-type">Definition 4.8</span>
         
             <span class="proof-title-name">(Hölder inequality)</span>
         
@@ -299,7 +299,7 @@ bounds using inequalities instead. Here are a few useful inequalities.</p>
 <div class="proof proof-type-definition" id="id9">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 4.4</span>
+        <span class="proof-type">Definition 4.9</span>
         
             <span class="proof-title-name">(Cauchy-Schwartz inequality)</span>
         
@@ -321,7 +321,7 @@ product <span class="math notranslate nohighlight">\(A=uv^*\)</span> of two vect
 <div class="proof proof-type-theorem" id="id10">
 
     <div class="proof-title">
-        <span class="proof-type">Theorem </span>
+        <span class="proof-type">Theorem 4.10</span>
         
     </div><div class="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(A\in \mathbb{C}^{l\times m}\)</span>, <span class="math notranslate nohighlight">\(B\in \mathbb{C}^{m\times n}\)</span>. Then</p>
@@ -365,7 +365,7 @@ for different values of <span class="math notranslate nohighlight">\(x\in X\)</s
 <div class="proof proof-type-definition" id="id11">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 4.5</span>
+        <span class="proof-type">Definition 4.11</span>
         
             <span class="proof-title-name">(Well conditioned and ill conditioned.)</span>
         
@@ -378,7 +378,7 @@ ill conditioned if small changes in <span class="math notranslate nohighlight">\
 <div class="proof proof-type-definition" id="id12">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 4.6</span>
+        <span class="proof-type">Definition 4.12</span>
         
             <span class="proof-title-name">(Absolute condition number.)</span>
         
@@ -407,7 +407,7 @@ size of <span class="math notranslate nohighlight">\(f\)</span> itself.</p>
 <div class="proof proof-type-definition" id="id13">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 4.7</span>
+        <span class="proof-type">Definition 4.13</span>
         
             <span class="proof-title-name">(Relative condition number.)</span>
         
@@ -580,7 +580,7 @@ Supplementary video</summary><div class="video_wrapper" style="">
 </iframe></div></details><div class="proof proof-type-definition" id="id14">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 4.8</span>
+        <span class="proof-type">Definition 4.14</span>
         
             <span class="proof-title-name">(Floating point rounding function)</span>
         
@@ -592,7 +592,7 @@ of floating point numbers that we discussed below.</p>
 <div class="proof proof-type-definition" id="id15">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 4.9</span>
+        <span class="proof-type">Definition 4.15</span>
         
             <span class="proof-title-name">(Floating point axiom I)</span>
         
@@ -613,7 +613,7 @@ above) are constructed such that</p>
 <div class="proof proof-type-definition" id="id16">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 4.10</span>
+        <span class="proof-type">Definition 4.16</span>
         
             <span class="proof-title-name">(Floating point axiom II)</span>
         
@@ -624,7 +624,7 @@ above) are constructed such that</p>
 </div></div><div class="proof proof-type-exercise" id="id17">
 
     <div class="proof-title">
-        <span class="proof-type">Exercise </span>
+        <span class="proof-type">Exercise 4.17</span>
         
     </div><div class="proof-content">
 <p>The formula for the roots of a quadratic equation <span class="math notranslate nohighlight">\(x^2 - 2px - q=0\)</span>
@@ -695,7 +695,7 @@ aspirations depending on the condition number of <span class="math notranslate n
 <div class="proof proof-type-definition" id="id18">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 4.11</span>
+        <span class="proof-type">Definition 4.18</span>
         
             <span class="proof-title-name">(Stability)</span>
         
@@ -721,7 +721,7 @@ Supplementary video</summary><div class="video_wrapper" style="">
 </iframe></div></details><div class="proof proof-type-definition" id="id19">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 4.12</span>
+        <span class="proof-type">Definition 4.19</span>
         
             <span class="proof-title-name">(Backward stability)</span>
         
@@ -741,7 +741,7 @@ of <span class="math notranslate nohighlight">\(f\)</span>.</p>
 <div class="proof proof-type-theorem" id="id20">
 <span id="accuracy-backward"></span>
     <div class="proof-title">
-        <span class="proof-type">Theorem 4.13</span>
+        <span class="proof-type">Theorem 4.20</span>
         
             <span class="proof-title-name">(Accuracy of a backward stable algorithm)</span>
         
@@ -809,7 +809,7 @@ A\)</span>. This means that there is very small backward error,</p>
 <div class="proof proof-type-theorem" id="id21">
 
     <div class="proof-title">
-        <span class="proof-type">Theorem </span>
+        <span class="proof-type">Theorem 4.21</span>
         
     </div><div class="proof-content">
 <p>Let the QR factorisation be computed for <span class="math notranslate nohighlight">\(A\)</span> using a floating point
@@ -830,7 +830,7 @@ backwards stable, i.e. the result <span class="math notranslate nohighlight">\(\
 </div></div><div class="proof proof-type-exercise" id="id22">
 
     <div class="proof-title">
-        <span class="proof-type">Exercise </span>
+        <span class="proof-type">Exercise 4.22</span>
         
     </div><div class="proof-content">
 <p>Use your Householder implementation to generate random <span class="math notranslate nohighlight">\(Q_1\)</span> and
@@ -940,7 +940,7 @@ we show the following result.</p>
 <div class="proof proof-type-theorem" id="id23">
 
     <div class="proof-title">
-        <span class="proof-type">Theorem </span>
+        <span class="proof-type">Theorem 4.23</span>
         
     </div><div class="proof-content">
 <p>The QR algorithm to solve <span class="math notranslate nohighlight">\(Ax=b\)</span> is backward stable, producing
@@ -1019,7 +1019,7 @@ Supplementary video</summary><div class="video_wrapper" style="">
 </iframe></div></details><div class="proof proof-type-corollary" id="id24">
 
     <div class="proof-title">
-        <span class="proof-type">Corollary </span>
+        <span class="proof-type">Corollary 4.24</span>
         
     </div><div class="proof-content">
 <p>When solving <span class="math notranslate nohighlight">\(Ax=b\)</span> using the QR factorisation procedure above, the
@@ -1035,7 +1035,7 @@ floating point implementation produces an approximate solution
         <span class="proof-type">Proof </span>
         
     </div><div class="proof-content">
-<p>From <a class="reference internal" href="#accuracy-backward"><span class="std std-numref">Theorem 4.13</span></a>, using the
+<p>From <a class="reference internal" href="#accuracy-backward"><span class="std std-numref">Theorem 4.20</span></a>, using the
 backward stability that we just derived, we know that</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -1055,7 +1055,7 @@ backward stability that we just derived, we know that</p>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2020-2023, Colin J. Cotter.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.0.
     </div>
   </body>
 </html>

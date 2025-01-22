@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>7. Preconditioning Krylov methods &#8212; Computational linear algebra course 2023.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/fenics.css?v=16c5e00f" />
     <link rel="stylesheet" type="text/css" href="_static/proof.css" />
     <script src="_static/documentation_options.js?v=f1ab3ab9"></script>
-    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/proof.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -136,7 +136,7 @@ system by forward/backward substitution.</p>
 <div class="proof proof-type-exercise" id="id5">
 
     <div class="proof-title">
-        <span class="proof-type">Exercise </span>
+        <span class="proof-type">Exercise 7.5</span>
         
     </div><div class="proof-content">
 <p>Show that forward Gauss-Seidel is a modification Jacobi’s method
@@ -144,7 +144,7 @@ but using new values as soon as possible.</p>
 </div></div><div class="proof proof-type-definition" id="id6">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 7.5</span>
+        <span class="proof-type">Definition 7.6</span>
         
             <span class="proof-title-name">(Scaled Gauss-Seidel method)</span>
         
@@ -188,14 +188,14 @@ preconditioned CG using <span class="math notranslate nohighlight">\(\hat{A}=M\)
 </section>
 <section id="symmetric-iterative-methods">
 <h2><span class="section-number">7.3. </span>Symmetric iterative methods<a class="headerlink" href="#symmetric-iterative-methods" title="Link to this heading">¶</a></h2>
-<p>Consider a symmetric matrix <span class="math notranslate nohighlight">\(A=A^T\)</span>.xs
+<p>Consider a symmetric matrix <span class="math notranslate nohighlight">\(A=A^T\)</span>
 If we can build iterative methods from the splitting
 <span class="math notranslate nohighlight">\(A=M+N\)</span>, then we can also build iterative methods from the splitting
 <span class="math notranslate nohighlight">\(A=A^T=M^T+N^T\)</span>. We can then combine them together.</p>
 <div class="proof proof-type-definition" id="id7">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 7.6</span>
+        <span class="proof-type">Definition 7.7</span>
         
             <span class="proof-title-name">(Symmetric iterative method)</span>
         
@@ -209,7 +209,7 @@ M^T{x}^{k+1}=-N^T{x}^{k+\frac{1}{2}} + {b}.\]</div>
 </div></div><div class="proof proof-type-example" id="id8">
 
     <div class="proof-title">
-        <span class="proof-type">Example 7.7</span>
+        <span class="proof-type">Example 7.8</span>
         
             <span class="proof-title-name">(Symmetric Successive Over-Relaxation (SSOR).)</span>
         
@@ -237,7 +237,7 @@ Write the symmetric iteration as a single step with
 <div class="proof proof-type-example" id="id9">
 
     <div class="proof-title">
-        <span class="proof-type">Example 7.8</span>
+        <span class="proof-type">Example 7.9</span>
         
             <span class="proof-title-name">(Symmetric Gauss-Seidel preconditioner)</span>
         
@@ -281,7 +281,7 @@ M^T{e}^{k+1}=-N^T{e}^{k+\frac{1}{2}}.\]</div>
 <div class="proof proof-type-exercise" id="id10">
 
     <div class="proof-title">
-        <span class="proof-type">Exercise </span>
+        <span class="proof-type">Exercise 7.10</span>
         
     </div><div class="proof-content">
 <p>Show that</p>
@@ -295,7 +295,7 @@ between <span class="math notranslate nohighlight">\(M_s\)</span> and <span clas
 <div class="proof proof-type-definition" id="id11">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 7.9</span>
+        <span class="proof-type">Definition 7.11</span>
         
             <span class="proof-title-name">(Convergence of stationary methods)</span>
         
@@ -308,7 +308,7 @@ matrix <span class="math notranslate nohighlight">\(C=-M^{-1}N\)</span> is calle
 </div></div><div class="proof proof-type-exercise" id="id12">
 
     <div class="proof-title">
-        <span class="proof-type">Exercise </span>
+        <span class="proof-type">Exercise 7.12</span>
         
     </div><div class="proof-content">
 <p>Show that this implies that <span class="math notranslate nohighlight">\({e}^k={x}^*-{x}^k\to{0}\)</span> i.e.
@@ -316,7 +316,7 @@ matrix <span class="math notranslate nohighlight">\(C=-M^{-1}N\)</span> is calle
 </div></div><div class="proof proof-type-theorem" id="id13">
 
     <div class="proof-title">
-        <span class="proof-type">Theorem 7.10</span>
+        <span class="proof-type">Theorem 7.13</span>
         
             <span class="proof-title-name">(A first convergence criterion)</span>
         
@@ -343,7 +343,7 @@ convergent.</p>
 <div class="proof proof-type-definition" id="id14">
 
     <div class="proof-title">
-        <span class="proof-type">Definition </span>
+        <span class="proof-type">Definition 7.14</span>
         
     </div><div class="proof-content">
 <p>The spectral radius <span class="math notranslate nohighlight">\(\rho(C)\)</span> of a matrix <span class="math notranslate nohighlight">\(C\)</span> is
@@ -354,7 +354,7 @@ of <span class="math notranslate nohighlight">\(C\)</span>:</p>
 </div></div><div class="proof proof-type-theorem" id="id15">
 
     <div class="proof-title">
-        <span class="proof-type">Theorem </span>
+        <span class="proof-type">Theorem 7.15</span>
         
     </div><div class="proof-content">
 <p>An iterative method converges <span class="math notranslate nohighlight">\(\iff \rho(C)&lt;1\)</span>.</p>
@@ -394,7 +394,7 @@ then the error may not converge monotonically.</p>
 <div class="proof proof-type-example" id="id16">
 
     <div class="proof-title">
-        <span class="proof-type">Example 7.11</span>
+        <span class="proof-type">Example 7.16</span>
         
             <span class="proof-title-name">(Range of SOR parameter)</span>
         
@@ -430,7 +430,7 @@ of <span class="math notranslate nohighlight">\(\hat{A}^{-1}A\)</span> are clust
 <div class="proof proof-type-theorem" id="id17">
 
     <div class="proof-title">
-        <span class="proof-type">Theorem </span>
+        <span class="proof-type">Theorem 7.17</span>
         
     </div><div class="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(A\)</span> be a matrix with splitting <span class="math notranslate nohighlight">\(M+N\)</span>, such that <span class="math notranslate nohighlight">\(\rho(C) &lt; c &lt;
@@ -463,7 +463,7 @@ matrix is</p>
 <div class="proof proof-type-theorem" id="id18">
 
     <div class="proof-title">
-        <span class="proof-type">Theorem </span>
+        <span class="proof-type">Theorem 7.18</span>
         
     </div><div class="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(A\)</span> be a matrix with splitting
@@ -540,7 +540,7 @@ Rayleigh Quotient formula,</p>
 <div class="proof proof-type-definition" id="id19">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 7.12</span>
+        <span class="proof-type">Definition 7.19</span>
         
             <span class="proof-title-name">(<span class="math notranslate nohighlight">\(A\)</span>-weighted norm)</span>
         
@@ -557,7 +557,7 @@ for <span class="math notranslate nohighlight">\(A{x}={b}\)</span> in the symmet
 <div class="proof proof-type-theorem" id="id20">
 
     <div class="proof-title">
-        <span class="proof-type">Theorem </span>
+        <span class="proof-type">Theorem 7.20</span>
         
     </div><div class="proof-content">
 <p>For a splitting <span class="math notranslate nohighlight">\(A=M+N\)</span>, if the (symmetric) matrix <span class="math notranslate nohighlight">\(M+M^T-A\)</span> is
@@ -598,7 +598,7 @@ positive definite matrices.</p>
 <div class="proof proof-type-theorem" id="id21">
 
     <div class="proof-title">
-        <span class="proof-type">Theorem </span>
+        <span class="proof-type">Theorem 7.21</span>
         
     </div><div class="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(A\)</span> be a symmetric positive definite matrix with
@@ -633,7 +633,7 @@ We generalise to scaled Jacobi iteration with <span class="math notranslate nohi
 <div class="proof proof-type-proposition" id="id22">
 
     <div class="proof-title">
-        <span class="proof-type">Proposition </span>
+        <span class="proof-type">Proposition 7.22</span>
         
     </div><div class="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(A\)</span> be a symmetric positive definite matrix. Let <span class="math notranslate nohighlight">\(\lambda\)</span> be
@@ -665,7 +665,7 @@ i.e. <span class="math notranslate nohighlight">\(\omega&lt;2/\lambda\)</span>.<
 </div></div><div class="proof proof-type-proposition" id="id23">
 
     <div class="proof-title">
-        <span class="proof-type">Proposition </span>
+        <span class="proof-type">Proposition 7.23</span>
         
     </div><div class="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(A\)</span> be a symmetric positive definite matrix. Then Gauss-Seidel
@@ -683,7 +683,7 @@ iteration always converges.</p>
 </div></div><div class="proof proof-type-proposition" id="id24">
 
     <div class="proof-title">
-        <span class="proof-type">Proposition </span>
+        <span class="proof-type">Proposition 7.24</span>
         
     </div><div class="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(A\)</span> be a symmetric positive definite matrix. Then SOR converges
@@ -703,8 +703,8 @@ provided that <span class="math notranslate nohighlight">\(0&lt;\omega 2\)</span
 <p>which is symmetric positive definite provided that
 <span class="math notranslate nohighlight">\(0&lt;\omega&lt;2\)</span>.</p>
 </div></div></section>
-<section id="an-example-matrix">
-<h2><span class="section-number">7.8. </span>An example matrix<a class="headerlink" href="#an-example-matrix" title="Link to this heading">¶</a></h2>
+<section id="an-example-matrix-non-examinable-in-2024-25">
+<h2><span class="section-number">7.8. </span>An example matrix (Non-examinable in 2024/25)<a class="headerlink" href="#an-example-matrix-non-examinable-in-2024-25" title="Link to this heading">¶</a></h2>
 <p>We consider stationary methods for an example arising from the
 finite difference discretisation of the two point boundary value
 problem</p>
@@ -756,7 +756,7 @@ Jacobi.</p>
 <div class="proof proof-type-example" id="id25">
 
     <div class="proof-title">
-        <span class="proof-type">Example 7.13</span>
+        <span class="proof-type">Example 7.25</span>
         
             <span class="proof-title-name">(Jacobi iteration for the example matrix)</span>
         
@@ -805,7 +805,7 @@ with <span class="math notranslate nohighlight">\(\lambda=1-\sin(\pi/(n+1))\)</s
 <div class="proof proof-type-exercise" id="id26">
 
     <div class="proof-title">
-        <span class="proof-type">Exercise </span>
+        <span class="proof-type">Exercise 7.26</span>
         
     </div><div class="proof-content">
 <p>Find the value of <span class="math notranslate nohighlight">\(\omega\)</span>
@@ -813,8 +813,8 @@ for scaled Jacobi such that the convergence rate is maximised,
 i.e. so that <span class="math notranslate nohighlight">\(\rho(C)\)</span> is minimised. What happens to this rate
 as <span class="math notranslate nohighlight">\(n\to \infty\)</span>?</p>
 </div></div></section>
-<section id="chebyshev-acceleration-nonexaminable-in-2023-24">
-<h2><span class="section-number">7.9. </span>Chebyshev acceleration (nonexaminable in 2023/24)<a class="headerlink" href="#chebyshev-acceleration-nonexaminable-in-2023-24" title="Link to this heading">¶</a></h2>
+<section id="chebyshev-acceleration-examinable-in-2024-25">
+<h2><span class="section-number">7.9. </span>Chebyshev acceleration (examinable in 2024/25)<a class="headerlink" href="#chebyshev-acceleration-examinable-in-2024-25" title="Link to this heading">¶</a></h2>
 <p>Say we have computed iterates <span class="math notranslate nohighlight">\({x}^0,{x}^1,\ldots,{x}^k\)</span> using</p>
 <div class="math notranslate nohighlight">
 \[M{x}^{k+1} = -N{x}^k + {b}.\]</div>
@@ -867,7 +867,7 @@ The solution to this problem is known: Chebyshev polynomials.</p>
 <div class="proof proof-type-definition" id="id27">
 
     <div class="proof-title">
-        <span class="proof-type">Definition 7.14</span>
+        <span class="proof-type">Definition 7.27</span>
         
             <span class="proof-title-name">(The Chebyshev polynomial of degree <span class="math notranslate nohighlight">\(k\)</span>, <span class="math notranslate nohighlight">\(T_k(t)\)</span> is defined by
 the recurrence)</span>
@@ -955,7 +955,7 @@ and lower bounds on the eigenvalues are known.</p>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2020-2023, Colin J. Cotter.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.0.
     </div>
   </body>
 </html>
