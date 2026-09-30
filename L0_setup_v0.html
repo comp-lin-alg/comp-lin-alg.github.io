@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>1. Getting ready for computational exercises &#8212; Computational linear algebra course 2026.0 documentation</title>
+    <title>Getting ready for computational exercises &#8212; Computational linear algebra course 2026.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/fenics.css?v=16c5e00f" />
     <link rel="stylesheet" type="text/css" href="_static/proof.css" />
@@ -15,8 +15,6 @@
     <script src="_static/proof.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="2. Linear algebra preliminaries" href="L1_preliminaries.html" />
-    <link rel="prev" title="Errata for 2026/27" href="errata.html" />
 <!--[if lte IE 6]>
 <link rel="stylesheet" href="_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
 <![endif]-->
@@ -46,7 +44,7 @@
           <div class="body" role="main">
             
   <section id="getting-ready-for-computational-exercises">
-<span id="comp-exercises"></span><h1><span class="section-number">1. </span>Getting ready for computational exercises<a class="headerlink" href="#getting-ready-for-computational-exercises" title="Link to this heading">¶</a></h1>
+<span id="comp-exercises"></span><h1>Getting ready for computational exercises<a class="headerlink" href="#getting-ready-for-computational-exercises" title="Link to this heading">¶</a></h1>
 <p>In the course notes you will encounter computational exercises for you
 to complete.  The object of these exercises is to build up
 understanding about how computational linear algebra algorithms
@@ -67,8 +65,8 @@ check that you have everything ready to do your work.</p>
 <div><ol class="arabic simple">
 <li><p>Install Python, Git and a text editor using the instructions below.</p></li>
 <li><p>Create a working folder and put a virtual environment in it (venv).</p></li>
-<li><p>Accept the course assignment in Classroom 50 and clone the
-resulting GitHub repository into the working folder.</p></li>
+<li><p>Clone your course repository Classroom 50 into the
+working folder.</p></li>
 <li><p>Activate the venv.</p></li>
 <li><p>Install <a class="reference external" href="https://numpy.org/doc/stable/reference/index.html#module-numpy" title="(in NumPy v2.5)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">numpy</span></code></a> to the venv, and <code class="xref py py-mod docutils literal notranslate"><span class="pre">pytest</span></code>.</p></li>
 <li><p>Install the course module to the venv.</p></li>
@@ -76,15 +74,15 @@ resulting GitHub repository into the working folder.</p></li>
 <li><p>Make sure that you understand how to run code in the course repository
 (including your own code you have added).</p></li>
 <li><p>Make sure that you understand how to commit your changes to your
-Git repository and how to push them to GitHub.</p></li>
+Git repository and how to push them to Github.</p></li>
 <li><p>Make sure that you know how to run the tests.</p></li>
 </ol>
 </div></blockquote>
 <p>To follow these steps read the sections below.</p>
 <section id="getting-the-software-that-you-need">
-<h2><span class="section-number">1.1. </span>Getting the software that you need<a class="headerlink" href="#getting-the-software-that-you-need" title="Link to this heading">¶</a></h2>
-<p>The core requirements are Python (version &gt;=3.10, with version 3.13
-recommended), Git, and a Python-aware text editor.</p>
+<h2>Getting the software that you need<a class="headerlink" href="#getting-the-software-that-you-need" title="Link to this heading">¶</a></h2>
+<p>The core requirements are Python (version &gt;=3.7), Git, and a
+Python-aware text editor.</p>
 <p>In order to write the code required for the implementation exercise,
 you’ll need to use a Python-aware text editor. There are many such
 editors available and you can use any you like. If you haven’t used
@@ -108,7 +106,7 @@ coding) on your computer that you will use for this course.</p>
 <p>If you are a Mac user, you’ll need to avoid using the preinstalled
 Python on your system, as it is a very cut down version for
 interacting with the MacOS. You should install a fully featured
-Python using Homebrew, as described in the link above.</p>
+Python (using Anaconda or Homebrew, as described in the link above).</p>
 </div>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
@@ -119,7 +117,7 @@ desktop or visit the <a class="reference external" href="https://softwarehub.imp
 </div>
 </section>
 <section id="the-terminal">
-<h2><span class="section-number">1.2. </span>The Terminal<a class="headerlink" href="#the-terminal" title="Link to this heading">¶</a></h2>
+<h2>The Terminal<a class="headerlink" href="#the-terminal" title="Link to this heading">¶</a></h2>
 <p>A lot of the routine activity involved in this module revolves around
 executing commands on the Bash terminal (sometimes referred to as the
 “command line”). For example you use the terminal to work with the
@@ -131,7 +129,7 @@ focusses on the Bash shell, which is the one we will use.</p>
 <p>In VSCode you can get a terminal by selecting New Terminal from the
 Terminal menu. This should open a Terminal window on your VS Code
 screen.  To the top right of this window is a pulldown menu to
-select the shell, which needs to be Bash. The image to the
+select the interpreter, which needs to be Bash. The image to the
 right shows this pulldown menu.</p>
 <a class="reference internal image-reference" href="_images/bash.png"><img alt="_images/bash.png" class="align-right" src="_images/bash.png" style="width: 20ex;" />
 </a>
@@ -150,7 +148,7 @@ Windows, the one that you installed from the Microsoft Store).</p></li>
 </div>
 </section>
 <section id="python-virtual-environment">
-<span id="bitbucket-git"></span><h2><span class="section-number">1.3. </span>Python virtual environment<a class="headerlink" href="#python-virtual-environment" title="Link to this heading">¶</a></h2>
+<span id="bitbucket-git"></span><h2>Python virtual environment<a class="headerlink" href="#python-virtual-environment" title="Link to this heading">¶</a></h2>
 <p>The next step is to set up a Python virtual environment using the
 Terminal. This is described in <a class="reference external" href="https://object-oriented-python.github.io/1_introduction.html#setting-up-a-python-virtual-environment">Section 1.2</a>
 of the Principles of Programming website.</p>
@@ -162,7 +160,7 @@ of the Principles of Programming website.</p>
     </div><div class="proof-content">
 <p>Create a new virtual environment for your Computational Linear
 Algebra work and activate it, following the instructions of Section
-1.2 of PoP linked above.</p>
+1.3 of PoP linked above.</p>
 <p>Two differences are as follows.</p>
 <ol class="arabic">
 <li><p>You should name the working folder something more relevant to
@@ -196,7 +194,7 @@ of the Principles of Programming website, install the <a class="reference extern
 <code class="xref py py-mod docutils literal notranslate"><span class="pre">pytest</span></code> packages to your venv (don’t forget to activate it first).</p>
 </div></div></section>
 <section id="github-and-git">
-<h2><span class="section-number">1.4. </span>GitHub and git<a class="headerlink" href="#github-and-git" title="Link to this heading">¶</a></h2>
+<h2>GitHub and git<a class="headerlink" href="#github-and-git" title="Link to this heading">¶</a></h2>
 <p>Revision control is a mechanism for recording and managing different
 versions of changing software. This enables changes to be tracked and
 helps in the process of debugging code, and in managing conflicts when
@@ -232,7 +230,7 @@ Section 2.4 of Just Enough Git to Get By.</p>
 <p>These instructions involve typing into the Terminal. VSCode
 provides other ways to configure but it is much easier to get help
 if you are typing into the Terminal. Make sure that you have selected
-the Bash shell for your Terminal.</p>
+the Bash interpreter for your Terminal.</p>
 </div>
 <div class="proof proof-type-task" id="id6">
 
@@ -240,7 +238,7 @@ the Bash shell for your Terminal.</p>
         <span class="proof-type">Task </span>
         
     </div><div class="proof-content">
-<p>Create and/or set up your GitHub account following the instructions
+<p>Create and/or setup your Github account following the instructions
 in Section 2.5 of Just Enough Git to Get By.</p>
 </div></div><div class="proof proof-type-task" id="id7">
 
@@ -254,7 +252,7 @@ Git Training Assignment which is linked on Blackboard, which you
 should clone into your working folder.</p>
 </div></div><div class="admonition hint">
 <p class="admonition-title">Hint</p>
-<p>For this course, do not use:</p>
+<p>Above all else, never use:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">add</span> <span class="o">-</span><span class="n">A</span>
 </pre></div>
 </div>
@@ -262,14 +260,14 @@ should clone into your working folder.</p>
 <blockquote>
 <div><p>git add *</p>
 </div></blockquote>
-<p>to add all the files in the repository. These commands can stage
-unintended files. Instead, stage each file you intend to commit
-explicitly using:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">add</span> <span class="o">&lt;</span><span class="n">filename</span><span class="o">&gt;</span>
+<p>to add all the files in the repository. This is bad practice and
+makes a mess for the markers, making them grumpy. When you commit
+changes to files in your repository for this course, just use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">add</span>
 </pre></div>
 </div>
-<p>This adds the specified file to the list of changes for the next
-commit.</p>
+<p>to add the files you changed to the list of files to be updated
+in the commit history.</p>
 <p>Similarly, VSCode has a graphic interface for Git. It is preferred
 to use the Terminal in this course, as it is easier to get help.
 If you do decide to use the graphic interface, just ignore any
@@ -278,23 +276,22 @@ remove the marks.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Never clone a Git repository inside another Git repository.</p>
+<p>Never clone a repository inside the folder of another folder.</p>
 </div>
 </section>
 <section id="setting-up-your-repository">
-<h2><span class="section-number">1.5. </span>Setting up your repository<a class="headerlink" href="#setting-up-your-repository" title="Link to this heading">¶</a></h2>
+<h2>Setting up your repository<a class="headerlink" href="#setting-up-your-repository" title="Link to this heading">¶</a></h2>
 <p>We’re using a tool called <a class="reference external" href="https://classroom50.org/">Classroom 50</a> to automate the creation of your
-copies of the repository. Follow the GitHub organisation invitation
-sent by email. Then sign in to Classroom 50, accept the course
-assignment, and clone the resulting GitHub repository to your working
-folder following the instructions in the previous section.</p>
+copies of the repository. Follow the link received on email from GitHub
+to create your personal repository for the course. Then,
+clone it to your working folder on your computer following the
+instructions in the previous section.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>When you follow the link, we will link the Imperial ID that you use
-to log into Outlook (e.g., sbc21) to your GitHub username. If you
-have not received an email from GitHub, check your spam folder. If
-it is not there, contact the course leader. We need this link to
-grade your work.</p>
+<p>When you follow the link, your Imperial ID that
+you use to log into Outlook (e.g., sbc21) will be linked to your GitHub username. If you have not recieved an email from GitHub, please check your spam folder. If you still haven’t received it, contact the course leader
+and ask to have your user ID added. We need to do this so that we
+can grade your work.</p>
 </div>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
@@ -310,8 +307,8 @@ the terminal” linked above.</p>
 </div>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
-<p>If VSCode asks whether you want to make this venv the default for
-your project, select “yes”. This will help to ensure that it is
+<p>In VSCode, you will be asked if you want to make this venv the default
+for your project. Select “yes” as this will help to ensure that it is
 activated.</p>
 </div>
 <div class="admonition hint">
@@ -321,12 +318,12 @@ courseworks, you need to activate the venv.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>If your classroom repository contains a branch called “feedback”,
-do not commit to, or remove, this branch. This is how we will
+<p>Your classroom repository will contain a branch called “feedback”.
+Do not commit to, or remove, this branch. This is how we will
 provide feedback on your code.</p>
 </div>
 <section id="installing-the-course-package-to-the-venv">
-<h3><span class="section-number">1.5.1. </span>Installing the course package to the venv<a class="headerlink" href="#installing-the-course-package-to-the-venv" title="Link to this heading">¶</a></h3>
+<h3>Installing the course package to the venv<a class="headerlink" href="#installing-the-course-package-to-the-venv" title="Link to this heading">¶</a></h3>
 <p>In this course we will be working on skeleton code stored as a Python
 package in the repository. This means that we will be able to import
 everything as a module using <cite>from cla_utils import *</cite> without needing
@@ -358,7 +355,7 @@ that will be useful later.</p>
 </div></div></section>
 </section>
 <section id="how-to-do-the-computational-exercises">
-<h2><span class="section-number">1.6. </span>How to do the computational exercises<a class="headerlink" href="#how-to-do-the-computational-exercises" title="Link to this heading">¶</a></h2>
+<h2>How to do the computational exercises<a class="headerlink" href="#how-to-do-the-computational-exercises" title="Link to this heading">¶</a></h2>
 <p>For the computational exercises, quite a lot of the coding
 infrastructure you will need is provided already. Your task is to
 write the crucial mathematical operations at key points, as described
@@ -370,27 +367,26 @@ build the <a class="reference internal" href="cla_utils.html"><span class="doc">
 will build up your computational exercise solution sets. You should
 commit code early and often - small commits are easier to understand
 and debug than large ones. Push your commits to your remote repository
-on GitHub. You can push as often as you like: ordinary pushes save your
-work but do not trigger grading.</p>
+on Github.</p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <p>In Git, we use the Terminal to commit changes and push them to the
-remote GitHub repository managed through Classroom 50. A repository
-is a record of the history of the code as you are working. To add a
-file to the list of files whose changes will be committed to the
-repository, type <cite>git add &lt;filename&gt;</cite>. To commit those changes with
-a short description of what you changed, type
-<cite>git commit -m “&lt;log message&gt;”</cite>.
-They will now be saved locally. To push these changes to the remote
-GitHub repository, type <cite>git push</cite> (you may be asked to set the
-upstream branch; just paste the suggested command into the
-Terminal). To pull changes from the remote GitHub repository, type
-<cite>git pull</cite>. For further features and better explanation, please
-take a look at the Just Enough Git guide linked above.</p>
+remote repository on Classroom 50. A repository is a record of
+the history of the code as you are working.  To add a file to the
+list of files whose changes will be committed to the repository,
+type <cite>git add &lt;filename&gt; -m &lt;log message&gt;</cite>, where <cite>&lt;log message&gt;</cite>
+is a short description of the changes you made.  To commit those
+changes, type <cite>git commit</cite>. They will now be saved locally.  To
+push these changes to the “remote” repository on Classroom 50,
+type <cite>git push</cite> (you may be asked to set the name of the remote,
+just paste the suggested command into the Terminal). To pull
+changes from the remote repository on Classroom 50, type <cite>git
+pull</cite>. For further features and better explanation, please take
+a look at the Github Tutorial linked above.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Never use <cite>git add *</cite>, since this can add unwanted files to the
+<p>Never use <cite>git add *</cite>, since this will add unwanted files to the
 repository which shouldn’t be there. You should never add machine
 specific files such as your venv, or <cite>.pyc</cite> files which are
 temporary machine specific files generated by the Python
@@ -400,14 +396,13 @@ are working on.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>If your repository contains a feedback branch, do not commit to it.
-This branch is just there so that we can provide feedback on your
-changes to the main branch, and committing there will interfere with
-our marking system.</p>
+<p>Do not commit to the feedback branch.  This branch is just there so
+that we can provide feedback on your changes to the main branch,
+and if you commit there, it will mess up our marking system.</p>
 </div>
 </section>
 <section id="running-your-work">
-<h2><span class="section-number">1.7. </span>Running your work<a class="headerlink" href="#running-your-work" title="Link to this heading">¶</a></h2>
+<h2>Running your work<a class="headerlink" href="#running-your-work" title="Link to this heading">¶</a></h2>
 <p>If you want to execute your code written in <cite>cla_utils</cite>, this can be
 imported into IPython (in the terminal, or using a Jupyter notebook),
 or in a script.</p>
@@ -427,7 +422,7 @@ IPython type Ctrl-D.</p>
 example <cite>numpy</cite> arrays and pass them to <code class="xref py py-mod docutils literal notranslate"><span class="pre">cla_utils</span></code> functions to try
 them out. You can also do this in a script, e.g.:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">cla_utils</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="n">A</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.0</span><span class="o">+</span><span class="mf">1.0</span><span class="n">j</span><span class="p">],</span>
                 <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">3.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">],</span>
                 <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">],</span>
@@ -458,24 +453,24 @@ separate git repository for that.</p>
 </div>
 </section>
 <section id="testing-your-work">
-<h2><span class="section-number">1.8. </span>Testing your work<a class="headerlink" href="#testing-your-work" title="Link to this heading">¶</a></h2>
+<h2>Testing your work<a class="headerlink" href="#testing-your-work" title="Link to this heading">¶</a></h2>
 <p>As you complete the exercises, there will often be test scripts which
 check the code you have just written. These are located in the
 <code class="docutils literal notranslate"><span class="pre">test</span></code> folder and employ the <a class="reference external" href="http://pytest.org/">pytest</a>
-testing framework. From the root of the repository, run an individual
-test file with:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pytest</span> <span class="n">test</span><span class="o">/</span><span class="n">test_exercises1</span><span class="o">.</span><span class="n">py</span>
+testing framework. You run the tests with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pytest</span> <span class="n">test_script</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
-<p>from the bash Terminal, replacing <code class="docutils literal notranslate"><span class="pre">test/test_exercises1.py</span></code> with the
-appropriate test file path (remember to activate the venv first). The
+<p>from the bash Terminal, replacing <code class="docutils literal notranslate"><span class="pre">test_script.py</span></code> with the
+appropriate test file name (remember to activate the venv first). The
 <code class="docutils literal notranslate"><span class="pre">-x</span></code> option to <code class="docutils literal notranslate"><span class="pre">pytest</span></code> will cause the test to stop at the first
 failure it finds, which is often the best place to start fixing a
 problem. For those familiar with debuggers, the <code class="docutils literal notranslate"><span class="pre">--pdb</span></code> option will
 drop you into the Python debugger at the first error.</p>
-<p>You can also run all the tests from the root of the repository. The
-test files are run in exercise order, and the <code class="docutils literal notranslate"><span class="pre">-x</span></code> option stops at
-the first failing test:</p>
+<p>You can also run all the tests by running <code class="docutils literal notranslate"><span class="pre">pytest</span></code> on the tests
+folder. This works particularly well with the -x option, resulting
+in the tests being run in course order and stopping at the first
+failing test:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pytest</span> <span class="o">-</span><span class="n">x</span>
 </pre></div>
 </div>
@@ -483,7 +478,7 @@ the first failing test:</p>
 to the next exercise.</p>
 </section>
 <section id="coding-style-and-commenting">
-<h2><span class="section-number">1.9. </span>Coding style and commenting<a class="headerlink" href="#coding-style-and-commenting" title="Link to this heading">¶</a></h2>
+<h2>Coding style and commenting<a class="headerlink" href="#coding-style-and-commenting" title="Link to this heading">¶</a></h2>
 <p>Computer code is not just functional, it also conveys information to
 the reader. It is important to write clear, intelligible code. <strong>The
 readability and clarity of your code will count for marks</strong>.</p>
@@ -495,7 +490,7 @@ a more experienced programmer, to follow PEP8 in your
 implementation. Full code marks will require PEP8 compliance.</p>
 </section>
 <section id="skeleton-code-documentation">
-<h2><span class="section-number">1.10. </span>Skeleton code documentation<a class="headerlink" href="#skeleton-code-documentation" title="Link to this heading">¶</a></h2>
+<h2>Skeleton code documentation<a class="headerlink" href="#skeleton-code-documentation" title="Link to this heading">¶</a></h2>
 <p>There is web documentation for the complete <a class="reference internal" href="cla_utils.html"><span class="doc">cla_utils package</span></a>. There is
 also an <a class="reference internal" href="genindex.html"><span class="std std-ref">alphabetical index</span></a> and a <a class="reference internal" href="search.html"><span class="std std-ref">search page</span></a>.</p>
 </section>
