@@ -26,7 +26,7 @@ check that you have everything ready to do your work.
 
    1. Install Python, Git and a text editor using the instructions below.
    2. Create a working folder and put a virtual environment in it (venv).
-   3. Clone your course repository from Github Classroom into the
+   3. Clone your course repository Classroom 50 into the
       working folder.
    4. Activate the venv.
    5. Install :mod:`numpy` to the venv, and :mod:`pytest`.
@@ -241,20 +241,17 @@ of the Principles of Programming website.
 Setting up your repository
 ==========================
 
-We're using a tool called `GitHub classroom
-<https://classroom.github.com>`_ to automate the creation of your
-copies of the repository. Follow the link on Blackboard marked "Course
-Repository" to create your personal repository for the course. Then,
+We're using a tool called `Classroom 50
+<https://classroom50.org/>`_ to automate the creation of your
+copies of the repository. Follow the link received on email from GitHub
+to create your personal repository for the course. Then,
 clone it to your working folder on your computer following the
 instructions in the previous section.
 
 .. warning::
 
-   When you follow the link, you will be asked to select your
-   "school's identifier" from a list. This will be your user ID that
-   you use to log into Outlook (e.g., sbc21). If you don't find your
-   ID on the list, *do not* click "Skip to the next step". And, *do
-   not* click someone else's ID! Instead, contact the course leader
+   When you follow the link, your Imperial ID that
+   you use to log into Outlook (e.g., sbc21) will be linked to your GitHub username. If you have not recieved an email from GitHub, please check your spam folder. If you still haven't received it, contact the course leader
    and ask to have your user ID added. We need to do this so that we
    can grade your work.
 
@@ -336,16 +333,16 @@ on Github.
 .. hint::
 
    In Git, we use the Terminal to commit changes and push them to the
-   remote repository on Github Classroom. A repository is a record of
+   remote repository on Classroom 50. A repository is a record of
    the history of the code as you are working.  To add a file to the
    list of files whose changes will be committed to the repository,
    type `git add <filename> -m <log message>`, where `<log message>`
    is a short description of the changes you made.  To commit those
    changes, type `git commit`. They will now be saved locally.  To
-   push these changes to the "remote" repository on Github Classroom,
+   push these changes to the "remote" repository on Classroom 50,
    type `git push` (you may be asked to set the name of the remote,
    just paste the suggested command into the Terminal). To pull
-   changes from the remote repository on Github Classroom, type `git
+   changes from the remote repository on Classroom 50, type `git
    pull`. For further features and better explanation, please take
    a look at the Github Tutorial linked above.
 
